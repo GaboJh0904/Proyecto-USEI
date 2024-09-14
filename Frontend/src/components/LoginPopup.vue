@@ -55,6 +55,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
   }
 
   .popup-content h2 {
@@ -68,7 +69,8 @@
     padding: 20px;
     border-radius: 15px;
     position: relative;
-    width: 300px;
+    width: 350px;
+    z-index: 1001;
   }
   
   .close-btn {
@@ -98,7 +100,7 @@
     padding-right: 0px;
   }
   
-  .submit-btn, .register-btn {
+  .submit-btn{
     width: 100%;
     padding: 10px;
     background-color: #63C7B2;
@@ -109,9 +111,23 @@
     margin-top: 10px;
     font-size: 17px;
   }
+  .submit-btn:hover {
+  background-color: #8E6C88;
+  color: white;
+  }
   
   .register-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 10px;
     background-color: #CCDBDC;
     color: #333;
   }
+  .register-btn:hover {
+  background-color: #263D42;
+  color: white;
+}
   </style>

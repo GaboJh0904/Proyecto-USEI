@@ -8,14 +8,35 @@
       <a href="#">Opción 2</a>
       <a href="#">Opción 3</a>
       <a href="#">Opción 4</a>
-      <a href="#" class="login-btn">Iniciar Sesión</a>
+      <a href="#" class="login-btn" @click="showLoginPopup = true">Iniciar Sesión</a>
     </div>
   </nav>
+  <LoginPopup v-if="showLoginPopup" @close="showLoginPopup = false" @switch-to-register="switchToRegister" />
+  <RegisterPopup v-if="showRegisterPopup" @close="showRegisterPopup = false" />
 </template>
 
 <script>
+import LoginPopup from '@/components/LoginPopup.vue';
+import RegisterPopup from '@/components/RegisterPopup.vue';
+
 export default {
   name: 'NavBar',
+  components: {
+    LoginPopup,
+    RegisterPopup
+  },
+  data() {
+    return {
+      showLoginPopup: false,
+      showRegisterPopup: false
+    };
+  },
+  methods: {
+    switchToRegister() {
+      this.showLoginPopup = false;
+      this.showRegisterPopup = true;
+    }
+  }
 };
 </script>
 

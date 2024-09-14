@@ -62,6 +62,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1000;
   }
 
   .popup-content {
@@ -70,7 +71,8 @@
     border: 5px solid #8E6C88;
     border-radius: 15px;
     position: relative;
-    width: 300px;
+    width: 350px;
+    z-index: 1001;
   }
 
   .popup-content h2 {
@@ -119,4 +121,8 @@
     margin-top: 10px;
   }
 
+  .submit-btn:hover, .register-btn:hover {
+    background-color: #63C7B2;
+    color: white;
+  }
   </style>
