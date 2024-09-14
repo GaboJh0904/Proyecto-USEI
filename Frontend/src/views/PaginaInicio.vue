@@ -34,7 +34,7 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue';
-import ImageCarousel from '@/components/ImageCarousel.vue';
+import ImageCarousel from '@/components/imageCarousel.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 export default {
   name: "LandingPage",
