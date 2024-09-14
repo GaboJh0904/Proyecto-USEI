@@ -1,22 +1,25 @@
 <template>
-    <div class="pagina-inicio">
+  <div>
+    <!-- Header Section -->
+    <section class="header-master">
       <header>
-        <nav>
-          <a href="#">Opción 1</a>
-          <a href="#">Opción 2</a>
-          <a href="#">Opción 3</a>
-          <a href="#">Opción 4</a>
-        </nav>
+        <NavBar />
       </header>
-      
-      <main>
-        <div class="slider">
-          <button class="prev">&lt;</button>
-          <img src="\src\components\images\maquetaUSEI.jpg" alt="Graduates celebrating" />
-          <button class="next">&gt;</button>
+
+      <div class="content-header">
+        <div class="container">
+          <ImageCarousel />
         </div>
-        
-        <section class="content">
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+      <div class="container">
+        <div class="about-container">
+          <img src="@/components/images/graduados.jpg" alt="" />
+        </div>
+        <div class="about-container">
           <h2>USEI</h2>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sollicitudin enim quis ipsum efficiend imperdiet. Sed efficitur lacus ultricies. Pellentesque quis ultricies odio. Duis ante mauris, hendrerit ut odio at, efficitur commodo nisi.</p>
           
@@ -24,38 +27,14 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sollicitudin enim quis ipsum efficiend imperdiet. Sed efficitur lacus ultricies. Pellentesque quis ultricies odio. Duis ante mauris, hendrerit ut odio at, efficitur commodo nisi.</p>
         </section>
       </main>
-      <button @click="showLoginPopup = true">Iniciar sesión</button>
-    <button @click="showRegisterPopup = true">Registrarse</button>
-
-    <LoginPopup v-if="showLoginPopup" @close="showLoginPopup = false" @switch-to-register="switchToRegister" />
-    <RegisterPopup v-if="showRegisterPopup" @close="showRegisterPopup = false" />
-  </div>
-</template>
-
-<script>
-import LoginPopup from '@/components/LoginPopup.vue'
-import RegisterPopup from '@/components/RegisterPopup.vue'
-
-export default {
-  name: 'PaginaInicio',
-  components: {
-    LoginPopup,
-    RegisterPopup
-  },
-  data() {
-    return {
-      showLoginPopup: false,
-      showRegisterPopup: false
-    }
-  },
-  methods: {
-    switchToRegister() {
-      this.showLoginPopup = false
-      this.showRegisterPopup = true
-    }
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    name: 'PaginaInicio',
   }
-}
-</script>
+  </script>
   
   <style scoped>
   .pagina-inicio {
@@ -70,15 +49,18 @@ export default {
     justify-content: space-between;
     align-items: center;
     background-color: #5cd3b4;
-    padding: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .logo {
+    background-color: white;
+    padding: 0.5rem;
   }
   
   nav a {
     color: white;
     text-decoration: none;
-    align-items: center;
-    justify-content: left;
-    margin-left: 4rem;
+    margin-left: 1rem;
   }
   
   main {
@@ -89,35 +71,36 @@ export default {
   
   .slider {
     position: relative;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .slider img {
+    z-index: 2;
+}
+
+.about-container img{
     max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-  }
-  
-  .prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    padding: 1rem;
-    cursor: pointer;
-  }
-  
-  .prev { left: 10px; }
-  .next { right: 10px; }
-  
-  .content {
-    padding: 2rem;
-    background-color: #f8f8f8;
-  }
-  </style>
+}
+
+.about-container h2{
+    font-size: 33px;
+    margin: 20px 0;
+    color: #a9c4b8;
+    font-weight: normal;
+    padding: 5px 40px;
+    text-align: center;
+}
+
+.about-container h2 b{
+    color: #03ca9f;
+}
+
+footer{
+    padding: 20px 0;
+    background: #6cc5b2;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 916px){
+    section.header-master{
+        min-height: 400px;
+    }
+}
+</style>
