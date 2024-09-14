@@ -56,7 +56,13 @@ public class NoticiasBL implements NoticiasService{
 
             Usuario usuario = usuarioService.findById(noticias.getUsuarioIdUsuario().getIdUsuario())
                     .orElseThrow(() -> new RuntimeException("Usuario no encontrada con el id: " + noticias.getUsuarioIdUsuario().getIdUsuario()));
-
+            
+            // Actualizar los campos de la noticias con los valores correspondientes
+            noticiasToUpdate.setTitulo(noticias.getTitulo());
+            noticiasToUpdate.setDescripcion(noticias.getDescripcion());
+            noticiasToUpdate.setImg(noticias.getImg());
+            noticiasToUpdate.setFechaModificado(noticias.getFechaModificado());
+            noticiasToUpdate.setEstado(noticias.getEstado());
             noticiasToUpdate.setUsuarioIdUsuario(usuario);
 
             noticiasDAO.save(noticiasToUpdate);
