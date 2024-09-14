@@ -1,103 +1,136 @@
 <template>
-    <div class="pagina-inicio">
+  <div>
+    <!-- Header Section -->
+    <section class="header-master">
       <header>
-        <div class="logo">Logo</div>
-        <nav>
-          <a href="#">Opción 1</a>
-          <a href="#">Opción 2</a>
-          <a href="#">Opción 3</a>
-          <a href="#">Opción 4</a>
-        </nav>
+        <NavBar />
       </header>
-      
-      <main>
-        <div class="slider">
-          <button class="prev">&lt;</button>
-          <img src="\src\components\images\maquetaUSEI.jpg" alt="Graduates celebrating" />
-          <button class="next">&gt;</button>
+
+      <div class="content-header">
+        <div class="container">
+          <ImageCarousel />
         </div>
-        
-        <section class="content">
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+      <div class="container">
+        <div class="about-container">
+          <img src="@/components/images/graduados.jpg" alt="" />
+        </div>
+        <div class="about-container">
           <h2>USEI</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sollicitudin enim quis ipsum efficiend imperdiet. Sed efficitur lacus ultricies. Pellentesque quis ultricies odio. Duis ante mauris, hendrerit ut odio at, efficitur commodo nisi.</p>
-          
-          <h2>USEI</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sollicitudin enim quis ipsum efficiend imperdiet. Sed efficitur lacus ultricies. Pellentesque quis ultricies odio. Duis ante mauris, hendrerit ut odio at, efficitur commodo nisi.</p>
-        </section>
-      </main>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'PaginaInicio',
+          <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit.Architecto possimus consectetur nostrum laborum, rerum unde autem aut consequatur quibusdam pariatur assumenda mollitia libero omnis quae?<b>Universidad Catolica Boliviana</b></h2>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <FooterComponent />
+  </div>
+</template>
+
+<script>
+import NavBar from '@/components/NavBar.vue';
+import ImageCarousel from '@/components/ImageCarousel.vue';
+import FooterComponent from '@/components/FooterComponent.vue';
+export default {
+  name: "LandingPage",
+  components: {
+    NavBar,
+    ImageCarousel,
+    FooterComponent  
   }
-  </script>
-  
-  <style scoped>
-  .pagina-inicio {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-family: Arial, sans-serif;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #5cd3b4;
-    padding: 1rem;
-  }
-  
-  .logo {
-    background-color: white;
-    padding: 0.5rem;
-  }
-  
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 1rem;
-  }
-  
-  main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .slider {
+};
+</script>
+
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+.clear{
+    clear: both;
+}
+
+.container{
+    max-width: 1280px;
+    padding: 0 2%;
+    margin: 50px auto;
+
+}
+/*Section Header-Master*/
+
+section.header-master{
+    width: 100%;
+    padding: 30px 0;
+    min-height: 700px;
+    background-image: url('https://i.postimg.cc/28zkdsTq/bg-01.png');
+    background-size: cover;
+}
+
+section.header-master header{
+    border-bottom: 3px solid rgba(71, 83, 88, .14);
+    padding-bottom: 20px;
+}
+
+.logo{
+    float: left;
+    width: 191px;
+    height: 64px;
+    background-image: url('@/components/images/USEI.png');
+    background-size: 100% 100%;
+}
+
+
+.content-header{
+    padding: 60px 0;
+}
+
+/*SECTION About*/
+
+.about-container{
+    float: left;
+    width: 50%;
     position: relative;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .slider img {
+    z-index: 2;
+}
+
+.about-container img{
     max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-  }
-  
-  .prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    padding: 1rem;
-    cursor: pointer;
-  }
-  
-  .prev { left: 10px; }
-  .next { right: 10px; }
-  
-  .content {
-    padding: 2rem;
-    background-color: #f8f8f8;
-  }
-  </style>
+}
+
+.about-container h2{
+    font-size: 33px;
+    margin: 20px 0;
+    color: #a9c4b8;
+    font-weight: normal;
+    padding: 5px 40px;
+    text-align: center;
+}
+
+.about-container h2 b{
+    color: #03ca9f;
+}
+
+footer{
+    padding: 20px 0;
+    background: #6cc5b2;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 916px){
+    section.header-master{
+        min-height: 400px;
+    }
+}
+</style>
