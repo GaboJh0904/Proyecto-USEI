@@ -12,6 +12,6 @@ public Iterable<Certificado> findAll();
 
     public Certificado save(Certificado newCertificado);
 
-    public void update (Certificado newCertificado, Long id);
+    public Certificado update (Certificado newCertificado, Long id);
 
 }

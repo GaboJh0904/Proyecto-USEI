@@ -49,7 +49,7 @@ public class CertificadoBL implements CertificadoService{
 
     @Override
     @Transactional
-    public void update(Certificado certificado, Long id) {
+    public Certificado update(Certificado certificado, Long id) {
         Optional<Certificado> existingCertificado = certificadoDAO.findById(id);
         if (existingCertificado.isPresent()) {
             Certificado certificadoToUpdate = existingCertificado.get();
@@ -57,9 +57,13 @@ public class CertificadoBL implements CertificadoService{
             Usuario usuario = usuarioService.findById(certificado.getUsuarioIdUsuario().getIdUsuario())
                     .orElseThrow(() -> new RuntimeException("Usuario no encontrada con el id: " + certificado.getUsuarioIdUsuario().getIdUsuario()));
 
+            // Actualizar los campos del certificado con los valores correspondientes    
+            certificadoToUpdate.setFormato(certificado.getFormato());
+            certificadoToUpdate.setVersion(certificado.getVersion());
+            certificadoToUpdate.setFechaModificacion(certificado.getFechaModificacion());
             certificadoToUpdate.setUsuarioIdUsuario(usuario);
 
-            certificadoDAO.save(certificadoToUpdate);
+            return certificadoDAO.save(certificadoToUpdate);
         } else {
             throw new RuntimeException("Almacen no encontrado con el id: " + id);
         }

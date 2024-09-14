@@ -59,7 +59,7 @@ public class EncuestaGestionBL implements EncuestaGestionService{
 
     @Override
     @Transactional
-    public void update(EncuestaGestion encuestaGestion, Long id) {
+    public EncuestaGestion update(EncuestaGestion encuestaGestion, Long id) {
         Optional<EncuestaGestion> existingEncuestaGestion = encuestaGestionDAO.findById(id);
         if (existingEncuestaGestion.isPresent()) {
             EncuestaGestion encuestaGestionToUpdate = existingEncuestaGestion.get();
@@ -70,11 +70,13 @@ public class EncuestaGestionBL implements EncuestaGestionService{
             Pregunta pregunta = preguntaService.findById(encuestaGestion.getPreguntaIdPregunta().getIdPregunta())
                 .orElseThrow(() -> new RuntimeException("pregunta no encontrado con el id: " + encuestaGestion.getPreguntaIdPregunta().getIdPregunta()));
 
-            // Actualizar los campos del médico con los valores correspondientes
+            // Actualizar los campos de la encuesta_gestion con los valores correspondientes
+            encuestaGestionToUpdate.setAnio(encuestaGestion.getAnio());
+            encuestaGestionToUpdate.setSemestre(encuestaGestion.getSemestre());
             encuestaGestionToUpdate.setEncuestaIdEncuesta(encuesta);
             encuestaGestionToUpdate.setPreguntaIdPregunta(pregunta);
 
-            encuestaGestionDAO.save(encuestaGestionToUpdate);
+            return encuestaGestionDAO.save(encuestaGestionToUpdate);
         } else {
             throw new RuntimeException("Encuesta_Gestion no encontrado con el id: " + id);
         }

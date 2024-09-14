@@ -12,6 +12,6 @@ public interface EncuestaGestionService {
 
     public EncuestaGestion save(EncuestaGestion newEncuestaGestion);
 
-    public void update (EncuestaGestion newEncuestaGestion, Long id);
+    public EncuestaGestion update (EncuestaGestion newEncuestaGestion, Long id);
 
 }
