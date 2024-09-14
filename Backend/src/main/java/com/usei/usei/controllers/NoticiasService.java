@@ -12,6 +12,6 @@ public interface NoticiasService {
 
     public Noticias save(Noticias newNoticias);
 
-    public void update (Noticias newNoticias, Long id);
+    public Noticias update (Noticias newNoticias, Long id);
 
 }
