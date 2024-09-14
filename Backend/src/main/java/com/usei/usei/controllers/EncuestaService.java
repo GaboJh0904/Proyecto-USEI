@@ -15,3 +15,4 @@ public interface EncuestaService {
                 public Encuesta update(Encuesta newEncuesta, Long id);
 
                 }
+
