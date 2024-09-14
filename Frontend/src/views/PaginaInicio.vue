@@ -1,7 +1,6 @@
 <template>
     <div class="pagina-inicio">
       <header>
-        <div class="logo">Logo</div>
         <nav>
           <a href="#">Opción 1</a>
           <a href="#">Opción 2</a>
@@ -25,14 +24,38 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sollicitudin enim quis ipsum efficiend imperdiet. Sed efficitur lacus ultricies. Pellentesque quis ultricies odio. Duis ante mauris, hendrerit ut odio at, efficitur commodo nisi.</p>
         </section>
       </main>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'PaginaInicio',
+      <button @click="showLoginPopup = true">Iniciar sesión</button>
+    <button @click="showRegisterPopup = true">Registrarse</button>
+
+    <LoginPopup v-if="showLoginPopup" @close="showLoginPopup = false" @switch-to-register="switchToRegister" />
+    <RegisterPopup v-if="showRegisterPopup" @close="showRegisterPopup = false" />
+  </div>
+</template>
+
+<script>
+import LoginPopup from '@/components/LoginPopup.vue'
+import RegisterPopup from '@/components/RegisterPopup.vue'
+
+export default {
+  name: 'PaginaInicio',
+  components: {
+    LoginPopup,
+    RegisterPopup
+  },
+  data() {
+    return {
+      showLoginPopup: false,
+      showRegisterPopup: false
+    }
+  },
+  methods: {
+    switchToRegister() {
+      this.showLoginPopup = false
+      this.showRegisterPopup = true
+    }
   }
-  </script>
+}
+</script>
   
   <style scoped>
   .pagina-inicio {
@@ -47,18 +70,15 @@
     justify-content: space-between;
     align-items: center;
     background-color: #5cd3b4;
-    padding: 1rem;
-  }
-  
-  .logo {
-    background-color: white;
-    padding: 0.5rem;
+    padding: 1.5rem;
   }
   
   nav a {
     color: white;
     text-decoration: none;
-    margin-left: 1rem;
+    align-items: center;
+    justify-content: left;
+    margin-left: 4rem;
   }
   
   main {
