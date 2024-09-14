@@ -5,13 +5,14 @@ import java.util.Optional;
 import com.usei.usei.models.Encuesta;
 
 public interface EncuestaService {
-    
+
     public Iterable<Encuesta> findAll();
 
-    public Optional<Encuesta> findById(Long id);
+        public Optional<Encuesta> findById(Long id);
 
-    public Encuesta save(Encuesta newEncuesta);
+            public Encuesta save(Encuesta newEncuesta);
 
-    public void update (Encuesta newEncuesta, Long id);
+                public Encuesta update(Encuesta newEncuesta, Long id);
 
-}
+                }
+
