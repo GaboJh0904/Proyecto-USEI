@@ -9,7 +9,6 @@
             <div class="form-group">
               <label for="name">Nombre:</label>
               <div class="relative">
-                <!-- Usamos un <p> para mostrar los datos estáticos del usuario, quitarla para ya jalar datos de la BD-->
                 <p class="static-data">{{ user.name }}</p>
                 <i class="fa fa-user"></i>
               </div>
@@ -29,45 +28,64 @@
               </div>
             </div>
             <div class="tright">
-              <button class="movebtn movebtnedit" type="button" @click="editProfile"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+              <button class="movebtn movebtnedit" type="button" @click="showEditProfile"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
               <button class="movebtn movebtnlogout" type="button" @click="logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
             </div>
           </form>
         </div>
       </div>
+      <EditProfilePopup v-if="showEditPopup" @close="closeEditPopup" :user="user" @save="saveProfileChanges" />
     </div>
   </template>
   
   <script>
+  import EditProfilePopup from '@/components/EditProfilePopup.vue'
+  import { useRouter } from 'vue-router'; // Importar el enrutador
+  
   export default {
     name: 'UserProfilePopup',
+    components: {
+      EditProfilePopup
+    },
     data() {
       return {
         user: {
-          name: 'Rosario Calisaya', // Simulación de datos del usuario, en caso de integrar backend, modificar la función
+          name: 'Rosario Calisaya',
           email: 'rosario.calisaya@example.com',
           phone: '1234567890'
-        }
+        },
+        showEditPopup: false // Controlar la visibilidad del pop-up de edición
       };
+    },
+    setup() {
+      const router = useRouter(); // Obtener acceso al enrutador dentro del setup
+      return { router };
     },
     methods: {
       closePopup() {
         this.$emit('close');
       },
-      editProfile() {
-        // Lógica para redirigir o habilitar la edición del perfil
-        alert("Editar perfil");
+      showEditProfile() {
+        this.showEditPopup = true; 
+      },
+      closeEditPopup() {
+        this.showEditPopup = false; 
+      },
+      saveProfileChanges(updatedUser) {
+        // Actualizar los datos del perfil 
+        this.user = updatedUser;
+        this.closeEditPopup(); 
       },
       logout() {
-        // Lógica para cerrar sesión
-        alert("Cerrar sesión");
+        // Redirigir a la pagina de inicio
+        this.router.push({ name: 'inicio' }); // Redirigir a la vista Pagina de inicio
       }
     }
   };
   </script>
   
   <style scoped>
-  /* Estilos aquí permanecen igual */
+  /* Estilos permanecen iguales */
   .profile-popup {
     position: fixed;
     top: 0;
@@ -93,13 +111,13 @@
     width: 100%;
     box-shadow: 0 0 40px -10px #fff;
     position: relative;
-    margin-top: -20px; 
+    margin-top: -20px;
     overflow: hidden;
   }
   
   .color-bar {
     position: absolute;
-    top: -3px; 
+    top: -3px;
     left: 0;
     width: 100%;
     height: 8px;
