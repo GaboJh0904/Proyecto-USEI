@@ -12,9 +12,22 @@
       <!-- Mostrar iconos de usuario y notificaciones si es vista del estudiante -->
       <template v-if="isStudent">
         <!-- Icono de notificaciones -->
-        <button @click="openNotifications" class="icon-button notification-icon">
+        <button @click="toggleNotifications" class="icon-button notification-icon">
           <i class="fas fa-bell"></i>
         </button>
+
+        <!-- Menu de notificaciones -->
+        <div v-if="showNotifications" class="notification-menu">
+          <h3>Notificaciones</h3>
+          <div class="notification-item" v-for="(notification, index) in notifications" :key="index">
+            <i class="fas fa-envelope notification-icon"></i> <!-- Icono de mensaje -->
+            <div class="notification-content">
+              <p><strong>{{ notification.title }}</strong></p>
+              <p>{{ notification.description }}</p>
+              <p>{{ notification.time }}</p>
+            </div>
+          </div>
+        </div>
 
         <!-- Icono de usuario y label con el nombre -->
         <div class="user-wrapper">
@@ -69,25 +82,29 @@ export default {
     return {
       showLoginPopup: false,
       showRegisterPopup: false,
-      showUserProfile: false, // Controla la visibilidad del popup del perfil de usuario
-      username: 'USERNAME', 
+      showUserProfile: false,
+      showNotifications: false, // Controla la visibilidad del menú de notificaciones
+      username: 'USERNAME',
+      notifications: [
+        { title: 'Nueva notificación', description: 'Revision de encuesta', time: 'Hace 6 horas' }
+      ]
     };
   },
   methods: {
     switchToRegister() {
       this.showLoginPopup = false;
-      this.showRegisterPopup = true; 
+      this.showRegisterPopup = true;
     },
-    openNotifications() {
-      alert('Abriendo notificaciones...');
+    toggleNotifications() {
+      this.showNotifications = !this.showNotifications; // Alternar la visibilidad del menú de notificaciones
     },
     openUserProfile() {
-      this.showUserProfile = true; 
+      this.showUserProfile = true;
     },
     closeUserProfile() {
-      this.showUserProfile = false; 
-    },
-  },
+      this.showUserProfile = false;
+    }
+  }
 };
 </script>
 
@@ -168,5 +185,46 @@ nav {
   font-size: 16px;
   color: white;
   margin-left: 5px;
+}
+
+/* Estilos para el menú de notificaciones */
+.notification-menu {
+  position: absolute;
+  top: 70px;
+  right: 50px;
+  width: 300px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 1000;
+}
+
+.notification-menu h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #263d42;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.notification-icon {
+  font-size: 25px;
+  color: #8e6c88;
+  margin-right: 10px;
+}
+
+.notification-content p {
+  margin: 0;
+  color: #333;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
 }
 </style>
