@@ -33,3 +33,13 @@ npm run build
 ```sh
 npm run lint
 ```
+# Extra Libraries
+## FontAwesome Library
+```sh
+npm install @fortawesome/fontawesome-free
+```
+## Flickity (Carousel)
+```sh
+npm install flickity
+```
+
