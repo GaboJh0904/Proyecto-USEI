@@ -8,7 +8,25 @@
       <a href="#">Opción 2</a>
       <a href="#">Opción 3</a>
       <a href="#">Opción 4</a>
-      <a href="#" class="login-btn" @click="showLoginPopup = true">Iniciar Sesión</a>
+
+      <!-- Mostrar iconos de usuario y notificaciones si es vista del estudiante -->
+      <template v-if="isStudent">
+        <!-- Icono de notificaciones -->
+        <button @click="openNotifications" class="icon-button notification-icon">
+          <i class="fas fa-bell"></i>
+        </button>
+
+        <!-- Icono de usuario y label con el nombre -->
+        <div class="user-wrapper">
+          <button @click="openUserProfile" class="icon-button user-icon">
+            <i class="fas fa-user-circle"></i>
+          </button>
+          <span class="username-label">{{ username }}</span>
+        </div>
+      </template>
+
+      <!-- Mostrar el botón de iniciar sesión si NO es la vista del estudiante -->
+      <a v-else href="#" class="login-btn" @click="showLoginPopup = true">Iniciar Sesión</a>
     </div>
   </nav>
   <LoginPopup v-if="showLoginPopup" @close="showLoginPopup = false" @switch-to-register="switchToRegister" />
@@ -25,24 +43,37 @@ export default {
     LoginPopup,
     RegisterPopup
   },
+  props: {
+    isStudent: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       showLoginPopup: false,
-      showRegisterPopup: false
+      showRegisterPopup: false,
+      username: 'USERNAME' // Este campo se actualizará dinámicamente al iniciar sesión
     };
   },
   methods: {
     switchToRegister() {
       this.showLoginPopup = false;
       this.showRegisterPopup = true;
+    },
+    openNotifications() {
+      // Lógica para abrir las notificaciones
+      alert('Abriendo notificaciones...');
+    },
+    openUserProfile() {
+      // Lógica para abrir el perfil de usuario
+      alert('Abriendo perfil de usuario...');
     }
   }
 };
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-
 nav {
   position: fixed;
   top: 0;
@@ -64,7 +95,6 @@ nav {
 .nav-links {
   display: flex;
   align-items: center;
-  position: relative;
 }
 
 .nav-links a {
@@ -73,8 +103,6 @@ nav {
   color: white;
   text-decoration: none;
   padding: 0 20px;
-  line-height: 30px;
-  position: relative;
 }
 
 .nav-links a:hover {
@@ -89,10 +117,33 @@ nav {
   text-transform: uppercase;
   font-size: 14px;
   transition: background 0.3s ease;
-  line-height: normal; 
 }
 
 .login-btn:hover {
   background: #80ced7;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  color: white;
+  font-size: 28px; 
+}
+
+.icon-button:hover {
+  color: #263d42; 
+}
+
+.user-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.username-label {
+  font-size: 16px;
+  color: white;
+  margin-left: 5px; /* Reduce el margen para que el ícono esté más cerca */
 }
 </style>
