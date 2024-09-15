@@ -10,7 +10,7 @@
       <a href="#">Opción 4</a>
 
       <!-- Mostrar iconos de usuario y notificaciones si es vista del estudiante -->
-      <template v-if="isStudent">
+      <template v-if="userRole === 'Student' || userRole === 'Director' || userRole === 'Admin'">
         <!-- Icono de notificaciones -->
         <button @click="openNotifications" class="icon-button notification-icon">
           <i class="fas fa-bell"></i>
@@ -44,9 +44,9 @@ export default {
     RegisterPopup
   },
   props: {
-    isStudent: {
-      type: Boolean,
-      default: false
+    userRole: {
+      type: String, // Cambié de Boolean a String para aceptar roles específicos
+      default: '' // Por defecto, no hay rol asignado
     }
   },
   data() {

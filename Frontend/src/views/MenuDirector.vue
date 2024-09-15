@@ -3,7 +3,7 @@
       <!-- Header Section -->
       <section class="header-master">
         <header>
-            <NavBar userRole="Student" />
+            <NavBar userRole="Director" />
         </header>
   
         <div class="content-header">
@@ -29,39 +29,39 @@
   
       <!-- New Section (Icon Cards) -->
       <section class="icon-cards">
-        <div class="container-cards">
-          <!-- Card 1 -->
-          <div class="card-wrapper">
-            <div class="card">
-              <img src="@/components/images/certificado_icon.png" alt="Certificados" class="card-icon" />
-            </div>
-            <h3>CERTIFICADOS</h3>
-            <div class="card-button-container">
-              <button class="btn-ingresar">Ingresar</button>
-            </div>
+      <div class="container-cards">
+        <!-- Card 1 -->
+        <div class="card-wrapper">
+          <div class="card">
+            <img src="@/components/images/certificado_icon.png" alt="Certificados" class="card-icon" />
           </div>
-          <!-- Card 2 -->
-          <div class="card-wrapper">
-            <div class="card">
-              <img src="@/components/images/formulario_icon.png" alt="Encuesta de Graduación" class="card-icon" />
-            </div>
-            <h3>ENCUESTA DE GRADUACIÓN</h3>
-            <div class="card-button-container">
-              <button class="btn-ingresar">Ingresar</button>
-            </div>
-          </div>
-          <!-- Card 3 -->
-          <div class="card-wrapper">
-            <div class="card">
-              <img src="@/components/images/soporte_icon.png" alt="Soporte/Ayuda" class="card-icon" />
-            </div>
-            <h3>SOPORTE/AYUDA</h3>
-            <div class="card-button-container">
-              <button class="btn-ingresar">Ingresar</button>
-            </div>
+          <h3>CERTIFICADOS</h3>
+          <div class="card-button-container">
+            <button class="btn-ingresar">Ingresar</button>
           </div>
         </div>
-      </section>
+        <!-- Card 2 -->
+        <div class="card-wrapper">
+          <div class="card">
+            <img src="@/components/images/formulario_icon.png" alt="Encuesta de Graduación" class="card-icon" />
+          </div>
+          <h3>ENCUESTA DE GRADUACIÓN</h3>
+          <div class="card-button-container">
+            <button class="btn-ingresar">Ingresar</button>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="card-wrapper">
+          <div class="card">
+            <img src="@/components/images/reportes.png" alt="Reportes" class="card-icon" />
+          </div>
+          <h3>REPORTES</h3>
+          <div class="card-button-container">
+            <button class="btn-ingresar">Ingresar</button>
+          </div>
+        </div>
+      </div>
+    </section>
   
       <!-- Footer Section -->
       <FooterComponent />
@@ -105,6 +105,7 @@
   .container-cards {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     margin: 50px auto;
     padding: 20px;
   }
@@ -113,6 +114,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 10px;
   }
   
   .card {
