@@ -31,6 +31,19 @@
 
     <!-- Mostrar el popup de perfil de usuario -->
     <UserProfilePopup v-if="showUserProfile" @close="closeUserProfile" />
+
+    <!-- Mostrar el popup de inicio de sesión -->
+    <LoginPopup
+      v-if="showLoginPopup"
+      @close="showLoginPopup = false"
+      @switch-to-register="switchToRegister"
+    />
+
+    <!-- Mostrar el popup de registro -->
+    <RegisterPopup
+      v-if="showRegisterPopup"
+      @close="showRegisterPopup = false"
+    />
   </nav>
 </template>
 
@@ -44,39 +57,37 @@ export default {
   components: {
     LoginPopup,
     RegisterPopup,
-    UserProfilePopup
+    UserProfilePopup,
   },
   props: {
     isStudent: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
       showLoginPopup: false,
       showRegisterPopup: false,
       showUserProfile: false, // Controla la visibilidad del popup del perfil de usuario
-      username: 'USERNAME' // Aquí puedes actualizar dinámicamente el nombre del usuario
+      username: 'USERNAME', 
     };
   },
   methods: {
     switchToRegister() {
       this.showLoginPopup = false;
-      this.showRegisterPopup = true;
+      this.showRegisterPopup = true; 
     },
     openNotifications() {
       alert('Abriendo notificaciones...');
     },
     openUserProfile() {
-      // Asegurarnos de que este método se esté ejecutando correctamente
-      console.log("Abriendo perfil de usuario...");
-      this.showUserProfile = true; // Esto debe controlar la visibilidad del popup
+      this.showUserProfile = true; 
     },
     closeUserProfile() {
-      this.showUserProfile = false; // Cerrar el popup cuando se haga clic en cerrar
-    }
-  }
+      this.showUserProfile = false; 
+    },
+  },
 };
 </script>
 
@@ -119,12 +130,16 @@ nav {
 
 .login-btn {
   background: #8e6c88;
-  padding: 5px 15px; 
-  border-radius: 20px; 
+  padding: 10px 25px;
+  border-radius: 40px; 
   color: white;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 14px; 
   transition: background 0.3s ease;
+  height: 30px; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
 }
 
 .login-btn:hover {
