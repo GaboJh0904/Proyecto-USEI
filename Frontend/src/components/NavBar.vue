@@ -28,20 +28,23 @@
       <!-- Mostrar el botón de iniciar sesión si NO es la vista del estudiante -->
       <a v-else href="#" class="login-btn" @click="showLoginPopup = true">Iniciar Sesión</a>
     </div>
+
+    <!-- Mostrar el popup de perfil de usuario -->
+    <UserProfilePopup v-if="showUserProfile" @close="closeUserProfile" />
   </nav>
-  <LoginPopup v-if="showLoginPopup" @close="showLoginPopup = false" @switch-to-register="switchToRegister" />
-  <RegisterPopup v-if="showRegisterPopup" @close="showRegisterPopup = false" />
 </template>
 
 <script>
 import LoginPopup from '@/components/LoginPopup.vue';
 import RegisterPopup from '@/components/RegisterPopup.vue';
+import UserProfilePopup from '@/components/UserProfilePopup.vue';
 
 export default {
   name: 'NavBar',
   components: {
     LoginPopup,
-    RegisterPopup
+    RegisterPopup,
+    UserProfilePopup
   },
   props: {
     isStudent: {
@@ -53,7 +56,8 @@ export default {
     return {
       showLoginPopup: false,
       showRegisterPopup: false,
-      username: 'USERNAME' // Este campo se actualizará dinámicamente al iniciar sesión
+      showUserProfile: false, // Controla la visibilidad del popup del perfil de usuario
+      username: 'USERNAME' // Aquí puedes actualizar dinámicamente el nombre del usuario
     };
   },
   methods: {
@@ -62,18 +66,22 @@ export default {
       this.showRegisterPopup = true;
     },
     openNotifications() {
-      // Lógica para abrir las notificaciones
       alert('Abriendo notificaciones...');
     },
     openUserProfile() {
-      // Lógica para abrir el perfil de usuario
-      alert('Abriendo perfil de usuario...');
+      // Asegurarnos de que este método se esté ejecutando correctamente
+      console.log("Abriendo perfil de usuario...");
+      this.showUserProfile = true; // Esto debe controlar la visibilidad del popup
+    },
+    closeUserProfile() {
+      this.showUserProfile = false; // Cerrar el popup cuando se haga clic en cerrar
     }
   }
 };
 </script>
 
 <style scoped>
+/* Estilos para el NavBar y botones */
 nav {
   position: fixed;
   top: 0;
@@ -144,6 +152,6 @@ nav {
 .username-label {
   font-size: 16px;
   color: white;
-  margin-left: 5px; /* Reduce el margen para que el ícono esté más cerca */
+  margin-left: 5px;
 }
 </style>
