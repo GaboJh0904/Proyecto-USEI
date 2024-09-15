@@ -49,7 +49,7 @@ public class NoticiasBL implements NoticiasService{
 
     @Override
     @Transactional
-    public void update(Noticias noticias, Long id) {
+    public Noticias update(Noticias noticias, Long id) {
         Optional<Noticias> existingNoticias = noticiasDAO.findById(id);
         if (existingNoticias.isPresent()) {
             Noticias noticiasToUpdate = existingNoticias.get();
@@ -65,7 +65,7 @@ public class NoticiasBL implements NoticiasService{
             noticiasToUpdate.setEstado(noticias.getEstado());
             noticiasToUpdate.setUsuarioIdUsuario(usuario);
 
-            noticiasDAO.save(noticiasToUpdate);
+            return noticiasDAO.save(noticiasToUpdate);
         } else {
             throw new RuntimeException("Almacen no encontrado con el id: " + id);
         }

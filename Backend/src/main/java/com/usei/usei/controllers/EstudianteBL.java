@@ -10,9 +10,9 @@ import com.usei.usei.models.Estudiante;
 import com.usei.usei.repositories.EstudianteDAO;
 
 @Service
-public class EstudianteBL {
+public class EstudianteBL implements EstudianteService{
 
-    private final EstudianteDAO estudianteDAO;
+    private EstudianteDAO estudianteDAO;
 
     @Autowired
     public EstudianteBL(EstudianteDAO estudianteDAO) {
@@ -34,8 +34,14 @@ public class EstudianteBL {
         return estudianteDAO.save(estudiante);
     }
 
+    @Override
     @Transactional
-    public void update(Estudiante estudiante, Long id) {
+    public void deleteById(Long id) {
+        estudianteDAO.deleteById(id);
+    }
+
+    @Transactional
+    public Estudiante update(Estudiante estudiante, Long id) {
         Optional<Estudiante> existingEstudiante = estudianteDAO.findById(id);
         if (existingEstudiante.isPresent()) {
             Estudiante estudianteToUpdate = existingEstudiante.get();
@@ -43,7 +49,7 @@ public class EstudianteBL {
             estudianteToUpdate.setApellido(estudiante.getApellido());
             // Actualizar otros campos si es necesario
 
-            estudianteDAO.save(estudianteToUpdate);
+            return estudianteDAO.save(estudianteToUpdate);
         } else {
             throw new RuntimeException("Estudiante no encontrado con el id: " + id);
         }

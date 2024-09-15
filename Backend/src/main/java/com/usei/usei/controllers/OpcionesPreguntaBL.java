@@ -10,7 +10,7 @@ import com.usei.usei.models.OpcionesPregunta;
 import com.usei.usei.repositories.OpcionesPreguntaDAO;
 
 @Service
-public class OpcionesPreguntaBL {
+public class OpcionesPreguntaBL implements OpcionesPreguntaService{
 
     private final OpcionesPreguntaDAO opcionesPreguntaDAO;
 

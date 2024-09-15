@@ -1,0 +1,40 @@
+
+POST http://localhost:8080/usuario
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "alvaro",
+  "telefono": 78940756,
+  "correo": "alvaro.jurado@ucb.edu.bo",
+  "rol": "Administrador",
+  "usuario": "gaboJH",
+  "contrasenia": "102030"
+}
+
+###
+
+GET http://localhost:8080/usuario
+
+###
+
+GET http://localhost:8080/persona/4
+
+###
+DELETE http://localhost:8080/persona/6
+
+###
+PUT http://localhost:8080/persona/4
+Content-Type: application/json
+Accept: application/json
+
+{
+  "ci_persona": "12345677",
+  "nombres": "pepito",
+  "apellido_materno": "pepito",
+  "apellido_paterno": "pepito",
+  "genero": "Masculino",
+  "ubicacion": "La Paz",
+  "fecha_nacimiento": "1990-05-10",
+  "telefono": "7654321"
+}

@@ -12,6 +12,6 @@ public interface PreguntaService {
 
     public Pregunta save(Pregunta newPregunta);
 
-    public void update (Pregunta newPregunta, Long id);
+    public Pregunta update (Pregunta newPregunta, Long id);
 
 }

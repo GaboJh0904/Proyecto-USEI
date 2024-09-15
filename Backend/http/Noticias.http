@@ -16,16 +16,16 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/certificado
+GET http://localhost:8080/noticia
 
 ###
 
-GET http://localhost:8080/certificado/1
+GET http://localhost:8080/noticia/1
 
 
 
 ###
-PUT http://localhost:8080/certificado/1
+PUT http://localhost:8080/noticia/1
 Content-Type: application/json
 Accept: application/json
 
