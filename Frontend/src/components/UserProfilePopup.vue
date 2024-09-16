@@ -107,7 +107,7 @@
   .popup-content {
     background: white;
     padding: 20px 30px;
-    border-radius: 8px;
+    border-radius: 15px;
     width: 100%;
     box-shadow: 0 0 40px -10px #fff;
     position: relative;
@@ -122,16 +122,16 @@
     width: 100%;
     height: 8px;
     background: linear-gradient(to right, #ccdbcd, #80ced7, #63c7b2, #8e6c88, #263d42);
-    border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 5px 5px;
   }
   
   .close-btn {
     position: absolute;
-    top: 10px;
+    top: 15px;
     right: 15px;
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
   }
   
@@ -163,7 +163,7 @@
     font-size: 16px;
     padding: 10px;
     border: 2px solid #bebed2;
-    border-radius: 5px;
+    border-radius: 15px;
     background-color: #f0f0f0;
   }
   

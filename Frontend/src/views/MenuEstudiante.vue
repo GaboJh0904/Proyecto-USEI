@@ -47,8 +47,7 @@
             </div>
             <h3>ENCUESTA DE GRADUACIÓN</h3>
             <div class="card-button-container">
-              <button class="btn-ingresar">Ingresar</button>
-            </div>
+              <button class="btn-ingresar" @click="goToEncuesta">Ingresar</button>            </div>
           </div>
           <!-- Card 3 -->
           <div class="card-wrapper">
@@ -78,6 +77,11 @@
       NavBar,
       ImageCarousel,
       FooterComponent  
+    },
+    methods: {
+      goToEncuesta() {
+        this.$router.push('/encuesta-estudiante');
+      }
     }
   };
   </script>
