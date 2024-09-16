@@ -6,7 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.usei.usei.controllers.RespuestaService;
+import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.MessageResponse;
+import com.usei.usei.models.Pregunta;
 import com.usei.usei.models.Respuesta;
 
 import java.util.Optional;
@@ -21,7 +23,19 @@ public class RespuestaAPI {
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Respuesta respuesta) {
         try {
-            respuestaService.save(respuesta);
+            Respuesta newRespuesta = new Respuesta();
+
+            newRespuesta.setRespuesta(respuesta.getRespuesta());
+            // Vincular a una pregunta
+            Pregunta pregunta = new Pregunta();
+            pregunta.setIdPregunta(respuesta.getPreguntaIdPregunta().getIdPregunta());
+            newRespuesta.setPreguntaIdPregunta(pregunta);
+            // Vincular a un estudiante
+            Estudiante estudiante = new Estudiante();
+            estudiante.setIdEstudiante(respuesta.getEstudianteIdEstudiante().getIdEstudiante());
+            newRespuesta.setEstudianteIdEstudiante(estudiante);
+
+            respuestaService.save(newRespuesta);
             return new ResponseEntity<>(new MessageResponse("Respuesta registrada"), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -38,7 +52,7 @@ public class RespuestaAPI {
     }
 
     @GetMapping("/{id_respuesta}")
-    public ResponseEntity<?> readById(@PathVariable Long id) {
+    public ResponseEntity<?> readById(@PathVariable(value = "id_respuesta") Long id) {
         try {
             Optional<Respuesta> respuesta = respuestaService.findById(id);
             if (respuesta.isPresent()) {
@@ -52,9 +66,25 @@ public class RespuestaAPI {
     }
 
     @PutMapping("/{id_respuesta}")
-    public ResponseEntity<?> update(@RequestBody Respuesta respuesta, @PathVariable Long id) {
+    public ResponseEntity<?> update(@PathVariable(value = "id_respuesta") Long id, @RequestBody Respuesta respuesta) {
+
+        Optional<Respuesta> oRespuesta = respuestaService.findById(id);
+        if (oRespuesta.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
         try {
-            return ResponseEntity.ok(respuestaService.update(respuesta, id));
+            oRespuesta.get().setRespuesta(respuesta.getRespuesta());
+            // Vincular a una pregunta
+            Pregunta pregunta = new Pregunta();
+            pregunta.setIdPregunta(respuesta.getPreguntaIdPregunta().getIdPregunta());
+            oRespuesta.get().setPreguntaIdPregunta(pregunta);
+            // Vincular a un estudiante
+            Estudiante estudiante = new Estudiante();
+            estudiante.setIdEstudiante(respuesta.getEstudianteIdEstudiante().getIdEstudiante());
+            oRespuesta.get().setEstudianteIdEstudiante(estudiante);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(respuestaService.save(oRespuesta.get()));
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }

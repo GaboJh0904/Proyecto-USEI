@@ -4,9 +4,9 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "respuesta": "Muy satisfecho",
-    "EstudianteIdEstudiante": 2,
-    "PreguntaIdPregunta": 11
+    "respuesta": "Nada satisfecho",
+    "preguntaIdPregunta": 1,
+    "estudianteIdEstudiante": 1
 }
 
 
@@ -26,10 +26,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "formato": "E'\\x4d79537472696e67'",
-  "version": 2,
-  "fecha_modificacion": "15/09/2024",
-  "Usuario_id_usuario": {
-      "id_usuario": 1
-    }
+    "respuesta": "Medio satisfecho",
+    "preguntaIdPregunta": 4,
+    "estudianteIdEstudiante": 1
 }
