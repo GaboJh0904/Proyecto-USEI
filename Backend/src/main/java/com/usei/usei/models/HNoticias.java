@@ -9,8 +9,9 @@ import java.util.Date;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
@@ -39,6 +40,7 @@ public class HNoticias implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_noticia")
     private Long idNoticia;
     @Basic(optional = false)
@@ -48,9 +50,8 @@ public class HNoticias implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
     @Basic(optional = false)
-    @Lob
     @Column(name = "img")
-    private byte[] img;
+    private String img;
     @Basic(optional = false)
     @Column(name = "fecha_modificado")
     @Temporal(TemporalType.DATE)
@@ -79,7 +80,7 @@ public class HNoticias implements Serializable {
         this.idNoticia = idNoticia;
     }
 
-    public HNoticias(Long idNoticia, String titulo, String descripcion, byte[] img, Date fechaModificado, String estado, int usuarioIdUsuario, int ver, Date txDate, int txUser) {
+    public HNoticias(Long idNoticia, String titulo, String descripcion, String img, Date fechaModificado, String estado, int usuarioIdUsuario, int ver, Date txDate, int txUser) {
         this.idNoticia = idNoticia;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -116,11 +117,11 @@ public class HNoticias implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public byte[] getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(byte[] img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

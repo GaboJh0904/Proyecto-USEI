@@ -9,9 +9,10 @@ import java.util.Date;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -35,17 +36,17 @@ public class EstadoCertificado implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_est_certificado")
     private Long idEstCertificado;
     @Basic(optional = false)
-    @Lob
     @Column(name = "archivo")
-    private byte[] archivo;
+    private String archivo;
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
     @Basic(optional = false)
-    @Column(name = "fecha_estado")
+    @Column(name = "fechaEstado")
     @Temporal(TemporalType.DATE)
     private Date fechaEstado;
     @JoinColumn(name = "certificado_id_certificado", referencedColumnName = "id_certificado")
@@ -62,7 +63,7 @@ public class EstadoCertificado implements Serializable {
         this.idEstCertificado = idEstCertificado;
     }
 
-    public EstadoCertificado(Long idEstCertificado, byte[] archivo, String estado, Date fechaEstado) {
+    public EstadoCertificado(Long idEstCertificado, String archivo, String estado, Date fechaEstado) {
         this.idEstCertificado = idEstCertificado;
         this.archivo = archivo;
         this.estado = estado;
@@ -77,11 +78,11 @@ public class EstadoCertificado implements Serializable {
         this.idEstCertificado = idEstCertificado;
     }
 
-    public byte[] getArchivo() {
+    public String getArchivo() {
         return archivo;
     }
 
-    public void setArchivo(byte[] archivo) {
+    public void setArchivo(String archivo) {
         this.archivo = archivo;
     }
 

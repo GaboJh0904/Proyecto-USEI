@@ -35,14 +35,14 @@ public class OpcionesPreguntaBL implements OpcionesPreguntaService{
     }
 
     @Transactional
-    public void update(OpcionesPregunta opcionesPregunta, Long id) {
+    public OpcionesPregunta update(OpcionesPregunta opcionesPregunta, Long id) {
         Optional<OpcionesPregunta> existingOpcionesPregunta = opcionesPreguntaDAO.findById(id);
         if (existingOpcionesPregunta.isPresent()) {
             OpcionesPregunta opcionesPreguntaToUpdate = existingOpcionesPregunta.get();
             opcionesPreguntaToUpdate.setOpcion(opcionesPregunta.getOpcion());
             // Actualizar otros campos si es necesario
 
-            opcionesPreguntaDAO.save(opcionesPreguntaToUpdate);
+            return opcionesPreguntaDAO.save(opcionesPreguntaToUpdate);
         } else {
             throw new RuntimeException("Opción de Pregunta no encontrada con el id: " + id);
         }

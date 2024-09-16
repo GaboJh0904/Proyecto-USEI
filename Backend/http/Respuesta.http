@@ -1,0 +1,35 @@
+
+POST http://localhost:8080/respuesta
+Content-Type: application/json
+Accept: application/json
+
+{
+    "respuesta": "Muy satisfecho",
+    "EstudianteIdEstudiante": 2,
+    "PreguntaIdPregunta": 11
+}
+
+
+###
+
+GET http://localhost:8080/respuesta
+
+###
+
+GET http://localhost:8080/respuesta/1
+
+
+
+###
+PUT http://localhost:8080/respuesta/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "formato": "E'\\x4d79537472696e67'",
+  "version": 2,
+  "fecha_modificacion": "15/09/2024",
+  "Usuario_id_usuario": {
+      "id_usuario": 1
+    }
+}

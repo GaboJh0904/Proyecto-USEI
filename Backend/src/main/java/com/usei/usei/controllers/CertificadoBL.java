@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.usei.usei.repositories.CertificadoDAO;
+
+
 import com.usei.usei.models.Certificado;
 import com.usei.usei.models.Usuario;
 
@@ -15,6 +17,7 @@ public class CertificadoBL implements CertificadoService{
     
     private final CertificadoDAO certificadoDAO;
     private final UsuarioService usuarioService;
+
 
     @Autowired
     public CertificadoBL(CertificadoDAO certificadoDAO, UsuarioService usuarioService){
@@ -40,7 +43,6 @@ public class CertificadoBL implements CertificadoService{
 
         Usuario usuario = usuarioService.findById(certificado.getUsuarioIdUsuario().getIdUsuario())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: " + certificado.getUsuarioIdUsuario().getIdUsuario()));
-
 
         certificado.setUsuarioIdUsuario(usuario);
 

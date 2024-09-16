@@ -1,0 +1,46 @@
+
+POST http://localhost:8080/estudiante
+Content-Type: application/json
+Accept: application/json
+
+    {
+        "ci": 87654321,
+        "nombre": "María",
+        "apellido": "López",
+        "correoInsitucional": "maria.lopez@instituto.edu",
+        "correoPersonal": "maria.lopez@hotmail.com",
+        "carrera": "Ingeniería Civil",
+        "asignatura": "Estática",
+        "telefono": 555987654,
+        "anio": 2023,
+        "semestre": 2
+    }
+
+###
+
+GET http://localhost:8080/estudiante
+
+###
+
+GET http://localhost:8080/estudiante/3
+
+###
+DELETE http://localhost:8080/estudiante/2
+
+###
+PUT http://localhost:8080/estudiante/3
+Content-Type: application/json
+Accept: application/json
+
+{
+        "ci": 11223344,
+        "nombre": "Carlos",
+        "apellido": "Gómez",
+        "correoInsitucional": "carlos.gomez@instituto.edu",
+        "correoPersonal": null,
+        "carrera": "Arquitectura",
+        "asignatura": "Diseño Arquitectónico",
+        "telefono": 555654321,
+        "anio": 2022,
+        "semestre": 3
+    }

@@ -12,5 +12,5 @@ public interface OpcionesPreguntaService {
 
     public OpcionesPregunta save(OpcionesPregunta newOpcionesPregunta);
 
-    public void update(OpcionesPregunta newOpcionesPregunta, Long id);
+    public OpcionesPregunta update(OpcionesPregunta newOpcionesPregunta, Long id);
 }

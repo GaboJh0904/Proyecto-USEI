@@ -10,6 +10,8 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -40,6 +42,7 @@ public class Estudiante implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_estudiante")
     private Long idEstudiante;
     @Basic(optional = false)
@@ -51,10 +54,10 @@ public class Estudiante implements Serializable {
     @Basic(optional = false)
     @Column(name = "apellido")
     private String apellido;
-    @Basic(optional = false)
-    @Column(name = "correo_insitucional")
+    @Basic(optional = true)
+    @Column(name = "correoInsitucional")
     private String correoInsitucional;
-    @Column(name = "correo_personal")
+    @Column(name = "correoPersonal")
     private String correoPersonal;
     @Basic(optional = false)
     @Column(name = "carrera")

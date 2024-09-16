@@ -1,8 +1,5 @@
 package com.usei.usei.api;
 
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,9 +9,7 @@ import com.usei.usei.controllers.NoticiasService;
 import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Noticias;
 
-import java.beans.FeatureDescriptor;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/noticia")
