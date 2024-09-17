@@ -9,8 +9,9 @@ import java.util.Date;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
@@ -37,12 +38,12 @@ public class HCertificado implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_certificado")
     private Long idCertificado;
     @Basic(optional = false)
-    @Lob
     @Column(name = "formato")
-    private byte[] formato;
+    private String formato;
     @Basic(optional = false)
     @Column(name = "version")
     private int version;
@@ -71,7 +72,7 @@ public class HCertificado implements Serializable {
         this.idCertificado = idCertificado;
     }
 
-    public HCertificado(Long idCertificado, byte[] formato, int version, Date fechaModificacion, int usuarioIdUsuario, int ver, Date txDate, int txUser) {
+    public HCertificado(Long idCertificado, String formato, int version, Date fechaModificacion, int usuarioIdUsuario, int ver, Date txDate, int txUser) {
         this.idCertificado = idCertificado;
         this.formato = formato;
         this.version = version;
@@ -90,11 +91,11 @@ public class HCertificado implements Serializable {
         this.idCertificado = idCertificado;
     }
 
-    public byte[] getFormato() {
+    public String getFormato() {
         return formato;
     }
 
-    public void setFormato(byte[] formato) {
+    public void setFormato(String formato) {
         this.formato = formato;
     }
 

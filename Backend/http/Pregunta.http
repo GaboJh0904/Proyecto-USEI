@@ -1,0 +1,32 @@
+
+POST http://localhost:8080/pregunta
+Content-Type: application/json
+Accept: application/json
+
+{
+    "numPregunta": 11,
+    "pregunta": "¿Qué tan satisfecho estás con el servicio?",
+    "tipoPregunta": "cerrada",
+    "estado": "activa"
+}
+
+###
+
+GET http://localhost:8080/pregunta
+
+###
+
+GET http://localhost:8080/pregunta/2
+
+
+###
+PUT http://localhost:8080/pregunta/2
+Content-Type: application/json
+Accept: application/json
+
+{
+    "numPregunta": 12,
+    "pregunta": "¿Qué mejoras sugieres para el programa?",
+    "tipoPregunta": "abierta",
+    "estado": "inactiva"
+}

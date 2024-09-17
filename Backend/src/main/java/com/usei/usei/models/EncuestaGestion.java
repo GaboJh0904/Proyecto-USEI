@@ -8,6 +8,8 @@ import java.io.Serializable;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -37,6 +39,7 @@ public class EncuestaGestion implements Serializable {
     private int semestre;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_encuesta_gestion")
     private Long idEncuestaGestion;
     @JoinColumn(name = "encuesta_id_encuesta", referencedColumnName = "id_encuesta")

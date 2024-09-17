@@ -1,0 +1,41 @@
+
+POST http://localhost:8080/noticia
+Content-Type: application/json
+Accept: application/json
+
+{
+    "titulo": "Noticia 1",
+    "descripcion": "Descripcion de la noticia 1",
+    "img": "E'\\x4d79537472696e67'",
+    "fecha_modificacion": "14/09/2024",
+    "estado": "Activo",
+    "Usuario_id_usuario": {
+      "id_usuario": 1
+    }
+}
+
+###
+
+GET http://localhost:8080/noticia
+
+###
+
+GET http://localhost:8080/noticia/1
+
+
+
+###
+PUT http://localhost:8080/noticia/1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "titulo": "Nueva noticia 1",
+    "descripcion": "Descripcion de la nueva noticia 1",
+    "img": "E'\\x4d79537472696e67'",
+    "fecha_modificacion": "15/09/2024",
+    "estado": "Eliminado",
+    "Usuario_id_usuario": {
+      "id_usuario": 1
+    }
+}

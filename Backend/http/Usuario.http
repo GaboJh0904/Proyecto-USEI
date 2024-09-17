@@ -1,0 +1,38 @@
+
+POST http://localhost:8080/usuario
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "alvaro",
+  "telefono": 78940756,
+  "correo": "alvaro.jurado@ucb.edu.bo",
+  "rol": "Administrador",
+  "usuario": "gaboJH",
+  "contrasenia": "102030"
+}
+
+###
+
+GET http://localhost:8080/usuario
+
+###
+
+GET http://localhost:8080/usuario/2
+
+###
+DELETE http://localhost:8080/usuario/2
+
+###
+PUT http://localhost:8080/usuario/2
+Content-Type: application/json
+Accept: application/json
+
+{
+  "nombre": "gabriel",
+  "telefono": 77777777,
+  "correo": "gabriel.jurado@ucb.edu.bo",
+  "rol": "Super Administrador",
+  "usuario": "alvaJH",
+  "contrasenia": "302030"
+}

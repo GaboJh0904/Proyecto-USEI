@@ -49,17 +49,23 @@ public class NoticiasBL implements NoticiasService{
 
     @Override
     @Transactional
-    public void update(Noticias noticias, Long id) {
+    public Noticias update(Noticias noticias, Long id) {
         Optional<Noticias> existingNoticias = noticiasDAO.findById(id);
         if (existingNoticias.isPresent()) {
             Noticias noticiasToUpdate = existingNoticias.get();
 
             Usuario usuario = usuarioService.findById(noticias.getUsuarioIdUsuario().getIdUsuario())
                     .orElseThrow(() -> new RuntimeException("Usuario no encontrada con el id: " + noticias.getUsuarioIdUsuario().getIdUsuario()));
-
+            
+            // Actualizar los campos de la noticias con los valores correspondientes
+            noticiasToUpdate.setTitulo(noticias.getTitulo());
+            noticiasToUpdate.setDescripcion(noticias.getDescripcion());
+            noticiasToUpdate.setImg(noticias.getImg());
+            noticiasToUpdate.setFechaModificado(noticias.getFechaModificado());
+            noticiasToUpdate.setEstado(noticias.getEstado());
             noticiasToUpdate.setUsuarioIdUsuario(usuario);
 
-            noticiasDAO.save(noticiasToUpdate);
+            return noticiasDAO.save(noticiasToUpdate);
         } else {
             throw new RuntimeException("Almacen no encontrado con el id: " + id);
         }

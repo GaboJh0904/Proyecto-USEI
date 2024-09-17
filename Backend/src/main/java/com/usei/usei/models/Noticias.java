@@ -9,9 +9,10 @@ import java.util.Date;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -37,6 +38,7 @@ public class Noticias implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_noticia")
     private Long idNoticia;
     @Basic(optional = false)
@@ -46,11 +48,10 @@ public class Noticias implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
     @Basic(optional = false)
-    @Lob
     @Column(name = "img")
-    private byte[] img;
+    private String img;
     @Basic(optional = false)
-    @Column(name = "fecha_modificado")
+    @Column(name = "fechaModificado")
     @Temporal(TemporalType.DATE)
     private Date fechaModificado;
     @Basic(optional = false)
@@ -67,7 +68,7 @@ public class Noticias implements Serializable {
         this.idNoticia = idNoticia;
     }
 
-    public Noticias(Long idNoticia, String titulo, String descripcion, byte[] img, Date fechaModificado, String estado) {
+    public Noticias(Long idNoticia, String titulo, String descripcion, String img, Date fechaModificado, String estado) {
         this.idNoticia = idNoticia;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -100,11 +101,11 @@ public class Noticias implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public byte[] getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(byte[] img) {
+    public void setImg(String img) {
         this.img = img;
     }
 

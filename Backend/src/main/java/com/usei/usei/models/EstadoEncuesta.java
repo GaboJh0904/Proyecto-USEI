@@ -9,6 +9,8 @@ import java.util.Date;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -34,13 +36,14 @@ public class EstadoEncuesta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_est_encuesta")
     private Long idEstEncuesta;
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
     @Basic(optional = false)
-    @Column(name = "fecha_estado")
+    @Column(name = "fechaEstado")
     @Temporal(TemporalType.DATE)
     private Date fechaEstado;
     @JoinColumn(name = "encuesta_id_encuesta", referencedColumnName = "id_encuesta")
