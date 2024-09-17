@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import com.usei.usei.models.Certificado;
 
+import jakarta.mail.MessagingException;
+
 public interface CertificadoService {
     
 public Iterable<Certificado> findAll();
@@ -13,5 +15,8 @@ public Iterable<Certificado> findAll();
     public Certificado save(Certificado newCertificado);
 
     public Certificado update (Certificado newCertificado, Long id);
+
+    // Método para enviar el certificado por correo
+    public void sendCertificadoEmail(String Correo, String subject, String body, String attachmentPath) throws MessagingException;
 
 }
