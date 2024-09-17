@@ -18,8 +18,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: tu-correo@gmail.com
-    password: tu-contraseña
+    username: pruebasu123@gmail.com
+    password: xwnt rmyr axpb bmat
     properties:
       mail:
         smtp:
