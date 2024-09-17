@@ -1,0 +1,33 @@
+
+POST http://localhost:8080/encuesta
+Content-Type: application/json
+Accept: application/json
+
+{
+    "titulo": "Encuesta de Satisfacción 2024",
+    "descripcion": "Encuesta para evaluar el nivel de satisfacción de los estudiantes respecto a los servicios universitarios.",
+    "fechaModificado": "2024-09-10",
+    "usuarioIdUsuario": 1
+}
+
+###
+
+GET http://localhost:8080/encuesta
+
+###
+
+GET http://localhost:8080/encuesta/1
+
+
+
+###
+PUT http://localhost:8080/encuesta/2
+Content-Type: application/json
+Accept: application/json
+
+{
+    "titulo": "Evaluación de Asignaturas",
+    "descripcion": "Encuesta para obtener opiniones de los estudiantes sobre la calidad de la enseñanza en las asignaturas del semestre.",
+    "fechaModificado": "2024-09-13",
+    "usuarioIdUsuario": 1
+}

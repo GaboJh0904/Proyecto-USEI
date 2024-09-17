@@ -6,6 +6,8 @@ package com.usei.usei.models;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -19,6 +21,8 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 /**
  *
@@ -47,8 +51,9 @@ public class Encuesta implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
     @Basic(optional = false)
-    @Column(name = "fecha_modificado")
-    private int fechaModificado;
+    @Column(name = "fechaModificado")
+    @Temporal(TemporalType.DATE)
+    private Date fechaModificado;
     @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario usuarioIdUsuario;
@@ -64,7 +69,7 @@ public class Encuesta implements Serializable {
         this.idEncuesta = idEncuesta;
     }
 
-    public Encuesta(long idEncuesta, String titulo, String descripcion, int fechaModificado) {
+    public Encuesta(long idEncuesta, String titulo, String descripcion, Date fechaModificado) {
         this.idEncuesta = idEncuesta;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -95,11 +100,11 @@ public class Encuesta implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public int getFechaModificado() {
+    public Date getFechaModificado() {
         return fechaModificado;
     }
 
-    public void setFechaModificado(int fechaModificado) {
+    public void setFechaModificado(Date fechaModificado) {
         this.fechaModificado = fechaModificado;
     }
 
