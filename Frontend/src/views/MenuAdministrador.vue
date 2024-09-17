@@ -57,7 +57,7 @@
           </div>
           <h3>DIRECTORES</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToDirectores">Ingresar</button>
           </div>
         </div>
       </div>
@@ -144,6 +144,11 @@
       NavBar,
       ImageCarousel,
       FooterComponent  
+    },
+    methods: {
+      goToDirectores() {
+        this.$router.push('/gestion-directores');
+      }
     }
   };
   </script>

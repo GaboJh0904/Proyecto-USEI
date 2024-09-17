@@ -5,6 +5,7 @@ import MenuAdministrador from '../views/MenuAdministrador.vue' // Importa la nue
 import MenuDirector from '../views/MenuDirector.vue' // Importa la nueva vista
 import EncuestaEstudiante from '../views/EncuestaEstudiante.vue'
 import ResumePage from '../views/ResumePage.vue' // Importa la nueva vista
+import GestionDirectores from '../views/GestionDirectores.vue'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -40,6 +41,11 @@ const router = createRouter({
       path: '/resume', // Ruta ResumePage
       name: 'ResumePage',
       component: ResumePage
+    },
+    {
+      path: '/gestion-directores', // Ruta ResumePage
+      name: 'GestionDirectores',
+      component: GestionDirectores
     }
   ]
 })
