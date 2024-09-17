@@ -29,8 +29,6 @@ public class CertificadoBL implements CertificadoService{
     @Autowired
     private JavaMailSender mailSender;  // Inyecta JavaMailSender
 
-    @Autowired
-    private JavaMailSender mailSender;  // Inyecta JavaMailSender
 
     @Autowired
     public CertificadoBL(CertificadoDAO certificadoDAO, UsuarioService usuarioService, JavaMailSender mailSender){
