@@ -4,9 +4,9 @@ import MenuEstudiante from '../views/MenuEstudiante.vue' // Importa la nueva vis
 import MenuAdministrador from '../views/MenuAdministrador.vue' // Importa la nueva vista
 import MenuDirector from '../views/MenuDirector.vue' // Importa la nueva vista
 import EncuestaEstudiante from '../views/EncuestaEstudiante.vue'
+import ResumePage from '../views/ResumePage.vue' // Importa la nueva vista
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,8 +35,12 @@ const router = createRouter({
       path:'/encuesta-estudiante',
       name: 'encuestaEstudiante',
       component: EncuestaEstudiante
+    },
+    {
+      path: '/resume', // Ruta ResumePage
+      name: 'ResumePage',
+      component: ResumePage
     }
-
   ]
 })
 
