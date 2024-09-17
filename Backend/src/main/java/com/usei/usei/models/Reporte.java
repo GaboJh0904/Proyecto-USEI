@@ -9,9 +9,10 @@ import java.util.Date;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -36,6 +37,7 @@ public class Reporte implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reporte")
     private Long idReporte;
     @Basic(optional = false)
@@ -45,9 +47,8 @@ public class Reporte implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
     @Basic(optional = false)
-    @Lob
     @Column(name = "formato")
-    private byte[] formato;
+    private String formato;
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
@@ -63,7 +64,7 @@ public class Reporte implements Serializable {
         this.idReporte = idReporte;
     }
 
-    public Reporte(Long idReporte, String titulo, String descripcion, byte[] formato, Date fecha) {
+    public Reporte(Long idReporte, String titulo, String descripcion, String formato, Date fecha) {
         this.idReporte = idReporte;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -95,11 +96,11 @@ public class Reporte implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public byte[] getFormato() {
+    public String getFormato() {
         return formato;
     }
 
-    public void setFormato(byte[] formato) {
+    public void setFormato(String formato) {
         this.formato = formato;
     }
 

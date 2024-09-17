@@ -14,6 +14,8 @@ import com.usei.usei.repositories.CertificadoDAO;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 
+
+
 import com.usei.usei.models.Certificado;
 import com.usei.usei.models.Usuario;
 
@@ -22,6 +24,10 @@ public class CertificadoBL implements CertificadoService{
     
     private final CertificadoDAO certificadoDAO;
     private final UsuarioService usuarioService;
+
+
+    @Autowired
+    private JavaMailSender mailSender;  // Inyecta JavaMailSender
 
     @Autowired
     private JavaMailSender mailSender;  // Inyecta JavaMailSender
@@ -51,7 +57,6 @@ public class CertificadoBL implements CertificadoService{
 
         Usuario usuario = usuarioService.findById(certificado.getUsuarioIdUsuario().getIdUsuario())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: " + certificado.getUsuarioIdUsuario().getIdUsuario()));
-
 
         certificado.setUsuarioIdUsuario(usuario);
 

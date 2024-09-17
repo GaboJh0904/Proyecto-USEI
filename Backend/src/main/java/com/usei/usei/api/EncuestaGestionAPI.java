@@ -7,13 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.usei.usei.controllers.EncuestaGestionService;
+import com.usei.usei.models.Encuesta;
 import com.usei.usei.models.EncuestaGestion;
 import com.usei.usei.models.MessageResponse;
+import com.usei.usei.models.Pregunta;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/encuesta-gestion")
+@RequestMapping("/encuesta_gestion")
 public class EncuestaGestionAPI {
 
     @Autowired
@@ -22,7 +24,21 @@ public class EncuestaGestionAPI {
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody EncuestaGestion encuestaGestion) {
         try {
-            encuestaGestionService.save(encuestaGestion);
+            EncuestaGestion newEncuestaGestion = new EncuestaGestion();
+            newEncuestaGestion.setAnio(encuestaGestion.getAnio());
+            newEncuestaGestion.setSemestre(encuestaGestion.getSemestre());
+
+            Pregunta newPregunta = new Pregunta();
+            newPregunta.setIdPregunta(encuestaGestion.getPreguntaIdPregunta().getIdPregunta());
+
+            newEncuestaGestion.setPreguntaIdPregunta(newPregunta);
+
+            Encuesta newEncuesta = new Encuesta();
+            newEncuesta.setIdEncuesta(encuestaGestion.getEncuestaIdEncuesta().getIdEncuesta());
+
+            newEncuestaGestion.setEncuestaIdEncuesta(newEncuesta);
+
+            encuestaGestionService.save(newEncuestaGestion);
             return new ResponseEntity<>(new MessageResponse("Encuesta por Gestion registrada"), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -53,9 +69,26 @@ public class EncuestaGestionAPI {
     }
 
     @PutMapping("/{id_encuesta_gestion}")
-    public ResponseEntity<?> update(@RequestBody EncuestaGestion encuestaGestion, @PathVariable Long id) {
+    public ResponseEntity<?> update(@PathVariable(value = "id_encuesta_gestion") Long id_encuesta_gestion, @RequestBody EncuestaGestion encuestaGestion){
+        Optional<EncuestaGestion> oEncuestaGestion = encuestaGestionService.findById(id_encuesta_gestion);
+        if (oEncuestaGestion.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        
         try {
-            return ResponseEntity.ok(encuestaGestionService.update(encuestaGestion, id));
+            oEncuestaGestion.get().setAnio(encuestaGestion.getAnio());
+            oEncuestaGestion.get().setSemestre(encuestaGestion.getSemestre());
+
+            Pregunta newPregunta = new Pregunta();
+            newPregunta.setIdPregunta(encuestaGestion.getPreguntaIdPregunta().getIdPregunta());
+
+            oEncuestaGestion.get().setPreguntaIdPregunta(newPregunta);
+
+            Encuesta newEncuesta = new Encuesta();
+            newEncuesta.setIdEncuesta(encuestaGestion.getEncuestaIdEncuesta().getIdEncuesta());
+
+            oEncuestaGestion.get().setEncuestaIdEncuesta(newEncuesta);
+            return ResponseEntity.status(HttpStatus.CREATED).body(encuestaGestionService.save(oEncuestaGestion.get()));
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }

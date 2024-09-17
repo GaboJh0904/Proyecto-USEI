@@ -1,3 +1,4 @@
+com\usei\usei\api\RespuestaAPI.class
 com\usei\usei\models\MessageResponse.class
 com\usei\usei\repositories\HRespuestaDAO.class
 com\usei\usei\controllers\UsuarioBL.class
@@ -8,6 +9,7 @@ com\usei\usei\repositories\HReporteDAO.class
 com\usei\usei\repositories\PreguntaDAO.class
 com\usei\usei\controllers\PreguntaBL.class
 com\usei\usei\repositories\ReporteDAO.class
+com\usei\usei\api\PreguntaAPI.class
 com\usei\usei\controllers\EstudianteService.class
 com\usei\usei\UseiApplication.class
 com\usei\usei\repositories\OpcionesPreguntaDAO.class
@@ -16,6 +18,7 @@ com\usei\usei\models\HCertificado.class
 com\usei\usei\repositories\NoticiasDAO.class
 com\usei\usei\models\HEstudiante.class
 com\usei\usei\controllers\EncuestaService.class
+com\usei\usei\api\EncuestaAPI.class
 com\usei\usei\models\Encuesta.class
 com\usei\usei\controllers\NoticiasBL.class
 com\usei\usei\models\Reporte.class
@@ -56,5 +59,7 @@ com\usei\usei\models\Pregunta.class
 com\usei\usei\controllers\RespuestaBL.class
 com\usei\usei\repositories\EstadoEncuestaDAO.class
 com\usei\usei\repositories\HCertificadoDAO.class
+com\usei\usei\api\EstudianteAPI.class
+com\usei\usei\api\OpcionesPreguntaAPI.class
 com\usei\usei\models\Usuario.class
 com\usei\usei\repositories\HEstudianteDAO.class

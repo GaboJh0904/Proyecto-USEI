@@ -18,23 +18,21 @@ GET http://localhost:8080/usuario
 
 ###
 
-GET http://localhost:8080/persona/4
+GET http://localhost:8080/usuario/2
 
 ###
-DELETE http://localhost:8080/persona/6
+DELETE http://localhost:8080/usuario/2
 
 ###
-PUT http://localhost:8080/persona/4
+PUT http://localhost:8080/usuario/2
 Content-Type: application/json
 Accept: application/json
 
 {
-  "ci_persona": "12345677",
-  "nombres": "pepito",
-  "apellido_materno": "pepito",
-  "apellido_paterno": "pepito",
-  "genero": "Masculino",
-  "ubicacion": "La Paz",
-  "fecha_nacimiento": "1990-05-10",
-  "telefono": "7654321"
+  "nombre": "gabriel",
+  "telefono": 77777777,
+  "correo": "gabriel.jurado@ucb.edu.bo",
+  "rol": "Super Administrador",
+  "usuario": "alvaJH",
+  "contrasenia": "302030"
 }

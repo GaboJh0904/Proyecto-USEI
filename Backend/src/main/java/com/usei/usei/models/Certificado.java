@@ -7,13 +7,16 @@ package com.usei.usei.models;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -38,17 +41,17 @@ public class Certificado implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_certificado")
     private Long idCertificado;
     @Basic(optional = false)
-    @Lob
     @Column(name = "formato")
-    private byte[] formato;
+    private String formato;
     @Basic(optional = false)
     @Column(name = "version")
     private int version;
     @Basic(optional = false)
-    @Column(name = "fecha_modificacion")
+    @Column(name = "fechaModificacion")
     @Temporal(TemporalType.DATE)
     private Date fechaModificacion;
     @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")
@@ -64,7 +67,7 @@ public class Certificado implements Serializable {
         this.idCertificado = idCertificado;
     }
 
-    public Certificado(Long idCertificado, byte[] formato, int version, Date fechaModificacion) {
+    public Certificado(Long idCertificado, String formato, int version, Date fechaModificacion) {
         this.idCertificado = idCertificado;
         this.formato = formato;
         this.version = version;
@@ -79,11 +82,11 @@ public class Certificado implements Serializable {
         this.idCertificado = idCertificado;
     }
 
-    public byte[] getFormato() {
+    public String getFormato() {
         return formato;
     }
 
-    public void setFormato(byte[] formato) {
+    public void setFormato(String formato) {
         this.formato = formato;
     }
 

@@ -1,0 +1,32 @@
+
+POST http://localhost:8080/respuesta
+Content-Type: application/json
+Accept: application/json
+
+{
+    "respuesta": "Nada satisfecho",
+    "preguntaIdPregunta": 1,
+    "estudianteIdEstudiante": 1
+}
+
+
+###
+
+GET http://localhost:8080/respuesta
+
+###
+
+GET http://localhost:8080/respuesta/1
+
+
+
+###
+PUT http://localhost:8080/respuesta/1
+Content-Type: application/json
+Accept: application/json
+
+{
+    "respuesta": "Medio satisfecho",
+    "preguntaIdPregunta": 4,
+    "estudianteIdEstudiante": 1
+}
