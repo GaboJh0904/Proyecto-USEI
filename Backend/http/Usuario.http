@@ -14,7 +14,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/usuario
+GET http://localhost:8082/usuario
 
 ###
 
