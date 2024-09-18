@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import com.usei.usei.controllers.EncuestaService;
 import com.usei.usei.models.Encuesta;
 import com.usei.usei.models.MessageResponse;
-import com.usei.usei.models.Usuario;
 
 import java.util.Optional;
 
@@ -22,16 +21,7 @@ public class EncuestaAPI {
     @PostMapping
     public ResponseEntity<?> create (@RequestBody Encuesta encuesta){
         try {
-            Encuesta newEncuesta = new Encuesta();
-            newEncuesta.setTitulo(encuesta.getTitulo());
-            newEncuesta.setDescripcion(encuesta.getDescripcion());
-            newEncuesta.setFechaModificado(encuesta.getFechaModificado());
-
-            Usuario newUsuario = new Usuario();
-            newUsuario.setIdUsuario(encuesta.getUsuarioIdUsuario().getIdUsuario());
-
-            newEncuesta.setUsuarioIdUsuario(newUsuario);
-            encuestaService.save(newEncuesta);
+            encuestaService.save(encuesta);
             return new ResponseEntity<>(new MessageResponse("Encuesta registrado"), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -56,21 +46,10 @@ public class EncuestaAPI {
 
     @PutMapping("/{id_encuesta}")
     public ResponseEntity<?> update(@PathVariable(value = "id_encuesta") Long id_encuesta, @RequestBody Encuesta encuesta){
-        Optional<Encuesta> oEncuesta = encuestaService.findById(id_encuesta);
-        if (oEncuesta.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
 
         try {
-            oEncuesta.get().setTitulo(encuesta.getTitulo());
-            oEncuesta.get().setDescripcion(encuesta.getDescripcion());
-            oEncuesta.get().setFechaModificado(encuesta.getFechaModificado());
-
-            Usuario newUsuario = new Usuario();
-            newUsuario.setIdUsuario(encuesta.getUsuarioIdUsuario().getIdUsuario());
-
-            oEncuesta.get().setUsuarioIdUsuario(newUsuario);
-            return ResponseEntity.status(HttpStatus.CREATED).body(encuestaService.save(oEncuesta.get()));
+            Encuesta updatedEncuesta = encuestaService.update( encuesta, id_encuesta);
+            return ResponseEntity.ok(updatedEncuesta);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
             }
