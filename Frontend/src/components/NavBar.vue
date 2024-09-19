@@ -4,10 +4,10 @@
       <img src="@/components/images/USEI.png" alt="Logo" />
     </div>
     <div class="nav-links">
-      <a href="#">Opción 1</a>
-      <a href="#">Opción 2</a>
-      <a href="#">Opción 3</a>
-      <a href="#">Opción 4</a>
+      <a @click="goToEnProgreso" class="navigation-link">Opción 1</a>
+      <a @click="goToEnProgreso" class="navigation-link">Opción 2</a>
+      <a @click="goToEnProgreso" class="navigation-link">Opción 3</a>
+      <a @click="goToEnProgreso" class="navigation-link">Opción 4</a>
 
       <!-- Mostrar iconos de usuario y notificaciones si es vista del estudiante -->
       <template v-if="userRole === 'Student' || userRole === 'Director' || userRole === 'Admin'">
@@ -103,7 +103,10 @@ export default {
     },
     closeUserProfile() {
       this.showUserProfile = false;
-    }
+    },
+      goToEnProgreso(){
+        this.$router.push('/en-progreso');
+      }
   }
 };
 </script>

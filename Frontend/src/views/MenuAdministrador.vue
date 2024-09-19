@@ -37,7 +37,7 @@
           </div>
           <h3>CERTIFICADOS</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar" @click="goToEnviarEnc">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
         <!-- Card 2 -->
@@ -47,7 +47,7 @@
           </div>
           <h3>ENCUESTA DE GRADUACIÓN</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
         <!-- Card 3 -->
@@ -70,7 +70,7 @@
           </div>
           <h3>EDITAR CERTIFICADO</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
         <!-- Card 5 -->
@@ -80,7 +80,7 @@
           </div>
           <h3>EDITAR ENCUESTA</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
         <!-- Card 6 -->
@@ -90,7 +90,7 @@
           </div>
           <h3>ESTUDIANTES</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@
           </div>
           <h3>REPORTES</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
         <!-- Card 8 -->
@@ -113,7 +113,7 @@
           </div>
           <h3>DATOS</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
         <!-- Card 9 -->
@@ -123,7 +123,7 @@
           </div>
           <h3>SOPORTE/AYUDA</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
       </div>
@@ -148,6 +148,9 @@
     methods: {
       goToDirectores() {
         this.$router.push('/gestion-directores');
+      },
+      goToEnProgreso(){
+        this.$router.push('/en-progreso');
       }
     },
     goToEnviarEnc() {

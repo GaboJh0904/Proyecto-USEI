@@ -13,7 +13,7 @@
             <input type="password" id="password" v-model="password" required>
           </div>
           <div class="form-group">
-            <a href="#" @click.prevent="forgotPassword">Olvidé mi contraseña</a>
+            <a @click="goToEnProgreso" class="navigation-link">Olvidé mi contraseña</a>
           </div>
           <button type="submit" class="submit-btn">Ingresar</button>
         </form>
@@ -39,6 +39,9 @@
       forgotPassword() {
         // Implementar lógica de recuperación de contraseña
         console.log('Olvidé mi contraseña')
+      },
+      goToEnProgreso(){
+        this.$router.push('/en-progreso');
       }
     }
   }

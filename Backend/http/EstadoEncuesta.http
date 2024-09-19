@@ -15,6 +15,12 @@ GET http://localhost:8082/estado_encuesta
 
 ###
 
+GET http://localhost:8082/estado_encuesta/pendientes
+
+###
+
+###
+
 GET http://localhost:8082/estado_encuesta/1
 
 

@@ -37,7 +37,7 @@
           </div>
           <h3>CERTIFICADOS</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
         <!-- Card 2 -->
@@ -47,7 +47,7 @@
           </div>
           <h3>ENCUESTA DE GRADUACIÓN</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
         <!-- Card 3 -->
@@ -57,7 +57,7 @@
           </div>
           <h3>REPORTES</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnProgreso">Ingresar</button>
           </div>
         </div>
       </div>
@@ -78,7 +78,12 @@
       NavBar,
       ImageCarousel,
       FooterComponent  
-    }
+    },
+    methods: {
+      goToEnProgreso(){
+        this.$router.push('/en-progreso');
+      }
+    },
   };
   </script>
   
