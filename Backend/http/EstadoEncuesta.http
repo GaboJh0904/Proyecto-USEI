@@ -1,0 +1,32 @@
+POST http://localhost:8082/estado_encuesta
+Content-Type: application/json
+Accept: application/json
+
+{
+  "estado": "Completada",
+  "fechaEstado": "2024-09-16",
+  "estudianteIdEstudiante": 1,
+  "encuestaIdEncuesta": 1
+}
+
+###
+
+GET http://localhost:8082/estado_encuesta
+
+###
+
+GET http://localhost:8082/estado_encuesta/1
+
+
+
+###
+PUT http://localhost:8082/estado_encuesta/2
+Content-Type: application/json
+Accept: application/json
+
+{
+  "estado": "En progreso",
+  "fechaEstado": "2024-09-15",
+  "estudianteIdEstudiante": 2,
+  "encuestaIdEncuesta": 2
+}
