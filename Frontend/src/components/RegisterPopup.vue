@@ -87,6 +87,8 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
   name: 'RegisterPopup',
   data() {
@@ -96,7 +98,7 @@ export default {
       apellido: '',
       correoInstitucional: '',
       correoPersonal: '',
-      carrera: '', // Nuevo campo de carrera
+      carrera: '', 
       asignatura: '',
       telefono: '',
       anio: '',
@@ -104,23 +106,40 @@ export default {
     };
   },
   methods: {
-    handleSubmit() {
-      // Implementar lógica de registro
-      console.log('Registro de estudiante', {
+    async handleSubmit() {
+      const estudianteData = {
         ci: this.ci,
         nombre: this.nombre,
         apellido: this.apellido,
-        correoInstitucional: this.correoInstitucional,
+        correoInsitucional: this.correoInstitucional,
         correoPersonal: this.correoPersonal,
-        carrera: this.carrera, // Imprimir la carrera seleccionada
+        carrera: this.carrera,
         asignatura: this.asignatura,
         telefono: this.telefono,
         anio: this.anio,
         semestre: this.semestre
-      });
+      };
+
+      try {
+        const response = await axios.post('http://localhost:8082/estudiante', estudianteData, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        });
+
+        console.log('Registro exitoso:', response.data);
+
+        // Realiza alguna acción después de un registro exitoso, como cerrar el popup o mostrar un mensaje de éxito
+        this.$emit('close');
+      } catch (error) {
+        console.error('Error en el registro:', error.response ? error.response.data : error.message);
+        // Maneja el error aquí, como mostrar un mensaje de error en el formulario
+      }
     }
   }
 };
+
 </script>
 
 <style scoped>
