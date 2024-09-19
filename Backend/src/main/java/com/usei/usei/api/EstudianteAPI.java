@@ -1,5 +1,6 @@
 package com.usei.usei.api;
 
+import com.usei.usei.dto.request.LoginRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import com.usei.usei.controllers.EstudianteService;
 import com.usei.usei.models.Estudiante;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -67,5 +70,28 @@ public class EstudianteAPI{
     }
 
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginRequest) {
+        Optional<Estudiante> estudiante = estudianteService.login(loginRequest.getCi(), loginRequest.getContrasena());
+
+        if (estudiante.isPresent()) {
+            // Crear el objeto de respuesta con los campos "rol", "code" y "message"
+            Map<String, Object> response = new HashMap<>();
+            response.put("rol", "estudiante");
+            response.put("code", 200); // Código HTTP 200 para éxito
+            response.put("message", "Inicio de sesión correcto");
+
+            // Devolver la respuesta con el código HTTP 200 OK
+            return ResponseEntity.ok(response);
+        } else {
+            // Crear el objeto de respuesta para credenciales incorrectas
+            Map<String, Object> response = new HashMap<>();
+            response.put("code", 401); // Código HTTP 401 para no autorizado
+            response.put("message", "Credenciales incorrectas");
+
+            // Devolver la respuesta con el código HTTP 401 Unauthorized
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+    }
 
 }
