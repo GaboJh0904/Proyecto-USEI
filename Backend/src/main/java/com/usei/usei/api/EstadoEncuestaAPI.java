@@ -93,4 +93,13 @@ public class EstadoEncuestaAPI {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/pendientes")
+    public ResponseEntity<?> getEncuestasPendientes() {
+        try {
+            return ResponseEntity.ok(estadoEncuestaService.findByEstadoPendiente());
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
