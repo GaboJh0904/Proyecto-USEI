@@ -156,6 +156,7 @@
             </div>
           </div>
           <div class="form-actions">
+            <button class="volver-button" @click="goBack">Volver</button>
             <button class="submit-button">Siguiente</button>
           </div>
         </form>
@@ -199,6 +200,9 @@ export default {
     goToResume() {
       // Redireccionar a la página de resumen con los datos del formulario
       this.$router.push({ name: 'ResumePage', query: this.form });
+    },
+    goBack() {
+      this.$router.go(-1); 
     }
   }
 };
@@ -317,5 +321,21 @@ header {
 
 .submit-button:hover {
   background-color: #263D42;
+}
+
+.volver-button {
+  background-color: #6c5b7b;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-right: 50px;
+  border: none;
+  border-radius: 15px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.volver-button:hover {
+  background-color: #6c5b7b;
 }
 </style>

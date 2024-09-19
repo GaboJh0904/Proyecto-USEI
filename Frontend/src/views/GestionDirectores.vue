@@ -43,6 +43,7 @@
 
           <!-- Botón para añadir/editar -->
           <div class="form-actions">
+            <button class="volver-button" @click="goBack">Volver</button>
             <button type="submit" class="submit-button">{{ isEditing ? "Actualizar" : "Añadir" }}</button>
           </div>
         </form>
@@ -176,6 +177,9 @@ export default {
         rol: 'Director'
       };
       this.isEditing = false;
+    },
+    goBack() {
+      this.$router.go(-1); 
     }
   }
 };
@@ -262,6 +266,23 @@ header {
 
 .submit-button:hover {
   background-color: #1F2E34;
+}
+
+.volver-button {
+  background-color: #6c5b7b;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-right: 50px;
+  border: none;
+  border-radius: 15px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.volver-button:hover {
+  background-color: #5A4766;
 }
 
 .user-table-container table {

@@ -7,6 +7,7 @@ import EncuestaEstudiante from '../views/EncuestaEstudiante.vue'
 import ResumePage from '../views/ResumePage.vue' // Importa la nueva vista
 import GestionDirectores from '../views/GestionDirectores.vue'
 import EnviarEncuesta from '../views/EnviarEncuesta.vue'
+import EnProgreso from '@/views/EnProgreso.vue'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -52,6 +53,11 @@ const router = createRouter({
       path: '/enviar-encuesta', // Ruta ResumePage
       name: 'EnviarEncuesta',
       component: EnviarEncuesta
+    },
+    {
+      path: '/en-progreso', // Nueva ruta
+      name: 'EnProgreso',
+      component: EnProgreso
     }
   ]
 })
