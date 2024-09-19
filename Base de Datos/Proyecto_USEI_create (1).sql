@@ -66,6 +66,7 @@ CREATE TABLE Estudiante (
     telefono int  NOT NULL,
     anio int  NOT NULL,
     semestre int  NOT NULL,
+    contrasena varchar(50) NOT NULL,
     CONSTRAINT Estudiante_pk PRIMARY KEY (id_estudiante)
 );
 
