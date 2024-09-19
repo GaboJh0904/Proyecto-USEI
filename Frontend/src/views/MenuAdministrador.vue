@@ -37,7 +37,7 @@
           </div>
           <h3>CERTIFICADOS</h3>
           <div class="card-button-container">
-            <button class="btn-ingresar">Ingresar</button>
+            <button class="btn-ingresar" @click="goToEnviarEnc">Ingresar</button>
           </div>
         </div>
         <!-- Card 2 -->
@@ -149,6 +149,9 @@
       goToDirectores() {
         this.$router.push('/gestion-directores');
       }
+    },
+    goToEnviarEnc() {
+      this.$router.push('/enviar-encuesta');
     }
   };
   </script>

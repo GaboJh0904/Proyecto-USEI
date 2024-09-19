@@ -1,0 +1,32 @@
+POST http://localhost:8080/encuesta_gestion
+Content-Type: application/json
+Accept: application/json
+
+{
+    "preguntaIdPregunta": 1,
+    "encuestaIdEncuesta": 1,
+    "anio": 2024,
+    "semestre": 1
+}
+
+###
+
+GET http://localhost:8080/encuesta_gestion
+
+###
+
+GET http://localhost:8080/encuesta_gestion/1
+
+
+
+###
+PUT http://localhost:8080/encuesta_gestion/2
+Content-Type: application/json
+Accept: application/json
+
+{
+    "preguntaIdPregunta": 3,
+    "encuestaIdEncuesta": 2,
+    "anio": 2023,
+    "semestre": 2
+}
