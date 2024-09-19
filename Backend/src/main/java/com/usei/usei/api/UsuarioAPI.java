@@ -18,7 +18,7 @@ public class UsuarioAPI{
     private UsuarioService usuarioService;
 
     //Crear un nuevo usuario:
-    @PostMapping
+    @PostMapping 
     public ResponseEntity<?> create (@RequestBody Usuario usuario){
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuario));
     }
