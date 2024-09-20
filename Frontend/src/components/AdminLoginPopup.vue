@@ -36,52 +36,50 @@ export default {
         correo: '', // Correo para la autenticación
         contrasena: '' // Contraseña para la autenticación
       },
-      message: ''
+      message: '' // Variable para almacenar mensajes de error
     };
   },
   methods: {
     async login() {
       try {
         const response = await axios.post('http://localhost:8082/usuario/login', this.loginRequest);
-        const userData = response.data;
+        const userData = response.data.result;
 
-        // Guardar el rol en el localStorage para exportarlo
+        // Guardar los datos de la respuesta en el localStorage
+        localStorage.setItem('correo', userData.correo);
+        localStorage.setItem('usuario', userData.usuario);
+        localStorage.setItem('nombre', userData.nombre);
         localStorage.setItem('rol', userData.rol);
 
-        // Según el rol, redirigir al menú correspondiente
-        if (userData.rol === 'Administrador') {
-          Swal.fire({
-            icon: 'success',
-            title: 'Inicio de sesión correcto',
-            text: 'Bienvenido Administrador',
-            confirmButtonText: 'Continuar'
-          }).then(() => {
+        // Mostrar un mensaje de éxito con SweetAlert
+        Swal.fire({
+          icon: 'success',
+          title: 'Inicio de sesión correcto',
+          text: `Bienvenido ${userData.nombre}`,
+          confirmButtonText: 'Continuar'
+        }).then(() => {
+          // Redirigir según el rol obtenido
+          if (userData.rol === 'Administrador') {
             this.$router.push({ name: 'menuAdministrador' });
-          });
-        } else if (userData.rol === 'Director') {
-          Swal.fire({
-            icon: 'success',
-            title: 'Inicio de sesión correcto',
-            text: 'Bienvenido Director',
-            confirmButtonText: 'Continuar'
-          }).then(() => {
+          } else if (userData.rol === 'Director') {
             this.$router.push({ name: 'menuDirector' });
-          });
-        } else {
-          this.message = 'Rol no reconocido';
-          Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: this.message,
-            confirmButtonText: 'Aceptar'
-          });
-        }
+          } else {
+            this.message = 'Rol no reconocido';
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: this.message,
+              confirmButtonText: 'Aceptar'
+            });
+          }
+        });
       } catch (error) {
-        if (error.response && error.response.data && error.response.data.message) {
-          this.message = error.response.data.message; // Mensaje de error del backend
+        if (error.response && error.response.data && error.response.data.error) {
+          this.message = error.response.data.error; // Mensaje de error del backend
         } else {
           this.message = 'Error al iniciar sesión. Por favor, inténtalo de nuevo.';
         }
+        // Mostrar mensaje de error con SweetAlert
         Swal.fire({
           icon: 'error',
           title: 'Error de inicio de sesión',
