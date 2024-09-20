@@ -3,7 +3,7 @@
       <!-- Header Section -->
       <section class="header-master">
         <header>
-            <NavBar userRole="Admin" />
+            <NavBar userRole="Administrador" />
         </header>
   
         <div class="content-header">

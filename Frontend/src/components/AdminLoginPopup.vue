@@ -26,6 +26,7 @@
 
 <script>
 import axios from 'axios';
+import Swal from 'sweetalert2';  // Importar SweetAlert
 
 export default {
   name: 'AdminLoginPopup',
@@ -44,13 +45,36 @@ export default {
         const response = await axios.post('http://localhost:8082/usuario/login', this.loginRequest);
         const userData = response.data;
 
+        // Guardar el rol en el localStorage para exportarlo
+        localStorage.setItem('rol', userData.rol);
+
         // Según el rol, redirigir al menú correspondiente
         if (userData.rol === 'Administrador') {
-          this.$router.push({ name: 'menuAdministrador' });
+          Swal.fire({
+            icon: 'success',
+            title: 'Inicio de sesión correcto',
+            text: 'Bienvenido Administrador',
+            confirmButtonText: 'Continuar'
+          }).then(() => {
+            this.$router.push({ name: 'menuAdministrador' });
+          });
         } else if (userData.rol === 'Director') {
-          this.$router.push({ name: 'menuDirector' });
+          Swal.fire({
+            icon: 'success',
+            title: 'Inicio de sesión correcto',
+            text: 'Bienvenido Director',
+            confirmButtonText: 'Continuar'
+          }).then(() => {
+            this.$router.push({ name: 'menuDirector' });
+          });
         } else {
           this.message = 'Rol no reconocido';
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: this.message,
+            confirmButtonText: 'Aceptar'
+          });
         }
       } catch (error) {
         if (error.response && error.response.data && error.response.data.message) {
@@ -58,13 +82,35 @@ export default {
         } else {
           this.message = 'Error al iniciar sesión. Por favor, inténtalo de nuevo.';
         }
+        Swal.fire({
+          icon: 'error',
+          title: 'Error de inicio de sesión',
+          text: this.message,
+          confirmButtonText: 'Aceptar'
+        });
       }
     },
     handleSubmit() {
-      this.login();
+      // Validar que ambos campos estén llenos
+      if (!this.loginRequest.correo || !this.loginRequest.contrasena) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Campos incompletos',
+          text: 'Por favor, complete ambos campos.',
+          confirmButtonText: 'Aceptar',
+        });
+        return; // No continuar con la solicitud si hay campos vacíos
+      }
+      this.login(); // Ejecutar la función de login
     },
     forgotPassword() {
-      console.log('Olvidé mi contraseña');
+      // Implementar lógica de recuperación de contraseña
+      Swal.fire({
+        icon: 'info',
+        title: 'Recuperar contraseña',
+        text: 'Para recuperar tu contraseña, contacta a soporte.',
+        confirmButtonText: 'Aceptar',
+      });
     },
   }
 };

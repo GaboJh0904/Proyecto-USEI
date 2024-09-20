@@ -10,7 +10,7 @@
       <a @click="goToEnProgreso" class="navigation-link">Opción 4</a>
 
       <!-- Mostrar iconos de usuario y notificaciones si es vista del estudiante -->
-      <template v-if="userRole === 'Student' || userRole === 'Director' || userRole === 'Admin'">
+      <template v-if="userRole === 'Student' || userRole === 'Director' || userRole === 'Administrador'">
         <!-- Icono de notificaciones -->
         <button @click="toggleNotifications" class="icon-button notification-icon">
           <i class="fas fa-bell"></i>
