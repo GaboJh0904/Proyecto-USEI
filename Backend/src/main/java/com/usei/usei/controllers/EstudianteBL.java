@@ -54,4 +54,14 @@ public class EstudianteBL implements EstudianteService{
             throw new RuntimeException("Estudiante no encontrado con el id: " + id);
         }
     }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Estudiante> login(int ci, String contrasena) {
+        return estudianteDAO.findByCiAndContrasena(ci, contrasena);
+    }
+
+
+
 }

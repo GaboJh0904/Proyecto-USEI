@@ -13,7 +13,8 @@ Accept: application/json
         "asignatura": "Estática",
         "telefono": 555987654,
         "anio": 2023,
-        "semestre": 2
+        "semestre": 2,
+        "contrasena" : "1234"
     }
 
 ###
@@ -44,3 +45,30 @@ Accept: application/json
         "anio": 2022,
         "semestre": 3
     }
+
+
+### Inicio de Sesion para el estudiante
+POST http://localhost:8082/estudiante/login
+Content-Type: application/json
+Accept: application/json
+
+    {
+        "ci": 87654321,
+        "contrasena" : "1234asd"
+    }
+
+### RESPONSE
+### Para login incorrecto
+{
+    "code": 401,
+    "message": "Credenciales incorrectas"
+}
+
+### Para login correcto
+
+{
+    "code": 200,
+    "message": "Inicio de sesión correcto",
+    "rol": "estudiante"
+}
+

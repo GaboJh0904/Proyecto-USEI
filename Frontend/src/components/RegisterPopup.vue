@@ -10,6 +10,16 @@
             <label for="ci">Cédula de identidad</label>
             <input type="text" id="ci" v-model="ci" required>
           </div>
+            <!-- Contraseña -->
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+              <div class="password-wrapper">
+            <input :type="showPassword ? 'text' : 'password'" id="password" v-model="contrasena" required>
+            <span class="toggle-password" @click="togglePassword">
+            <i :class="showPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i>
+            </span>
+          </div>
+        </div>
           <!-- Nombre -->
           <div class="form-group">
             <label for="name">Nombre</label>
@@ -34,6 +44,7 @@
           <div class="form-group">
             <label for="career">Carrera</label>
             <select id="career" v-model="carrera" required>
+              <!-- Opciones de carrera -->
               <option value="Administración de Empresas">Administración de Empresas</option>
               <option value="Administración Turística">Administración Turística</option>
               <option value="Contaduría Pública">Contaduría Pública</option>
@@ -86,6 +97,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import axios from 'axios';
 
@@ -103,9 +115,14 @@ export default {
       telefono: '',
       anio: '',
       semestre: '',
+      contrasena: '',  
+      showPassword: false  
     };
   },
   methods: {
+    togglePassword() {
+      this.showPassword = !this.showPassword;
+    },
     async handleSubmit() {
       const estudianteData = {
         ci: this.ci,
@@ -117,7 +134,8 @@ export default {
         asignatura: this.asignatura,
         telefono: this.telefono,
         anio: this.anio,
-        semestre: this.semestre
+        semestre: this.semestre,
+        contrasena: this.contrasena  
       };
 
       try {
@@ -130,16 +148,13 @@ export default {
 
         console.log('Registro exitoso:', response.data);
 
-        // Realiza alguna acción después de un registro exitoso, como cerrar el popup o mostrar un mensaje de éxito
         this.$emit('close');
       } catch (error) {
         console.error('Error en el registro:', error.response ? error.response.data : error.message);
-        // Maneja el error aquí, como mostrar un mensaje de error en el formulario
       }
     }
   }
 };
-
 </script>
 
 <style scoped>
@@ -174,6 +189,23 @@ export default {
   max-height: 70vh;
   margin-right: -20px;
   margin-left: 0px;
+}
+
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.password-wrapper input {
+  width: calc(100% - 30px); /* Reservamos espacio para el ícono */
+  padding-right: 30px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
 }
 
 .popup-content h2 {

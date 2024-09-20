@@ -15,5 +15,7 @@ public interface EstudianteService {
     public void deleteById(Long id);
 
     public Estudiante update (Estudiante newEstudiante, Long id);
+
+    public Optional<Estudiante> login(int ci, String contrasena);
     
 }

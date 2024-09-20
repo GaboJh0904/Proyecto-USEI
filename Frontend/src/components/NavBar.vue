@@ -29,12 +29,15 @@
           </div>
         </div>
 
-        <!-- Icono de usuario y label con el nombre -->
+        <!-- Icono de usuario y label con el nombre y rol -->
         <div class="user-wrapper">
           <button @click="openUserProfile" class="icon-button user-icon">
             <i class="fas fa-user-circle"></i>
           </button>
-          <span class="username-label">{{ username }}</span>
+          <div class="user-info">
+            <span class="username-label">{{ username }}</span>
+            <span class="role-label">{{ role }}</span> <!-- Mostrar el rol debajo -->
+          </div>
         </div>
       </template>
 
@@ -74,8 +77,8 @@ export default {
   },
   props: {
     userRole: {
-      type: String, // Cambié de Boolean a String para aceptar roles específicos
-      default: '' // Por defecto, no hay rol asignado
+      type: String, 
+      default: '' 
     }
   },
   data() {
@@ -83,12 +86,18 @@ export default {
       showLoginPopup: false,
       showRegisterPopup: false,
       showUserProfile: false,
-      showNotifications: false, // Controla la visibilidad del menú de notificaciones
-      username: 'USERNAME',
+      showNotifications: false, 
+      username: '', 
+      role: '',  // Nueva variable para almacenar el rol
       notifications: [
-        { title: 'Nueva notificación', description: 'Revision de encuesta', time: 'Hace 6 horas' }
+        { title: 'Nueva notificación', description: 'Revisión de encuesta', time: 'Hace 6 horas' }
       ]
     };
+  },
+  mounted() {
+    // Obtener el nombre y rol del usuario desde el localStorage
+    this.username = localStorage.getItem('username') || 'USERNAME';
+    this.role = localStorage.getItem('rol') || 'ROL';  // Aquí obtenemos el rol almacenado
   },
   methods: {
     switchToRegister() {
@@ -96,7 +105,7 @@ export default {
       this.showRegisterPopup = true;
     },
     toggleNotifications() {
-      this.showNotifications = !this.showNotifications; // Alternar la visibilidad del menú de notificaciones
+      this.showNotifications = !this.showNotifications;
     },
     openUserProfile() {
       this.showUserProfile = true;
@@ -184,11 +193,24 @@ nav {
   align-items: center;
 }
 
+.user-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+}
+
 .username-label {
   font-size: 16px;
   color: white;
-  margin-left: 5px;
+  text-transform: uppercase; 
 }
+
+.role-label {
+  font-size: 12px;
+  color: #8e6c88; 
+  text-transform: uppercase; 
+}
+
 
 /* Estilos para el menú de notificaciones */
 .notification-menu {

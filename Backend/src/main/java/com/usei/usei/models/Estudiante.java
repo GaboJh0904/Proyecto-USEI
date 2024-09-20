@@ -74,6 +74,11 @@ public class Estudiante implements Serializable {
     @Basic(optional = false)
     @Column(name = "semestre")
     private int semestre;
+
+    @Basic(optional = false)
+    @Column(name = "contrasena")
+    private String contrasena;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudianteIdEstudiante")
     private Collection<EstadoEncuesta> estadoEncuestaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudianteIdEstudiante")
@@ -88,7 +93,7 @@ public class Estudiante implements Serializable {
         this.idEstudiante = idEstudiante;
     }
 
-    public Estudiante(long idEstudiante, int ci, String nombre, String apellido, String correoInsitucional, String carrera, String asignatura, int telefono, int anio, int semestre) {
+    public Estudiante(long idEstudiante, int ci, String nombre, String apellido, String correoInsitucional, String carrera, String asignatura, int telefono, int anio, int semestre, String contrasena) {
         this.idEstudiante = idEstudiante;
         this.ci = ci;
         this.nombre = nombre;
@@ -99,6 +104,7 @@ public class Estudiante implements Serializable {
         this.telefono = telefono;
         this.anio = anio;
         this.semestre = semestre;
+        this.contrasena = contrasena;
     }
 
     public Long getIdEstudiante() {
@@ -187,6 +193,14 @@ public class Estudiante implements Serializable {
 
     public void setSemestre(int semestre) {
         this.semestre = semestre;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public Collection<EstadoEncuesta> getEstadoEncuestaCollection() {

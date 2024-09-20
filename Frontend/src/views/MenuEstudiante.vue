@@ -72,12 +72,28 @@
   import NavBar from '@/components/NavBar.vue';
   import ImageCarousel from '@/components/imageCarousel.vue';
   import FooterComponent from '@/components/FooterComponent.vue';
+
   export default {
     name: "MenuEstudiante",
     components: {
       NavBar,
       ImageCarousel,
       FooterComponent  
+    },
+    data() {
+      return {
+        username: '' // Para almacenar el nombre del estudiante
+      };
+    },
+    mounted() {
+      // Obtener el nombre del estudiante desde el localStorage directamente
+      const storedUsername = localStorage.getItem('username');  
+      
+      if (storedUsername) {
+        this.username = storedUsername;
+      } else {
+        console.error('No se encontró el nombre en el localStorage.');
+      }
     },
     methods: {
       goToEncuesta() {
@@ -88,7 +104,9 @@
       }
     }
   };
-  </script>
+</script>
+
+
   
   <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
