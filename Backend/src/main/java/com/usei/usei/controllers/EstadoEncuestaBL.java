@@ -89,4 +89,13 @@ public class EstadoEncuestaBL implements EstadoEncuestaService{
         return estadoEncuestaDAO.findByEstado("Pendiente");
     }
 
+    // Implementación método encuestas completadas
+    @Override
+    @Transactional(readOnly = true)
+    public List<EstadoEncuesta> findByEstadoCompletado() {
+        return estadoEncuestaDAO.findByEstado("Completado");
+    }
+
+
+
 }

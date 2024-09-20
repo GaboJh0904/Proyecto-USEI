@@ -13,7 +13,7 @@
           <!-- Año de ingreso -->
           <div class="form-group">
             <label for="year">Año que ingresó a la U.C.B.</label>
-            <select id="year" v-model="form.year">
+            <select id="year" v-model="answers['1']">
               <option value="2019">2019</option>
               <option value="2018">2018</option>
               <option value="2017">2017</option>
@@ -40,7 +40,7 @@
           <!-- Carrera -->
           <div class="form-group">
             <label for="career">Carrera de la que se graduó</label>
-            <select id="career" v-model="form.career">
+            <select id="career" v-model="answers['2']">
               <option value="Administración de Empresas">Administración de Empresas</option>
               <option value="Administración Turística">Administración Turística</option>
               <option value="Contaduría Pública">Contaduría Pública</option>
@@ -66,33 +66,37 @@
             <!-- Apellido paterno -->
           <div class="form-group">
             <label for="lastName1">Apellido Paterno</label>
-            <input type="text" id="lastName1" v-model="form.lastName1">
-          </div>
+            <input type="text" id="lastName1" v-model="answers['3']"
+            @input="validateTextInput($event, '3')" >
+            </div>
             <!-- Apellido materno -->
           <div class="form-group">
             <label for="lastName2">Apellido Materno</label>
-            <input type="text" id="lastName2" v-model="form.lastName2">
+            <input type="text" id="lastName2" v-model="answers['4']"
+            @input="validateTextInput($event, '4')">          
           </div>
             <!-- Nombres -->
           <div class="form-group">
             <label for="names">Nombres</label>
-            <input type="text" id="names" v-model="form.names">
+            <input type="text" id="names" v-model="answers['5']"
+            @input="validateTextInput($event, '5')"
+            >
           </div>
           <!-- Edad -->
           <div class="form-group">
             <label for="age">Edad</label>
-            <input type="number" id="age" v-model="form.age">
+            <input type="number" id="age" v-model="answers['6']">
           </div>
             <!-- Sexo -->
           <div class="form-group">
             <label>Sexo</label>
             <div class="radio-group">
               <div class="radio-option">
-                <input id="gender" type="radio" v-model="form.gender" value="Mujer">
+                <input id="gender" type="radio" v-model="answers['7']" value="Mujer">
                 <label for="fame">Mujer</label>
               </div>
               <div class="radio-option">
-                <input id="gender" type="radio" v-model="form.gender" value="Varon">
+                <input id="gender" type="radio" v-model="answers['7']" value="Varón">
                 <label for="male">Varón</label>
               </div>
             </div>
@@ -100,17 +104,20 @@
             <!-- Telefono fijo -->
             <div class="form-group">
               <label for="telephone">Teléfono</label>
-              <input type="tel" id="telephone" v-model="form.telephone">
-            </div>
+              <input type="tel" id="telephone" v-model="answers['8']"
+            @input="validatePhoneInput($event, '8')"
+            >            </div>
             <!-- Telefono movil -->
             <div class="form-group">
               <label for="telephone2">Teléfono móvil</label>
-              <input type="tel" id="telephone2" v-model="form.telephone2">
+              <input type="tel" id="telephone2" v-model="answers['9']"
+            @input="validatePhoneInput($event, '9')"
+            >
             </div>
         <!--Ciudad -->
           <div class="form-group">
             <label for="city">Seleccione su ciudad de nacimiento</label>
-            <select id="city" v-model="form.city">
+            <select id="city" v-model="answers['10']">
               <option value="La Paz">La Paz</option>
               <option value="Santa Cruz">Santa Cruz</option>
               <option value="Cochabamba">Cochabamba</option>
@@ -127,30 +134,30 @@
            <!-- Cédula de Identidad -->
           <div class="form-group">
             <label for="idcard">Cédula de identidad</label>
-            <input type="text" id="idcard" v-model="form.idcard">
+            <input type="text" id="idcard" v-model="answers['11']">
           </div>
           <!-- Estado Civil -->
           <div class="form-group">
             <label>Indique su Estado Civil actual</label>
             <div class="radio-group">
               <div class="radio-option">
-                <input id="civil-single" type="radio" v-model="form.civilStatus" value="Soltero(a)">
+                <input id="civil-single" type="radio" v-model="answers['12']" value="Soltero(a)">
                 <label for="civil-single">Soltero(a)</label>
               </div>
               <div class="radio-option">
-                <input id="civil-married" type="radio" v-model="form.civilStatus" value="Casado(a)">
+                <input id="civil-married" type="radio" v-model="answers['12']" value="Casado(a)">
                 <label for="civil-married">Casado(a)</label>
               </div>
               <div class="radio-option">
-                <input id="civil-cohabitant" type="radio" v-model="form.civilStatus" value="Concubino(a)">
+                <input id="civil-cohabitant" type="radio" v-model="answers['12']" value="Concubino(a)">
                 <label for="civil-cohabitant">Concubino(a)</label>
               </div>
               <div class="radio-option">
-                <input id="civil-divorced" type="radio" v-model="form.civilStatus" value="Divorciado(a)">
+                <input id="civil-divorced" type="radio" v-model="answers['12']" value="Divorciado(a)">
                 <label for="civil-divorced">Divorciado(a)</label>
               </div>
               <div class="radio-option">
-                <input id="civil-widowed" type="radio" v-model="form.civilStatus" value="Viudo(a)">
+                <input id="civil-widowed" type="radio" v-model="answers['12']" value="Viudo(a)">
                 <label for="civil-widowed">Viudo(a)</label>
               </div>
             </div>
@@ -180,33 +187,63 @@ export default {
   },
   data() {
     return {
-      form: {
-        year: '2019', // Año por defecto
-        career: '', // Carrera
-        lastName1: '', // Apellido paterno
-        lastName2: '', // Apellido materno
-        names: '', // Nombres
-        age: '', // Edad
-        gender: '', // Sexo
-        telephone: '', // Teléfono fijo
-        telephone2: '', // Teléfono móvil
-        city: '', // Ciudad de nacimiento
-        idcard: '', // Cédula de identidad
-        civilStatus: '' // Estado civil
-      }
+      answers: JSON.parse(localStorage.getItem('surveyAnswers')) || {}, // Cargar datos del LocalStorage
+      estudianteId: null, // ID del estudiante que inició sesión
     };
   },
+  mounted() {
+    // Obtener el ID del estudiante desde localStorage
+    this.estudianteId = localStorage.getItem('id_estudiante');
+    if (!this.estudianteId) {
+      alert('Por favor, inicie sesión antes de continuar.');
+      this.$router.push({ name: '/' });
+    }
+
+
+    if (!this.$route.query.fromResume) {
+      localStorage.removeItem('surveyAnswers');
+    } else {
+      this.answers = JSON.parse(localStorage.getItem('surveyAnswers')) || {};
+    }
+  },
   methods: {
-    goToResume() {
-      // Redireccionar a la página de resumen con los datos del formulario
-      this.$router.push({ name: 'ResumePage', query: this.form });
-    },
     goBack() {
-      this.$router.go(-1); 
+      this.$router.go(-1);
+    },
+    
+    goToResume() {
+      // Validación para verificar si todos los campos requeridos están completos
+      if (this.isFormComplete()) {
+        this.$router.push({
+          name: 'ResumePage',
+          query: { ...this.answers, estudianteId: this.estudianteId }
+        });
+      } else {
+        alert('Por favor, complete todos los campos obligatorios.');
+      
+      } 
+    },
+    isFormComplete() {
+      // Verificar que todos los campos importantes estén llenos
+      return this.answers['1'] && this.answers['2'] && this.answers['3'] &&
+             this.answers['4'] && this.answers['5'] && this.answers['6'] &&
+             this.answers['7'] && this.answers['8'] && this.answers['9'] &&
+             this.answers['10'] && this.answers['11'] && this.answers['12'];
+    },
+    // Validar que el input solo permita letras y espacios
+    validateTextInput(event, field) {
+      const value = event.target.value.replace(/[^a-zA-Z\s]/g, ''); // Elimina todo excepto letras y espacios
+      this.answers[field] = value;
+    },
+    // Validar que el input de teléfono solo permita números
+    validatePhoneInput(event, field) {
+      const value = event.target.value.replace(/\D/g, ''); // Elimina todo excepto dígitos
+      this.answers[field] = value;
     }
   }
 };
 </script>
+
 
 
 <style scoped>
