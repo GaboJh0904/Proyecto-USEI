@@ -15,5 +15,7 @@ public interface UsuarioService {
     public void deleteById(Long id);
 
     public Usuario update (Usuario newUsuario, Long id);
+
+    Optional<Usuario> login(String correo, String contrasenia);
     
 }

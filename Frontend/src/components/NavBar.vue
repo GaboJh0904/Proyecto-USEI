@@ -10,7 +10,7 @@
       <a @click="goToEnProgreso" class="navigation-link">Opción 4</a>
 
       <!-- Mostrar iconos de usuario y notificaciones si es vista del estudiante -->
-      <template v-if="userRole === 'Student' || userRole === 'Director' || userRole === 'Admin'">
+      <template v-if="userRole === 'Student' || userRole === 'Director' || userRole === 'Administrador'">
         <!-- Icono de notificaciones -->
         <button @click="toggleNotifications" class="icon-button notification-icon">
           <i class="fas fa-bell"></i>
@@ -50,16 +50,24 @@
 
     <!-- Mostrar el popup de inicio de sesión -->
     <LoginPopup
-      v-if="showLoginPopup"
-      @close="showLoginPopup = false"
-      @switch-to-register="switchToRegister"
-    />
+    v-if="showLoginPopup"
+    @close="showLoginPopup = false"
+    @switch-to-register="switchToRegister"
+    @switch-to-admin-login="switchToAdminLogin"
+  />
 
     <!-- Mostrar el popup de registro -->
     <RegisterPopup
-      v-if="showRegisterPopup"
-      @close="showRegisterPopup = false"
-    />
+    v-if="showRegisterPopup"
+    @close="showRegisterPopup = false"
+  />
+    <!-- Nuevo popup de login para Admin/Director -->
+    <AdminLoginPopup
+    v-if="showAdminLoginPopup"
+    @close="showAdminLoginPopup = false"
+    @switch-to-student-login="switchToStudentLogin"
+  />
+
   </nav>
 </template>
 
@@ -67,6 +75,7 @@
 import LoginPopup from '@/components/LoginPopup.vue';
 import RegisterPopup from '@/components/RegisterPopup.vue';
 import UserProfilePopup from '@/components/UserProfilePopup.vue';
+import AdminLoginPopup from '@/components/AdminLoginPopup.vue';
 
 export default {
   name: 'NavBar',
@@ -74,6 +83,7 @@ export default {
     LoginPopup,
     RegisterPopup,
     UserProfilePopup,
+    AdminLoginPopup,
   },
   props: {
     userRole: {
@@ -87,6 +97,7 @@ export default {
       showRegisterPopup: false,
       showUserProfile: false,
       showNotifications: false, 
+      showAdminLoginPopup: false,  // Variable para mostrar el popup de Admin/Director
       username: '', 
       role: '',  // Nueva variable para almacenar el rol
       notifications: [
@@ -102,7 +113,18 @@ export default {
   methods: {
     switchToRegister() {
       this.showLoginPopup = false;
+      this.showAdminLoginPopup = false;  // Cerrar el popup de Admin/Director
       this.showRegisterPopup = true;
+    },
+    switchToAdminLogin() {
+      this.showLoginPopup = false;
+      this.showRegisterPopup = false;
+      this.showAdminLoginPopup = true;  // Mostrar el popup de Admin/Director
+    },
+    switchToStudentLogin() {
+      this.showAdminLoginPopup = false;  // Cerrar el popup de Admin/Director
+      this.showRegisterPopup = false;
+      this.showLoginPopup = true;
     },
     toggleNotifications() {
       this.showNotifications = !this.showNotifications;
