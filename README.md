@@ -52,4 +52,8 @@ npm install @fortawesome/fontawesome-free
 ```sh
 npm install flickity
 ```
+## SweetAlert (Diseño para las alertas)
+```sh
+npm install sweetalert2
+```
 
