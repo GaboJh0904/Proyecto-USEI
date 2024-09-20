@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <NavBar userRole="Admin" />
+      <NavBar :userRole="userRole" />
     </header>
 
     <main class="user-management-container">
@@ -95,6 +95,7 @@ export default {
   },
   data() {
     return {
+      userRole: '',  // Añadir userRole para gestion-directores
       users: [], // Lista de usuarios
       currentUser: {
         nombre: '',
@@ -109,6 +110,9 @@ export default {
     };
   },
   mounted() {
+    // Obtener el rol del usuario desde el localStorage
+    this.userRole = localStorage.getItem('rol') || '';
+
     // Cargar los usuarios cuando se monta el componente
     this.fetchUsers();
   },
