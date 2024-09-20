@@ -81,11 +81,16 @@ export default {
       }
     },
     forgotPassword() {
+      // Implementar lógica de recuperación de contraseña
       console.log('Olvidé mi contraseña');
     },
+    goToEnProgreso(){
+      this.$router.push('/en-progreso');
+    }
   }
 };
 </script>
+
 
 <style scoped>
 .popup-overlay {

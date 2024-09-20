@@ -105,9 +105,9 @@ export default {
     };
   },
   mounted() {
-    // Verificar si hay un nombre de usuario en el localStorage cuando se monta el componente
-    this.username = localStorage.getItem('username') || 'USERNAME';
-    this.role = localStorage.getItem('rol') || 'ROL';
+    // Obtener el nombre y rol del usuario desde el localStorage
+    this.username = localStorage.getItem('nombre') || 'USERNAME';
+    this.role = localStorage.getItem('rol') || 'ROL';  // Aquí obtenemos el rol almacenado
   },
   methods: {
     switchToRegister() {
