@@ -50,23 +50,24 @@
 
     <!-- Mostrar el popup de inicio de sesión -->
     <LoginPopup
-      v-if="showLoginPopup"
-      @close="showLoginPopup = false"
-      @switch-to-register="switchToRegister"
-      @switch-to-role-login="switchToRoleLogin"
-    />
+    v-if="showLoginPopup"
+    @close="showLoginPopup = false"
+    @switch-to-register="switchToRegister"
+    @switch-to-admin-login="switchToAdminLogin"
+  />
 
     <!-- Mostrar el popup de registro -->
     <RegisterPopup
-      v-if="showRegisterPopup"
-      @close="showRegisterPopup = false"
-    />
+    v-if="showRegisterPopup"
+    @close="showRegisterPopup = false"
+  />
+    <!-- Nuevo popup de login para Admin/Director -->
+    <AdminLoginPopup
+    v-if="showAdminLoginPopup"
+    @close="showAdminLoginPopup = false"
+    @switch-to-student-login="switchToStudentLogin"
+  />
 
-    <!-- Mostrar el popup de login de roles específicos -->
-    <RoleLoginPopup
-      v-if="showRoleLoginPopup"
-      @close="closeRoleLoginPopup = false"
-    />
   </nav>
 </template>
 
@@ -74,7 +75,7 @@
 import LoginPopup from '@/components/LoginPopup.vue';
 import RegisterPopup from '@/components/RegisterPopup.vue';
 import UserProfilePopup from '@/components/UserProfilePopup.vue';
-import RoleLoginPopup from '@/components/RoleLoginPopup.vue'; // Importar el componente RoleLoginPopup
+import AdminLoginPopup from '@/components/AdminLoginPopup.vue';
 
 export default {
   name: 'NavBar',
@@ -82,12 +83,12 @@ export default {
     LoginPopup,
     RegisterPopup,
     UserProfilePopup,
-    RoleLoginPopup // Incluir el componente RoleLoginPopup
+    AdminLoginPopup,
   },
   props: {
     userRole: {
-      type: String,
-      default: '' // Por defecto, no hay rol asignado
+      type: String, 
+      default: '' 
     }
   },
   data() {
@@ -95,10 +96,10 @@ export default {
       showLoginPopup: false,
       showRegisterPopup: false,
       showUserProfile: false,
-      showNotifications: false, // Controla la visibilidad del menú de notificaciones
-      showRoleLoginPopup: false, // Controla la visibilidad del popup de roles específicos
-      username: localStorage.getItem('username') || 'USERNAME', // Obtener el nombre del localStorage
-      role: localStorage.getItem('rol') || 'ROL', // Obtener el rol del localStorage
+      showNotifications: false, 
+      showAdminLoginPopup: false,  // Variable para mostrar el popup de Admin/Director
+      username: '', 
+      role: '',  // Nueva variable para almacenar el rol
       notifications: [
         { title: 'Nueva notificación', description: 'Revisión de encuesta', time: 'Hace 6 horas' }
       ]
@@ -112,14 +113,21 @@ export default {
   methods: {
     switchToRegister() {
       this.showLoginPopup = false;
+      this.showAdminLoginPopup = false;  // Cerrar el popup de Admin/Director
       this.showRegisterPopup = true;
     },
-    switchToRoleLogin() {
+    switchToAdminLogin() {
       this.showLoginPopup = false;
-      this.showRoleLoginPopup = true;
+      this.showRegisterPopup = false;
+      this.showAdminLoginPopup = true;  // Mostrar el popup de Admin/Director
+    },
+    switchToStudentLogin() {
+      this.showAdminLoginPopup = false;  // Cerrar el popup de Admin/Director
+      this.showRegisterPopup = false;
+      this.showLoginPopup = true;
     },
     toggleNotifications() {
-      this.showNotifications = !this.showNotifications; // Alternar la visibilidad del menú de notificaciones
+      this.showNotifications = !this.showNotifications;
     },
     openUserProfile() {
       this.showUserProfile = true;
@@ -127,9 +135,9 @@ export default {
     closeUserProfile() {
       this.showUserProfile = false;
     },
-    goToEnProgreso() {
-      this.$router.push('/en-progreso');
-    }
+      goToEnProgreso(){
+        this.$router.push('/en-progreso');
+      }
   }
 };
 </script>

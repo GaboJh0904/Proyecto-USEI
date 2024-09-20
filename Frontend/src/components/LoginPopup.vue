@@ -18,8 +18,8 @@
         <button type="submit" class="submit-btn">Ingresar</button>
       </form>
 
-      <!-- Nuevo botón para Admin/Director -->
-      <button class="role-btn" @click="$emit('switch-to-role-login')">Admin / Director</button>
+      <!-- Botón para Admin/Director -->
+      <button class="role-btn" @click="$emit('switch-to-admin-login')">Admin / Director</button>
 
       <button class="register-btn" @click="$emit('switch-to-register')">Registrarse</button>
     </div>
