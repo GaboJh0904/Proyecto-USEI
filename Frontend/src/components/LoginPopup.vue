@@ -12,18 +12,10 @@
           <label for="password">Contraseña</label>
           <input type="password" id="password" v-model="password" required>
         </div>
-        <div class="form-group">
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" v-model="nombre" required>
-        </div>
-        <div class="form-group">
-          <label for="personal-email">Correo personal</label>
-          <input type="email" id="personal-email" v-model="correoPersonal" required>
-        </div>
-        <div class="form-group">
-          <label for="institutional-email">Correo institucional</label>
-          <input type="email" id="institutional-email" v-model="correoInstitucional" required>
-        </div>
+
+        <!-- Mostrar mensaje de error si falta algún campo -->
+        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+
         <div class="form-group">
           <a href="#" @click.prevent="forgotPassword">Olvidé mi contraseña</a>
         </div>
@@ -40,101 +32,103 @@
 
 <script>
 import axios from 'axios';
-import Swal from 'sweetalert2'; // Importar SweetAlert
+import { useRouter } from 'vue-router';
+import Swal from 'sweetalert2';  // Importar SweetAlert
 
 export default {
   name: 'LoginPopup',
   data() {
     return {
-      ci: '',       
-      password: '',  
-      nombre: '',  // Nombre del estudiante
-      correoPersonal: '',  // Correo personal
-      correoInstitucional: '',  // Correo institucional
-      role: 'estudiante'  
+      ci: '',       // CI para el inicio de sesión
+      password: '',  // Contraseña
+      role: 'estudiante',  // Rol predeterminado
+      errorMessage: ''  // Nueva variable para el mensaje de error
     };
   },
   setup() {
-    const router = useRouter();
+    const router = useRouter(); // Para utilizar el enrutador de Vue
     return { router };
   },
   methods: {
-    validateEmail(email) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailRegex.test(email);
-    },
-    validateName(name) {
-      const nameRegex = /^[a-zA-Z\s]+$/;
-      return nameRegex.test(name);
-    },
     async handleSubmit() {
-      // Validar si los campos tienen formato correcto
-      if (!this.validateName(this.nombre)) {
+      // Validar que ambos campos estén llenos
+      if (!this.ci || !this.password) {
+        this.errorMessage = ''; // Reiniciar el mensaje de error
+        // Usar SweetAlert para mostrar el mensaje
         Swal.fire({
           icon: 'error',
-          title: 'Nombre inválido',
-          text: 'El nombre solo puede contener letras y espacios.',
-          confirmButtonText: 'Aceptar'
+          title: 'Campos incompletos',
+          text: 'Por favor, complete ambos campos.',
+          confirmButtonText: 'Aceptar',
         });
-        return;
-      }
-
-      if (!this.validateEmail(this.correoPersonal)) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Correo personal inválido',
-          text: 'El correo personal debe tener un formato válido.',
-          confirmButtonText: 'Aceptar'
-        });
-        return;
-      }
-
-      if (!this.validateEmail(this.correoInstitucional)) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Correo institucional inválido',
-          text: 'El correo institucional debe tener un formato válido.',
-          confirmButtonText: 'Aceptar'
-        });
-        return;
+        return; // No continuar con la solicitud
       }
 
       try {
         const response = await axios.post('http://localhost:8082/estudiante/login', {
           ci: this.ci,
           contrasena: this.password,
-          role: this.role
+          role: this.role  // Enviar también el rol seleccionado
         });
 
+        // Manejar respuesta exitosa
         if (response.data.code === 200) {
+          console.log('Inicio de sesión correcto');
+          console.log(response.data.rol); // Mostrar el rol del usuario
+
+          // Guardar información en el localStorage
           localStorage.setItem('ci', this.ci);
           localStorage.setItem('rol', response.data.rol);
-          localStorage.setItem('username', response.data.nombre);
+          localStorage.setItem('username', response.data.nombre); // Si recibes el nombre del estudiante en la respuesta
 
-          if (this.role === 'admin') {
-            this.$router.push({ name: 'menuAdministrador' });
-          } else if (this.role === 'director') {
-            this.$router.push({ name: 'menuDirector' });
-          } else {
-            this.$router.push({ name: 'menuEstudiante' });
-          }
+          // Usar SweetAlert para mostrar éxito
+          Swal.fire({
+            icon: 'success',
+            title: 'Inicio de sesión correcto',
+            text: 'Bienvenido/a',
+            confirmButtonText: 'Continuar',
+          }).then(() => {
+            // Redirigir al usuario dependiendo del rol después de confirmar
+            if (this.role === 'admin') {
+              this.$router.push({ name: 'menuAdministrador' });
+            } else if (this.role === 'director') {
+              this.$router.push({ name: 'menuDirector' });
+            } else {
+              this.$router.push({ name: 'menuEstudiante' });
+            }
+          });
         }
       } catch (error) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error en el inicio de sesión',
-          text: error.response ? error.response.data.message : 'Error desconocido. Intente nuevamente.',
-          confirmButtonText: 'Aceptar'
-        });
+        if (error.response && error.response.data.code === 401) {
+          // Usar SweetAlert para mostrar error de credenciales incorrectas
+          Swal.fire({
+            icon: 'error',
+            title: 'Credenciales incorrectas',
+            text: 'Por favor, verifique su CI o contraseña.',
+            confirmButtonText: 'Aceptar',
+          });
+        } else {
+          // Usar SweetAlert para otros errores
+          Swal.fire({
+            icon: 'error',
+            title: 'Error en el inicio de sesión',
+            text: 'Ha ocurrido un error inesperado, intente nuevamente más tarde.',
+            confirmButtonText: 'Aceptar',
+          });
+        }
       }
     },
     forgotPassword() {
+      // Implementar lógica de recuperación de contraseña
       Swal.fire({
         icon: 'info',
         title: 'Recuperar contraseña',
-        text: 'Implementar lógica de recuperación de contraseña.',
-        confirmButtonText: 'Aceptar'
+        text: 'Para recuperar tu contraseña, contacta a soporte.',
+        confirmButtonText: 'Aceptar',
       });
+    },
+    goToEnProgreso(){
+      this.$router.push('/en-progreso');
     }
   }
 };
@@ -228,10 +222,16 @@ export default {
   color: white;
 }
 
+.error-message {
+  color: red;
+  margin-bottom: 10px;
+}
+
+/* Nuevo botón estilo */
 .role-btn {
   width: 100%;
   padding: 10px;
-  background-color: #63C7B2;
+  background-color: #63C7B2;  /* Mismo color que el botón de "Ingresar" */
   color: white;
   border: none;
   border-radius: 15px;
