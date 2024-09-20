@@ -27,7 +27,7 @@ public class CertificadoBL implements CertificadoService{
 
 
     @Autowired
-    private JavaMailSender mailSender;  // Inyecta JavaMailSender
+    private JavaMailSender mailSender;
 
 
     @Autowired
@@ -58,18 +58,7 @@ public class CertificadoBL implements CertificadoService{
 
         certificado.setUsuarioIdUsuario(usuario);
 
-        // Enviar el correo con el certificado adjunto
-        String correo = "willy.vargas@ucb.edu.bo";
-        String subject = "Certificado Registrado Correctamente";
-        String body = "Estimado " + usuario.getNombre() + ", su certificado ha sido registrado correctamente.";
-        String attachmentPath = "C:\\Users\\ASUS\\Documents\\GitHub\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";  // Actualiza esta ruta al archivo del certificado
-
-        try {
-            sendCertificadoEmail(correo, subject, body, attachmentPath);
-        } catch (MessagingException e) {
-            // Manejar el error de envío de correo
-            throw new RuntimeException("Error al enviar el correo: " + e.getMessage());
-        }
+        
 
         return certificadoDAO.save(certificado);
     }
@@ -108,22 +97,17 @@ public class CertificadoBL implements CertificadoService{
         }
     }
 
-
-    @Override
     public void sendCertificadoEmail(String to, String subject, String body, String attachmentPath) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
-
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(body);
 
-        // Adjuntar el archivo del certificado
         if (attachmentPath != null) {
             java.nio.file.Path path = java.nio.file.FileSystems.getDefault().getPath(attachmentPath);
             helper.addAttachment("Certificado.pdf", path.toFile());
         }
-
         mailSender.send(message);
     }
 
