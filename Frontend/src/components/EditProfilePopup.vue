@@ -1,51 +1,66 @@
 <template>
     <div class="edit-profile-popup">
-        <div class="popup-wrapper">
-            <div class="popup-content">
-                <div class="color-bar"></div>
-                <button class="close-btn" @click="closePopup">X</button>
-                <h2>Editar Perfil</h2>
-                <form @submit.prevent="saveChanges">
-                    <div class="form-group">
-                        <label for="name">Nombre:</label>
-                        <div class="relative">
-                            <input class="form-control" id="name" type="text" v-model="user.name" required placeholder="Escribe tu nombre..." />
-                            <i class="fa fa-user"></i>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Teléfono:</label>
-                        <div class="relative">
-                            <input class="form-control" type="text" v-model="user.phone" required placeholder="Escribe tu teléfono..." />
-                            <i class="fa fa-phone"></i>
-                        </div>
-                    </div>
-                    <div class="tright">
-                        <button class="movebtn movebtnsave" type="submit">Guardar Cambios</button>
-                    </div>
-                </form>
+      <div class="popup-wrapper">
+        <div class="popup-content">
+          <div class="color-bar"></div>
+          <button class="close-btn" @click="closePopup">X</button>
+          <h2>Editar Perfil</h2>
+          <form @submit.prevent="saveChanges">
+            <!-- Campo Nombre (Editable para ambos) -->
+            <div class="form-group">
+              <label for="name">Nombre:</label>
+              <div class="relative">
+                <input class="form-control" id="name" type="text" v-model="user.name" required placeholder="Escribe tu nombre..." />
+                <i class="fa fa-user"></i>
+              </div>
             </div>
+  
+            <!-- Campo Apellido (Solo editable para estudiantes) -->
+            <div v-if="!isAdmin" class="form-group">
+              <label for="apellido">Apellido:</label>
+              <div class="relative">
+                <input class="form-control" id="apellido" type="text" v-model="user.apellido" required placeholder="Escribe tu apellido..." />
+                <i class="fa fa-user"></i>
+              </div>
+            </div>
+  
+            <!-- Campo Teléfono (Solo editable para estudiantes) -->
+            <div v-if="!isAdmin" class="form-group">
+              <label for="phone">Teléfono:</label>
+              <div class="relative">
+                <input class="form-control" id="phone" type="text" v-model="user.phone" required placeholder="Escribe tu teléfono..." />
+                <i class="fa fa-phone"></i>
+              </div>
+            </div>
+  
+            <div class="tright">
+              <button class="movebtn movebtnsave" type="submit">Guardar Cambios</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</template>
-
-<script>
-export default {
+  </template>
+  
+  <script>
+  export default {
     name: "EditProfilePopup",
     props: {
-        user: Object
+      user: Object, // Recibe los campos que se pueden editar
+      isAdmin: Boolean // Determina si el usuario es un administrador
     },
     methods: {
-        closePopup() {
-            this.$emit('close');
-        },
-        saveChanges() {
-            // Emitir los datos editados al componente padre que es UserProfilePopup.vue
-            this.$emit('save', this.user);
-        }
+      closePopup() {
+        this.$emit('close');
+      },
+      saveChanges() {
+        // Emitir los datos editados al componente padre (UserProfilePopup.vue)
+        this.$emit('save', this.user);
+      }
     }
-};
-</script>
+  };
+  </script>
+  
 
 <style scoped>
 .edit-profile-popup {

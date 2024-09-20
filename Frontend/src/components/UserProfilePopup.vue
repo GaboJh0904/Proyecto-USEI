@@ -1,88 +1,124 @@
 <template>
-    <div class="profile-popup">
-      <div class="popup-wrapper">
-        <div class="popup-content">
-          <div class="color-bar"></div>
-          <button class="close-btn" @click="closePopup">X</button>
-          <h2>Mi Perfil</h2>
-          <form>
-            <div class="form-group">
-              <label for="name">Nombre:</label>
-              <div class="relative">
-                <p class="static-data">{{ user.name }}</p>
-                <i class="fa fa-user"></i>
-              </div>
+  <div class="profile-popup">
+    <div class="popup-wrapper">
+      <div class="popup-content">
+        <div class="color-bar"></div>
+        <button class="close-btn" @click="closePopup">X</button>
+        <h2>Mi Perfil</h2>
+        <form>
+          <div class="form-group">
+            <label for="name">Nombre:</label>
+            <div class="relative">
+              <p class="static-data">{{ user.name }}</p>
+              <i class="fa fa-user"></i>
             </div>
-            <div class="form-group">
-              <label for="email">Correo:</label>
-              <div class="relative">
-                <p class="static-data">{{ user.email }}</p>
-                <i class="fa fa-envelope"></i>
-              </div>
+          </div>
+
+          <!-- Mostrar Apellido solo si el rol es 'estudiante' -->
+          <div v-if="user.rol === 'estudiante'" class="form-group">
+            <label for="apellido">Apellido:</label>
+            <div class="relative">
+              <p class="static-data">{{ user.apellido }}</p>
+              <i class="fa fa-user"></i>
             </div>
-            <div class="form-group">
-              <label for="contact">Teléfono:</label>
-              <div class="relative">
-                <p class="static-data">{{ user.phone }}</p>
-                <i class="fa fa-phone"></i>
-              </div>
+          </div>
+
+          <!-- Mostrar Correo Institucional o Correo General según el rol -->
+          <div class="form-group">
+            <label for="email">{{ user.rol === 'estudiante' ? 'Correo Institucional' : 'Correo' }}:</label>
+            <div class="relative">
+              <p class="static-data">{{ user.email }}</p>
+              <i class="fa fa-envelope"></i>
             </div>
-            <div class="tright">
-              <button class="movebtn movebtnedit" type="button" @click="showEditProfile"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
-              <button class="movebtn movebtnlogout" type="button" @click="logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
+          </div>
+
+          <!-- Mostrar Teléfono solo si el rol es 'estudiante' -->
+          <div v-if="user.rol === 'estudiante'" class="form-group">
+            <label for="phone">Teléfono:</label>
+            <div class="relative">
+              <p class="static-data">{{ user.phone }}</p>
+              <i class="fa fa-phone"></i>
             </div>
-          </form>
-        </div>
+          </div>
+
+          <div class="tright">
+            <button class="movebtn movebtnedit" type="button" @click="showEditProfile"><i class="fa-solid fa-pen-to-square"></i> Editar</button>
+            <button class="movebtn movebtnlogout" type="button" @click="logout"><i class="fa-solid fa-right-from-bracket"></i> Cerrar Sesión</button>
+          </div>
+        </form>
       </div>
-      <EditProfilePopup v-if="showEditPopup" @close="closeEditPopup" :user="user" @save="saveProfileChanges" />
     </div>
-  </template>
-  
-  <script>
-  import EditProfilePopup from '@/components/EditProfilePopup.vue'
-  import { useRouter } from 'vue-router'; // Importar el enrutador
-  
-  export default {
-    name: 'UserProfilePopup',
-    components: {
-      EditProfilePopup
+
+    <!-- Enviar solo los campos editables al componente de edición -->
+    <EditProfilePopup
+      v-if="showEditPopup"
+      @close="closeEditPopup"
+      :user="getEditableFields()"
+      :is-admin="user.rol === 'Administrador'"
+      @save="saveProfileChanges"
+    />
+  </div>
+</template>
+
+<script>
+import EditProfilePopup from '@/components/EditProfilePopup.vue'
+import { useRouter } from 'vue-router'; // Importar el enrutador
+
+export default {
+  name: 'UserProfilePopup',
+  components: {
+    EditProfilePopup
+  },
+  data() {
+    return {
+      user: {
+        name: localStorage.getItem('nombre') || '',
+        email: localStorage.getItem('correo') || localStorage.getItem('correoInsitucional') || '',
+        phone: localStorage.getItem('telefono') || '',
+        apellido: localStorage.getItem('apellido') || '',
+        rol: localStorage.getItem('rol') || ''
+      },
+      showEditPopup: false // Controlar la visibilidad del pop-up de edición
+    };
+  },
+  setup() {
+    const router = useRouter(); // Obtener acceso al enrutador dentro del setup
+    return { router };
+  },
+  methods: {
+    closePopup() {
+      this.$emit('close');
     },
-    data() {
-      return {
-        user: {
-          name: 'Rosario Calisaya',
-          email: 'rosario.calisaya@example.com',
-          phone: '1234567890'
-        },
-        showEditPopup: false // Controlar la visibilidad del pop-up de edición
-      };
+    showEditProfile() {
+      this.showEditPopup = true; 
     },
-    setup() {
-      const router = useRouter(); // Obtener acceso al enrutador dentro del setup
-      return { router };
+    closeEditPopup() {
+      this.showEditPopup = false; 
     },
-    methods: {
-      closePopup() {
-        this.$emit('close');
-      },
-      showEditProfile() {
-        this.showEditPopup = true; 
-      },
-      closeEditPopup() {
-        this.showEditPopup = false; 
-      },
-      saveProfileChanges(updatedUser) {
-        // Actualizar los datos del perfil 
-        this.user = updatedUser;
-        this.closeEditPopup(); 
-      },
-      logout() {
-        // Redirigir a la pagina de inicio
-        this.router.push({ name: 'inicio' }); // Redirigir a la vista Pagina de inicio
+    getEditableFields() {
+      // Retornar solo los campos que se pueden editar según el rol
+      if (this.user.rol === 'Administrador') {
+        return { name: this.user.name };
+      } else if (this.user.rol === 'estudiante') {
+        return { name: this.user.name, apellido: this.user.apellido, phone: this.user.phone };
       }
+    },
+    saveProfileChanges(updatedUser) {
+      // Actualizar los datos del perfil según el rol
+      Object.assign(this.user, updatedUser);
+      this.closeEditPopup(); 
+    },
+    logout() {
+      // Limpiar todos los datos del localStorage
+      localStorage.clear();
+      
+      // Redirigir a la página de inicio
+      this.router.push({ name: 'inicio' }); // Redirigir a la vista Página de inicio
     }
-  };
-  </script>
+  }
+};
+</script>
+
   
   <style scoped>
   /* Estilos permanecen iguales */

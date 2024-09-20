@@ -87,6 +87,7 @@ public class EstudianteAPI{
                         put("correoInsitucional", estudiante.get().getCorreoInsitucional());
                         put("nombre", estudiante.get().getNombre());
                         put("apellido", estudiante.get().getApellido());
+                        put("telefono", estudiante.get().getTelefono());
                     }}
             );
 

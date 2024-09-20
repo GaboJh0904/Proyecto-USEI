@@ -81,6 +81,7 @@ export default {
           localStorage.setItem('nombre', response.data.result.nombre);
           localStorage.setItem('apellido', response.data.result.apellido);
           localStorage.setItem('rol', response.data.result.rol);
+          localStorage.setItem('telefono', response.data.result.telefono);
 
           // Usar SweetAlert para mostrar éxito
           Swal.fire({
