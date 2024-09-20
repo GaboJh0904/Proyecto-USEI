@@ -53,12 +53,19 @@
       v-if="showLoginPopup"
       @close="showLoginPopup = false"
       @switch-to-register="switchToRegister"
+      @switch-to-role-login="switchToRoleLogin"
     />
 
     <!-- Mostrar el popup de registro -->
     <RegisterPopup
       v-if="showRegisterPopup"
       @close="showRegisterPopup = false"
+    />
+
+    <!-- Mostrar el popup de login de roles específicos -->
+    <RoleLoginPopup
+      v-if="showRoleLoginPopup"
+      @close="closeRoleLoginPopup = false"
     />
   </nav>
 </template>
@@ -67,6 +74,7 @@
 import LoginPopup from '@/components/LoginPopup.vue';
 import RegisterPopup from '@/components/RegisterPopup.vue';
 import UserProfilePopup from '@/components/UserProfilePopup.vue';
+import RoleLoginPopup from '@/components/RoleLoginPopup.vue'; // Importar el componente RoleLoginPopup
 
 export default {
   name: 'NavBar',
@@ -74,11 +82,12 @@ export default {
     LoginPopup,
     RegisterPopup,
     UserProfilePopup,
+    RoleLoginPopup // Incluir el componente RoleLoginPopup
   },
   props: {
     userRole: {
-      type: String, 
-      default: '' 
+      type: String,
+      default: '' // Por defecto, no hay rol asignado
     }
   },
   data() {
@@ -86,26 +95,31 @@ export default {
       showLoginPopup: false,
       showRegisterPopup: false,
       showUserProfile: false,
-      showNotifications: false, 
-      username: '', 
-      role: '',  // Nueva variable para almacenar el rol
+      showNotifications: false, // Controla la visibilidad del menú de notificaciones
+      showRoleLoginPopup: false, // Controla la visibilidad del popup de roles específicos
+      username: localStorage.getItem('username') || 'USERNAME', // Obtener el nombre del localStorage
+      role: localStorage.getItem('rol') || 'ROL', // Obtener el rol del localStorage
       notifications: [
         { title: 'Nueva notificación', description: 'Revisión de encuesta', time: 'Hace 6 horas' }
       ]
     };
   },
   mounted() {
-    // Obtener el nombre y rol del usuario desde el localStorage
+    // Verificar si hay un nombre de usuario en el localStorage cuando se monta el componente
     this.username = localStorage.getItem('username') || 'USERNAME';
-    this.role = localStorage.getItem('rol') || 'ROL';  // Aquí obtenemos el rol almacenado
+    this.role = localStorage.getItem('rol') || 'ROL';
   },
   methods: {
     switchToRegister() {
       this.showLoginPopup = false;
       this.showRegisterPopup = true;
     },
+    switchToRoleLogin() {
+      this.showLoginPopup = false;
+      this.showRoleLoginPopup = true;
+    },
     toggleNotifications() {
-      this.showNotifications = !this.showNotifications;
+      this.showNotifications = !this.showNotifications; // Alternar la visibilidad del menú de notificaciones
     },
     openUserProfile() {
       this.showUserProfile = true;
@@ -113,9 +127,9 @@ export default {
     closeUserProfile() {
       this.showUserProfile = false;
     },
-      goToEnProgreso(){
-        this.$router.push('/en-progreso');
-      }
+    goToEnProgreso() {
+      this.$router.push('/en-progreso');
+    }
   }
 };
 </script>

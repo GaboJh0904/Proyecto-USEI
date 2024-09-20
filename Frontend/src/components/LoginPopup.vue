@@ -19,13 +19,13 @@
       </form>
 
       <!-- Nuevo botón para Admin/Director -->
-      <button class="role-btn" @click="selectRole">Admin / Director</button>
+      <button class="role-btn" @click="$emit('switch-to-role-login')">Admin / Director</button>
 
       <button class="register-btn" @click="$emit('switch-to-register')">Registrarse</button>
     </div>
   </div>
 </template>
-
+  
 <script>
 import axios from 'axios';
 import { useRouter } from 'vue-router';

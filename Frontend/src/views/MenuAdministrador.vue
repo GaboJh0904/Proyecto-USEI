@@ -139,7 +139,7 @@
   import ImageCarousel from '@/components/imageCarousel.vue';
   import FooterComponent from '@/components/FooterComponent.vue';
   export default {
-    name: "LandingPage",
+    name: "MenuAdministrador",
     components: {
       NavBar,
       ImageCarousel,
