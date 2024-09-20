@@ -12,6 +12,10 @@
           <label for="password">Contraseña</label>
           <input type="password" id="password" v-model="password" required>
         </div>
+
+        <!-- Mostrar mensaje de error si falta algún campo -->
+        <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
+
         <div class="form-group">
           <a href="#" @click.prevent="forgotPassword">Olvidé mi contraseña</a>
         </div>
@@ -29,6 +33,7 @@
 <script>
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import Swal from 'sweetalert2';  // Importar SweetAlert
 
 export default {
   name: 'LoginPopup',
@@ -36,7 +41,8 @@ export default {
     return {
       ci: '',       // CI para el inicio de sesión
       password: '',  // Contraseña
-      role: 'estudiante'  // Rol predeterminado
+      role: 'estudiante',  // Rol predeterminado
+      errorMessage: ''  // Nueva variable para el mensaje de error
     };
   },
   setup() {
@@ -45,6 +51,19 @@ export default {
   },
   methods: {
     async handleSubmit() {
+      // Validar que ambos campos estén llenos
+      if (!this.ci || !this.password) {
+        this.errorMessage = ''; // Reiniciar el mensaje de error
+        // Usar SweetAlert para mostrar el mensaje
+        Swal.fire({
+          icon: 'error',
+          title: 'Campos incompletos',
+          text: 'Por favor, complete ambos campos.',
+          confirmButtonText: 'Aceptar',
+        });
+        return; // No continuar con la solicitud
+      }
+
       try {
         const response = await axios.post('http://localhost:8082/estudiante/login', {
           ci: this.ci,
@@ -62,27 +81,51 @@ export default {
           localStorage.setItem('rol', response.data.rol);
           localStorage.setItem('username', response.data.nombre); // Si recibes el nombre del estudiante en la respuesta
 
-          // Redirigir al usuario dependiendo del rol
-          if (this.role === 'admin') {
-            this.$router.push({ name: 'menuAdministrador' });
-          } else if (this.role === 'director') {
-            this.$router.push({ name: 'menuDirector' });
-          } else {
-            this.$router.push({ name: 'menuEstudiante' });
-          }
+          // Usar SweetAlert para mostrar éxito
+          Swal.fire({
+            icon: 'success',
+            title: 'Inicio de sesión correcto',
+            text: 'Bienvenido/a',
+            confirmButtonText: 'Continuar',
+          }).then(() => {
+            // Redirigir al usuario dependiendo del rol después de confirmar
+            if (this.role === 'admin') {
+              this.$router.push({ name: 'menuAdministrador' });
+            } else if (this.role === 'director') {
+              this.$router.push({ name: 'menuDirector' });
+            } else {
+              this.$router.push({ name: 'menuEstudiante' });
+            }
+          });
         }
       } catch (error) {
         if (error.response && error.response.data.code === 401) {
-          console.error('Credenciales incorrectas');
-          alert('Credenciales incorrectas');
+          // Usar SweetAlert para mostrar error de credenciales incorrectas
+          Swal.fire({
+            icon: 'error',
+            title: 'Credenciales incorrectas',
+            text: 'Por favor, verifique su CI o contraseña.',
+            confirmButtonText: 'Aceptar',
+          });
         } else {
-          console.error('Error en el inicio de sesión:', error);
+          // Usar SweetAlert para otros errores
+          Swal.fire({
+            icon: 'error',
+            title: 'Error en el inicio de sesión',
+            text: 'Ha ocurrido un error inesperado, intente nuevamente más tarde.',
+            confirmButtonText: 'Aceptar',
+          });
         }
       }
     },
     forgotPassword() {
       // Implementar lógica de recuperación de contraseña
-      console.log('Olvidé mi contraseña');
+      Swal.fire({
+        icon: 'info',
+        title: 'Recuperar contraseña',
+        text: 'Para recuperar tu contraseña, contacta a soporte.',
+        confirmButtonText: 'Aceptar',
+      });
     },
     goToEnProgreso(){
       this.$router.push('/en-progreso');
@@ -90,7 +133,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .popup-overlay {
@@ -178,6 +220,11 @@ export default {
 .register-btn:hover {
   background-color: #263D42;
   color: white;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 10px;
 }
 
 /* Nuevo botón estilo */

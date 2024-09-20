@@ -100,6 +100,7 @@
 
 <script>
 import axios from 'axios';
+import Swal from 'sweetalert2';  // Importar SweetAlert
 
 export default {
   name: 'RegisterPopup',
@@ -124,6 +125,17 @@ export default {
       this.showPassword = !this.showPassword;
     },
     async handleSubmit() {
+      // Validar campos vacíos
+      if (!this.ci || !this.contrasena || !this.nombre || !this.apellido || !this.correoInstitucional || !this.correoPersonal || !this.carrera || !this.asignatura || !this.telefono || !this.anio || !this.semestre) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Campos incompletos',
+          text: 'Por favor, complete todos los campos.',
+          confirmButtonText: 'Aceptar'
+        });
+        return; // Detener el envío si hay campos vacíos
+      }
+
       const estudianteData = {
         ci: this.ci,
         nombre: this.nombre,
@@ -146,10 +158,21 @@ export default {
           }
         });
 
-        console.log('Registro exitoso:', response.data);
+        Swal.fire({
+          icon: 'success',
+          title: 'Registro exitoso',
+          text: 'El estudiante ha sido registrado correctamente.',
+          confirmButtonText: 'Aceptar'
+        });
 
         this.$emit('close');
       } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error en el registro',
+          text: 'Ha ocurrido un error durante el registro. Inténtelo de nuevo.',
+          confirmButtonText: 'Aceptar'
+        });
         console.error('Error en el registro:', error.response ? error.response.data : error.message);
       }
     }
@@ -233,13 +256,6 @@ export default {
 }
 
 .form-group input, .form-group select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #929292;
-  border-radius: 15px;
-}
-
-.form-group input {
   width: 100%;
   padding: 8px;
   border: 1px solid #929292;
