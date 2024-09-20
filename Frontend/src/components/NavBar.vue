@@ -84,11 +84,21 @@ export default {
       showRegisterPopup: false,
       showUserProfile: false,
       showNotifications: false, // Controla la visibilidad del menú de notificaciones
-      username: 'USERNAME',
+      username: localStorage.getItem('username') || 'USERNAME', // Obtener el nombre del localStorage
       notifications: [
-        { title: 'Nueva notificación', description: 'Revision de encuesta', time: 'Hace 6 horas' }
+        { title: 'Nueva notificación', description: 'Revisión de encuesta', time: 'Hace 6 horas' }
       ]
     };
+  },
+  mounted() {
+    // Verificar si hay un nombre de usuario en el localStorage cuando se monta el componente
+    this.username = localStorage.getItem('username') || 'USERNAME';
+  },
+  watch: {
+    // Actualizar el nombre del usuario si cambia la ruta o si se cambia manualmente el localStorage
+    '$route'(to, from) {
+      this.username = localStorage.getItem('username') || 'USERNAME';
+    }
   },
   methods: {
     switchToRegister() {
@@ -107,6 +117,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 /* Estilos para el NavBar y botones */

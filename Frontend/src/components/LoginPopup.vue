@@ -17,6 +17,10 @@
         </div>
         <button type="submit" class="submit-btn">Ingresar</button>
       </form>
+
+      <!-- botón para Admin/Director -->
+      <button class="role-btn" @click="selectRole">Administrador / Director</button>
+
       <button class="register-btn" @click="$emit('switch-to-register')">Registrarse</button>
     </div>
   </div>
@@ -31,8 +35,9 @@ export default {
   data() {
     return {
       ci: '',       // CI para el inicio de sesión
-      password: ''  // Contraseña
-    }
+      password: '',  // Contraseña
+      role: 'estudiante'  // Rol predeterminado
+    };
   },
   setup() {
     const router = useRouter(); // Para utilizar el enrutador de Vue
@@ -43,7 +48,8 @@ export default {
       try {
         const response = await axios.post('http://localhost:8082/estudiante/login', {
           ci: this.ci,
-          contrasena: this.password
+          contrasena: this.password,
+          role: this.role  // Enviar también el rol seleccionado
         });
 
         // Manejar respuesta exitosa
@@ -51,15 +57,21 @@ export default {
           console.log('Inicio de sesión correcto');
           console.log(response.data.rol); // Mostrar el rol del usuario
 
-          // Guardar información en el localStorage si es necesario
+          // Guardar información en el localStorage
           localStorage.setItem('ci', this.ci);
           localStorage.setItem('rol', response.data.rol);
-          
-          // Redirigir al usuario a menuEstudiante
-          this.router.push({ name: 'menuEstudiante' });
+          localStorage.setItem('username', response.data.nombre); // Si recibes el nombre del estudiante en la respuesta
+
+          // Redirigir al usuario dependiendo del rol
+          if (this.role === 'admin') {
+            this.$router.push({ name: 'adminDashboard' });
+          } else if (this.role === 'director') {
+            this.$router.push({ name: 'directorDashboard' });
+          } else {
+            this.$router.push({ name: 'menuEstudiante' });
+          }
         }
       } catch (error) {
-        // Manejar error o credenciales incorrectas
         if (error.response && error.response.data.code === 401) {
           console.error('Credenciales incorrectas');
           alert('Credenciales incorrectas');
@@ -70,9 +82,13 @@ export default {
     },
     forgotPassword() {
       console.log('Olvidé mi contraseña');
+    },
+    selectRole() {
+      this.role = this.role === 'estudiante' ? 'admin' : 'estudiante';
+      alert(`Has seleccionado: ${this.role}`);
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -128,10 +144,9 @@ export default {
   padding: 8px;
   border: 1px solid #929292;
   border-radius: 15px;
-  padding-right: 0px;
 }
 
-.submit-btn{
+.submit-btn {
   width: 100%;
   padding: 10px;
   background-color: #63C7B2;
@@ -161,6 +176,24 @@ export default {
 
 .register-btn:hover {
   background-color: #263D42;
+  color: white;
+}
+
+
+.role-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #63C7B2; 
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 17px;
+}
+
+.role-btn:hover {
+  background-color: #8E6C88;
   color: white;
 }
 </style>
