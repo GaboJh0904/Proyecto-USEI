@@ -1,5 +1,7 @@
 package com.usei.usei.api;
 
+import com.usei.usei.dto.SuccessfulResponse;
+import com.usei.usei.dto.UnsuccessfulResponse;
 import com.usei.usei.dto.request.LoginRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -75,23 +77,32 @@ public class EstudianteAPI{
         Optional<Estudiante> estudiante = estudianteService.login(loginRequest.getCi(), loginRequest.getContrasena());
 
         if (estudiante.isPresent()) {
-            // Crear el objeto de respuesta con los campos "rol", "code" y "message"
-            Map<String, Object> response = new HashMap<>();
-            response.put("rol", "estudiante");
-            response.put("code", 200); // Código HTTP 200 para éxito
-            response.put("message", "Inicio de sesión correcto");
+            // Crear la respuesta exitosa con los campos "ci", "correoInsitucional", "nombre" y "apellido"
+            SuccessfulResponse response = new SuccessfulResponse(
+                    "200 OK",
+                    "Inicio de sesión correcto",
+                    new HashMap<String, Object>() {{
+                        put("rol", "estudiante");
+                        put("ci", estudiante.get().getCi());
+                        put("correoInsitucional", estudiante.get().getCorreoInsitucional());
+                        put("nombre", estudiante.get().getNombre());
+                        put("apellido", estudiante.get().getApellido());
+                        put("telefono", estudiante.get().getTelefono());
+                    }}
+            );
 
-            // Devolver la respuesta con el código HTTP 200 OK
             return ResponseEntity.ok(response);
         } else {
-            // Crear el objeto de respuesta para credenciales incorrectas
-            Map<String, Object> response = new HashMap<>();
-            response.put("code", 401); // Código HTTP 401 para no autorizado
-            response.put("message", "Credenciales incorrectas");
+            // Crear la respuesta fallida en caso de credenciales incorrectas
+            UnsuccessfulResponse response = new UnsuccessfulResponse(
+                    "401 Unauthorized",
+                    "Credenciales incorrectas",
+                    "/estudiante/login"
+            );
 
-            // Devolver la respuesta con el código HTTP 401 Unauthorized
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
     }
+
 
 }

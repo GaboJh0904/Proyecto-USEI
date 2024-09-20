@@ -72,26 +72,28 @@ export default {
         });
 
         // Manejar respuesta exitosa
-        if (response.data.code === 200) {
+        if (response.data.status === "200 OK") {
           console.log('Inicio de sesión correcto');
-          console.log(response.data.rol); // Mostrar el rol del usuario
-
+          
           // Guardar información en el localStorage
-          localStorage.setItem('ci', this.ci);
-          localStorage.setItem('rol', response.data.rol);
-          localStorage.setItem('username', response.data.nombre); // Si recibes el nombre del estudiante en la respuesta
+          localStorage.setItem('ci', response.data.result.ci);
+          localStorage.setItem('correoInsitucional', response.data.result.correoInsitucional);
+          localStorage.setItem('nombre', response.data.result.nombre);
+          localStorage.setItem('apellido', response.data.result.apellido);
+          localStorage.setItem('rol', response.data.result.rol);
+          localStorage.setItem('telefono', response.data.result.telefono);
 
           // Usar SweetAlert para mostrar éxito
           Swal.fire({
             icon: 'success',
             title: 'Inicio de sesión correcto',
-            text: 'Bienvenido/a',
+            text: `Bienvenido/a, ${response.data.result.nombre}`,
             confirmButtonText: 'Continuar',
           }).then(() => {
             // Redirigir al usuario dependiendo del rol después de confirmar
-            if (this.role === 'admin') {
+            if (response.data.result.rol === 'admin') {
               this.$router.push({ name: 'menuAdministrador' });
-            } else if (this.role === 'director') {
+            } else if (response.data.result.rol === 'director') {
               this.$router.push({ name: 'menuDirector' });
             } else {
               this.$router.push({ name: 'menuEstudiante' });
@@ -99,12 +101,13 @@ export default {
           });
         }
       } catch (error) {
-        if (error.response && error.response.data.code === 401) {
+        // Manejar respuesta no exitosa
+        if (error.response && error.response.data.status === "401 Unauthorized") {
           // Usar SweetAlert para mostrar error de credenciales incorrectas
           Swal.fire({
             icon: 'error',
             title: 'Credenciales incorrectas',
-            text: 'Por favor, verifique su CI o contraseña.',
+            text: error.response.data.error, // Mostrar el mensaje de error devuelto por el backend
             confirmButtonText: 'Aceptar',
           });
         } else {
@@ -127,12 +130,28 @@ export default {
         confirmButtonText: 'Aceptar',
       });
     },
-    goToEnProgreso(){
-      this.$router.push('/en-progreso');
+    selectRole() {
+      // Implementar la lógica para alternar el rol
+      if (this.role === 'estudiante') {
+        this.role = 'admin';
+      } else if (this.role === 'admin') {
+        this.role = 'director';
+      } else {
+        this.role = 'estudiante';
+      }
+      Swal.fire({
+        icon: 'info',
+        title: 'Rol seleccionado',
+        text: `Rol seleccionado: ${this.role}`,
+        confirmButtonText: 'Aceptar',
+      });
     }
   }
 };
 </script>
+
+
+
 
 <style scoped>
 .popup-overlay {
