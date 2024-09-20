@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface EstudianteDAO extends  JpaRepository<Estudiante, Long> {
 
     Optional<Estudiante> findByCiAndContrasena(int ci, String contrasena);
+
 }
