@@ -4,6 +4,7 @@
  */
 package com.usei.usei.models;
 
+
 import java.io.Serializable;
 import java.util.Collection;
 import jakarta.persistence.Basic;
@@ -106,6 +107,12 @@ public class Estudiante implements Serializable {
         this.semestre = semestre;
         this.contrasena = contrasena;
     }
+    public Estudiante(Long idEstudiante, String nombre, String apellido) {
+        this.idEstudiante = idEstudiante;
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
 
     public Long getIdEstudiante() {
         return idEstudiante;

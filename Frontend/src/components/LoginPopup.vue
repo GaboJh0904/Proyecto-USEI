@@ -74,6 +74,8 @@ export default {
         // Manejar respuesta exitosa
         if (response.data.status === "200 OK") {
           console.log('Inicio de sesión correcto');
+          console.log(response.data.id_estudiante); // Mostrar el ID del estudiante
+
           
           // Guardar información en el localStorage
           localStorage.setItem('ci', response.data.result.ci);
@@ -82,6 +84,8 @@ export default {
           localStorage.setItem('apellido', response.data.result.apellido);
           localStorage.setItem('rol', response.data.result.rol);
           localStorage.setItem('telefono', response.data.result.telefono);
+
+          localStorage.setItem('id_estudiante', response.data.id_estudiante); // Guardar el id del estudiante
 
           // Usar SweetAlert para mostrar éxito
           Swal.fire({
