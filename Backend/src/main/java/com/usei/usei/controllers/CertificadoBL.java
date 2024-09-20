@@ -62,7 +62,7 @@ public class CertificadoBL implements CertificadoService{
         String correo = "willy.vargas@ucb.edu.bo";
         String subject = "Certificado Registrado Correctamente";
         String body = "Estimado " + usuario.getNombre() + ", su certificado ha sido registrado correctamente.";
-        String attachmentPath = "C:\\Users\\Usuario\\taller_soft\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";  // Actualiza esta ruta al archivo del certificado
+        String attachmentPath = "C:\\Users\\ASUS\\Documents\\GitHub\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";  // Actualiza esta ruta al archivo del certificado
 
         try {
             sendCertificadoEmail(correo, subject, body, attachmentPath);
@@ -93,7 +93,7 @@ public class CertificadoBL implements CertificadoService{
             // Enviar el correo con el certificado actualizado
             String subject = "Certificado Actualizado";
             String body = "Estimado " + usuario.getNombre() + ", su certificado ha sido actualizado correctamente.";
-            String attachmentPath = "C:\\Users\\Usuario\\taller_soft\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";  // Actualiza esta ruta al archivo del certificado
+            String attachmentPath = "C:\\Users\\ASUS\\Documents\\GitHub\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";  // Actualiza esta ruta al archivo del certificado
 
             try {
                 sendCertificadoEmail(usuario.getCorreo(), subject, body, attachmentPath);

@@ -18,8 +18,8 @@
         <button type="submit" class="submit-btn">Ingresar</button>
       </form>
 
-      <!-- botón para Admin/Director -->
-      <button class="role-btn" @click="selectRole">Administrador / Director</button>
+      <!-- Nuevo botón para Admin/Director -->
+      <button class="role-btn" @click="selectRole">Admin / Director</button>
 
       <button class="register-btn" @click="$emit('switch-to-register')">Registrarse</button>
     </div>
@@ -64,9 +64,9 @@ export default {
 
           // Redirigir al usuario dependiendo del rol
           if (this.role === 'admin') {
-            this.$router.push({ name: 'adminDashboard' });
+            this.$router.push({ name: 'menuAdministrador' });
           } else if (this.role === 'director') {
-            this.$router.push({ name: 'directorDashboard' });
+            this.$router.push({ name: 'menuDirector' });
           } else {
             this.$router.push({ name: 'menuEstudiante' });
           }
@@ -83,10 +83,6 @@ export default {
     forgotPassword() {
       console.log('Olvidé mi contraseña');
     },
-    selectRole() {
-      this.role = this.role === 'estudiante' ? 'admin' : 'estudiante';
-      alert(`Has seleccionado: ${this.role}`);
-    }
   }
 };
 </script>
@@ -179,11 +175,11 @@ export default {
   color: white;
 }
 
-
+/* Nuevo botón estilo */
 .role-btn {
   width: 100%;
   padding: 10px;
-  background-color: #63C7B2; 
+  background-color: #63C7B2;  /* Mismo color que el botón de "Ingresar" */
   color: white;
   border: none;
   border-radius: 15px;
