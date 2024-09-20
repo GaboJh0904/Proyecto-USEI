@@ -72,6 +72,8 @@
   import NavBar from '@/components/NavBar.vue';
   import ImageCarousel from '@/components/imageCarousel.vue';
   import FooterComponent from '@/components/FooterComponent.vue';
+  import axios from 'axios';
+
   export default {
     name: "MenuEstudiante",
     components: {
@@ -79,6 +81,33 @@
       ImageCarousel,
       FooterComponent  
     },
+    data() {
+      return {
+        username: '' // Para almacenar el nombre del estudiante
+      };
+    },
+    async created() {
+  // Obtener el CI del estudiante desde el localStorage
+  const ci = localStorage.getItem('ci');  // Asegúrate de que el ci esté bien almacenado
+
+  if (ci) {
+    try {
+      // Hacer la solicitud GET para obtener los detalles del estudiante por CI
+      const response = await axios.get(`http://localhost:8082/estudiante/${ci}`);
+      
+      // Asignar el nombre del estudiante a la variable de estado
+      this.username = response.data.nombre;
+
+      // Almacenar el nombre en el localStorage para el navbar
+      localStorage.setItem('username', this.username);
+    } catch (error) {
+      console.error('Error al obtener los detalles del estudiante:', error);
+    }
+  } else {
+    console.error('No se encontró el CI en el localStorage.');
+  }
+},
+
     methods: {
       goToEncuesta() {
         this.$router.push('/encuesta-estudiante');
@@ -88,7 +117,8 @@
       }
     }
   };
-  </script>
+</script>
+
   
   <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
