@@ -96,7 +96,7 @@ export default {
   },
   mounted() {
     // Obtener el nombre y rol del usuario desde el localStorage
-    this.username = localStorage.getItem('username') || 'USERNAME';
+    this.username = localStorage.getItem('nombre') || 'USERNAME';
     this.role = localStorage.getItem('rol') || 'ROL';  // Aquí obtenemos el rol almacenado
   },
   methods: {
