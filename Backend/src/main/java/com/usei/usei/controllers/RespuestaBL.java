@@ -1,5 +1,5 @@
 package com.usei.usei.controllers;
-
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,4 +80,19 @@ public class RespuestaBL implements RespuestaService {
             throw new RuntimeException("Respuesta no encontrada con el id: " + id);
         }
     }
+
+    // no permitir doble llenado de encuesta
+    @Override
+    @Transactional(readOnly = true)
+    public boolean hasFilledSurvey(Long idEstudiante) {
+        List<Respuesta> respuestas = respuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
+        return !respuestas.isEmpty(); // Retorna true si el estudiante ya llenó la encuesta
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Estudiante> findEstudiantesQueCompletaronEncuesta() {
+        return respuestaDAO.findEstudiantesQueCompletaronEncuesta();
+    }
+
 }

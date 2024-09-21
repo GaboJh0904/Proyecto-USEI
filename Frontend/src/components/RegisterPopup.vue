@@ -46,7 +46,25 @@
             <select id="career" v-model="carrera" required>
               <!-- Opciones de carrera -->
               <option value="Administración de Empresas">Administración de Empresas</option>
+              <option value="Administración Turística">Administración Turística</option>
+              <option value="Contaduría Pública">Contaduría Pública</option>
+              <option value="Economía">Economía</option>
+              <option value="Economía e Inteligencia de Negocios">Economía e Inteligencia de Negocios</option>
+              <option value="Ingeniería Comercial">Ingeniería Comercial</option>
+              <option value="Ingeniería en Innovación Empresarial">Ingeniería en Innovación Empresarial</option>
+              <option value="Marketing y Medios Digitales">Marketing y Medios Digitales</option>
+              <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
+              <option value="Ingeniería Biomédica">Ingeniería Biomédica</option>
+              <option value="Ingeniería Bioquímica y de Bioprocesos">Ingeniería Bioquímica y de Bioprocesos</option>
+              <option value="Ingeniería Civil">Ingeniería Civil</option>
+              <option value="Ingeniería en Energía">Ingeniería en Energía</option>
+              <option value="Ingeniería en Multimedia e Interactividad Digital">Ingeniería en Multimedia e Interactividad Digital</option>
+              <option value="Ingeniería en Logística y Analítica de la Cadena de Suministro">Ingeniería en Logística y Analítica de la Cadena de Suministro</option>
+              <option value="Ingeniería Industrial">Ingeniería Industrial</option>
+              <option value="Ingeniería Mecatrónica">Ingeniería Mecatrónica</option>
+              <option value="Ingeniería Química">Ingeniería Química</option>
               <option value="Ingeniería en Sistemas">Ingeniería en Sistemas</option>
+              <option value="Ingeniería en Telecomunicaciones">Ingeniería en Telecomunicaciones</option>
               <!-- Otras opciones -->
             </select>
           </div>

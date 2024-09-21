@@ -1,19 +1,25 @@
 package com.usei.usei.api;
 
-import com.usei.usei.dto.SuccessfulResponse;
-import com.usei.usei.dto.UnsuccessfulResponse;
-import com.usei.usei.dto.request.LoginRequestDTO;
+import java.util.HashMap;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.usei.usei.controllers.EstudianteService;
+import com.usei.usei.dto.SuccessfulResponse;
+import com.usei.usei.dto.UnsuccessfulResponse;
+import com.usei.usei.dto.request.LoginRequestDTO;
 import com.usei.usei.models.Estudiante;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/estudiante")
@@ -83,6 +89,7 @@ public class EstudianteAPI{
                     "Inicio de sesión correcto",
                     new HashMap<String, Object>() {{
                         put("rol", "estudiante");
+                        put("id_estudiante", estudiante.get().getIdEstudiante()); // Incluir el id_estudiante
                         put("ci", estudiante.get().getCi());
                         put("correoInsitucional", estudiante.get().getCorreoInsitucional());
                         put("nombre", estudiante.get().getNombre());

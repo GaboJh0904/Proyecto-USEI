@@ -1,4 +1,6 @@
 package com.usei.usei.api;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -89,4 +91,19 @@ public class RespuestaAPI {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    //verifica si el estudiante ya realizo la encuesta
+    @GetMapping("/filled/{id_estudiante}")
+    public ResponseEntity<?> hasFilledSurvey(@PathVariable Long id_estudiante) {
+        boolean hasFilled = respuestaService.hasFilledSurvey(id_estudiante);
+        return ResponseEntity.ok().body(Map.of("filled", hasFilled));
+    }
+
+    @GetMapping("/estudiantes-completaron")
+    public ResponseEntity<List<Estudiante>> getEstudiantesQueCompletaronEncuesta() {
+        List<Estudiante> estudiantes = respuestaService.findEstudiantesQueCompletaronEncuesta();
+        System.out.println(estudiantes); // Verifica los datos en el backend
+        return ResponseEntity.ok(estudiantes);
+    }
+
 }

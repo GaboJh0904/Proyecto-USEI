@@ -102,4 +102,15 @@ public class EstadoEncuestaAPI {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/completadas")
+    public ResponseEntity<?> getEncuestasCompletadas() {
+        try {
+        return ResponseEntity.ok(estadoEncuestaService.findByEstadoCompletado());
+        } catch (Exception e) {
+        return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }
