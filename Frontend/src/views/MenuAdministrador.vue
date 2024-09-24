@@ -3,7 +3,7 @@
       <!-- Header Section -->
       <section class="header-master">
         <header>
-            <NavBar userRole="Admin" />
+            <NavBar userRole="Administrador" />
         </header>
   
         <div class="content-header">
@@ -139,7 +139,7 @@
   import ImageCarousel from '@/components/imageCarousel.vue';
   import FooterComponent from '@/components/FooterComponent.vue';
   export default {
-    name: "LandingPage",
+    name: "MenuAdministrador",
     components: {
       NavBar,
       ImageCarousel,

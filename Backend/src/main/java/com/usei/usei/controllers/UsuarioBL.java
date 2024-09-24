@@ -58,5 +58,10 @@ public class UsuarioBL implements UsuarioService {
     }
 }
 
+@Override
+@Transactional(readOnly = true)
+public Optional<Usuario> login(String correo, String contrasenia) {
+    return usuarioDAO.findByCorreoAndContrasenia(correo, contrasenia);
+}
 
 }
