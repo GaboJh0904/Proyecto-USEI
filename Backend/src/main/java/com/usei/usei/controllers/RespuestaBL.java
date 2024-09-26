@@ -1,15 +1,14 @@
 package com.usei.usei.controllers;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.usei.usei.repositories.RespuestaDAO;
-import com.usei.usei.models.Respuesta;
-import com.usei.usei.models.Pregunta;
 import com.usei.usei.models.Estudiante;
+import com.usei.usei.models.Pregunta;
+import com.usei.usei.models.Respuesta;
+import com.usei.usei.repositories.RespuestaDAO;
 
 @Service
 public class RespuestaBL implements RespuestaService {
@@ -81,18 +80,12 @@ public class RespuestaBL implements RespuestaService {
         }
     }
 
-    // no permitir doble llenado de encuesta
-    @Override
-    @Transactional(readOnly = true)
-    public boolean hasFilledSurvey(Long idEstudiante) {
-        List<Respuesta> respuestas = respuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
-        return !respuestas.isEmpty(); // Retorna true si el estudiante ya llenó la encuesta
+     // no permitir doble llenado de encuesta
+     @Override
+     @Transactional(readOnly = true)
+     public boolean hasFilledSurvey(Long idEstudiante) {
+        return respuestaDAO.existsByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
+ 
     }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Estudiante> findEstudiantesQueCompletaronEncuesta() {
-        return respuestaDAO.findEstudiantesQueCompletaronEncuesta();
-    }
-
+ 
 }
