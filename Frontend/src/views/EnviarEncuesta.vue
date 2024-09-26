@@ -82,8 +82,7 @@ export default {
   } catch (error) {
     console.error('Error al obtener los estudiantes:', error);
   }
-}
-,
+},
 
     
   }
@@ -99,26 +98,6 @@ export default {
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
   }
-} catch (error) {
-  console.error('Error al obtener los estudiantes:', error);
-}
-}
-,
-
-  
-}
-};
-</script>
-
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
-}
 
 header {
   position: fixed;
