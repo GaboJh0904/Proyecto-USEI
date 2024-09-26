@@ -1,83 +1,103 @@
 <template>
-  <div>
-    <header>
-      <NavBar userRole="Admin" />
-    </header>
-
-    <main class="student-list-container">
-      <h1 class="student-list-title">Estudiantes que Completaron la Encuesta</h1>
-
-      <!-- Tabla de estudiantes -->
-      <div class="student-table-container">
-        <h2>Lista de Estudiantes</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Nombre del Estudiante</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody v-if="estudiantes.length > 0">
-<tr v-for="estudiante in estudiantes" :key="estudiante.idEstudiante">
-  <td v-if="estudiante && estudiante.nombre && estudiante.apellido">
-    {{ estudiante.nombre }} {{ estudiante.apellido }}
-  </td>
-  <td v-else>
-    Información incompleta del estudiante
-  </td>
-  <td>
-    <button @click="enviarCertificado(estudiante.idEstudiante)" class="send-button">Enviar Certificado</button>
-  </td>
-</tr>
+    <div>
+      <header>
+        <NavBar userRole="Admin" />
+      </header>
+  
+      <main class="student-list-container">
+        <h1 class="student-list-title">Estudiantes que Completaron la Encuesta</h1>
+  
+        <!-- Tabla de estudiantes -->
+        <div class="student-table-container">
+          <h2>Lista de Estudiantes</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Nombre del Estudiante</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody v-if="estudiantes.length > 0">
+  <tr v-for="estudiante in estudiantes" :key="estudiante.idEstudiante">
+    <td v-if="estudiante && estudiante.nombre && estudiante.apellido">
+      {{ estudiante.nombre }} {{ estudiante.apellido }}
+    </td>
+    <td v-else>
+      Información incompleta del estudiante
+    </td>
+    <td>
+      <button @click="enviarCertificado(estudiante.idEstudiante)" class="send-button">Enviar Certificado</button>
+    </td>
+  </tr>
 </tbody>
 <tbody v-else>
-<tr>
-  <td colspan="2">No hay estudiantes que hayan completado la encuesta.</td>
-</tr>
+  <tr>
+    <td colspan="2">No hay estudiantes que hayan completado la encuesta.</td>
+  </tr>
 </tbody>
 
-        </table>
-      </div>
-    </main>
-
-    <FooterComponent />
-  </div>
-</template>
-
-<script>
+          </table>
+        </div>
+      </main>
+  
+      <FooterComponent />
+    </div>
+  </template>
+  
+  <script>
 import axios from 'axios';
 import NavBar from '@/components/NavBar.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 
 export default {
-name: 'EnviarEncuesta',
-components: {
-  NavBar,
-  FooterComponent
-},
-data() {
-  return {
-    estudiantes: [] // Lista de estudiantes que completaron la encuesta
-  };
-},
-mounted() {
-  this.fetchEstudiantes(); // Cargar la lista de estudiantes cuando se monta el componente
-},
-methods: {
-  // Método para obtener la lista de estudiantes que completaron la encuesta
-  async fetchEstudiantes() {
-try {
-  const response = await axios.get('http://localhost:8082/respuesta/estudiantes-completaron');
-  console.log('Respuesta de la API:', response.data);
-  if (Array.isArray(response.data)) {
-    // Si la respuesta es un array, asegúrate de que no esté vacío
-    if (response.data.length > 0) {
-      this.estudiantes = response.data;
+  name: 'EnviarEncuesta',
+  components: {
+    NavBar,
+    FooterComponent
+  },
+  data() {
+    return {
+      estudiantes: [] // Lista de estudiantes que completaron la encuesta
+    };
+  },
+  mounted() {
+    this.fetchEstudiantes(); // Cargar la lista de estudiantes cuando se monta el componente
+  },
+  methods: {
+    // Método para obtener la lista de estudiantes que completaron la encuesta
+    async fetchEstudiantes() {
+  try {
+    const response = await axios.get('http://localhost:8082/respuesta/estudiantes-completaron');
+    console.log('Respuesta de la API:', response.data);
+    if (Array.isArray(response.data)) {
+      // Si la respuesta es un array, asegúrate de que no esté vacío
+      if (response.data.length > 0) {
+        this.estudiantes = response.data;
+      } else {
+        console.log('No se encontraron estudiantes.');
+      }
     } else {
-      console.log('No se encontraron estudiantes.');
+      console.error('La respuesta no es un array:', response.data);
     }
-  } else {
-    console.error('La respuesta no es un array:', response.data);
+  } catch (error) {
+    console.error('Error al obtener los estudiantes:', error);
+  }
+}
+,
+
+    
+  }
+};
+</script>
+  
+  <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
   }
 } catch (error) {
   console.error('Error al obtener los estudiantes:', error);

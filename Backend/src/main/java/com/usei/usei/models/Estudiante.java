@@ -7,6 +7,7 @@ package com.usei.usei.models;
 
 import java.io.Serializable;
 import java.util.Collection;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;

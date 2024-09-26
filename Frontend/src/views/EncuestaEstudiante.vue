@@ -178,6 +178,8 @@
 import NavBar from '@/components/NavBar.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import { useRouter } from 'vue-router';
+import Swal from 'sweetalert2';  
+
 
 export default {
   name: 'EncuestaEstudiante',
@@ -188,15 +190,24 @@ export default {
   data() {
     return {
       answers: JSON.parse(localStorage.getItem('surveyAnswers')) || {}, // Cargar datos del LocalStorage
-      estudianteId: null, // ID del estudiante que inició sesión
+      estudianteId: null, // ID del estudiante que inicio sesion
     };
   },
   mounted() {
     // Obtener el ID del estudiante desde localStorage
     this.estudianteId = localStorage.getItem('id_estudiante');
     if (!this.estudianteId) {
-      alert('Por favor, inicie sesión antes de continuar.');
-      this.$router.push({ name: '/' });
+       Swal.fire({
+            icon: 'error',
+            title: 'Credenciales incorrectas',
+            text: error.response.data.error, // Mostrar el mensaje de error devuelto por el backend
+            confirmButtonText: 'Aceptar',
+          }).then(() =>{
+            this.$router.push({ name: '/' });
+
+          })
+      //alert('Por favor, inicie sesión antes de continuar.');
+      //this.$router.push({ name: '/' });
     }
 
 
@@ -219,7 +230,14 @@ export default {
           query: { ...this.answers, estudianteId: this.estudianteId }
         });
       } else {
-        alert('Por favor, complete todos los campos obligatorios.');
+        Swal.fire({
+          icon: 'warning',
+          title: 'Por favor, complete todos los campos obligatorios.',
+          confirmButtonText: 'Continuar',
+        });
+        return;
+        
+        //alert('Por favor, complete todos los campos obligatorios.');
       
       } 
     },

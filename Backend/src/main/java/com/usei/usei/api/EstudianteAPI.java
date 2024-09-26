@@ -83,11 +83,16 @@ public class EstudianteAPI{
         Optional<Estudiante> estudiante = estudianteService.login(loginRequest.getCi(), loginRequest.getContrasena());
 
         if (estudiante.isPresent()) {
+            Estudiante foundEstudiante = estudiante.get();
+            
+
             // Crear la respuesta exitosa con los campos "ci", "correoInsitucional", "nombre" y "apellido"
             SuccessfulResponse response = new SuccessfulResponse(
                     "200 OK",
                     "Inicio de sesión correcto",
+                    
                     new HashMap<String, Object>() {{
+                        put("id_estudiante", foundEstudiante.getIdEstudiante()); // Incluyendo el id_estudiante en la respuesta
                         put("rol", "estudiante");
                         put("id_estudiante", estudiante.get().getIdEstudiante()); // Incluir el id_estudiante
                         put("ci", estudiante.get().getCi());
@@ -96,6 +101,8 @@ public class EstudianteAPI{
                         put("apellido", estudiante.get().getApellido());
                         put("telefono", estudiante.get().getTelefono());
                     }}
+                    
+
             );
 
             return ResponseEntity.ok(response);

@@ -2,18 +2,25 @@ package com.usei.usei.api;
 import java.util.List;
 import java.util.Map;
 
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.usei.usei.controllers.RespuestaService;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Pregunta;
 import com.usei.usei.models.Respuesta;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/respuesta")
@@ -26,8 +33,8 @@ public class RespuestaAPI {
     public ResponseEntity<Object> create(@RequestBody Respuesta respuesta) {
         try {
             Respuesta newRespuesta = new Respuesta();
-
             newRespuesta.setRespuesta(respuesta.getRespuesta());
+            
             // Vincular a una pregunta
             Pregunta pregunta = new Pregunta();
             pregunta.setIdPregunta(respuesta.getPreguntaIdPregunta().getIdPregunta());
@@ -91,19 +98,14 @@ public class RespuestaAPI {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    //verifica si el estudiante ya realizo la encuesta
-    @GetMapping("/filled/{id_estudiante}")
-    public ResponseEntity<?> hasFilledSurvey(@PathVariable Long id_estudiante) {
-        boolean hasFilled = respuestaService.hasFilledSurvey(id_estudiante);
-        return ResponseEntity.ok().body(Map.of("filled", hasFilled));
-    }
-
-    @GetMapping("/estudiantes-completaron")
-    public ResponseEntity<List<Estudiante>> getEstudiantesQueCompletaronEncuesta() {
-        List<Estudiante> estudiantes = respuestaService.findEstudiantesQueCompletaronEncuesta();
-        System.out.println(estudiantes); // Verifica los datos en el backend
-        return ResponseEntity.ok(estudiantes);
-    }
-
+        //verifica si el estudiante ya realizo la encuesta
+        @GetMapping("/filled/{id_estudiante}")
+        public ResponseEntity<?> hasFilledSurvey(@PathVariable Long id_estudiante) {
+            if (id_estudiante == null) {
+                return new ResponseEntity<>(new MessageResponse("ID de estudiante no proporcionado"), HttpStatus.BAD_REQUEST);
+            }
+        
+            boolean hasFilled = respuestaService.hasFilledSurvey(id_estudiante);
+            return ResponseEntity.ok().body(Map.of("filled", hasFilled));
+        }
 }

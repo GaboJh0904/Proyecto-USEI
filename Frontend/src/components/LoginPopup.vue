@@ -33,7 +33,7 @@
 <script>
 import axios from 'axios';
 import { useRouter } from 'vue-router';
-import Swal from 'sweetalert2';  // Importar SweetAlert
+import Swal from 'sweetalert2';  
 
 export default {
   name: 'LoginPopup',
@@ -70,20 +70,30 @@ export default {
           contrasena: this.password,
           role: this.role  // Enviar también el rol seleccionado
         });
+        console.log('Respuesta del servidor:', response.data);
 
         // Manejar respuesta exitosa
         if (response.data.status === "200 OK") {
           console.log('Inicio de sesión correcto');
-          console.log(response.data.id_estudiante); // Mostrar el ID del estudiante
+          console.log('ID del estudiante:', response.data.result.id_estudiante); // Mostrar el ID del estudiante
+          const estudianteId = response.data.result.id_estudiante;
 
-          
-          // Guardar información en el localStorage
-          localStorage.setItem('ci', response.data.result.ci);
-          localStorage.setItem('correoInsitucional', response.data.result.correoInsitucional);
-          localStorage.setItem('nombre', response.data.result.nombre);
-          localStorage.setItem('apellido', response.data.result.apellido);
-          localStorage.setItem('rol', response.data.result.rol);
-          localStorage.setItem('telefono', response.data.result.telefono);
+          if (estudianteId) {
+        console.log('ID del estudiante:', estudianteId); // Mostrar el ID del estudiante
+        localStorage.setItem('id_estudiante', estudianteId); // Guardar el id del estudiante en localStorage
+      } else {
+        console.error('ID del estudiante no está presente en la respuesta.');
+        return; // Si no hay ID de estudiante, no continuar
+      }
+
+      // Guardar otros datos en localStorage
+      localStorage.setItem('ci', response.data.result.ci);
+      localStorage.setItem('correoInsitucional', response.data.result.correoInsitucional);
+      localStorage.setItem('nombre', response.data.result.nombre);
+      localStorage.setItem('apellido', response.data.result.apellido);
+      localStorage.setItem('rol', response.data.result.rol);
+      localStorage.setItem('telefono', response.data.result.telefono);
+
 
           localStorage.setItem('id_estudiante', response.data.id_estudiante); // Guardar el id del estudiante
 
@@ -133,6 +143,7 @@ export default {
         text: 'Para recuperar tu contraseña, contacta a soporte.',
         confirmButtonText: 'Aceptar',
       });
+
     },
     selectRole() {
       // Implementar la lógica para alternar el rol
@@ -149,6 +160,9 @@ export default {
         text: `Rol seleccionado: ${this.role}`,
         confirmButtonText: 'Aceptar',
       });
+    },
+    goToEnProgreso(){
+      this.$router.push('/en-progreso');
     }
   }
 };
