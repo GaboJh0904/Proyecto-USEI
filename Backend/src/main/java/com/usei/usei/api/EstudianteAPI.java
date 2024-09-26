@@ -20,6 +20,8 @@ import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
 import com.usei.usei.dto.request.LoginRequestDTO;
 import com.usei.usei.models.Estudiante;
+//import com.usei.usei.models.MessageResponse;
+import jakarta.mail.MessagingException;
 
 @RestController
 @RequestMapping("/estudiante")
@@ -67,7 +69,7 @@ public class EstudianteAPI{
         oEstudiante.get().setCi(estudiante.getCi());
         oEstudiante.get().setNombre(estudiante.getNombre());
         oEstudiante.get().setApellido(estudiante.getApellido());
-        oEstudiante.get().setCorreoInsitucional(estudiante.getCorreoInsitucional());
+        oEstudiante.get().setCorreoInstitucional(estudiante.getCorreoInstitucional());
         oEstudiante.get().setCorreoPersonal(estudiante.getCorreoPersonal());
         oEstudiante.get().setCarrera(estudiante.getCarrera());
         oEstudiante.get().setAsignatura(estudiante.getAsignatura());
@@ -91,7 +93,7 @@ public class EstudianteAPI{
                         put("rol", "estudiante");
                         put("id_estudiante", estudiante.get().getIdEstudiante()); // Incluir el id_estudiante
                         put("ci", estudiante.get().getCi());
-                        put("correoInsitucional", estudiante.get().getCorreoInsitucional());
+                        put("correoInsitucional", estudiante.get().getCorreoInstitucional());
                         put("nombre", estudiante.get().getNombre());
                         put("apellido", estudiante.get().getApellido());
                         put("telefono", estudiante.get().getTelefono());
@@ -108,6 +110,19 @@ public class EstudianteAPI{
             );
 
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+        }
+    }
+
+    @PostMapping("/enviarEnlace")
+    public ResponseEntity<?> enviarEnlaceCertificado() {
+        try {
+            // Llamamos al servicio para enviar los correos
+            estudianteService.enviarCorreosEstudiantes();
+            return new ResponseEntity<>("Correos enviados exitosamente", HttpStatus.OK);
+        } catch (MessagingException e) {
+            return new ResponseEntity<>("Error al enviar los correos: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error inesperado: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
