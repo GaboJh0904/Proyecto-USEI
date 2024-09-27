@@ -1,5 +1,6 @@
 package com.usei.usei.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,11 @@ public class OpcionesPreguntaBL implements OpcionesPreguntaService{
         } else {
             throw new RuntimeException("Opción de Pregunta no encontrada con el id: " + id);
         }
+    }
+
+    // Implementación del método para buscar por IdPregunta
+    @Transactional(readOnly = true)
+    public List<OpcionesPregunta> findByPreguntaId(Long idPregunta) {
+        return opcionesPreguntaDAO.findByPreguntaIdPregunta_IdPregunta(idPregunta);
     }
 }
