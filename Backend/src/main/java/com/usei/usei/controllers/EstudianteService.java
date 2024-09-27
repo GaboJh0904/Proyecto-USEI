@@ -1,8 +1,10 @@
 package com.usei.usei.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.usei.usei.models.Estudiante;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface EstudianteService {
 
@@ -17,5 +19,7 @@ public interface EstudianteService {
     public Estudiante update (Estudiante newEstudiante, Long id);
 
     public Optional<Estudiante> login(int ci, String contrasena);
-    
+
+    public void saveAll(List<Estudiante> estudiantes);
+
 }

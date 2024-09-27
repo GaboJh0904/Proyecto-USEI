@@ -2,10 +2,18 @@ package com.usei.usei.api;
 
 import java.util.HashMap;
 import java.util.Optional;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.io.Reader;
+import java.util.ArrayList;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +22,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import com.usei.usei.controllers.EstudianteService;
 import com.usei.usei.dto.SuccessfulResponse;
@@ -111,5 +121,39 @@ public class EstudianteAPI{
         }
     }
 
+    // API para cargar estudiantes desde un archivo CSV
+    @PostMapping("/upload-csv")
+    public ResponseEntity<?> uploadEstudiantesCSV(@RequestParam("file") MultipartFile file) {
+        try {
+            // Leer el archivo CSV
+            Reader reader = new InputStreamReader(file.getInputStream());
+            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader());
+            List<Estudiante> estudiantes = new ArrayList<>();
+
+            // Iterar sobre los registros del CSV
+            for (CSVRecord csvRecord : csvParser) {
+                Estudiante estudiante = new Estudiante();
+                estudiante.setNombre(csvRecord.get("NOMBRE"));
+                estudiante.setCi(Integer.parseInt(csvRecord.get("CI")));
+                estudiante.setCarrera(csvRecord.get("CARRERA"));
+                estudiante.setAsignatura(csvRecord.get("ASIGNATURA"));
+                estudiante.setTelefono((int) Double.parseDouble(csvRecord.get("TELEFONO")));
+                estudiante.setCorreoInsitucional(csvRecord.get("CORREOINSITUCIONAL"));
+
+                // Asignar un valor predeterminado para los campos "apellido" y "contrasena"
+                estudiante.setApellido("N/A"); // Valor predeterminado para apellido
+                estudiante.setContrasena("123456"); // Valor predeterminado para la contraseña
+
+                estudiantes.add(estudiante);  // Agregar el estudiante a la lista
+            }
+
+            // Guardar todos los estudiantes
+            estudianteService.saveAll(estudiantes);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Estudiantes subidos exitosamente");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al procesar el archivo CSV: " + e.getMessage());
+        }
+    }
 
 }
