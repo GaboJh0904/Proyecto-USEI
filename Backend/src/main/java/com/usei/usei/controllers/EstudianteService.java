@@ -20,6 +20,7 @@ public interface EstudianteService {
 
     public Optional<Estudiante> login(int ci, String contrasena);
 
-    public void saveAll(List<Estudiante> estudiantes);
+    public List<Estudiante> saveAll(List<Estudiante> estudiantes);
+
 
 }

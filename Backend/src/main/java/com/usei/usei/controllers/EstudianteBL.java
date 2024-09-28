@@ -66,8 +66,8 @@
         //Listado-estudiantes
         @Override
         @Transactional
-        public void saveAll(List<Estudiante> estudiantes) {
-            estudianteDAO.saveAll(estudiantes);  // Usar el método saveAll de JpaRepository
+        public List<Estudiante> saveAll(List<Estudiante> estudiantes) {
+            return estudianteDAO.saveAll(estudiantes);  // Devuelve la lista de estudiantes guardados
         }
 
     }

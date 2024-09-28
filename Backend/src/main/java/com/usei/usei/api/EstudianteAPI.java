@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import com.usei.usei.controllers.EstudianteService;
 import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
@@ -33,61 +32,75 @@ import com.usei.usei.models.Estudiante;
 
 @RestController
 @RequestMapping("/estudiante")
-public class EstudianteAPI{
+public class EstudianteAPI {
 
     @Autowired
     private EstudianteService estudianteService;
 
-    //Crear un nuevo estudiante:
+    // Crear un nuevo estudiante
     @PostMapping
-    public ResponseEntity<?> create (@RequestBody Estudiante estudiante){
+    public ResponseEntity<?> create(@RequestBody Estudiante estudiante) {
         return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.save(estudiante));
     }
 
+    // Obtener un estudiante por ID
     @GetMapping("/{id_estudiante}")
     public ResponseEntity<?> read(@PathVariable(value = "id_estudiante") Long id_estudiante) {
-    Optional<Estudiante> oEstudiante = estudianteService.findById(id_estudiante);
-    
-    return oEstudiante.map(estudiante -> ResponseEntity.ok(estudiante))
-        .orElse(ResponseEntity.notFound().build());
-}
+        Optional<Estudiante> oEstudiante = estudianteService.findById(id_estudiante);
+        return oEstudiante.map(estudiante -> ResponseEntity.ok(estudiante))
+                .orElse(ResponseEntity.notFound().build());
+    }
 
-
+    // Obtener todos los estudiantes
     @GetMapping
-    public ResponseEntity<?> readAll(){
+    public ResponseEntity<?> readAll() {
         return ResponseEntity.ok(estudianteService.findAll());
     }
 
+    // Eliminar un estudiante por ID
     @DeleteMapping("/{id_estudiante}")
-    public ResponseEntity<?> delete(@PathVariable(value = "id_estudiante") Long id_estudiante){
+    public ResponseEntity<?> delete(@PathVariable(value = "id_estudiante") Long id_estudiante) {
         Optional<Estudiante> oEstudiante = estudianteService.findById(id_estudiante);
-        if(oEstudiante.isEmpty()){
+        if (oEstudiante.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         estudianteService.deleteById(id_estudiante);
         return ResponseEntity.ok(oEstudiante);
     }
 
+    // Actualizar un estudiante por ID
     @PutMapping("/{id_estudiante}")
-    public ResponseEntity<?> update(@PathVariable(value = "id_estudiante") Long id_estudiante, @RequestBody Estudiante estudiante){
+    public ResponseEntity<?> update(@PathVariable(value = "id_estudiante") Long id_estudiante, @RequestBody Estudiante estudiante) {
         Optional<Estudiante> oEstudiante = estudianteService.findById(id_estudiante);
-        if(oEstudiante.isEmpty()){
+        if (oEstudiante.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        oEstudiante.get().setCi(estudiante.getCi());
-        oEstudiante.get().setNombre(estudiante.getNombre());
-        oEstudiante.get().setApellido(estudiante.getApellido());
-        oEstudiante.get().setCorreoInsitucional(estudiante.getCorreoInsitucional());
-        oEstudiante.get().setCorreoPersonal(estudiante.getCorreoPersonal());
-        oEstudiante.get().setCarrera(estudiante.getCarrera());
-        oEstudiante.get().setAsignatura(estudiante.getAsignatura());
-        oEstudiante.get().setTelefono(estudiante.getTelefono());
-        oEstudiante.get().setAnio(estudiante.getAnio());
-        oEstudiante.get().setSemestre(estudiante.getSemestre());
-        return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.save(oEstudiante.get()));
+
+        Estudiante estudianteExistente = oEstudiante.get();
+
+        estudianteExistente.setCi(estudiante.getCi());
+        estudianteExistente.setNombre(estudiante.getNombre());
+
+        // Asegurarse de que el campo 'apellido' no sea nulo
+        if (estudiante.getApellido() == null || estudiante.getApellido().trim().isEmpty()) {
+            estudianteExistente.setApellido("N/A"); // Valor predeterminado
+        } else {
+            estudianteExistente.setApellido(estudiante.getApellido());
+        }
+
+        estudianteExistente.setCorreoInsitucional(estudiante.getCorreoInsitucional());
+        estudianteExistente.setCorreoPersonal(estudiante.getCorreoPersonal());
+        estudianteExistente.setCarrera(estudiante.getCarrera());
+        estudianteExistente.setAsignatura(estudiante.getAsignatura());
+        estudianteExistente.setTelefono(estudiante.getTelefono());
+        estudianteExistente.setAnio(estudiante.getAnio());
+        estudianteExistente.setSemestre(estudiante.getSemestre());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.save(estudianteExistente));
     }
 
 
+    // Inicio de sesión de estudiante
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginRequest) {
         Optional<Estudiante> estudiante = estudianteService.login(loginRequest.getCi(), loginRequest.getContrasena());
@@ -99,7 +112,7 @@ public class EstudianteAPI{
                     "Inicio de sesión correcto",
                     new HashMap<String, Object>() {{
                         put("rol", "estudiante");
-                        put("id_estudiante", estudiante.get().getIdEstudiante()); // Incluir el id_estudiante
+                        put("id_estudiante", estudiante.get().getIdEstudiante());
                         put("ci", estudiante.get().getCi());
                         put("correoInsitucional", estudiante.get().getCorreoInsitucional());
                         put("nombre", estudiante.get().getNombre());
@@ -107,7 +120,6 @@ public class EstudianteAPI{
                         put("telefono", estudiante.get().getTelefono());
                     }}
             );
-
             return ResponseEntity.ok(response);
         } else {
             // Crear la respuesta fallida en caso de credenciales incorrectas
@@ -116,7 +128,6 @@ public class EstudianteAPI{
                     "Credenciales incorrectas",
                     "/estudiante/login"
             );
-
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
         }
     }
@@ -139,21 +150,20 @@ public class EstudianteAPI{
                 estudiante.setAsignatura(csvRecord.get("ASIGNATURA"));
                 estudiante.setTelefono((int) Double.parseDouble(csvRecord.get("TELEFONO")));
                 estudiante.setCorreoInsitucional(csvRecord.get("CORREOINSITUCIONAL"));
-
-                // Asignar un valor predeterminado para los campos "apellido" y "contrasena"
                 estudiante.setApellido("N/A"); // Valor predeterminado para apellido
                 estudiante.setContrasena("123456"); // Valor predeterminado para la contraseña
 
-                estudiantes.add(estudiante);  // Agregar el estudiante a la lista
+                estudiantes.add(estudiante);
             }
 
-            // Guardar todos los estudiantes
-            estudianteService.saveAll(estudiantes);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Estudiantes subidos exitosamente");
+            // Guardar todos los estudiantes en la base de datos
+            List<Estudiante> savedEstudiantes = estudianteService.saveAll(estudiantes);
+
+            // Retornar la lista de estudiantes guardados con sus IDs generados
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedEstudiantes);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al procesar el archivo CSV: " + e.getMessage());
         }
     }
-
 }
