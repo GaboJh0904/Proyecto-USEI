@@ -78,18 +78,16 @@ public class EstudianteAPI {
 
         Estudiante estudianteExistente = oEstudiante.get();
 
-        // Actualizamos solo los campos necesarios manteniendo el mismo ID
+        // Actualizamos los campos necesarios
         estudianteExistente.setCi(estudiante.getCi());
         estudianteExistente.setNombre(estudiante.getNombre());
 
-        // Validamos que el apellido no sea nulo o vacío
         if (estudiante.getApellido() == null || estudiante.getApellido().trim().isEmpty()) {
-            estudianteExistente.setApellido("N/A");  // Valor por defecto si está vacío
+            estudianteExistente.setApellido("N/A");
         } else {
             estudianteExistente.setApellido(estudiante.getApellido());
         }
 
-        // Validación para correo institucional (no puede ser nulo ni vacío)
         if (estudiante.getCorreoInsitucional() == null || estudiante.getCorreoInsitucional().trim().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El campo correo institucional no puede estar vacío.");
         } else {
@@ -103,8 +101,12 @@ public class EstudianteAPI {
         estudianteExistente.setAnio(estudiante.getAnio());
         estudianteExistente.setSemestre(estudiante.getSemestre());
 
-        return ResponseEntity.ok(estudianteService.save(estudianteExistente));
+        // Asegurarse de que se está haciendo un "merge" y no una "insert"
+        estudianteService.save(estudianteExistente);  // Hibernate debería detectar que es una actualización
+
+        return ResponseEntity.ok(estudianteExistente);
     }
+
 
 
 
