@@ -67,7 +67,7 @@ public class EstudianteAPI{
         oEstudiante.get().setCi(estudiante.getCi());
         oEstudiante.get().setNombre(estudiante.getNombre());
         oEstudiante.get().setApellido(estudiante.getApellido());
-        oEstudiante.get().setCorreoInsitucional(estudiante.getCorreoInsitucional());
+        oEstudiante.get().setCorreoInstitucional(estudiante.getCorreoInstitucional());
         oEstudiante.get().setCorreoPersonal(estudiante.getCorreoPersonal());
         oEstudiante.get().setCarrera(estudiante.getCarrera());
         oEstudiante.get().setAsignatura(estudiante.getAsignatura());
@@ -91,7 +91,7 @@ public class EstudianteAPI{
                         put("rol", "estudiante");
                         put("id_estudiante", estudiante.get().getIdEstudiante()); // Incluir el id_estudiante
                         put("ci", estudiante.get().getCi());
-                        put("correoInsitucional", estudiante.get().getCorreoInsitucional());
+                        put("correoInsitucional", estudiante.get().getCorreoInstitucional());
                         put("nombre", estudiante.get().getNombre());
                         put("apellido", estudiante.get().getApellido());
                         put("telefono", estudiante.get().getTelefono());
