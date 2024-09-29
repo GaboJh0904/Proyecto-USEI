@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.repositories.EstudianteDAO;
 import jakarta.mail.MessagingException;
@@ -22,6 +23,12 @@ public class EstudianteBL implements EstudianteService{
     private EstudianteDAO estudianteDAO;
     private JavaMailSender mailSender;
 
+    //Listado-estudiantes
+    @Override
+    @Transactional
+    public List<Estudiante> saveAll(List<Estudiante> estudiantes) {
+        return estudianteDAO.saveAll(estudiantes);  // Devuelve la lista de estudiantes guardados
+    }
 
     @Autowired
     public EstudianteBL(EstudianteDAO estudianteDAO, JavaMailSender mailSender) {

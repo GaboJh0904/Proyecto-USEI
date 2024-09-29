@@ -52,7 +52,7 @@ public class Estudiante implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
+    @Basic(optional = true) // Marca true para procesar el listado de estudiantes ya que no contiene apellido sino solo nombre donde ahi esta el nombre completo del estudiante
     @Column(name = "apellido")
     private String apellido;
     @Basic(optional = true)

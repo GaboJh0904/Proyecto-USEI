@@ -2,13 +2,13 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/proyecto_usei
     username: postgres
-    password: admin
+    password: seiya26
     driver-class-name: org.postgresql.Driver
 
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
   servlet:
     multipart:
