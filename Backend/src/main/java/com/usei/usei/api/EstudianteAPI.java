@@ -78,17 +78,24 @@ public class EstudianteAPI {
 
         Estudiante estudianteExistente = oEstudiante.get();
 
+        // Actualizamos solo los campos necesarios manteniendo el mismo ID
         estudianteExistente.setCi(estudiante.getCi());
         estudianteExistente.setNombre(estudiante.getNombre());
 
-        // Asegurarse de que el campo 'apellido' no sea nulo
+        // Validamos que el apellido no sea nulo o vacío
         if (estudiante.getApellido() == null || estudiante.getApellido().trim().isEmpty()) {
-            estudianteExistente.setApellido("N/A"); // Valor predeterminado
+            estudianteExistente.setApellido("N/A");  // Valor por defecto si está vacío
         } else {
             estudianteExistente.setApellido(estudiante.getApellido());
         }
 
-        estudianteExistente.setCorreoInsitucional(estudiante.getCorreoInsitucional());
+        // Validación para correo institucional (no puede ser nulo ni vacío)
+        if (estudiante.getCorreoInsitucional() == null || estudiante.getCorreoInsitucional().trim().isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El campo correo institucional no puede estar vacío.");
+        } else {
+            estudianteExistente.setCorreoInsitucional(estudiante.getCorreoInsitucional());
+        }
+
         estudianteExistente.setCorreoPersonal(estudiante.getCorreoPersonal());
         estudianteExistente.setCarrera(estudiante.getCarrera());
         estudianteExistente.setAsignatura(estudiante.getAsignatura());
@@ -96,8 +103,9 @@ public class EstudianteAPI {
         estudianteExistente.setAnio(estudiante.getAnio());
         estudianteExistente.setSemestre(estudiante.getSemestre());
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.save(estudianteExistente));
+        return ResponseEntity.ok(estudianteService.save(estudianteExistente));
     }
+
 
 
     // Inicio de sesión de estudiante
