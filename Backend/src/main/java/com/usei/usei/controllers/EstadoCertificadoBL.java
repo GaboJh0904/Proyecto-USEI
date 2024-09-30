@@ -3,6 +3,7 @@ package com.usei.usei.controllers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.usei.usei.models.Certificado;
@@ -10,6 +11,7 @@ import com.usei.usei.models.EstadoCertificado;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.repositories.EstadoCertificadoDAO;
 
+@Service
 public class EstadoCertificadoBL implements EstadoCertificadoService{
     
     private final EstadoCertificadoDAO estadoCertificadoDAO;
