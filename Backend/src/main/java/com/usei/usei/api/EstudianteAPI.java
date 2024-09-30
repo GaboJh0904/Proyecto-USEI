@@ -29,6 +29,10 @@ import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
 import com.usei.usei.dto.request.LoginRequestDTO;
 import com.usei.usei.models.Estudiante;
+//import com.usei.usei.models.MessageResponse;
+import jakarta.mail.MessagingException;
+import java.nio.charset.StandardCharsets;
+
 
 @RestController
 @RequestMapping("/estudiante")
@@ -88,10 +92,10 @@ public class EstudianteAPI {
             estudianteExistente.setApellido(estudiante.getApellido());
         }
 
-        if (estudiante.getCorreoInsitucional() == null || estudiante.getCorreoInsitucional().trim().isEmpty()) {
+        if (estudiante.getCorreoInstitucional() == null || estudiante.getCorreoInstitucional().trim().isEmpty()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El campo correo institucional no puede estar vacío.");
         } else {
-            estudianteExistente.setCorreoInsitucional(estudiante.getCorreoInsitucional());
+            estudianteExistente.setCorreoInstitucional(estudiante.getCorreoInstitucional());
         }
 
         estudianteExistente.setCorreoPersonal(estudiante.getCorreoPersonal());
@@ -124,7 +128,7 @@ public class EstudianteAPI {
                         put("rol", "estudiante");
                         put("id_estudiante", estudiante.get().getIdEstudiante());
                         put("ci", estudiante.get().getCi());
-                        put("correoInsitucional", estudiante.get().getCorreoInsitucional());
+                        put("correoInstitucional", estudiante.get().getCorreoInstitucional());
                         put("nombre", estudiante.get().getNombre());
                         put("apellido", estudiante.get().getApellido());
                         put("telefono", estudiante.get().getTelefono());
@@ -142,13 +146,25 @@ public class EstudianteAPI {
         }
     }
 
-    // API para cargar estudiantes desde un archivo CSV
+    @PostMapping("/enviarEnlace")
+    public ResponseEntity<?> enviarEnlaceCertificado() {
+        try {
+            // Llamamos al servicio para enviar los correos
+            estudianteService.enviarCorreosEstudiantes();
+            return new ResponseEntity<>("Correos enviados exitosamente", HttpStatus.OK);
+        } catch (MessagingException e) {
+            return new ResponseEntity<>("Error al enviar los correos: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error inesperado: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/upload-csv")
     public ResponseEntity<?> uploadEstudiantesCSV(@RequestParam("file") MultipartFile file) {
-        try {
-            // Leer el archivo CSV
-            Reader reader = new InputStreamReader(file.getInputStream());
+        try (
+            Reader reader = new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8); // Asegúrate de leer en UTF-8
             CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader());
+        ) {
             List<Estudiante> estudiantes = new ArrayList<>();
 
             // Iterar sobre los registros del CSV
@@ -159,7 +175,7 @@ public class EstudianteAPI {
                 estudiante.setCarrera(csvRecord.get("CARRERA"));
                 estudiante.setAsignatura(csvRecord.get("ASIGNATURA"));
                 estudiante.setTelefono((int) Double.parseDouble(csvRecord.get("TELEFONO")));
-                estudiante.setCorreoInsitucional(csvRecord.get("CORREOINSITUCIONAL"));
+                estudiante.setCorreoInstitucional(csvRecord.get("CORREOINSTITUCIONAL"));
                 estudiante.setApellido("N/A"); // Valor predeterminado para apellido
                 estudiante.setContrasena("123456"); // Valor predeterminado para la contraseña
 
@@ -176,4 +192,6 @@ public class EstudianteAPI {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al procesar el archivo CSV: " + e.getMessage());
         }
     }
+
+
 }

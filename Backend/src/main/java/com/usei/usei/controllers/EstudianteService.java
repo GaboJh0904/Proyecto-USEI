@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.usei.usei.models.Estudiante;
+import jakarta.mail.MessagingException;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface EstudianteService {
@@ -20,6 +21,10 @@ public interface EstudianteService {
 
     public Optional<Estudiante> login(int ci, String contrasena);
 
+    // Método para enviar el correo
+    public void enviarCorreosEstudiantes() throws MessagingException;
+
+    
     public List<Estudiante> saveAll(List<Estudiante> estudiantes);
 
 

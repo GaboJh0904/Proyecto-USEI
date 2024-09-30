@@ -31,7 +31,7 @@ import jakarta.persistence.Table;
     @NamedQuery(name = "Estudiante.findByCi", query = "SELECT e FROM Estudiante e WHERE e.ci = :ci"),
     @NamedQuery(name = "Estudiante.findByNombre", query = "SELECT e FROM Estudiante e WHERE e.nombre = :nombre"),
     @NamedQuery(name = "Estudiante.findByApellido", query = "SELECT e FROM Estudiante e WHERE e.apellido = :apellido"),
-    @NamedQuery(name = "Estudiante.findByCorreoInsitucional", query = "SELECT e FROM Estudiante e WHERE e.correoInsitucional = :correoInsitucional"),
+    @NamedQuery(name = "Estudiante.findByCorreoInstitucional", query = "SELECT e FROM Estudiante e WHERE e.correoInstitucional = :correoInstitucional"),
     @NamedQuery(name = "Estudiante.findByCorreoPersonal", query = "SELECT e FROM Estudiante e WHERE e.correoPersonal = :correoPersonal"),
     @NamedQuery(name = "Estudiante.findByCarrera", query = "SELECT e FROM Estudiante e WHERE e.carrera = :carrera"),
     @NamedQuery(name = "Estudiante.findByAsignatura", query = "SELECT e FROM Estudiante e WHERE e.asignatura = :asignatura"),
@@ -56,8 +56,8 @@ public class Estudiante implements Serializable {
     @Column(name = "apellido")
     private String apellido;
     @Basic(optional = true)
-    @Column(name = "correoInsitucional")
-    private String correoInsitucional;
+    @Column(name = "correoInstitucional")
+    private String correoInstitucional;
     @Column(name = "correoPersonal")
     private String correoPersonal;
     @Basic(optional = false)
@@ -94,12 +94,12 @@ public class Estudiante implements Serializable {
         this.idEstudiante = idEstudiante;
     }
 
-    public Estudiante(long idEstudiante, int ci, String nombre, String apellido, String correoInsitucional, String carrera, String asignatura, int telefono, int anio, int semestre, String contrasena) {
+    public Estudiante(long idEstudiante, int ci, String nombre, String apellido, String correoInstitucional, String carrera, String asignatura, int telefono, int anio, int semestre, String contrasena) {
         this.idEstudiante = idEstudiante;
         this.ci = ci;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.correoInsitucional = correoInsitucional;
+        this.correoInstitucional = correoInstitucional;
         this.carrera = carrera;
         this.asignatura = asignatura;
         this.telefono = telefono;
@@ -146,12 +146,12 @@ public class Estudiante implements Serializable {
         this.apellido = apellido;
     }
 
-    public String getCorreoInsitucional() {
-        return correoInsitucional;
+    public String getCorreoInstitucional() {
+        return correoInstitucional;
     }
 
-    public void setCorreoInsitucional(String correoInsitucional) {
-        this.correoInsitucional = correoInsitucional;
+    public void setCorreoInstitucional(String correoInstitucional) {
+        this.correoInstitucional = correoInstitucional;
     }
 
     public String getCorreoPersonal() {

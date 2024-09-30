@@ -3,9 +3,9 @@ package com.usei.usei.api;
 import com.usei.usei.controllers.UsuarioService;
 import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
-import com.usei.usei.dto.request.LoginRequestDTO;
+//import com.usei.usei.dto.request.LoginRequestDTO;
 import com.usei.usei.dto.request.LoginRequestUserDTO;
-import com.usei.usei.models.Estudiante;
+//import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.Map;
+//import java.util.Map;
 import java.util.Optional;
 
 @RestController
