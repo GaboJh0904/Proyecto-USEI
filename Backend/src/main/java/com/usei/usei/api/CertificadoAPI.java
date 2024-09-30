@@ -110,20 +110,20 @@ public class CertificadoAPI {
     }
 
     @PostMapping("/enviar")
-public ResponseEntity<?> enviarCertificado() {
-    try {
-   
-        String asunto = "Certificado Académico";
-        String mensaje = "Estimado estudiante, adjunto encontrarás tu certificado académico.";
-        String attachmentPath = "C:\\Users\\Usuario\\taller_soft\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";
-        String correo = "willy.vargas@ucb.edu.bo"; 
-        certificadoService.sendCertificadoEmail(correo, asunto, mensaje, attachmentPath);
+    public ResponseEntity<?> enviarCertificado() {
+        try {
+    
+            String asunto = "Certificado Académico";
+            String mensaje = "Estimado estudiante, adjunto encontrarás tu certificado académico.";
+            String attachmentPath = "C:\\Users\\Usuario\\taller_soft\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";
+            String correo = "willy.vargas@ucb.edu.bo"; 
+            certificadoService.sendCertificadoEmail(correo, asunto, mensaje, attachmentPath);
 
-        return new ResponseEntity<>(new MessageResponse("Certificado enviado exitosamente a " + correo), HttpStatus.OK);
-    } catch (MessagingException e) {
-        return new ResponseEntity<>(new MessageResponse("Error al enviar el certificado: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(new MessageResponse("Certificado enviado exitosamente a " + correo), HttpStatus.OK);
+        } catch (MessagingException e) {
+            return new ResponseEntity<>(new MessageResponse("Error al enviar el certificado: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-}
 
-
+    
 }
