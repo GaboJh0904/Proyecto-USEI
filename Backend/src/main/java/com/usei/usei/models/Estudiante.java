@@ -78,6 +78,10 @@ public class Estudiante implements Serializable {
     @Basic(optional = false)
     @Column(name = "semestre")
     private int semestre;
+    
+    @Basic(optional = false)
+    @Column(name = "estadoInvitacion")
+    private String estadoInvitacion;
 
     @Basic(optional = false)
     @Column(name = "contrasena")
