@@ -1,5 +1,5 @@
 
-POST http://localhost:8080/pregunta
+POST http://localhost:8082/pregunta
 Content-Type: application/json
 Accept: application/json
 
@@ -12,7 +12,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/pregunta
+GET http://localhost:8082/pregunta
 
 ###
 
