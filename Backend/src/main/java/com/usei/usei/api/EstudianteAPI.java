@@ -44,6 +44,7 @@ public class EstudianteAPI {
     // Crear un nuevo estudiante
     @PostMapping
     public ResponseEntity<?> create(@RequestBody Estudiante estudiante) {
+        estudiante.setEstadoInvitacion("No Completado");
         return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.save(estudiante));
     }
 
