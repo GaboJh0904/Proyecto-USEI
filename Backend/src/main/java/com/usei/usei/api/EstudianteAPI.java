@@ -160,38 +160,38 @@ public class EstudianteAPI {
     }
 
     @PostMapping("/upload-csv")
-public ResponseEntity<?> uploadEstudiantesCSV(@RequestParam("file") MultipartFile file) {
-    try (
-        Reader reader = new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8); // Asegúrate de leer en UTF-8
-        CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader());
-    ) {
-        List<Estudiante> estudiantes = new ArrayList<>();
+    public ResponseEntity<?> uploadEstudiantesCSV(@RequestParam("file") MultipartFile file) {
+        try (
+            Reader reader = new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8); // Asegúrate de leer en UTF-8
+            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader());
+        ) {
+            List<Estudiante> estudiantes = new ArrayList<>();
 
-        // Iterar sobre los registros del CSV
-        for (CSVRecord csvRecord : csvParser) {
-            Estudiante estudiante = new Estudiante();
-            estudiante.setNombre(csvRecord.get("NOMBRE"));
-            estudiante.setCi(Integer.parseInt(csvRecord.get("CI")));
-            estudiante.setCarrera(csvRecord.get("CARRERA"));
-            estudiante.setAsignatura(csvRecord.get("ASIGNATURA"));
-            estudiante.setTelefono((int) Double.parseDouble(csvRecord.get("TELEFONO")));
-            estudiante.setCorreoInstitucional(csvRecord.get("CORREOINSTITUCIONAL"));
-            estudiante.setApellido("N/A"); // Valor predeterminado para apellido
-            estudiante.setContrasena("123456"); // Valor predeterminado para la contraseña
+            // Iterar sobre los registros del CSV
+            for (CSVRecord csvRecord : csvParser) {
+                Estudiante estudiante = new Estudiante();
+                estudiante.setNombre(csvRecord.get("NOMBRE"));
+                estudiante.setCi(Integer.parseInt(csvRecord.get("CI")));
+                estudiante.setCarrera(csvRecord.get("CARRERA"));
+                estudiante.setAsignatura(csvRecord.get("ASIGNATURA"));
+                estudiante.setTelefono((int) Double.parseDouble(csvRecord.get("TELEFONO")));
+                estudiante.setCorreoInstitucional(csvRecord.get("CORREOINSTITUCIONAL"));
+                estudiante.setApellido("N/A"); // Valor predeterminado para apellido
+                estudiante.setContrasena("123456"); // Valor predeterminado para la contraseña
 
-            estudiantes.add(estudiante);
+                estudiantes.add(estudiante);
+            }
+
+            // Guardar todos los estudiantes en la base de datos
+            List<Estudiante> savedEstudiantes = estudianteService.saveAll(estudiantes);
+
+            // Retornar la lista de estudiantes guardados con sus IDs generados
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedEstudiantes);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al procesar el archivo CSV: " + e.getMessage());
         }
-
-        // Guardar todos los estudiantes en la base de datos
-        List<Estudiante> savedEstudiantes = estudianteService.saveAll(estudiantes);
-
-        // Retornar la lista de estudiantes guardados con sus IDs generados
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedEstudiantes);
-    } catch (Exception e) {
-        e.printStackTrace();
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error al procesar el archivo CSV: " + e.getMessage());
     }
-}
 
 
 }
