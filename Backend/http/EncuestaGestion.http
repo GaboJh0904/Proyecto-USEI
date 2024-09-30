@@ -1,4 +1,4 @@
-POST http://localhost:8080/encuesta_gestion
+POST http://localhost:8082/encuesta_gestion
 Content-Type: application/json
 Accept: application/json
 
@@ -11,7 +11,7 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/encuesta_gestion
+GET http://localhost:8082/encuesta_gestion
 
 ###
 

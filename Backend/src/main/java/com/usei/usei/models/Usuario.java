@@ -62,10 +62,13 @@ public class Usuario implements Serializable {
     @Column(name = "contrasenia")
     private String contrasenia;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonIgnore
     private Collection<Encuesta> encuestaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonIgnore
     private Collection<Certificado> certificadoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonIgnore
     private Collection<Reporte> reporteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
     @JsonIgnore // Evita problemas de recursión
