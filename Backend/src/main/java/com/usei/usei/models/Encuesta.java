@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -58,8 +60,10 @@ public class Encuesta implements Serializable {
     @ManyToOne(optional = false)
     private Usuario usuarioIdUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "encuestaIdEncuesta")
+    @JsonIgnore
     private Collection<EstadoEncuesta> estadoEncuestaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "encuestaIdEncuesta")
+    @JsonIgnore
     private Collection<EncuestaGestion> encuestaGestionCollection;
 
     public Encuesta() {
