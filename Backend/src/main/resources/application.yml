@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/proyecto_usei
+    url: jdbc:postgresql://localhost:5432/proyecto-usei
     username: postgres
-    password: admin
+    password: seiya26
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -10,6 +10,12 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  resources:
+    static-locations: classpath:/static/documents/  # Ruta para servir archivos estáticos
+    cache:
+    period: 3600s  # Cachea los archivos estáticos durante una hora
+
   servlet:
     multipart:
       max-file-size: 100MB
