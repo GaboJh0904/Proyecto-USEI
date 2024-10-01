@@ -13,10 +13,8 @@ import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Noticias;
 import com.usei.usei.models.Usuario;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,7 +25,8 @@ public class NoticiasAPI {
 
     // Crear una nueva noticia:
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> create(@RequestParam("img") MultipartFile file,
+    public ResponseEntity<?> create(
+            @RequestParam("img") MultipartFile file,
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
             @RequestParam("fechaModificado") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaModificado,
@@ -35,15 +34,7 @@ public class NoticiasAPI {
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
         try {
-            Path directorioFormatos = Paths.get("src//main//resources//static//documents/imagenes");
-            String rutaAbsoluta = directorioFormatos.toFile().getAbsolutePath();
-            // Convertir el archivo a byte[] para almacenar en la base de datos
-            byte[] fileBytes = file.getBytes();
-            Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + file.getOriginalFilename());
-            Files.write(rutaCompleta, fileBytes);
-
             Noticias noticias = new Noticias();
-            noticias.setImg(file.getOriginalFilename());
             noticias.setTitulo(titulo);
             noticias.setDescripcion(descripcion);
             noticias.setFechaModificado(fechaModificado);
@@ -53,13 +44,15 @@ public class NoticiasAPI {
             usuario.setIdUsuario(usuarioId);
 
             noticias.setUsuarioIdUsuario(usuario);
-            noticiasService.save(noticias);
-            return new ResponseEntity<>(new MessageResponse("Noticia registrado"), HttpStatus.CREATED);
+
+            noticiasService.save(noticias, file);
+            return new ResponseEntity<>(new MessageResponse("Noticia registrada"), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    // Obtener una noticia por ID
     @GetMapping("/{id_noticia}")
     public ResponseEntity<?> read(@PathVariable(value = "id_noticia") Long id_noticias) {
         Optional<Noticias> oNoticias = noticiasService.findById(id_noticias);
@@ -68,13 +61,19 @@ public class NoticiasAPI {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Obtener todas las noticias
     @GetMapping
-    public ResponseEntity<?> readAll() {
-        return ResponseEntity.ok(noticiasService.findAll());
+    public ResponseEntity<Object> readAll() {
+        List<Noticias> noticias = (List<Noticias>) noticiasService.findAll();
+        return ResponseEntity.ok(noticias); // Devolver una lista en lugar de un solo objeto
     }
 
+
+
+    // Actualizar una noticia
     @PutMapping("/{id_noticia}")
-    public ResponseEntity<?> update(@PathVariable(value = "id_noticia") Long id_noticias,
+    public ResponseEntity<?> update(
+            @PathVariable(value = "id_noticia") Long id_noticias,
             @RequestParam("img") MultipartFile file,
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
@@ -82,34 +81,22 @@ public class NoticiasAPI {
             @RequestParam("estado") String estado,
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
-        Optional<Noticias> oNoticias = noticiasService.findById(id_noticias);
-        if (oNoticias.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
         try {
-            Path directorioFormatos = Paths.get("src//main//resources//static//documents/imagenes");
-            String rutaAbsoluta = directorioFormatos.toFile().getAbsolutePath();
-            // Convertir el archivo a byte[] para almacenar en la base de datos
-            byte[] fileBytes = file.getBytes();
-            Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + file.getOriginalFilename());
-            Files.write(rutaCompleta, fileBytes);
-
-            oNoticias.get().setImg(file.getOriginalFilename());
-            oNoticias.get().setTitulo(titulo);
-            oNoticias.get().setDescripcion(descripcion);
-            oNoticias.get().setFechaModificado(fechaModificado);
-            oNoticias.get().setEstado(estado);
+            Noticias noticias = new Noticias();
+            noticias.setTitulo(titulo);
+            noticias.setDescripcion(descripcion);
+            noticias.setFechaModificado(fechaModificado);
+            noticias.setEstado(estado);
 
             Usuario usuario = new Usuario();
             usuario.setIdUsuario(usuarioId);
 
-            oNoticias.get().setUsuarioIdUsuario(usuario);
+            noticias.setUsuarioIdUsuario(usuario);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(noticiasService.save(oNoticias.get()));
+            return ResponseEntity.status(HttpStatus.CREATED).body(noticiasService.update(noticias, id_noticias, file));
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
 }

@@ -95,8 +95,16 @@ public class EstudianteBL implements EstudianteService{
                 System.out.println("Correo inválido: " + correo);
                 continue; 
             }
+            if ("completo".equalsIgnoreCase(estudiante.getEstadoInvitacion())) {
+                System.out.println("Correo no enviado, estado de invitación completo para: " + estudiante.getNombre());
+                continue; // No enviar correo si el estado es "completo"
+            }
+
             String cuerpoCorreo = mensaje + link;
             enviarCorreo(correo, asunto, cuerpoCorreo);
+            System.out.println("Correo enviado a: " + estudiante.getNombre());
+            estudiante.setEstadoInvitacion("completo");
+            estudianteDAO.save(estudiante); // Guardar los cambios en la base de datos
         }
     }
 

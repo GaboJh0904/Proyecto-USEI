@@ -8,7 +8,6 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -72,7 +71,7 @@ public class Usuario implements Serializable {
     @JsonIgnore
     private Collection<Reporte> reporteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
-    @JsonIgnore
+    @JsonIgnore // Evita problemas de recursión
     private Collection<Noticias> noticiasCollection;
 
     public Usuario() {
