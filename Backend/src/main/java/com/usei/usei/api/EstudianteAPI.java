@@ -179,6 +179,7 @@ public class EstudianteAPI {
                 estudiante.setCorreoInstitucional(csvRecord.get("CORREOINSTITUCIONAL"));
                 estudiante.setApellido("N/A"); // Valor predeterminado para apellido
                 estudiante.setContrasena("123456"); // Valor predeterminado para la contraseña
+                estudiante.setEstadoInvitacion("No Completado"); // Valor predeterminado para el estado de la invitación
 
                 estudiantes.add(estudiante);
             }
