@@ -3,27 +3,23 @@ package com.usei.usei.controllers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.JavaMailSender;
-
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.usei.usei.repositories.CertificadoDAO;
-
-import jakarta.mail.MessagingException;
-import jakarta.mail.internet.MimeMessage;
-
-
 
 import com.usei.usei.models.Certificado;
 import com.usei.usei.models.EstadoCertificado;
 import com.usei.usei.models.EstadoEncuesta;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.Usuario;
+import com.usei.usei.repositories.CertificadoDAO;
+import com.usei.usei.repositories.EstadoCertificadoDAO;
 import com.usei.usei.repositories.EstadoEncuestaDAO;
 import com.usei.usei.repositories.EstudianteDAO;
-import com.usei.usei.repositories.EstadoCertificadoDAO;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 
 @Service
 public class CertificadoBL implements CertificadoService{
@@ -101,7 +97,7 @@ public class CertificadoBL implements CertificadoService{
     public void enviarCertificadoConCondiciones(Long idEstudiante) throws MessagingException {
 
         // Verificar el estado de la encuesta
-        EstadoEncuesta estadoEncuesta = estadoEncuestaDAO.findByEstudianteId(idEstudiante)
+        EstadoEncuesta estadoEncuesta = estadoEncuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante)
             .orElseThrow(() -> new RuntimeException("Estado de encuesta no encontrado para el estudiante con ID: " + idEstudiante));
         
         if (!"completado".equalsIgnoreCase(estadoEncuesta.getEstado())) {
@@ -110,7 +106,7 @@ public class CertificadoBL implements CertificadoService{
         }
 
         // Verificar el estado del certificado
-        EstadoCertificado estadoCertificado = estadoCertificadoDAO.findByEstudianteId(idEstudiante)
+        EstadoCertificado estadoCertificado = estadoCertificadoDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante)
             .orElseThrow(() -> new RuntimeException("Estado de certificado no encontrado para el estudiante con ID: " + idEstudiante));
         
         if (!"no enviado".equalsIgnoreCase(estadoCertificado.getEstado())) {
