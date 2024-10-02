@@ -12,8 +12,14 @@ public interface NoticiasService {
 
     public Optional<Noticias> findById(Long id);
 
+    // Guardar noticia sin imagen
+    public Noticias save(Noticias newNoticias);
+
+    // Guardar noticia con imagen
     public Noticias save(Noticias newNoticias, MultipartFile file);
 
     public Noticias update(Noticias newNoticias, Long id, MultipartFile file);
+
+    public void delete(Long id);
 
 }

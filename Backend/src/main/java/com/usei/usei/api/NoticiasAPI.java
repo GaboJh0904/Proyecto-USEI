@@ -65,16 +65,14 @@ public class NoticiasAPI {
     @GetMapping
     public ResponseEntity<Object> readAll() {
         List<Noticias> noticias = (List<Noticias>) noticiasService.findAll();
-        return ResponseEntity.ok(noticias); // Devolver una lista en lugar de un solo objeto
+        return ResponseEntity.ok(noticias);
     }
-
-
 
     // Actualizar una noticia
     @PutMapping("/{id_noticia}")
     public ResponseEntity<?> update(
             @PathVariable(value = "id_noticia") Long id_noticias,
-            @RequestParam("img") MultipartFile file,
+            @RequestParam(value = "img", required = false) MultipartFile file,
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
             @RequestParam("fechaModificado") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaModificado,
@@ -82,7 +80,14 @@ public class NoticiasAPI {
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
         try {
-            Noticias noticias = new Noticias();
+            Optional<Noticias> noticiasOpt = noticiasService.findById(id_noticias);
+            if (!noticiasOpt.isPresent()) {
+                return new ResponseEntity<>(new MessageResponse("Noticia no encontrada"), HttpStatus.NOT_FOUND);
+            }
+
+            Noticias noticias = noticiasOpt.get();
+
+            // Actualizar los campos de la noticia
             noticias.setTitulo(titulo);
             noticias.setDescripcion(descripcion);
             noticias.setFechaModificado(fechaModificado);
@@ -90,12 +95,28 @@ public class NoticiasAPI {
 
             Usuario usuario = new Usuario();
             usuario.setIdUsuario(usuarioId);
-
             noticias.setUsuarioIdUsuario(usuario);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(noticiasService.update(noticias, id_noticias, file));
+            if (file != null && !file.isEmpty()) {
+                noticiasService.save(noticias, file);  // Guardar con imagen nueva
+            } else {
+                noticiasService.save(noticias);  // Guardar sin cambiar la imagen
+            }
+
+            return ResponseEntity.ok(new MessageResponse("Noticia actualizada correctamente"));
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // Eliminar noticia
+    @DeleteMapping("/{id_noticia}")
+    public ResponseEntity<?> delete(@PathVariable(value = "id_noticia") Long id_noticias) {
+        if (noticiasService.findById(id_noticias).isPresent()) {
+            noticiasService.delete(id_noticias);
+            return new ResponseEntity<>(new MessageResponse("Noticia eliminada"), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new MessageResponse("Noticia no encontrada"), HttpStatus.NOT_FOUND);
         }
     }
 
