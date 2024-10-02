@@ -80,7 +80,7 @@ public class EstudianteBL implements EstudianteService{
     }
 
 
-    // Método que contiene la lógica completa para enviar correos a todos los estudiantes
+    // Método que contiene la lógica completa para enviar correos de invitacion a todos los estudiantes
     public void enviarCorreosEstudiantes() throws MessagingException {
 
         List<Estudiante> estudiantes = estudianteDAO.findByCorreoInstitucionalIsNotNull();
@@ -108,7 +108,7 @@ public class EstudianteBL implements EstudianteService{
         }
     }
 
-    // Método para enviar un correo
+    // Método para enviar un correo de invitacion
     private void enviarCorreo(String to, String subject, String body) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);

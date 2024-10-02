@@ -110,20 +110,20 @@ public class CertificadoAPI {
     }
 
     @PostMapping("/enviar")
-    public ResponseEntity<?> enviarCertificado() {
+    public ResponseEntity<?> enviarCertificado(@RequestParam("idEstudiante") Long idEstudiante) {
         try {
-    
-            String asunto = "Certificado Académico";
-            String mensaje = "Estimado estudiante, adjunto encontrarás tu certificado académico.";
-            String attachmentPath = "C:\\Users\\Usuario\\taller_soft\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";
-            String correo = "willy.vargas@ucb.edu.bo"; 
-            certificadoService.sendCertificadoEmail(correo, asunto, mensaje, attachmentPath);
+            // Llamar a la función que gestiona el envío y verifica los estados
+            certificadoService.enviarCertificadoConCondiciones(idEstudiante);
 
-            return new ResponseEntity<>(new MessageResponse("Certificado enviado exitosamente a " + correo), HttpStatus.OK);
+            return new ResponseEntity<>(new MessageResponse("Certificado enviado correctamente si se cumplieron las condiciones."), HttpStatus.OK);
         } catch (MessagingException e) {
             return new ResponseEntity<>(new MessageResponse("Error al enviar el certificado: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse("Error inesperado: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
     
 }

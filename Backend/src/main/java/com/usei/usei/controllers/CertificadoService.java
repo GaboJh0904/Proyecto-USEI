@@ -16,8 +16,10 @@ public interface CertificadoService {
 
     public Certificado update(Certificado newCertificado, Long id);
 
-    // Método para enviar el certificado por correo
-    public void sendCertificadoEmail(String Correo, String subject, String body, String attachmentPath)
-            throws MessagingException;
+    public void enviarCertificadoConCondiciones(Long idEstudiante) throws MessagingException;
 
+    public void sendCertificadoEmail(String to, String subject, String body, String attachmentPath) throws MessagingException;
+
+    
+    
 }
