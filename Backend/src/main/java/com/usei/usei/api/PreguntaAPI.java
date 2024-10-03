@@ -36,16 +36,16 @@ public class PreguntaAPI{
     public ResponseEntity<?> readAll(){
         return ResponseEntity.ok(preguntaService.findAll());
     }
-/* 
+
     @DeleteMapping("/{id_pregunta}")
-    public ResponseEntity<?> delete(@PathVariable(value = "id_pregunta") Long id_pregunta){
+    public ResponseEntity<?> delete(@PathVariable(value = "id_pregunta") Long id_pregunta) {
         Optional<Pregunta> oPregunta = preguntaService.findById(id_pregunta);
-        if(oPregunta.isEmpty()){
+        if (oPregunta.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         preguntaService.deleteById(id_pregunta);
         return ResponseEntity.ok(oPregunta);
-    }*/
+    }
 
     @PutMapping("/{id_pregunta}")
     public ResponseEntity<?> update(@PathVariable(value = "id_pregunta") Long id_pregunta, @RequestBody Pregunta pregunta){
