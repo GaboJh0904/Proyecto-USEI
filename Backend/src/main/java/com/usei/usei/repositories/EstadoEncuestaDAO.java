@@ -1,6 +1,7 @@
 package com.usei.usei.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,4 +13,8 @@ public interface EstadoEncuestaDAO extends  JpaRepository<EstadoEncuesta, Long> 
 
     // Método para obtener encuestas con estado "Pendiente"
     List<EstadoEncuesta> findByEstado(String estado);
+
+    Optional<EstadoEncuesta> findByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante);
+
+
 }

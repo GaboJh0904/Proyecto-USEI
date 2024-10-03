@@ -53,6 +53,10 @@ public class EstadoEncuesta implements Serializable {
     @ManyToOne(optional = false)
     private Estudiante estudianteIdEstudiante;
 
+    public Long getEstudianteId() {
+        return estudianteIdEstudiante.getIdEstudiante();
+    }
+
     public EstadoEncuesta() {
     }
 
