@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-09-16 23:14:11.896
+-- Last modification date: 2024-09-26 12:42:11.293
 
 -- tables
 -- Table: Certificado
@@ -59,14 +59,14 @@ CREATE TABLE Estudiante (
     ci int  NOT NULL,
     nombre varchar(50)  NOT NULL,
     apellido varchar(50)  NOT NULL,
-    correo_insitucional varchar(50)  NOT NULL,
+    correo_institucional varchar(50)  NOT NULL,
     correo_personal varchar(50)  NULL,
-    carrera varchar(40)  NOT NULL,
-    asignatura varchar(30)  NOT NULL,
+    carrera varchar(50)  NOT NULL,
+    asignatura varchar(50)  NOT NULL,
     telefono int  NOT NULL,
     anio int  NOT NULL,
     semestre int  NOT NULL,
-    contrasena varchar(50) NOT NULL,
+    contrasena varchar(50)  NOT NULL,
     CONSTRAINT Estudiante_pk PRIMARY KEY (id_estudiante)
 );
 

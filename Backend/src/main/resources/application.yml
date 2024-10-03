@@ -8,8 +8,14 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
+
+  resources:
+    static-locations: classpath:/static/documents/  # Ruta para servir archivos estáticos
+    cache:
+    period: 3600s  # Cachea los archivos estáticos durante una hora
+
   servlet:
     multipart:
       max-file-size: 100MB

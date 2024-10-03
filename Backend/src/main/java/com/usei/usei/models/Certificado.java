@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -58,6 +59,7 @@ public class Certificado implements Serializable {
     @ManyToOne(optional = false)
     private Usuario usuarioIdUsuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "certificadoIdCertificado")
+    @JsonIgnore
     private Collection<EstadoCertificado> estadoCertificadoCollection;
 
     public Certificado() {

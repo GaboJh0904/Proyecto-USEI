@@ -6,6 +6,8 @@ package com.usei.usei.models;
 
 import java.io.Serializable;
 import java.util.Collection;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -60,12 +62,16 @@ public class Usuario implements Serializable {
     @Column(name = "contrasenia")
     private String contrasenia;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonIgnore
     private Collection<Encuesta> encuestaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonIgnore
     private Collection<Certificado> certificadoCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonIgnore
     private Collection<Reporte> reporteCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonIgnore // Evita problemas de recursión
     private Collection<Noticias> noticiasCollection;
 
     public Usuario() {
