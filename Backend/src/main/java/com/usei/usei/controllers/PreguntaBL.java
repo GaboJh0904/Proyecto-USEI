@@ -55,4 +55,10 @@ public class PreguntaBL implements PreguntaService {
             throw new RuntimeException("Pregunta no encontrada con el id: " + id);
         }
     }
+
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        preguntaDAO.deleteById(id);
+    }
 }

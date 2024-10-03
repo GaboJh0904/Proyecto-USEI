@@ -16,4 +16,6 @@ public interface OpcionesPreguntaService {
     public OpcionesPregunta update(OpcionesPregunta newOpcionesPregunta, Long id);
 
     List<OpcionesPregunta> findByPreguntaId(Long idPregunta);
+
+    public void deleteById(Long id);
 }
