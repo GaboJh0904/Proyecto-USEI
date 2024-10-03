@@ -69,34 +69,34 @@ public class UsuarioAPI {
 
     // Nuevo endpoint de login con correo y contraseña
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequestUserDTO loginRequestUser) {
-        Optional<Usuario> usuario = usuarioService.login(loginRequestUser.getCorreo(), loginRequestUser.getContrasena());
+public ResponseEntity<?> login(@RequestBody LoginRequestUserDTO loginRequestUser) {
+    Optional<Usuario> usuario = usuarioService.login(loginRequestUser.getCorreo(), loginRequestUser.getContrasena());
 
-        if (usuario.isPresent()) {
-            // Crear la respuesta exitosa con los campos "ci", "correoInsitucional", "nombre" y "apellido"
-            SuccessfulResponse response = new SuccessfulResponse(
-                    "200 OK",
-                    "Inicio de sesión correcto",
-                    new HashMap<String, Object>() {{
-                        put("rol", usuario.get().getRol());
-                        put("correo", usuario.get().getCorreo());
-                        put("nombre", usuario.get().getNombre());
-                        put("usuario", usuario.get().getUsuario());
+    if (usuario.isPresent()) {
+        // Crear la respuesta exitosa con el id_usuario y otros campos
+        SuccessfulResponse response = new SuccessfulResponse(
+                "200 OK",
+                "Inicio de sesión correcto",
+                new HashMap<String, Object>() {{
+                    put("id_usuario", usuario.get().getIdUsuario());  // Incluir el id_usuario
+                    put("rol", usuario.get().getRol());
+                    put("correo", usuario.get().getCorreo());
+                    put("nombre", usuario.get().getNombre());
+                    put("usuario", usuario.get().getUsuario());
+                }}
+        );
 
-                    }}
-            );
+        return ResponseEntity.ok(response);
+    } else {
+        // Crear la respuesta fallida en caso de credenciales incorrectas
+        UnsuccessfulResponse response = new UnsuccessfulResponse(
+                "401 Unauthorized",
+                "Credenciales incorrectas",
+                "/usuario/login"
+        );
 
-            return ResponseEntity.ok(response);
-        } else {
-            // Crear la respuesta fallida en caso de credenciales incorrectas
-            UnsuccessfulResponse response = new UnsuccessfulResponse(
-                    "401 Unauthorized",
-                    "Credenciales incorrectas",
-                    "/usuario/login"
-            );
-
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
-        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
+}
 
 }
