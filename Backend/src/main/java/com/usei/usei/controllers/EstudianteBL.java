@@ -87,7 +87,7 @@ public class EstudianteBL implements EstudianteService{
 
         String asunto = "Informacion sobre Alumni UCB ";
         String mensaje = "Estimado estudiante, usted esta apunto de salir y porlo tanto puede accedere a el custionario para ser parte de Alumni UCB por favor revisa el siguiente enlace importante: ";
-        String link = "<a href='https://youtu.be/SRXH9AbT280?si=enZDOY7skMNZyGOV'>Acceder al enlace</a>";
+        String link = "<a href='http://localhost:5173/'>Acceder al enlace</a>";
 
         for (Estudiante estudiante : estudiantes) {
             String correo = estudiante.getCorreoInstitucional();  
