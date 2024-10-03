@@ -25,7 +25,7 @@
         
         <div class="form-actions">
           <button class="back-button" @click="goBackToSurvey">Regresar a la Encuesta</button>
-          <button class="submit-button" @click="submitForm">Enviar</button>
+          <button class="submit-button" @click="submitSurvey">Enviar</button>
         </div>
       </div>
     </main>
@@ -38,6 +38,7 @@
 import NavBar from '@/components/NavBar.vue';
 import FooterComponent from '@/components/FooterComponent.vue';
 import { useRouter } from 'vue-router';
+import Swal from 'sweetalert2';  
 import axios from 'axios';
 
 export default {
@@ -74,13 +75,23 @@ export default {
             });
           }
         }
-
-        alert('Encuesta enviada con éxito');
+        Swal.fire({
+          icon: 'success',
+          title: 'Encuesta enviada con éxito',
+          confirmButtonText: 'Continuar',
+        });
+        //alert('Encuesta enviada con éxito');
         localStorage.removeItem('surveyAnswers'); // Limpiar LocalStorage después de enviar
         this.$router.push('/menu-estudiante');
       } catch (error) {
         console.error('Detalles del error:', error);
-        alert('Error al enviar la encuesta. Vuelve a intentar.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al enviar la encuesta. Vuelve a intentar.',
+          confirmButtonText: 'Continuar',
+        });
+        return;
+        //alert('Error al enviar la encuesta. Vuelve a intentar.');
       }
     }
   }
