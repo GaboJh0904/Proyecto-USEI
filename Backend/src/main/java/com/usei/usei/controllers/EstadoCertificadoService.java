@@ -15,10 +15,13 @@ public interface EstadoCertificadoService {
 
     public EstadoCertificado update (EstadoCertificado newEstadoCertificado, Long id);
 
+    Optional<EstadoCertificado> findByEstudianteId(Long idEstudiante);
+
+
     // Método para obtener encuestas con estado "Pendiente"
     // public List<EstadoEncuesta> findByEstadoPendiente();
 
     // método para obtener encuestas con estado "Completado"
     // public List<EstadoEncuesta> findByEstadoCompletado();
-
+    
 }

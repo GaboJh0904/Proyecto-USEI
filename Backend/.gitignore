@@ -11,7 +11,6 @@
 .sts4-cache
 
 /Frontend/
-application.yml
 # Created by https://www.gitignore.io/api/git,java,maven,eclipse,windows
 
 ### Eclipse ###
@@ -200,4 +199,4 @@ README.html
 *.iml
 .idea
 .exercism
-
+src/main/resources/application.yml
