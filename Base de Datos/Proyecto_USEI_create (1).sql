@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-09-26 12:42:11.293
+-- Last modification date: 2024-10-04 15:05:10.452
 
 -- tables
 -- Table: Certificado
@@ -66,6 +66,7 @@ CREATE TABLE Estudiante (
     telefono int  NOT NULL,
     anio int  NOT NULL,
     semestre int  NOT NULL,
+    estado_invitacion varchar(50)  NOT NULL,
     contrasena varchar(50)  NOT NULL,
     CONSTRAINT Estudiante_pk PRIMARY KEY (id_estudiante)
 );
