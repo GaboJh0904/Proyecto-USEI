@@ -21,3 +21,9 @@ docker build -t image-usei .
 ```
 docker run -d -p 5433:5432 --name usei-cont image-usei
 ```
+
+3. Para correr el docker YA creado
+
+```
+docker start usei-cont
+```
