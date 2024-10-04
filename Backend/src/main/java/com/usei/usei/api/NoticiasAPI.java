@@ -24,14 +24,13 @@ public class NoticiasAPI {
     @Autowired
     private NoticiasService noticiasService;
 
-    // Crear una nueva noticia:
     // Crear una nueva noticia
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> create(
             @RequestParam("img") MultipartFile file,
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
-            @RequestParam("fechaModificado") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaModificado,
+            @RequestParam("fechaModificado") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaModificado,
             @RequestParam("estado") String estado,
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
@@ -61,7 +60,7 @@ public class NoticiasAPI {
             @RequestParam(value = "img", required = false) MultipartFile file,
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
-            @RequestParam("fechaModificado") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date fechaModificado,
+            @RequestParam("fechaModificado") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaModificado,
             @RequestParam("estado") String estado,
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
