@@ -13,6 +13,6 @@ public interface RespuestaService {
 
     public Respuesta update(Respuesta newRespuesta, Long id);
 
-// Método para verificar si el estudiante ya llenó la encuesta
+// Metodo para verificar si el estudiante ya lleno la encuesta
 boolean hasFilledSurvey(Long idEstudiante);
 }

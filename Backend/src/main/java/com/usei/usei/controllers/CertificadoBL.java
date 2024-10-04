@@ -121,7 +121,7 @@ public class CertificadoBL implements CertificadoService{
         String correo = estudiante.getCorreoInstitucional();  
         String asunto = "Certificado Académico";
         String mensaje = "Estimado " + estudiante.getNombre() + ", adjunto encontrarás tu certificado académico.";
-        String attachmentPath = "C:\\Users\\Usuario\\taller_soft\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";
+        String attachmentPath = "C:\\Users\\paola qv\\Desktop\\usei\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";
 
         // Enviar el correo con el certificado adjunto
         sendCertificadoEmail(correo, asunto, mensaje, attachmentPath);
