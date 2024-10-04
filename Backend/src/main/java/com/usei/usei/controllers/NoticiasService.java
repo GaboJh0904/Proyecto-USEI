@@ -1,5 +1,6 @@
 package com.usei.usei.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -22,4 +23,5 @@ public interface NoticiasService {
 
     public void delete(Long id);
 
+    List<Noticias> findByEstado(String estado);
 }
