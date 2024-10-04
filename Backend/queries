@@ -9012,3 +9012,315 @@ INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_ce
 INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 999', 'pendiente', '2024-01-10', 999, 999);
 INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 1000', 'enviado', '2024-01-11', 1000, 1000);
 --fin tabla estado_certificado 1000 datos
+
+
+--PREGUNTAS Tabla: Pregunta
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (1, 'Año que ingresó a la U.C.B.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (2, 'Carrera de la que se graduó:', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (3, 'Apellido paterno:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (4, 'Apellido materno:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (5, 'Nombres:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (6, 'Edad:', 'Numerico', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (7, 'Sexo:', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (8, 'Teléfono fijo:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (9, 'Teléfono móvil:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (10, 'Correo electrónico personal:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (11, 'Ciudad de nacimiento:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (12, 'Número de cédula o documento de identidad:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (13, 'Ciudad de residencia:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (14, 'Indique su Estado Civil actual.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (15, '¿Tiene hijos?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (16, 'Indique el nivel de educación más alto alcanzado por su padre.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (17, 'Indique el nivel de educación más alto alcanzado por su madre.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (18, 'Indique si tienen alguna de las siguientes limitaciones permanentes.', 'Múltiple', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (19, 'Indique el principal motivo que influyó en la elección de su carrera.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (20, '¿Cambió usted de carrera?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (21, 'Indique el motivo por el que cambió de carrera.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (22, '¿Cuál fue la principal fuente de recursos para financiar sus estudios?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (23, '¿El colegio/escuela en que concluyó el bachillerato enseñaba otro idioma además del español?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (24, '¿Volvería a estudiar en la U.C.B.?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (25, 'Indique la razón principal por la que volvería a estudiar en la U.C.B.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (26, 'Indique la razón principal por la que no volvería a estudiar en la U.C.B.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (27, '¿Realizó algún viaje de Intercambio al exterior de país?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (28, '¿Participó en alguna organización estudiantil? (centro de estudiantes o sociedad científica)', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (29, '¿Participó en alguna de las actividades extracurriculares como ser ballet, danza, tuna, teatro o deportes?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (30, '¿Participó en algún voluntariado?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (31, '¿Cuál es la actividad en la que actualmente ocupa mayor parte de su tiempo?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (32, '¿Este es su primer empleo?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (33, 'Indique el tiempo de antigüedad en su empleo actual.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (34, '¿Es usted propietario o socio del lugar donde trabaja?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (35, 'Indique el tipo de institución en la que trabaja.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (36, 'Indique qué tan relacionada está su actividad laboral con los estudios que realizó.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (37, 'Indique cuántas horas a la semana le dedica a su empleo.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (38, 'Indique la modalidad en que usted se encuentra vinculado a su empleo.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (39, 'Indique cuál es el rango salarial o ingreso promedio que percibe por mes.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (40, 'Indique cómo consiguió su primer empleo.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (41, '¿Está usted interesado(a) en conseguir empleo?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (42, 'En el último mes ha realizado alguna gestión para conseguir trabajo.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (43, '¿Cuál es el principal motivo por el cual usted considera que no encuentra empleo?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (44, '¿Ha realizado cursos a nivel de posgrado?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (45, '¿Cuál es el máximo grado académico que ha obtenido?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (46, '¿Cuál es el grado académico al que está postulando?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (47, '¿Le interesaría seguir cursos a nivel de postgrado en la U.C.B.?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (48, '¿Cuál es el grado académico del curso que le interesaría alcanzar?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (49, '¿Cuál es el área en que le interesaría realizar su curso de postgrado?', 'Texto', 'ACTIVO');
+
+
+
+-- OPCIONES PREGUNTA Tabla: Opciones_Pregunta
+-- Opciones para Pregunta 1: Año que ingresó a la U.C.B.
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES 
+('2019', 1), ('2018', 1), ('2017', 1), ('2016', 1), ('2015', 1),
+('2014', 1), ('2013', 1), ('2012', 1), ('2011', 1), ('2010', 1),
+('2009', 1), ('2008', 1), ('2007', 1), ('2006', 1), ('2005', 1),
+('2004', 1), ('2003', 1), ('2002', 1), ('2001', 1), ('2000', 1),
+('ANTES 2000', 1);
+
+-- Opciones para Pregunta 2: Carrera de la que se graduó
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES 
+('ADMIN. DE EMPRESAS', 2), ('ADMIN. TURÍSTICA', 2), 
+('CONTADURÍA PÚBLICA', 2), ('ECONOMÍA', 2), 
+('ECO. E INTELIG. DE NEGOCIOS', 2), ('INGENIERÍA COMERCIAL', 2), 
+('ING. EN INNOV. EMPRESARIAL', 2), ('MARK. Y MEDIO DIGITALES', 2), 
+('ING. AMBIENTAL', 2), ('ING. BIOMÉDICA', 2), 
+('ING. BIOQ Y DE BIOPROCESOS', 2), ('ING. CIVIL', 2), 
+('ING. EN ENERGÍA', 2), ('ING. MULT. E INTERAC DIGITAL', 2), 
+('ING. ANALÍTICA DE CAD SUMIN.', 2), ('ING. INDUSTRIAL', 2), 
+('ING. MECATRÓNICA', 2), ('ING. QUÍMICA', 2), 
+('ING. EN SISTEMAS', 2), ('ING. EN TELECOMUNICACIONES', 2);
+
+-- Opciones para Pregunta 7: Sexo
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('MUJER', 7), ('VARÓN', 7);
+
+-- Opciones para Pregunta 14: Indique su Estado Civil actual
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SOLTERO(A)', 14), ('CASADO(A)', 14), ('CONCUBINO(A)', 14), 
+('DIVORCIADO(A)', 14), ('VIUDO(A)', 14);
+
+-- Opciones para Pregunta 15: ¿Tiene hijos?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 15), ('NO', 15);
+
+-- Opciones para Pregunta 16: Indique el nivel de educación más alto alcanzado por su padre
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('NO SABE', 16), ('NUNCA ESTUDIÓ', 16), ('PRIMARIA', 16), 
+('SECUNDARIA', 16), ('EDU TÉCNICA/TECNOLÓGICA', 16), 
+('EDU UNIVERSITARIA INCOMPLETA', 16), 
+('EDU UNIVERSITARIA COMPLETA', 16), ('EDU DE POSTGRADO', 16);
+
+-- Opciones para Pregunta 17: Indique el nivel de educación más alto alcanzado por su madre
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('NO SABE', 17), ('NUNCA ESTUDIÓ', 17), ('PRIMARIA', 17), 
+('SECUNDARIA', 17), ('EDU TÉCNICA/TECNOLÓGICA', 17), 
+('EDU UNIVERSITARIA INCOM', 17), 
+('EDU UNIVERSITARIA COMPLETA', 17), ('EDU DE POSTGRADO', 17);
+
+-- Opciones para Pregunta 18: Indique si tienen alguna de las siguientes limitaciones permanentes
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES 
+('NO TENGO', 18), ('MOVERSE O CAMINAR', 18), 
+('USAR BRAZOS O MANOS', 18), ('VER, INCLUSO CON LENTES', 18), 
+('OÍR, INCLUSO CON AUDÍF', 18), ('HABLAR', 18), 
+('CONDICIONES MENTALES', 18), ('OTRA LIMITACIÓN', 18);
+
+-- Opciones para Pregunta 19: Indique el principal motivo que influyó en la elección de su carrera
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('FAMILIA', 19), ('AMIGOS', 19), 
+('VOCACIÓN/HABILIDADES', 19), ('FUENTE LABORAL DE LA CARRERA', 19), 
+('INGRESOS OFRECE LA CARRERA', 19), ('TEST VOCACIONAL', 19), 
+('ORIENTACIÓN COLEGIO/ESCUELA', 19), ('OTRO', 19);
+
+-- Opciones para Pregunta 20: ¿Cambió usted de carrera?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 20), ('NO', 20);
+
+-- Opciones para Pregunta 21: Indique el motivo por el que cambió de carrera
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('NO ME GUSTABA LA CARRERA', 21), 
+('RENDIMIENTO ACADÉMICO', 21), ('VOCACIÓN DESCUBIERTAS', 21), 
+('EMPLEABILIDAD DE CARRERA', 21), ('INGRESOS OFRECE CARRERA', 21), 
+('OTRO', 21);
+
+-- Opciones para Pregunta 22: ¿Cuál fue la principal fuente de recursos para financiar sus estudios?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('PADRES', 22), ('RECURSOS PROPIOS', 22), 
+('OTROS FAMILIARES', 22), ('BECAS', 22), 
+('CRÉDITOS EDUCATIVOS', 22), ('OTRA FUENTE', 22);
+
+-- Opciones para Pregunta 23: ¿El colegio/escuela en que concluyó el bachillerato enseñaba otro idioma además del español?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 23), ('NO', 23);
+
+-- Opciones para Pregunta 24: ¿Volvería a estudiar en la U.C.B.?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 24), ('NO', 24);
+
+-- Opciones para Pregunta 25: Indique la razón principal por la que volvería a estudiar en la U.C.B.
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('CALIDAD FORMACIÓN', 25), ('CALIDAD PROFESORES', 25), 
+('ENCONTRAR EMPLEO', 25), ('PRESTIGIO', 25), 
+('RECURSOS EDUCATIVOS', 25), ('OTRO MOTIVO', 25);
+
+-- Opciones para Pregunta 26: Indique la razón principal por la que no volvería a estudiar en la U.C.B.
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('BAJA CALID FORMACIÓN', 26), ('BAJA CALID PROFESORES', 26), 
+('MALA REP. INSTITUCIÓN', 26), ('RECURSOS EDUCATIVOS', 26), 
+('CALIDAD COMPETENCIA', 26), ('OTRO MOTIVO', 26);
+
+-- Opciones para Pregunta 27: ¿Realizó algún viaje de Intercambio al exterior de país?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 27), ('NO', 27);
+
+-- Opciones para Pregunta 28: ¿Participó en alguna organización estudiantil? (centro de estudiantes o sociedad científica)
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 28), ('NO', 28);
+
+-- Opciones para Pregunta 29: ¿Participó en alguna de las actividades extracurriculares como ser ballet, danza, tuna, teatro o deportes?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI ESPECIFICAR', 29), ('NO', 29);
+
+-- Opciones para Pregunta 30: ¿Participó en algún voluntariado?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 30), ('NO', 30);
+
+-- Opciones para Pregunta 31: ¿Cuál es la actividad en la que actualmente ocupa mayor parte de su tiempo?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('TRABAJO', 31), ('BUSCANDO TRABAJO', 31), 
+('ESTUDIOS', 31), ('OTRA ACTIVIDAD', 31);
+
+-- Opciones para Pregunta 32: ¿Este es su primer empleo?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 32), ('NO', 32);
+
+-- Opciones para Pregunta 33: Indique el tiempo de antigüedad en su empleo actual
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('MENOS 3 MESES', 33), ('ENTRE 3 Y 6 MESES', 33), 
+('ENTRE 6 MESES Y AÑO', 33), ('MÁS DE UN AÑO', 33);
+
+-- Opciones para Pregunta 34: ¿Es usted propietario o socio del lugar donde trabaja?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 34), ('NO', 34);
+
+-- Opciones para Pregunta 35: Indique el tipo de institución en la que trabaja
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('ESTATAL O PÚBLICA', 35), ('EMPRESA PRIVADA', 35), 
+('ONG', 35), ('INDEPENDIENTE', 35), ('OTRA', 35);
+
+-- Opciones para Pregunta 36: Indique qué tan relacionada está su actividad laboral con los estudios que realizó
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('DIRECT. REL', 36), ('INDIRECT. REL', 36), ('NADA REL', 36);
+
+-- Opciones para Pregunta 37: Indique cuántas horas a la semana le dedica a su empleo
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('MENOS 20 HRS', 37), ('APROX. 20 HRS', 37), 
+('APROX. 40 HRS/MÁS', 37);
+
+-- Opciones para Pregunta 38: Indique la modalidad en que usted se encuentra vinculado a su empleo
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('CONTR INDEFINIDO', 38), ('CONTR EVENTUAL /P. FIJO', 38), 
+('CONTR POR PRESTACIÓN', 38), ('OTRO TIPO DE CONTRATO', 38);
+
+-- Opciones para Pregunta 39: Indique cuál es el rango salarial o ingreso promedio que percibe por mes
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES 
+('≤ BS. 2122', 39), ('Bs. 2123 a 4244', 39), 
+('Bs. 4245 a 6366', 39), ('Bs. 6367 a 8488', 39), 
+('≥ Bs. 8489', 39);
+
+-- Opciones para Pregunta 40: Indique cómo consiguió su primer empleo
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('PASANTÍAS', 40), ('CONVENIOS', 40), 
+('PERIÓDICO O ANUNCIOS', 40), ('BOLSA DE TRABAJO', 40), 
+('RRSS O AMISTADES', 40), ('OTRO', 40);
+
+-- Opciones para Pregunta 41: ¿Está usted interesado(a) en conseguir empleo?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 41), ('NO', 41);
+
+-- Opciones para Pregunta 42: En el último mes ha realizado alguna gestión para conseguir trabajo
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 42), ('NO', 42);
+
+-- Opciones para Pregunta 43: ¿Cuál es el principal motivo por el cual usted considera que no encuentra empleo?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('NO HAY TRABAJO DISPONIBLE', 43), 
+('QUE SOY MUY JOVEN', 43), ('SUFICIENTE EXPERIENCIA', 43), 
+('SALARIOS SON MUY BAJOS', 43), ('NO BUSCAR EMPLEO', 43), 
+('OTRO', 43);
+
+-- Opciones para Pregunta 44: ¿Ha realizado cursos a nivel de posgrado?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 44), ('PROCESO', 44), ('NO', 44);
+
+-- Opciones para Pregunta 45: ¿Cuál es el máximo grado académico que ha obtenido?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('DIPLOMADO', 45), ('ESPECIALIDAD', 45), 
+('MAESTRÍA', 45), ('DOCTORADO', 45);
+
+-- Opciones para Pregunta 46: ¿Cuál es el grado académico al que está postulando?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('DIPLOMADO', 46), ('ESPECIALIDAD', 46), 
+('MAESTRÍA', 46), ('DOCTORADO', 46);
+
+-- Opciones para Pregunta 47: ¿Le interesaría seguir cursos a nivel de postgrado en la U.C.B.?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('SI', 47), ('NO', 47);
+
+-- Opciones para Pregunta 48: ¿Cuál es el grado académico del curso que le interesaría alcanzar?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('DIPLOMADO', 48), ('ESPECIALIDAD', 48), 
+('MAESTRÍA', 48), ('DOCTORADO', 48);
+
+
