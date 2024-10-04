@@ -1,5 +1,6 @@
 package com.usei.usei.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -12,8 +13,15 @@ public interface NoticiasService {
 
     public Optional<Noticias> findById(Long id);
 
+    // Guardar noticia sin imagen
+    public Noticias save(Noticias newNoticias);
+
+    // Guardar noticia con imagen
     public Noticias save(Noticias newNoticias, MultipartFile file);
 
     public Noticias update(Noticias newNoticias, Long id, MultipartFile file);
 
+    public void delete(Long id);
+
+    List<Noticias> findByEstado(String estado);
 }

@@ -6,6 +6,7 @@ package com.usei.usei.models;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,9 +18,8 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import jakarta.persistence.Lob;
+
+
 /**
  *
  * @author gaboj
@@ -51,14 +51,12 @@ public class Noticias implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
 
-    // Almacena el nombre del archivo como un String
     @Basic(optional = false)
     @Column(name = "img")
     private String img;
 
     @Basic(optional = false)
     @Column(name = "fechaModificado")
-    @Temporal(TemporalType.DATE)
     private Date fechaModificado;
 
     @Basic(optional = false)
@@ -68,8 +66,6 @@ public class Noticias implements Serializable {
     @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario usuarioIdUsuario;
-
-    // Constructores, getters y setters
 
     public Noticias() {
     }
