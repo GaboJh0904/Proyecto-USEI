@@ -53,11 +53,10 @@ public class EncuestaGestionAPI {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @GetMapping("/{id_encuesta_gestion}")
-    public ResponseEntity<?> readById(@PathVariable Long id) {
+    public ResponseEntity<?> readById(@PathVariable("id_encuesta_gestion") Long id_encuesta_gestion) {
         try {
-            Optional<EncuestaGestion> encuestaGestion = encuestaGestionService.findById(id);
+            Optional<EncuestaGestion> encuestaGestion = encuestaGestionService.findById(id_encuesta_gestion);
             if (encuestaGestion.isPresent()) {
                 return ResponseEntity.ok(encuestaGestion.get());
             } else {
@@ -67,6 +66,7 @@ public class EncuestaGestionAPI {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
 
     @PutMapping("/{id_encuesta_gestion}")
     public ResponseEntity<?> update(@PathVariable(value = "id_encuesta_gestion") Long id_encuesta_gestion, @RequestBody EncuestaGestion encuestaGestion){

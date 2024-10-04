@@ -14,4 +14,6 @@ public interface PreguntaService {
 
     public Pregunta update (Pregunta newPregunta, Long id);
 
+    public void deleteById(Long id);
+
 }

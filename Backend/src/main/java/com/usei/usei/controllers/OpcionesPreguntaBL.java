@@ -54,4 +54,10 @@ public class OpcionesPreguntaBL implements OpcionesPreguntaService{
     public List<OpcionesPregunta> findByPreguntaId(Long idPregunta) {
         return opcionesPreguntaDAO.findByPreguntaIdPregunta_IdPregunta(idPregunta);
     }
+
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        opcionesPreguntaDAO.deleteById(id);
+    }
 }

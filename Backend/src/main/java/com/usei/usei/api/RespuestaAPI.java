@@ -1,7 +1,5 @@
 package com.usei.usei.api;
-import java.util.List;
-import java.util.Map;
-
+import java.util.Date;
 import java.util.Map;
 import java.util.Optional;
 
@@ -16,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.usei.usei.controllers.EstadoCertificadoService;
 import com.usei.usei.controllers.RespuestaService;
+import com.usei.usei.models.Certificado;
+import com.usei.usei.models.EstadoCertificado;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Pregunta;
@@ -28,6 +29,8 @@ public class RespuestaAPI {
 
     @Autowired
     private RespuestaService respuestaService;
+      @Autowired
+    private EstadoCertificadoService estadoCertificadoService;
 
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Respuesta respuesta) {
@@ -45,12 +48,34 @@ public class RespuestaAPI {
             newRespuesta.setEstudianteIdEstudiante(estudiante);
 
             respuestaService.save(newRespuesta);
+
+            // Verificar si el estudiante ha llenado la encuesta completa
+            boolean hasFilled = respuestaService.hasFilledSurvey(estudiante.getIdEstudiante());
+            if (hasFilled) {
+                // Verificar si el registro de estado_certificado ya existe
+                Optional<EstadoCertificado> estadoExistente = estadoCertificadoService.findByEstudianteId(estudiante.getIdEstudiante());
+                if (estadoExistente.isEmpty()) {
+                    // Crear un registro en la tabla estado_certificado por el momento con valores predefinidos
+                    EstadoCertificado estadoCertificado = new EstadoCertificado();
+                    estadoCertificado.setEstudianteIdEstudiante(estudiante);
+                    estadoCertificado.setEstado("Pendiente");
+                    estadoCertificado.setArchivo("Archivo");
+                    estadoCertificado.setFechaEstado(new Date());
+
+                    // Asignar el certificado con id = 1 (predefinido)
+                    Certificado certificado = new Certificado();
+                    certificado.setIdCertificado(1L); // ID predefinido del certificado
+                    estadoCertificado.setCertificadoIdCertificado(certificado);
+
+                    estadoCertificadoService.save(estadoCertificado);
+                }
+            }
+
             return new ResponseEntity<>(new MessageResponse("Respuesta registrada"), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @GetMapping
     public ResponseEntity<?> readAll() {
         try {

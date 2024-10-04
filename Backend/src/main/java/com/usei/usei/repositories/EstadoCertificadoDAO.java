@@ -9,7 +9,5 @@ import com.usei.usei.models.EstadoCertificado;
 @Repository
 public interface EstadoCertificadoDAO extends  JpaRepository<EstadoCertificado, Long> {
     Optional<EstadoCertificado> findByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante);
-
-
     
 }

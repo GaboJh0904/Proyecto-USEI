@@ -26,6 +26,12 @@ public class EstadoCertificadoBL implements EstadoCertificadoService{
     }
 
     @Override
+    public Optional<EstadoCertificado> findByEstudianteId(Long idEstudiante) {
+        return estadoCertificadoDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
+    }
+    
+
+    @Override
     @Transactional(readOnly = true)
     public Iterable<EstadoCertificado> findAll(){
         return estadoCertificadoDAO.findAll();
@@ -94,4 +100,6 @@ public class EstadoCertificadoBL implements EstadoCertificadoService{
         return estadoEncuestaDAO.findByEstado("Completado");
     }
 */
+
+
 }
