@@ -174,7 +174,7 @@ CREATE TABLE Noticias (
 -- Table: Opciones_Pregunta
 CREATE TABLE Opciones_Pregunta (
     id_opciones serial  NOT NULL,
-    opcion varchar(30)  NOT NULL,
+    opcion varchar(100)  NOT NULL,
     Pregunta_id_pregunta int  NOT NULL,
     CONSTRAINT Opciones_Pregunta_pk PRIMARY KEY (id_opciones)
 );
