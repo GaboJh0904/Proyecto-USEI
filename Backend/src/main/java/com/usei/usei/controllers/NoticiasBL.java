@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,29 +42,27 @@ public class NoticiasBL implements NoticiasService {
     }
 
     @Override
+    public Noticias save(Noticias newNoticias) {
+        return noticiasDAO.save(newNoticias);
+    }
+
+    @Override
     @Transactional
     public Noticias save(Noticias noticias, MultipartFile file) {
         try {
-            // Verifica si el archivo no está vacío
             if (file != null && !file.isEmpty()) {
-                // Ruta donde se almacenará la imagen
                 String directory = "src/main/resources/static/documents/imagenes/";
                 String fileName = file.getOriginalFilename();
 
-                // Guarda la imagen físicamente en la carpeta
                 Path filePath = Paths.get(directory, fileName);
                 Files.copy(file.getInputStream(), filePath);
 
-                // Guarda solo el nombre del archivo en la base de datos
                 noticias.setImg(fileName);
             }
-
-            // Asocia el usuario
             Usuario usuario = usuarioService.findById(noticias.getUsuarioIdUsuario().getIdUsuario())
                     .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: " + noticias.getUsuarioIdUsuario().getIdUsuario()));
             noticias.setUsuarioIdUsuario(usuario);
 
-            // Guarda la noticia en la base de datos
             return noticiasDAO.save(noticias);
 
         } catch (IOException e) {
@@ -101,6 +100,21 @@ public class NoticiasBL implements NoticiasService {
         } else {
             throw new RuntimeException("Noticia no encontrada con el id: " + id);
         }
+    }
+
+    @Override
+    public void delete(Long id) {
+        Optional<Noticias> noticia = noticiasDAO.findById(id);
+        if (noticia.isPresent()) {
+            noticiasDAO.deleteById(id);
+        } else {
+            throw new RuntimeException("La noticia con el ID " + id + " no existe.");
+        }
+    }
+
+    @Override
+    public List<Noticias> findByEstado(String estado) {
+        return noticiasDAO.findByEstado(estado);
     }
 }
 
