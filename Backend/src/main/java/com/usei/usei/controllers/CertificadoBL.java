@@ -109,7 +109,7 @@ public class CertificadoBL implements CertificadoService{
         EstadoCertificado estadoCertificado = estadoCertificadoDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante)
             .orElseThrow(() -> new RuntimeException("Estado de certificado no encontrado para el estudiante con ID: " + idEstudiante));
         
-        if (!"no enviado".equalsIgnoreCase(estadoCertificado.getEstado())) {
+        if (!"pendiente".equalsIgnoreCase(estadoCertificado.getEstado())) {
             System.out.println("No se puede enviar el certificado. Ya ha sido enviado anteriormente.");
             return;
         }

@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-10-01 17:37:48.31
+-- Last modification date: 2024-10-04 15:05:10.452
 
 -- tables
 -- Table: Certificado
@@ -225,104 +225,104 @@ CREATE TABLE Usuario (
 -- Reference: Certificado_Usuario (table: Certificado)
 ALTER TABLE Certificado ADD CONSTRAINT Certificado_Usuario
     FOREIGN KEY (Usuario_id_usuario)
-    REFERENCES Usuario (id_usuario)
-    NOT DEFERRABLE
+    REFERENCES Usuario (id_usuario)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Encuesta_Gestion_Encuesta (table: Encuesta_Gestion)
 ALTER TABLE Encuesta_Gestion ADD CONSTRAINT Encuesta_Gestion_Encuesta
     FOREIGN KEY (Encuesta_id_encuesta)
-    REFERENCES Encuesta (id_encuesta)
-    NOT DEFERRABLE
+    REFERENCES Encuesta (id_encuesta)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Encuesta_Gestion_Pregunta (table: Encuesta_Gestion)
 ALTER TABLE Encuesta_Gestion ADD CONSTRAINT Encuesta_Gestion_Pregunta
     FOREIGN KEY (Pregunta_id_pregunta)
-    REFERENCES Pregunta (id_pregunta)
-    NOT DEFERRABLE
+    REFERENCES Pregunta (id_pregunta)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Encuesta_Usuario (table: Encuesta)
 ALTER TABLE Encuesta ADD CONSTRAINT Encuesta_Usuario
     FOREIGN KEY (Usuario_id_usuario)
-    REFERENCES Usuario (id_usuario)
-    NOT DEFERRABLE
+    REFERENCES Usuario (id_usuario)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Estado_Certificado_Certificado (table: Estado_Certificado)
 ALTER TABLE Estado_Certificado ADD CONSTRAINT Estado_Certificado_Certificado
     FOREIGN KEY (Certificado_id_certificado)
-    REFERENCES Certificado (id_certificado)
-    NOT DEFERRABLE
+    REFERENCES Certificado (id_certificado)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Estado_Certificado_Estudiante (table: Estado_Certificado)
 ALTER TABLE Estado_Certificado ADD CONSTRAINT Estado_Certificado_Estudiante
     FOREIGN KEY (Estudiante_id_estudiante)
-    REFERENCES Estudiante (id_estudiante)
-    NOT DEFERRABLE
+    REFERENCES Estudiante (id_estudiante)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Estado_Encuesta_Encuesta (table: Estado_Encuesta)
 ALTER TABLE Estado_Encuesta ADD CONSTRAINT Estado_Encuesta_Encuesta
     FOREIGN KEY (Encuesta_id_encuesta)
-    REFERENCES Encuesta (id_encuesta)
-    NOT DEFERRABLE
+    REFERENCES Encuesta (id_encuesta)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Estado_Encuesta_Estudiante (table: Estado_Encuesta)
 ALTER TABLE Estado_Encuesta ADD CONSTRAINT Estado_Encuesta_Estudiante
     FOREIGN KEY (Estudiante_id_estudiante)
-    REFERENCES Estudiante (id_estudiante)
-    NOT DEFERRABLE
+    REFERENCES Estudiante (id_estudiante)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Noticias_Usuario (table: Noticias)
 ALTER TABLE Noticias ADD CONSTRAINT Noticias_Usuario
     FOREIGN KEY (Usuario_id_usuario)
-    REFERENCES Usuario (id_usuario)
-    NOT DEFERRABLE
+    REFERENCES Usuario (id_usuario)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Opciones_Pregunta_Pregunta (table: Opciones_Pregunta)
 ALTER TABLE Opciones_Pregunta ADD CONSTRAINT Opciones_Pregunta_Pregunta
     FOREIGN KEY (Pregunta_id_pregunta)
-    REFERENCES Pregunta (id_pregunta)
-    NOT DEFERRABLE
+    REFERENCES Pregunta (id_pregunta)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Reporte_Usuario (table: Reporte)
 ALTER TABLE Reporte ADD CONSTRAINT Reporte_Usuario
     FOREIGN KEY (Usuario_id_usuario)
-    REFERENCES Usuario (id_usuario)
-    NOT DEFERRABLE
+    REFERENCES Usuario (id_usuario)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Respuesta_Estudiante (table: Respuesta)
 ALTER TABLE Respuesta ADD CONSTRAINT Respuesta_Estudiante
     FOREIGN KEY (Estudiante_id_estudiante)
-    REFERENCES Estudiante (id_estudiante)
-    NOT DEFERRABLE
+    REFERENCES Estudiante (id_estudiante)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
 -- Reference: Respuesta_Pregunta (table: Respuesta)
 ALTER TABLE Respuesta ADD CONSTRAINT Respuesta_Pregunta
     FOREIGN KEY (Pregunta_id_pregunta)
-    REFERENCES Pregunta (id_pregunta)
-    NOT DEFERRABLE
+    REFERENCES Pregunta (id_pregunta)  
+    NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
 
