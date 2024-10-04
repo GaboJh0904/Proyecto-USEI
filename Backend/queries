@@ -9030,15 +9030,15 @@ VALUES (6, 'Edad:', 'Numerico', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
 VALUES (7, 'Sexo:', 'Seleccion', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
-VALUES (8, 'Teléfono fijo:', 'Texto', 'ACTIVO');
+VALUES (8, 'Teléfono fijo:', 'Numerico', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
-VALUES (9, 'Teléfono móvil:', 'Texto', 'ACTIVO');
+VALUES (9, 'Teléfono móvil:', 'Numerico', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
 VALUES (10, 'Correo electrónico personal:', 'Texto', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
 VALUES (11, 'Ciudad de nacimiento:', 'Texto', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
-VALUES (12, 'Número de cédula o documento de identidad:', 'Texto', 'ACTIVO');
+VALUES (12, 'Número de cédula o documento de identidad:', 'Numerico', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
 VALUES (13, 'Ciudad de residencia:', 'Texto', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
@@ -9050,7 +9050,7 @@ VALUES (16, 'Indique el nivel de educación más alto alcanzado por su padre.', 
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
 VALUES (17, 'Indique el nivel de educación más alto alcanzado por su madre.', 'Seleccion', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
-VALUES (18, 'Indique si tienen alguna de las siguientes limitaciones permanentes.', 'Múltiple', 'ACTIVO');
+VALUES (18, 'Indique si tienen alguna de las siguientes limitaciones permanentes.', 'Multiple', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
 VALUES (19, 'Indique el principal motivo que influyó en la elección de su carrera.', 'Seleccion', 'ACTIVO');
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
@@ -14287,3 +14287,3034 @@ VALUES (520, '¿Prefieres las vacaciones en la playa o en el campo?', 'Seleccion
 -- Opciones para Pregunta 520
 INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
 VALUES ('Playa', 520), ('Campo', 520);
+
+-- Pregunta 521: ¿Te gustan los deportes de invierno?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (521, '¿Te gustan los deportes de invierno?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 521
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 521), ('No', 521);
+
+-- Pregunta 522: ¿Prefieres los días soleados o lluviosos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (522, '¿Prefieres los días soleados o lluviosos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 522
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Soleados', 522), ('Lluviosos', 522);
+
+-- Pregunta 523: ¿Te gusta la comida mexicana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (523, '¿Te gusta la comida mexicana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 523
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 523), ('No', 523);
+
+-- Pregunta 524: ¿Prefieres los libros o las películas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (524, '¿Prefieres los libros o las películas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 524
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Libros', 524), ('Películas', 524);
+
+-- Pregunta 525: ¿Te gustan las películas de acción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (525, '¿Te gustan las películas de acción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 525
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 525), ('No', 525);
+
+-- Pregunta 526: ¿Prefieres los deportes de equipo o individuales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (526, '¿Prefieres los deportes de equipo o individuales?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 526
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Equipo', 526), ('Individuales', 526);
+
+-- Pregunta 527: ¿Te gusta viajar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (527, '¿Te gusta viajar?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 527
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 527), ('No', 527);
+
+-- Pregunta 528: ¿Prefieres el café o el té?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (528, '¿Prefieres el café o el té?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 528
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Café', 528), ('Té', 528);
+
+-- Pregunta 529: ¿Te gusta el arte moderno?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (529, '¿Te gusta el arte moderno?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 529
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 529), ('No', 529);
+
+-- Pregunta 530: ¿Prefieres las vacaciones en la playa o en el campo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (530, '¿Prefieres las vacaciones en la playa o en el campo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 530
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Playa', 530), ('Campo', 530);
+
+-- Pregunta 531: ¿Te gustan los deportes acuáticos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (531, '¿Te gustan los deportes acuáticos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 531
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 531), ('No', 531);
+
+-- Pregunta 532: ¿Prefieres las series o las películas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (532, '¿Prefieres las series o las películas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 532
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Series', 532), ('Películas', 532);
+
+-- Pregunta 533: ¿Te gusta la música rock?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (533, '¿Te gusta la música rock?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 533
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 533), ('No', 533);
+
+-- Pregunta 534: ¿Prefieres las películas de terror o comedia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (534, '¿Prefieres las películas de terror o comedia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 534
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Terror', 534), ('Comedia', 534);
+
+-- Pregunta 535: ¿Te gusta viajar en avión?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (535, '¿Te gusta viajar en avión?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 535
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 535), ('No', 535);
+
+-- Pregunta 536: ¿Prefieres los deportes en interiores o exteriores?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (536, '¿Prefieres los deportes en interiores o exteriores?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 536
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Interiores', 536), ('Exteriores', 536);
+
+-- Pregunta 537: ¿Te gustan los días soleados?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (537, '¿Te gustan los días soleados?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 537
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 537), ('No', 537);
+
+-- Pregunta 538: ¿Prefieres la música clásica o moderna?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (538, '¿Prefieres la música clásica o moderna?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 538
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Clásica', 538), ('Moderna', 538);
+
+-- Pregunta 539: ¿Te gusta la comida rápida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (539, '¿Te gusta la comida rápida?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 539
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 539), ('No', 539);
+
+-- Pregunta 540: ¿Prefieres el cine o el teatro?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (540, '¿Prefieres el cine o el teatro?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 540
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Cine', 540), ('Teatro', 540);
+
+-- Pregunta 541: ¿Te gustan los deportes de equipo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (541, '¿Te gustan los deportes de equipo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 541
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 541), ('No', 541);
+
+-- Pregunta 542: ¿Prefieres el mar o la montaña?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (542, '¿Prefieres el mar o la montaña?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 542
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Mar', 542), ('Montaña', 542);
+
+-- Pregunta 543: ¿Te gusta el arte contemporáneo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (543, '¿Te gusta el arte contemporáneo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 543
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 543), ('No', 543);
+
+-- Pregunta 544: ¿Prefieres la comida dulce o salada?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (544, '¿Prefieres la comida dulce o salada?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 544
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Dulce', 544), ('Salada', 544);
+
+-- Pregunta 545: ¿Te gustan los deportes extremos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (545, '¿Te gustan los deportes extremos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 545
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 545), ('No', 545);
+
+-- Pregunta 546: ¿Prefieres las series o las películas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (546, '¿Prefieres las series o las películas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 546
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Series', 546), ('Películas', 546);
+
+-- Pregunta 547: ¿Te gusta la música jazz?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (547, '¿Te gusta la música jazz?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 547
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 547), ('No', 547);
+
+-- Pregunta 548: ¿Prefieres los deportes de invierno o verano?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (548, '¿Prefieres los deportes de invierno o verano?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 548
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Invierno', 548), ('Verano', 548);
+
+-- Pregunta 549: ¿Te gusta el cine de ciencia ficción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (549, '¿Te gusta el cine de ciencia ficción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 549
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 549), ('No', 549);
+
+-- Pregunta 550: ¿Prefieres la comida italiana o mexicana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (550, '¿Prefieres la comida italiana o mexicana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 550
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Italiana', 550), ('Mexicana', 550);
+
+-- Pregunta 551: ¿Te gustan los libros de ficción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (551, '¿Te gustan los libros de ficción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 551
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 551), ('No', 551);
+
+-- Pregunta 552: ¿Prefieres los deportes acuáticos o terrestres?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (552, '¿Prefieres los deportes acuáticos o terrestres?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 552
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Acuáticos', 552), ('Terrestres', 552);
+
+-- Pregunta 553: ¿Te gusta el cine de aventuras?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (553, '¿Te gusta el cine de aventuras?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 553
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 553), ('No', 553);
+
+-- Pregunta 554: ¿Prefieres el café con leche o sin leche?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (554, '¿Prefieres el café con leche o sin leche?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 554
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Con leche', 554), ('Sin leche', 554);
+
+-- Pregunta 555: ¿Te gusta la música clásica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (555, '¿Te gusta la música clásica?', 'Texto', 'INACTIVO');
+
+-- Pregunta 556: ¿Prefieres el cine o la televisión?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (556, '¿Prefieres el cine o la televisión?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 556
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Cine', 556), ('Televisión', 556);
+
+-- Pregunta 557: ¿Te gustan las actividades al aire libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (557, '¿Te gustan las actividades al aire libre?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 557
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 557), ('No', 557);
+
+-- Pregunta 558: ¿Prefieres los deportes de contacto o sin contacto?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (558, '¿Prefieres los deportes de contacto o sin contacto?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 558
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Con contacto', 558), ('Sin contacto', 558);
+
+-- Pregunta 559: ¿Te gusta el arte clásico?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (559, '¿Te gusta el arte clásico?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 559
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 559), ('No', 559);
+
+-- Pregunta 560: ¿Prefieres las películas de acción o de drama?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (560, '¿Prefieres las películas de acción o de drama?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 560
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Acción', 560), ('Drama', 560);
+
+-- Pregunta 561: ¿Te gusta viajar en tren?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (561, '¿Te gusta viajar en tren?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 561
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 561), ('No', 561);
+
+-- Pregunta 562: ¿Prefieres el teatro o los conciertos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (562, '¿Prefieres el teatro o los conciertos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 562
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Teatro', 562), ('Conciertos', 562);
+
+-- Pregunta 563: ¿Te gusta la comida vegetariana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (563, '¿Te gusta la comida vegetariana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 563
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 563), ('No', 563);
+
+-- Pregunta 564: ¿Prefieres los deportes de invierno o de verano?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (564, '¿Prefieres los deportes de invierno o de verano?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 564
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Invierno', 564), ('Verano', 564);
+
+-- Pregunta 565: ¿Te gusta la música en vivo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (565, '¿Te gusta la música en vivo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 565
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 565), ('No', 565);
+
+-- Pregunta 566: ¿Prefieres las series cortas o largas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (566, '¿Prefieres las series cortas o largas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 566
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Cortas', 566), ('Largas', 566);
+
+-- Pregunta 567: ¿Te gusta el cine independiente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (567, '¿Te gusta el cine independiente?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 567
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 567), ('No', 567);
+
+-- Pregunta 568: ¿Prefieres los días fríos o calurosos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (568, '¿Prefieres los días fríos o calurosos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 568
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Fríos', 568), ('Calurosos', 568);
+
+-- Pregunta 569: ¿Te gusta la música electrónica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (569, '¿Te gusta la música electrónica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 569
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 569), ('No', 569);
+
+-- Pregunta 570: ¿Prefieres las vacaciones en la ciudad o en la naturaleza?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (570, '¿Prefieres las vacaciones en la ciudad o en la naturaleza?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 570
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciudad', 570), ('Naturaleza', 570);
+
+-- Pregunta 571: ¿Te gustan los deportes de equipo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (571, '¿Te gustan los deportes de equipo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 571
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 571), ('No', 571);
+
+-- Pregunta 572: ¿Prefieres el cine de ciencia ficción o de fantasía?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (572, '¿Prefieres el cine de ciencia ficción o de fantasía?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 572
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciencia ficción', 572), ('Fantasía', 572);
+
+-- Pregunta 573: ¿Te gusta el arte moderno?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (573, '¿Te gusta el arte moderno?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 573
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 573), ('No', 573);
+
+-- Pregunta 574: ¿Prefieres los colores cálidos o fríos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (574, '¿Prefieres los colores cálidos o fríos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 574
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Cálidos', 574), ('Fríos', 574);
+
+-- Pregunta 575: ¿Te gusta la música rock?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (575, '¿Te gusta la música rock?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 575
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 575), ('No', 575);
+
+-- Pregunta 576: ¿Prefieres las series de comedia o de drama?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (576, '¿Prefieres las series de comedia o de drama?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 576
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Comedia', 576), ('Drama', 576);
+
+-- Pregunta 577: ¿Te gusta la comida rápida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (577, '¿Te gusta la comida rápida?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 577
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 577), ('No', 577);
+
+-- Pregunta 578: ¿Prefieres los deportes de aventura o los acuáticos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (578, '¿Prefieres los deportes de aventura o los acuáticos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 578
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Aventura', 578), ('Acuáticos', 578);
+
+-- Pregunta 579: ¿Te gusta la música clásica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (579, '¿Te gusta la música clásica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 579
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 579), ('No', 579);
+
+-- Pregunta 580: ¿Prefieres el café o el chocolate caliente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (580, '¿Prefieres el café o el chocolate caliente?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 580
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Café', 580), ('Chocolate caliente', 580);
+
+-- Pregunta 581: ¿Te gustan los libros de ciencia ficción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (581, '¿Te gustan los libros de ciencia ficción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 581
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 581), ('No', 581);
+
+-- Pregunta 582: ¿Prefieres las películas dobladas o subtituladas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (582, '¿Prefieres las películas dobladas o subtituladas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 582
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Dobladas', 582), ('Subtituladas', 582);
+
+-- Pregunta 583: ¿Te gustan los deportes al aire libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (583, '¿Te gustan los deportes al aire libre?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 583
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 583), ('No', 583);
+
+-- Pregunta 584: ¿Prefieres los libros físicos o digitales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (584, '¿Prefieres los libros físicos o digitales?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 584
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Físicos', 584), ('Digitales', 584);
+
+-- Pregunta 585: ¿Te gusta el arte abstracto?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (585, '¿Te gusta el arte abstracto?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 585
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 585), ('No', 585);
+
+-- Pregunta 586: ¿Prefieres las montañas o la playa?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (586, '¿Prefieres las montañas o la playa?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 586
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Montañas', 586), ('Playa', 586);
+
+-- Pregunta 587: ¿Te gusta la comida asiática?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (587, '¿Te gusta la comida asiática?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 587
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 587), ('No', 587);
+
+-- Pregunta 588: ¿Prefieres los deportes de aventura o los extremos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (588, '¿Prefieres los deportes de aventura o los extremos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 588
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Aventura', 588), ('Extremos', 588);
+
+-- Pregunta 589: ¿Te gusta el cine de comedia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (589, '¿Te gusta el cine de comedia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 589
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 589), ('No', 589);
+
+-- Pregunta 590: ¿Prefieres los deportes de interior o de exterior?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (590, '¿Prefieres los deportes de interior o de exterior?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 590
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Interior', 590), ('Exterior', 590);
+
+-- Pregunta 591: ¿Te gusta la música clásica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (591, '¿Te gusta la música clásica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 591
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 591), ('No', 591);
+
+-- Pregunta 592: ¿Prefieres el cine de fantasía o el de ciencia ficción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (592, '¿Prefieres el cine de fantasía o el de ciencia ficción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 592
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Fantasía', 592), ('Ciencia ficción', 592);
+
+-- Pregunta 593: ¿Te gusta el arte contemporáneo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (593, '¿Te gusta el arte contemporáneo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 593
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 593), ('No', 593);
+
+-- Pregunta 594: ¿Prefieres los días soleados o nublados?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (594, '¿Prefieres los días soleados o nublados?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 594
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Soleados', 594), ('Nublados', 594);
+
+-- Pregunta 595: ¿Te gustan los deportes extremos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (595, '¿Te gustan los deportes extremos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 595
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 595), ('No', 595);
+
+-- Pregunta 596: ¿Prefieres las actividades al aire libre o en interiores?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (596, '¿Prefieres las actividades al aire libre o en interiores?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 596
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Aire libre', 596), ('Interiores', 596);
+
+-- Pregunta 597: ¿Te gusta la comida italiana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (597, '¿Te gusta la comida italiana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 597
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 597), ('No', 597);
+
+-- Pregunta 598: ¿Prefieres los días calurosos o fríos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (598, '¿Prefieres los días calurosos o fríos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 598
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Calurosos', 598), ('Fríos', 598);
+
+-- Pregunta 599: ¿Te gusta el cine de terror?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (599, '¿Te gusta el cine de terror?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 599
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 599), ('No', 599);
+
+-- Pregunta 600: ¿Prefieres los deportes en equipo o individuales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (600, '¿Prefieres los deportes en equipo o individuales?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 600
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Equipo', 600), ('Individuales', 600);
+
+-- Pregunta 601: ¿Te gusta la música electrónica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (601, '¿Te gusta la música electrónica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 601
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 601), ('No', 601);
+
+-- Pregunta 602: ¿Prefieres las vacaciones en la playa o en la montaña?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (602, '¿Prefieres las vacaciones en la playa o en la montaña?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 602
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Playa', 602), ('Montaña', 602);
+
+-- Pregunta 603: ¿Te gustan las películas de acción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (603, '¿Te gustan las películas de acción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 603
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 603), ('No', 603);
+
+-- Pregunta 604: ¿Prefieres los colores oscuros o claros?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (604, '¿Prefieres los colores oscuros o claros?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 604
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Oscuros', 604), ('Claros', 604);
+
+-- Pregunta 605: ¿Te gusta la comida rápida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (605, '¿Te gusta la comida rápida?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 605
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 605), ('No', 605);
+
+-- Pregunta 606: ¿Prefieres los deportes al aire libre o en interiores?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (606, '¿Prefieres los deportes al aire libre o en interiores?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 606
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Aire libre', 606), ('Interiores', 606);
+
+-- Pregunta 607: ¿Te gusta la música rock?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (607, '¿Te gusta la música rock?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 607
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 607), ('No', 607);
+
+-- Pregunta 608: ¿Prefieres las películas de ciencia ficción o fantasía?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (608, '¿Prefieres las películas de ciencia ficción o fantasía?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 608
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciencia ficción', 608), ('Fantasía', 608);
+
+-- Pregunta 609: ¿Te gusta el arte contemporáneo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (609, '¿Te gusta el arte contemporáneo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 609
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 609), ('No', 609);
+
+-- Pregunta 610: ¿Prefieres los días soleados o nublados?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (610, '¿Prefieres los días soleados o nublados?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 610
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Soleados', 610), ('Nublados', 610);
+
+-- Pregunta 611: ¿Te gustan los deportes extremos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (611, '¿Te gustan los deportes extremos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 611
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 611), ('No', 611);
+
+-- Pregunta 612: ¿Prefieres los libros impresos o digitales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (612, '¿Prefieres los libros impresos o digitales?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 612
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Impresos', 612), ('Digitales', 612);
+
+-- Pregunta 613: ¿Te gusta el cine de ciencia ficción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (613, '¿Te gusta el cine de ciencia ficción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 613
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 613), ('No', 613);
+
+-- Pregunta 614: ¿Prefieres los deportes individuales o de equipo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (614, '¿Prefieres los deportes individuales o de equipo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 614
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Individuales', 614), ('Equipo', 614);
+
+-- Pregunta 615: ¿Te gusta la música clásica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (615, '¿Te gusta la música clásica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 615
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 615), ('No', 615);
+
+-- Pregunta 616: ¿Prefieres los deportes de invierno o verano?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (616, '¿Prefieres los deportes de invierno o verano?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 616
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Invierno', 616), ('Verano', 616);
+
+-- Pregunta 617: ¿Te gusta la comida rápida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (617, '¿Te gusta la comida rápida?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 617
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 617), ('No', 617);
+
+-- Pregunta 618: ¿Prefieres los deportes acuáticos o terrestres?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (618, '¿Prefieres los deportes acuáticos o terrestres?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 618
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Acuáticos', 618), ('Terrestres', 618);
+
+-- Pregunta 619: ¿Te gusta el arte clásico?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (619, '¿Te gusta el arte clásico?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 619
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 619), ('No', 619);
+
+-- Pregunta 620: ¿Prefieres las series de drama o de comedia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (620, '¿Prefieres las series de drama o de comedia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 620
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Drama', 620), ('Comedia', 620);
+
+-- Pregunta 621: ¿Te gustan los deportes de aventura?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (621, '¿Te gustan los deportes de aventura?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 621
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 621), ('No', 621);
+
+-- Pregunta 622: ¿Prefieres el café o el té?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (622, '¿Prefieres el café o el té?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 622
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Café', 622), ('Té', 622);
+
+-- Pregunta 623: ¿Te gusta la música clásica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (623, '¿Te gusta la música clásica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 623
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 623), ('No', 623);
+
+-- Pregunta 624: ¿Prefieres el cine de ciencia ficción o de aventuras?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (624, '¿Prefieres el cine de ciencia ficción o de aventuras?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 624
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciencia ficción', 624), ('Aventuras', 624);
+
+-- Pregunta 625: ¿Te gusta la comida vegetariana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (625, '¿Te gusta la comida vegetariana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 625
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 625), ('No', 625);
+
+-- Pregunta 626: ¿Prefieres los deportes en interiores o exteriores?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (626, '¿Prefieres los deportes en interiores o exteriores?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 626
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Interiores', 626), ('Exteriores', 626);
+
+-- Pregunta 627: ¿Te gusta la música jazz?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (627, '¿Te gusta la música jazz?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 627
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 627), ('No', 627);
+
+-- Pregunta 628: ¿Prefieres los días fríos o cálidos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (628, '¿Prefieres los días fríos o cálidos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 628
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Fríos', 628), ('Cálidos', 628);
+
+-- Pregunta 629: ¿Te gusta el cine de drama?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (629, '¿Te gusta el cine de drama?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 629
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 629), ('No', 629);
+
+-- Pregunta 630: ¿Prefieres los deportes de verano o invierno?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (630, '¿Prefieres los deportes de verano o invierno?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 630
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Verano', 630), ('Invierno', 630);
+-- Pregunta 631: ¿Te gusta la música electrónica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (631, '¿Te gusta la música electrónica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 631
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 631), ('No', 631);
+
+-- Pregunta 632: ¿Prefieres las vacaciones en la ciudad o en la playa?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (632, '¿Prefieres las vacaciones en la ciudad o en la playa?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 632
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciudad', 632), ('Playa', 632);
+
+-- Pregunta 633: ¿Te gusta el cine de comedia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (633, '¿Te gusta el cine de comedia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 633
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 633), ('No', 633);
+
+-- Pregunta 634: ¿Prefieres los deportes de aventura o los de equipo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (634, '¿Prefieres los deportes de aventura o los de equipo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 634
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Aventura', 634), ('Equipo', 634);
+
+-- Pregunta 635: ¿Te gusta la música clásica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (635, '¿Te gusta la música clásica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 635
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 635), ('No', 635);
+
+-- Pregunta 636: ¿Prefieres el café o el té verde?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (636, '¿Prefieres el café o el té verde?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 636
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Café', 636), ('Té verde', 636);
+
+-- Pregunta 637: ¿Te gusta el arte moderno?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (637, '¿Te gusta el arte moderno?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 637
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 637), ('No', 637);
+
+-- Pregunta 638: ¿Prefieres las montañas o el mar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (638, '¿Prefieres las montañas o el mar?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 638
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Montañas', 638), ('Mar', 638);
+
+-- Pregunta 639: ¿Te gustan los deportes extremos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (639, '¿Te gustan los deportes extremos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 639
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 639), ('No', 639);
+
+-- Pregunta 640: ¿Prefieres los días soleados o lluviosos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (640, '¿Prefieres los días soleados o lluviosos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 640
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Soleados', 640), ('Lluviosos', 640);
+
+-- Pregunta 641: ¿Te gusta la comida mexicana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (641, '¿Te gusta la comida mexicana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 641
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 641), ('No', 641);
+
+-- Pregunta 642: ¿Prefieres los deportes acuáticos o de aventura?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (642, '¿Prefieres los deportes acuáticos o de aventura?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 642
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Acuáticos', 642), ('Aventura', 642);
+
+-- Pregunta 643: ¿Te gusta la música en vivo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (643, '¿Te gusta la música en vivo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 643
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 643), ('No', 643);
+
+-- Pregunta 644: ¿Prefieres las series de comedia o de acción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (644, '¿Prefieres las series de comedia o de acción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 644
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Comedia', 644), ('Acción', 644);
+
+-- Pregunta 645: ¿Te gusta la comida rápida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (645, '¿Te gusta la comida rápida?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 645
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 645), ('No', 645);
+
+-- Pregunta 646: ¿Prefieres los deportes de interior o de exterior?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (646, '¿Prefieres los deportes de interior o de exterior?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 646
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Interior', 646), ('Exterior', 646);
+
+-- Pregunta 647: ¿Te gusta el cine de aventuras?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (647, '¿Te gusta el cine de aventuras?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 647
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 647), ('No', 647);
+
+-- Pregunta 648: ¿Prefieres los colores oscuros o brillantes?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (648, '¿Prefieres los colores oscuros o brillantes?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 648
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Oscuros', 648), ('Brillantes', 648);
+
+-- Pregunta 649: ¿Te gusta la música clásica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (649, '¿Te gusta la música clásica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 649
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 649), ('No', 649);
+
+-- Pregunta 650: ¿Prefieres las películas dobladas o subtituladas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (650, '¿Prefieres las películas dobladas o subtituladas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 650
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Dobladas', 650), ('Subtituladas', 650);
+
+-- Pregunta 651: ¿Te gusta el cine de ciencia ficción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (651, '¿Te gusta el cine de ciencia ficción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 651
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 651), ('No', 651);
+
+-- Pregunta 652: ¿Prefieres las actividades al aire libre o en interiores?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (652, '¿Prefieres las actividades al aire libre o en interiores?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 652
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Aire libre', 652), ('Interiores', 652);
+
+-- Pregunta 653: ¿Te gusta la comida italiana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (653, '¿Te gusta la comida italiana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 653
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 653), ('No', 653);
+
+-- Pregunta 654: ¿Prefieres las series largas o cortas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (654, '¿Prefieres las series largas o cortas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 654
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Largas', 654), ('Cortas', 654);
+
+-- Pregunta 655: ¿Te gustan los deportes acuáticos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (655, '¿Te gustan los deportes acuáticos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 655
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 655), ('No', 655);
+
+-- Pregunta 656: ¿Prefieres el café con leche o sin leche?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (656, '¿Prefieres el café con leche o sin leche?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 656
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Con leche', 656), ('Sin leche', 656);
+
+-- Pregunta 657: ¿Te gusta la música jazz?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (657, '¿Te gusta la música jazz?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 657
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 657), ('No', 657);
+
+-- Pregunta 658: ¿Prefieres las montañas o la playa?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (658, '¿Prefieres las montañas o la playa?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 658
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Montañas', 658), ('Playa', 658);
+
+-- Pregunta 659: ¿Te gustan los deportes de invierno?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (659, '¿Te gustan los deportes de invierno?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 659
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 659), ('No', 659);
+
+-- Pregunta 660: ¿Prefieres los colores claros o oscuros?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (660, '¿Prefieres los colores claros o oscuros?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 660
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Claros', 660), ('Oscuros', 660);
+
+-- Pregunta 661: ¿Te gusta la comida vegetariana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (661, '¿Te gusta la comida vegetariana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 661
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 661), ('No', 661);
+
+-- Pregunta 662: ¿Prefieres los deportes en equipo o individuales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (662, '¿Prefieres los deportes en equipo o individuales?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 662
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Equipo', 662), ('Individuales', 662);
+
+-- Pregunta 663: ¿Te gusta el cine de fantasía?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (663, '¿Te gusta el cine de fantasía?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 663
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 663), ('No', 663);
+
+-- Pregunta 664: ¿Prefieres las películas de acción o de drama?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (664, '¿Prefieres las películas de acción o de drama?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 664
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Acción', 664), ('Drama', 664);
+
+-- Pregunta 665: ¿Te gusta la música electrónica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (665, '¿Te gusta la música electrónica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 665
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 665), ('No', 665);
+
+-- Pregunta 666: ¿Prefieres los deportes acuáticos o terrestres?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (666, '¿Prefieres los deportes acuáticos o terrestres?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 666
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Acuáticos', 666), ('Terrestres', 666);
+
+-- Pregunta 667: ¿Te gusta la comida rápida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (667, '¿Te gusta la comida rápida?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 667
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 667), ('No', 667);
+
+-- Pregunta 668: ¿Prefieres las series de drama o de comedia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (668, '¿Prefieres las series de drama o de comedia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 668
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Drama', 668), ('Comedia', 668);
+
+-- Pregunta 669: ¿Te gusta el arte abstracto?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (669, '¿Te gusta el arte abstracto?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 669
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 669), ('No', 669);
+
+-- Pregunta 670: ¿Prefieres los días fríos o cálidos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (670, '¿Prefieres los días fríos o cálidos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 670
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Fríos', 670), ('Cálidos', 670);
+
+-- Pregunta 671: ¿Te gusta la comida asiática?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (671, '¿Te gusta la comida asiática?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 671
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 671), ('No', 671);
+
+-- Pregunta 672: ¿Prefieres los deportes extremos o de aventura?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (672, '¿Prefieres los deportes extremos o de aventura?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 672
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Extremos', 672), ('Aventura', 672);
+
+-- Pregunta 673: ¿Te gusta la música en vivo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (673, '¿Te gusta la música en vivo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 673
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 673), ('No', 673);
+
+-- Pregunta 674: ¿Prefieres el café o el té helado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (674, '¿Prefieres el café o el té helado?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 674
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Café', 674), ('Té helado', 674);
+
+-- Pregunta 675: ¿Te gusta el arte clásico?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (675, '¿Te gusta el arte clásico?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 675
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 675), ('No', 675);
+
+-- Pregunta 676: ¿Prefieres las vacaciones en la ciudad o en el campo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (676, '¿Prefieres las vacaciones en la ciudad o en el campo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 676
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciudad', 676), ('Campo', 676);
+
+-- Pregunta 677: ¿Te gusta el cine de acción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (677, '¿Te gusta el cine de acción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 677
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 677), ('No', 677);
+
+-- Pregunta 678: ¿Prefieres los deportes de invierno o de verano?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (678, '¿Prefieres los deportes de invierno o de verano?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 678
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Invierno', 678), ('Verano', 678);
+
+-- Pregunta 679: ¿Te gusta la comida italiana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (679, '¿Te gusta la comida italiana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 679
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 679), ('No', 679);
+
+-- Pregunta 680: ¿Prefieres las películas de drama o de comedia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (680, '¿Prefieres las películas de drama o de comedia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 680
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Drama', 680), ('Comedia', 680);
+
+-- Pregunta 681: ¿Te gusta la música clásica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (681, '¿Te gusta la música clásica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 681
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 681), ('No', 681);
+
+-- Pregunta 682: ¿Prefieres las series largas o cortas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (682, '¿Prefieres las series largas o cortas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 682
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Largas', 682), ('Cortas', 682);
+
+-- Pregunta 683: ¿Te gustan los deportes de aventura?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (683, '¿Te gustan los deportes de aventura?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 683
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 683), ('No', 683);
+
+-- Pregunta 684: ¿Prefieres las vacaciones en la ciudad o en la naturaleza?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (684, '¿Prefieres las vacaciones en la ciudad o en la naturaleza?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 684
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciudad', 684), ('Naturaleza', 684);
+
+-- Pregunta 685: ¿Te gusta la comida mexicana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (685, '¿Te gusta la comida mexicana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 685
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 685), ('No', 685);
+
+-- Pregunta 686: ¿Prefieres los deportes de interior o exterior?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (686, '¿Prefieres los deportes de interior o exterior?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 686
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Interior', 686), ('Exterior', 686);
+
+-- Pregunta 687: ¿Te gusta la música jazz?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (687, '¿Te gusta la música jazz?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 687
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 687), ('No', 687);
+
+-- Pregunta 688: ¿Prefieres las series de ciencia ficción o de drama?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (688, '¿Prefieres las series de ciencia ficción o de drama?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 688
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciencia ficción', 688), ('Drama', 688);
+
+-- Pregunta 689: ¿Te gustan los deportes extremos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (689, '¿Te gustan los deportes extremos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 689
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 689), ('No', 689);
+
+-- Pregunta 690: ¿Prefieres el cine de ciencia ficción o de fantasía?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (690, '¿Prefieres el cine de ciencia ficción o de fantasía?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 690
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciencia ficción', 690), ('Fantasía', 690);
+
+-- Pregunta 691: ¿Te gusta la comida rápida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (691, '¿Te gusta la comida rápida?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 691
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 691), ('No', 691);
+
+-- Pregunta 692: ¿Prefieres las series de comedia o de acción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (692, '¿Prefieres las series de comedia o de acción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 692
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Comedia', 692), ('Acción', 692);
+
+-- Pregunta 693: ¿Te gusta el arte moderno?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (693, '¿Te gusta el arte moderno?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 693
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 693), ('No', 693);
+
+-- Pregunta 694: ¿Prefieres el café o el chocolate caliente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (694, '¿Prefieres el café o el chocolate caliente?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 694
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Café', 694), ('Chocolate caliente', 694);
+
+-- Pregunta 695: ¿Te gustan los deportes acuáticos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (695, '¿Te gustan los deportes acuáticos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 695
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 695), ('No', 695);
+
+-- Pregunta 696: ¿Prefieres las películas dobladas o subtituladas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (696, '¿Prefieres las películas dobladas o subtituladas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 696
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Dobladas', 696), ('Subtituladas', 696);
+
+-- Pregunta 697: ¿Te gusta la comida vegetariana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (697, '¿Te gusta la comida vegetariana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 697
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 697), ('No', 697);
+
+-- Pregunta 698: ¿Prefieres las series de drama o de comedia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (698, '¿Prefieres las series de drama o de comedia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 698
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Drama', 698), ('Comedia', 698);
+
+-- Pregunta 699: ¿Te gusta el cine de aventuras?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (699, '¿Te gusta el cine de aventuras?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 699
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 699), ('No', 699);
+
+-- Pregunta 700: ¿Prefieres los deportes extremos o de equipo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (700, '¿Prefieres los deportes extremos o de equipo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 700
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Extremos', 700), ('Equipo', 700);
+-- Pregunta 701: ¿Cuál es tu nombre completo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (701, '¿Cuál es tu nombre completo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 702: ¿Cuál es tu dirección actual?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (702, '¿Cuál es tu dirección actual?', 'Texto', 'INACTIVO');
+
+-- Pregunta 703: ¿Cuál es tu número de teléfono?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (703, '¿Cuál es tu número de teléfono?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 704: ¿Cuál es tu número de identificación?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (704, '¿Cuál es tu número de identificación?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 705: ¿Cuál es tu correo electrónico personal?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (705, '¿Cuál es tu correo electrónico personal?', 'Texto', 'INACTIVO');
+
+-- Pregunta 706: ¿Cuál es tu fecha de nacimiento?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (706, '¿Cuál es tu fecha de nacimiento?', 'Texto', 'INACTIVO');
+
+-- Pregunta 707: ¿Qué idiomas hablas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (707, '¿Qué idiomas hablas?', 'Texto', 'INACTIVO');
+
+-- Pregunta 708: ¿Qué carrera estudiaste en la universidad?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (708, '¿Qué carrera estudiaste en la universidad?', 'Texto', 'INACTIVO');
+
+-- Pregunta 709: ¿Cuál es tu experiencia laboral?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (709, '¿Cuál es tu experiencia laboral?', 'Texto', 'INACTIVO');
+
+-- Pregunta 710: ¿Cuántos hijos tienes?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (710, '¿Cuántos hijos tienes?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 711: ¿Cuál es tu estado civil?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (711, '¿Cuál es tu estado civil?', 'Texto', 'INACTIVO');
+
+-- Pregunta 712: ¿Cuál es el nombre de tu empresa actual?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (712, '¿Cuál es el nombre de tu empresa actual?', 'Texto', 'INACTIVO');
+
+-- Pregunta 713: ¿Cuántos años de experiencia tienes en tu campo profesional?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (713, '¿Cuántos años de experiencia tienes en tu campo profesional?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 714: ¿Cuántas horas a la semana trabajas actualmente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (714, '¿Cuántas horas a la semana trabajas actualmente?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 715: ¿Cuántos países has visitado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (715, '¿Cuántos países has visitado?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 716: ¿Cuál es tu comida favorita?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (716, '¿Cuál es tu comida favorita?', 'Texto', 'INACTIVO');
+
+-- Pregunta 717: ¿Cuál es tu película favorita?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (717, '¿Cuál es tu película favorita?', 'Texto', 'INACTIVO');
+
+-- Pregunta 718: ¿Cuál es tu libro favorito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (718, '¿Cuál es tu libro favorito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 719: ¿Cuál es tu deporte favorito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (719, '¿Cuál es tu deporte favorito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 720: ¿Cuáles son tus pasatiempos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (720, '¿Cuáles son tus pasatiempos?', 'Texto', 'INACTIVO');
+
+-- Pregunta 721: ¿Qué programas de televisión ves habitualmente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (721, '¿Qué programas de televisión ves habitualmente?', 'Texto', 'INACTIVO');
+
+-- Pregunta 722: ¿Cómo describirías tu personalidad?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (722, '¿Cómo describirías tu personalidad?', 'Texto', 'INACTIVO');
+
+-- Pregunta 723: ¿Qué metas personales tienes para los próximos 5 años?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (723, '¿Qué metas personales tienes para los próximos 5 años?', 'Texto', 'INACTIVO');
+
+-- Pregunta 724: ¿Qué es lo más importante para ti en la vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (724, '¿Qué es lo más importante para ti en la vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 725: ¿Qué talentos especiales tienes?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (725, '¿Qué talentos especiales tienes?', 'Texto', 'INACTIVO');
+
+-- Pregunta 726: ¿Cuál es el lugar más interesante que has visitado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (726, '¿Cuál es el lugar más interesante que has visitado?', 'Texto', 'INACTIVO');
+
+-- Pregunta 727: ¿Cuál es tu mayor logro personal?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (727, '¿Cuál es tu mayor logro personal?', 'Texto', 'INACTIVO');
+
+-- Pregunta 728: ¿Cómo te ves dentro de 10 años?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (728, '¿Cómo te ves dentro de 10 años?', 'Texto', 'INACTIVO');
+
+-- Pregunta 729: ¿Qué es lo que más valoras en una amistad?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (729, '¿Qué es lo que más valoras en una amistad?', 'Texto', 'INACTIVO');
+
+-- Pregunta 730: ¿Qué cualidades consideras importantes en una relación de pareja?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (730, '¿Qué cualidades consideras importantes en una relación de pareja?', 'Texto', 'INACTIVO');
+
+-- Pregunta 731: ¿Qué tipo de música prefieres escuchar cuando estás relajado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (731, '¿Qué tipo de música prefieres escuchar cuando estás relajado?', 'Texto', 'INACTIVO');
+
+-- Pregunta 732: ¿Qué harías si ganaras la lotería?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (732, '¿Qué harías si ganaras la lotería?', 'Texto', 'INACTIVO');
+
+-- Pregunta 733: ¿Cuál es tu animal favorito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (733, '¿Cuál es tu animal favorito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 734: ¿Qué haces para mantenerte en forma?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (734, '¿Qué haces para mantenerte en forma?', 'Texto', 'INACTIVO');
+
+-- Pregunta 735: ¿Cuál es tu mayor temor?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (735, '¿Cuál es tu mayor temor?', 'Texto', 'INACTIVO');
+
+-- Pregunta 736: ¿Qué harías si tuvieras superpoderes por un día?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (736, '¿Qué harías si tuvieras superpoderes por un día?', 'Texto', 'INACTIVO');
+
+-- Pregunta 737: ¿Cuál ha sido el momento más feliz de tu vida hasta ahora?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (737, '¿Cuál ha sido el momento más feliz de tu vida hasta ahora?', 'Texto', 'INACTIVO');
+
+-- Pregunta 738: ¿Qué tres cosas llevarías a una isla desierta?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (738, '¿Qué tres cosas llevarías a una isla desierta?', 'Texto', 'INACTIVO');
+
+-- Pregunta 739: ¿Cuál es el trabajo de tus sueños?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (739, '¿Cuál es el trabajo de tus sueños?', 'Texto', 'INACTIVO');
+
+-- Pregunta 740: ¿Qué cambiarías de ti mismo si pudieras?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (740, '¿Qué cambiarías de ti mismo si pudieras?', 'Texto', 'INACTIVO');
+
+-- Pregunta 741: ¿Qué te gustaría aprender en el futuro?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (741, '¿Qué te gustaría aprender en el futuro?', 'Texto', 'INACTIVO');
+
+-- Pregunta 742: ¿Qué harías si tuvieras más tiempo libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (742, '¿Qué harías si tuvieras más tiempo libre?', 'Texto', 'INACTIVO');
+
+-- Pregunta 743: ¿Qué consejo le darías a tu yo más joven?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (743, '¿Qué consejo le darías a tu yo más joven?', 'Texto', 'INACTIVO');
+
+-- Pregunta 744: ¿Cómo prefieres relajarte después de un día ajetreado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (744, '¿Cómo prefieres relajarte después de un día ajetreado?', 'Texto', 'INACTIVO');
+
+-- Pregunta 745: ¿Qué harías si fueras el presidente por un día?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (745, '¿Qué harías si fueras el presidente por un día?', 'Texto', 'INACTIVO');
+
+-- Pregunta 746: ¿Qué cambiarías en el mundo si pudieras?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (746, '¿Qué cambiarías en el mundo si pudieras?', 'Texto', 'INACTIVO');
+
+-- Pregunta 747: ¿Cuál es tu mayor motivación en la vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (747, '¿Cuál es tu mayor motivación en la vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 748: ¿Cómo definirías el éxito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (748, '¿Cómo definirías el éxito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 749: ¿Cómo te enfrentas a los desafíos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (749, '¿Cómo te enfrentas a los desafíos?', 'Texto', 'INACTIVO');
+
+-- Pregunta 750: ¿Qué te hace sentir orgulloso de ti mismo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (750, '¿Qué te hace sentir orgulloso de ti mismo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 751: ¿Qué te inspira a seguir adelante en los momentos difíciles?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (751, '¿Qué te inspira a seguir adelante en los momentos difíciles?', 'Texto', 'INACTIVO');
+
+-- Pregunta 752: ¿Qué hábito te gustaría cambiar en tu vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (752, '¿Qué hábito te gustaría cambiar en tu vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 753: ¿Cuál es tu principal meta para este año?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (753, '¿Cuál es tu principal meta para este año?', 'Texto', 'INACTIVO');
+
+-- Pregunta 754: ¿Qué actividad te relaja más?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (754, '¿Qué actividad te relaja más?', 'Texto', 'INACTIVO');
+
+-- Pregunta 755: ¿Qué te gustaría hacer cuando te jubiles?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (755, '¿Qué te gustaría hacer cuando te jubiles?', 'Texto', 'INACTIVO');
+
+-- Pregunta 756: ¿Qué es lo que más disfrutas de tu trabajo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (756, '¿Qué es lo que más disfrutas de tu trabajo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 757: ¿Qué harías si tuvieras el poder de cambiar la historia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (757, '¿Qué harías si tuvieras el poder de cambiar la historia?', 'Texto', 'INACTIVO');
+
+-- Pregunta 758: ¿Qué inventarías si tuvieras los recursos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (758, '¿Qué inventarías si tuvieras los recursos?', 'Texto', 'INACTIVO');
+
+-- Pregunta 759: ¿Qué profesión elegirías si tuvieras que empezar de nuevo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (759, '¿Qué profesión elegirías si tuvieras que empezar de nuevo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 760: ¿Qué crees que es lo más importante para llevar una vida feliz?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (760, '¿Qué crees que es lo más importante para llevar una vida feliz?', 'Texto', 'INACTIVO');
+
+-- Pregunta 761: ¿Qué consejos darías a alguien que recién empieza en tu carrera?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (761, '¿Qué consejos darías a alguien que recién empieza en tu carrera?', 'Texto', 'INACTIVO');
+
+-- Pregunta 762: ¿Cómo te mantienes motivado en tu día a día?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (762, '¿Cómo te mantienes motivado en tu día a día?', 'Texto', 'INACTIVO');
+
+-- Pregunta 763: ¿Qué habilidades crees que te hacen destacar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (763, '¿Qué habilidades crees que te hacen destacar?', 'Texto', 'INACTIVO');
+
+-- Pregunta 764: ¿Qué consideras que es lo más importante para tener éxito en la vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (764, '¿Qué consideras que es lo más importante para tener éxito en la vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 765: ¿Cuál es la lección más importante que has aprendido en tu vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (765, '¿Cuál es la lección más importante que has aprendido en tu vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 766: ¿Cómo defines la amistad?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (766, '¿Cómo defines la amistad?', 'Texto', 'INACTIVO');
+
+-- Pregunta 767: ¿Qué cambios te gustaría ver en el mundo en los próximos años?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (767, '¿Qué cambios te gustaría ver en el mundo en los próximos años?', 'Texto', 'INACTIVO');
+
+-- Pregunta 768: ¿Qué proyectos personales tienes en mente para el futuro?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (768, '¿Qué proyectos personales tienes en mente para el futuro?', 'Texto', 'INACTIVO');
+
+-- Pregunta 769: ¿Qué te gusta hacer en tu tiempo libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (769, '¿Qué te gusta hacer en tu tiempo libre?', 'Texto', 'INACTIVO');
+
+-- Pregunta 770: ¿Qué desafíos has superado recientemente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (770, '¿Qué desafíos has superado recientemente?', 'Texto', 'INACTIVO');
+
+-- Pregunta 771: ¿Qué valores consideras más importantes en la vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (771, '¿Qué valores consideras más importantes en la vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 772: ¿Cómo manejas el estrés?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (772, '¿Cómo manejas el estrés?', 'Texto', 'INACTIVO');
+
+-- Pregunta 773: ¿Cómo te gustaría ser recordado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (773, '¿Cómo te gustaría ser recordado?', 'Texto', 'INACTIVO');
+
+-- Pregunta 774: ¿Qué decisiones han cambiado tu vida de manera significativa?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (774, '¿Qué decisiones han cambiado tu vida de manera significativa?', 'Texto', 'INACTIVO');
+
+-- Pregunta 775: ¿Qué es lo más importante que te ha enseñado tu familia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (775, '¿Qué es lo más importante que te ha enseñado tu familia?', 'Texto', 'INACTIVO');
+
+-- Pregunta 776: ¿Qué te motiva a seguir adelante todos los días?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (776, '¿Qué te motiva a seguir adelante todos los días?', 'Texto', 'INACTIVO');
+
+-- Pregunta 777: ¿Qué te hace sentir más agradecido en la vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (777, '¿Qué te hace sentir más agradecido en la vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 778: ¿Cómo equilibras tu vida personal y profesional?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (778, '¿Cómo equilibras tu vida personal y profesional?', 'Texto', 'INACTIVO');
+
+-- Pregunta 779: ¿Qué es lo más importante que has aprendido sobre el trabajo en equipo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (779, '¿Qué es lo más importante que has aprendido sobre el trabajo en equipo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 780: ¿Cómo mantienes una actitud positiva en los momentos difíciles?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (780, '¿Cómo mantienes una actitud positiva en los momentos difíciles?', 'Texto', 'INACTIVO');
+
+-- Pregunta 781: ¿Cuál es tu mayor logro profesional?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (781, '¿Cuál es tu mayor logro profesional?', 'Texto', 'INACTIVO');
+
+-- Pregunta 782: ¿Qué aspectos de tu vida te gustaría mejorar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (782, '¿Qué aspectos de tu vida te gustaría mejorar?', 'Texto', 'INACTIVO');
+
+-- Pregunta 783: ¿Qué proyectos profesionales te gustaría realizar en el futuro?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (783, '¿Qué proyectos profesionales te gustaría realizar en el futuro?', 'Texto', 'INACTIVO');
+
+-- Pregunta 784: ¿Cómo manejas las críticas constructivas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (784, '¿Cómo manejas las críticas constructivas?', 'Texto', 'INACTIVO');
+
+-- Pregunta 785: ¿Cómo definirías el éxito personal?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (785, '¿Cómo definirías el éxito personal?', 'Texto', 'INACTIVO');
+
+-- Pregunta 786: ¿Qué te hace sentir realizado en tu vida personal y profesional?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (786, '¿Qué te hace sentir realizado en tu vida personal y profesional?', 'Texto', 'INACTIVO');
+
+-- Pregunta 787: ¿Qué cambios te gustaría hacer en tu vida a corto plazo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (787, '¿Qué cambios te gustaría hacer en tu vida a corto plazo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 788: ¿Qué valores consideras fundamentales para el éxito en los negocios?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (788, '¿Qué valores consideras fundamentales para el éxito en los negocios?', 'Texto', 'INACTIVO');
+
+-- Pregunta 789: ¿Qué desafíos consideras los más grandes en tu campo profesional?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (789, '¿Qué desafíos consideras los más grandes en tu campo profesional?', 'Texto', 'INACTIVO');
+
+-- Pregunta 790: ¿Qué crees que te hace destacar en tu trabajo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (790, '¿Qué crees que te hace destacar en tu trabajo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 791: ¿Qué estrategias usas para mantenerte enfocado en tus objetivos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (791, '¿Qué estrategias usas para mantenerte enfocado en tus objetivos?', 'Texto', 'INACTIVO');
+
+-- Pregunta 792: ¿Qué le dirías a alguien que está empezando en tu campo profesional?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (792, '¿Qué le dirías a alguien que está empezando en tu campo profesional?', 'Texto', 'INACTIVO');
+
+-- Pregunta 793: ¿Cómo gestionas tu tiempo para ser productivo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (793, '¿Cómo gestionas tu tiempo para ser productivo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 794: ¿Qué te gustaría cambiar en tu entorno laboral?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (794, '¿Qué te gustaría cambiar en tu entorno laboral?', 'Texto', 'INACTIVO');
+
+-- Pregunta 795: ¿Qué crees que se necesita para liderar con éxito un equipo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (795, '¿Qué crees que se necesita para liderar con éxito un equipo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 796: ¿Qué habilidades crees que necesitas mejorar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (796, '¿Qué habilidades crees que necesitas mejorar?', 'Texto', 'INACTIVO');
+
+-- Pregunta 797: ¿Cómo te mantienes actualizado en tu campo profesional?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (797, '¿Cómo te mantienes actualizado en tu campo profesional?', 'Texto', 'INACTIVO');
+
+-- Pregunta 798: ¿Qué importancia tiene la innovación en tu trabajo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (798, '¿Qué importancia tiene la innovación en tu trabajo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 799: ¿Qué objetivos te gustaría alcanzar en tu carrera en los próximos años?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (799, '¿Qué objetivos te gustaría alcanzar en tu carrera en los próximos años?', 'Texto', 'INACTIVO');
+
+-- Pregunta 800: ¿Qué papel juega la creatividad en tu trabajo diario?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (800, '¿Qué papel juega la creatividad en tu trabajo diario?', 'Texto', 'INACTIVO');
+-- Pregunta 801: ¿Cuál es tu asignatura favorita?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (801, '¿Cuál es tu asignatura favorita?', 'Texto', 'INACTIVO');
+
+-- Pregunta 802: ¿Cuál es tu lugar de nacimiento?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (802, '¿Cuál es tu lugar de nacimiento?', 'Texto', 'INACTIVO');
+
+-- Pregunta 803: ¿Cuál es tu comida favorita?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (803, '¿Cuál es tu comida favorita?', 'Texto', 'INACTIVO');
+
+-- Pregunta 804: ¿Cuántas mascotas tienes?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (804, '¿Cuántas mascotas tienes?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 805: ¿Qué idiomas hablas con fluidez?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (805, '¿Qué idiomas hablas con fluidez?', 'Texto', 'INACTIVO');
+
+-- Pregunta 806: ¿Qué deportes practicas regularmente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (806, '¿Qué deportes practicas regularmente?', 'Texto', 'INACTIVO');
+
+-- Pregunta 807: ¿Cuál es tu pasatiempo favorito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (807, '¿Cuál es tu pasatiempo favorito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 808: ¿Cuántas horas duermes cada noche?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (808, '¿Cuántas horas duermes cada noche?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 809: ¿Cuál es tu grupo musical favorito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (809, '¿Cuál es tu grupo musical favorito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 810: ¿Cuál es tu bebida favorita?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (810, '¿Cuál es tu bebida favorita?', 'Texto', 'INACTIVO');
+
+-- Pregunta 811: ¿Cuántos hermanos tienes?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (811, '¿Cuántos hermanos tienes?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 812: ¿Cuántas horas dedicas al estudio cada semana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (812, '¿Cuántas horas dedicas al estudio cada semana?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 813: ¿Cómo es tu rutina de ejercicio?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (813, '¿Cómo es tu rutina de ejercicio?', 'Texto', 'INACTIVO');
+
+-- Pregunta 814: ¿Cuál es tu estación del año favorita?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (814, '¿Cuál es tu estación del año favorita?', 'Texto', 'INACTIVO');
+
+-- Pregunta 815: ¿Cuántas veces has viajado al extranjero?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (815, '¿Cuántas veces has viajado al extranjero?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 816: ¿Cuál es tu país favorito para visitar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (816, '¿Cuál es tu país favorito para visitar?', 'Texto', 'INACTIVO');
+
+-- Pregunta 817: ¿Qué película te ha dejado una gran impresión?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (817, '¿Qué película te ha dejado una gran impresión?', 'Texto', 'INACTIVO');
+
+-- Pregunta 818: ¿Qué género musical prefieres?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (818, '¿Qué género musical prefieres?', 'Texto', 'INACTIVO');
+
+-- Pregunta 819: ¿Qué hábito te gustaría cambiar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (819, '¿Qué hábito te gustaría cambiar?', 'Texto', 'INACTIVO');
+
+-- Pregunta 820: ¿Cuál es tu lugar soñado para vivir?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (820, '¿Cuál es tu lugar soñado para vivir?', 'Texto', 'INACTIVO');
+
+-- Pregunta 821: ¿Cuántos libros lees al año?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (821, '¿Cuántos libros lees al año?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 822: ¿Cuántas horas trabajas al día?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (822, '¿Cuántas horas trabajas al día?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 823: ¿Qué tipo de arte prefieres?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (823, '¿Qué tipo de arte prefieres?', 'Texto', 'INACTIVO');
+
+-- Pregunta 824: ¿Qué haces en tu tiempo libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (824, '¿Qué haces en tu tiempo libre?', 'Texto', 'INACTIVO');
+
+-- Pregunta 825: ¿Cuál es tu color favorito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (825, '¿Cuál es tu color favorito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 826: ¿Qué haces para relajarte?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (826, '¿Qué haces para relajarte?', 'Texto', 'INACTIVO');
+
+-- Pregunta 827: ¿Cuál es tu actor favorito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (827, '¿Cuál es tu actor favorito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 828: ¿Cuántos países te gustaría visitar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (828, '¿Cuántos países te gustaría visitar?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 829: ¿Cómo describirías tu infancia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (829, '¿Cómo describirías tu infancia?', 'Texto', 'INACTIVO');
+
+-- Pregunta 830: ¿Qué metas profesionales tienes?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (830, '¿Qué metas profesionales tienes?', 'Texto', 'INACTIVO');
+
+-- Pregunta 831: ¿Cuál es tu ciudad favorita?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (831, '¿Cuál es tu ciudad favorita?', 'Texto', 'INACTIVO');
+
+-- Pregunta 832: ¿Cómo manejas el estrés?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (832, '¿Cómo manejas el estrés?', 'Texto', 'INACTIVO');
+
+-- Pregunta 833: ¿Cuál es tu pasatiempo favorito durante los fines de semana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (833, '¿Cuál es tu pasatiempo favorito durante los fines de semana?', 'Texto', 'INACTIVO');
+
+-- Pregunta 834: ¿Qué actividades disfrutas hacer al aire libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (834, '¿Qué actividades disfrutas hacer al aire libre?', 'Texto', 'INACTIVO');
+
+-- Pregunta 835: ¿Cuál es tu videojuego favorito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (835, '¿Cuál es tu videojuego favorito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 836: ¿Qué serie de televisión estás viendo actualmente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (836, '¿Qué serie de televisión estás viendo actualmente?', 'Texto', 'INACTIVO');
+
+-- Pregunta 837: ¿Qué te gusta hacer durante las vacaciones?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (837, '¿Qué te gusta hacer durante las vacaciones?', 'Texto', 'INACTIVO');
+
+-- Pregunta 838: ¿Cuál es tu comida favorita para el desayuno?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (838, '¿Cuál es tu comida favorita para el desayuno?', 'Texto', 'INACTIVO');
+
+-- Pregunta 839: ¿Cuántas horas al día pasas en internet?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (839, '¿Cuántas horas al día pasas en internet?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 840: ¿Qué países has visitado en el último año?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (840, '¿Qué países has visitado en el último año?', 'Texto', 'INACTIVO');
+
+-- Pregunta 841: ¿Cuántos dispositivos electrónicos tienes?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (841, '¿Cuántos dispositivos electrónicos tienes?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 842: ¿Cuál es tu género de música preferido?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (842, '¿Cuál es tu género de música preferido?', 'Texto', 'INACTIVO');
+
+-- Pregunta 843: ¿Cuál es tu libro favorito de todos los tiempos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (843, '¿Cuál es tu libro favorito de todos los tiempos?', 'Texto', 'INACTIVO');
+
+-- Pregunta 844: ¿Qué haces para mantenerte motivado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (844, '¿Qué haces para mantenerte motivado?', 'Texto', 'INACTIVO');
+
+-- Pregunta 845: ¿Qué tan a menudo haces ejercicio?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (845, '¿Qué tan a menudo haces ejercicio?', 'Texto', 'INACTIVO');
+
+-- Pregunta 846: ¿Cuál es tu restaurante favorito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (846, '¿Cuál es tu restaurante favorito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 847: ¿Qué disfrutas más del fin de semana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (847, '¿Qué disfrutas más del fin de semana?', 'Texto', 'INACTIVO');
+
+-- Pregunta 848: ¿Qué logros personales has alcanzado este año?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (848, '¿Qué logros personales has alcanzado este año?', 'Texto', 'INACTIVO');
+
+-- Pregunta 849: ¿Cuál es tu mayor logro académico?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (849, '¿Cuál es tu mayor logro académico?', 'Texto', 'INACTIVO');
+
+-- Pregunta 850: ¿Qué actividades disfrutas en tu tiempo libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (850, '¿Qué actividades disfrutas en tu tiempo libre?', 'Texto', 'INACTIVO');
+
+-- Pregunta 851: ¿Cómo prefieres pasar tu tiempo libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (851, '¿Cómo prefieres pasar tu tiempo libre?', 'Texto', 'INACTIVO');
+
+-- Pregunta 852: ¿Qué opinas sobre la importancia de la educación?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (852, '¿Qué opinas sobre la importancia de la educación?', 'Texto', 'INACTIVO');
+
+-- Pregunta 853: ¿Qué actividad te gustaría aprender?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (853, '¿Qué actividad te gustaría aprender?', 'Texto', 'INACTIVO');
+
+-- Pregunta 854: ¿Cómo mantienes un equilibrio entre el trabajo y el descanso?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (854, '¿Cómo mantienes un equilibrio entre el trabajo y el descanso?', 'Texto', 'INACTIVO');
+
+-- Pregunta 855: ¿Qué es lo que más disfrutas del aprendizaje?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (855, '¿Qué es lo que más disfrutas del aprendizaje?', 'Texto', 'INACTIVO');
+
+-- Pregunta 856: ¿Cuántas horas dedicas a tus pasatiempos a la semana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (856, '¿Cuántas horas dedicas a tus pasatiempos a la semana?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 857: ¿Cuál es tu película favorita del año pasado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (857, '¿Cuál es tu película favorita del año pasado?', 'Texto', 'INACTIVO');
+
+-- Pregunta 858: ¿Qué deportes sigues como aficionado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (858, '¿Qué deportes sigues como aficionado?', 'Texto', 'INACTIVO');
+
+-- Pregunta 859: ¿Cómo prefieres disfrutar tus vacaciones?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (859, '¿Cómo prefieres disfrutar tus vacaciones?', 'Texto', 'INACTIVO');
+
+-- Pregunta 860: ¿Qué tipo de tecnología utilizas más frecuentemente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (860, '¿Qué tipo de tecnología utilizas más frecuentemente?', 'Texto', 'INACTIVO');
+
+-- Pregunta 861: ¿Cómo organizas tus actividades diarias?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (861, '¿Cómo organizas tus actividades diarias?', 'Texto', 'INACTIVO');
+
+-- Pregunta 862: ¿Cuál es tu deporte favorito para practicar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (862, '¿Cuál es tu deporte favorito para practicar?', 'Texto', 'INACTIVO');
+
+-- Pregunta 863: ¿Cómo manejas tu tiempo libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (863, '¿Cómo manejas tu tiempo libre?', 'Texto', 'INACTIVO');
+
+-- Pregunta 864: ¿Cuántas horas trabajas en proyectos personales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (864, '¿Cuántas horas trabajas en proyectos personales?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 865: ¿Qué tareas disfrutas más en tu trabajo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (865, '¿Qué tareas disfrutas más en tu trabajo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 866: ¿Qué actividad realizas todos los días sin falta?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (866, '¿Qué actividad realizas todos los días sin falta?', 'Texto', 'INACTIVO');
+
+-- Pregunta 867: ¿Cuál es tu festividad favorita?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (867, '¿Cuál es tu festividad favorita?', 'Texto', 'INACTIVO');
+
+-- Pregunta 868: ¿Cuál es tu meta profesional a largo plazo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (868, '¿Cuál es tu meta profesional a largo plazo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 869: ¿Qué disfrutas más del proceso de aprendizaje?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (869, '¿Qué disfrutas más del proceso de aprendizaje?', 'Texto', 'INACTIVO');
+
+-- Pregunta 870: ¿Cuál es el logro del que te sientes más orgulloso?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (870, '¿Cuál es el logro del que te sientes más orgulloso?', 'Texto', 'INACTIVO');
+-- Pregunta 871: ¿Qué habilidades te gustaría desarrollar en el futuro?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (871, '¿Qué habilidades te gustaría desarrollar en el futuro?', 'Texto', 'INACTIVO');
+
+-- Pregunta 872: ¿Cuál ha sido tu experiencia más gratificante?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (872, '¿Cuál ha sido tu experiencia más gratificante?', 'Texto', 'INACTIVO');
+
+-- Pregunta 873: ¿Qué te inspira a seguir aprendiendo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (873, '¿Qué te inspira a seguir aprendiendo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 874: ¿Cuál es tu mayor objetivo en la vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (874, '¿Cuál es tu mayor objetivo en la vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 875: ¿Cuántas horas dedicas al trabajo voluntario al mes?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (875, '¿Cuántas horas dedicas al trabajo voluntario al mes?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 876: ¿Qué tan importante es el éxito para ti?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (876, '¿Qué tan importante es el éxito para ti?', 'Texto', 'INACTIVO');
+
+-- Pregunta 877: ¿Cómo defines la felicidad?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (877, '¿Cómo defines la felicidad?', 'Texto', 'INACTIVO');
+
+-- Pregunta 878: ¿Qué libro te ha marcado más?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (878, '¿Qué libro te ha marcado más?', 'Texto', 'INACTIVO');
+
+-- Pregunta 879: ¿Cuál ha sido el desafío más difícil que has enfrentado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (879, '¿Cuál ha sido el desafío más difícil que has enfrentado?', 'Texto', 'INACTIVO');
+
+-- Pregunta 880: ¿Qué importancia le das a la amistad?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (880, '¿Qué importancia le das a la amistad?', 'Texto', 'INACTIVO');
+
+-- Pregunta 881: ¿Qué tan importante es la familia en tu vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (881, '¿Qué tan importante es la familia en tu vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 882: ¿Qué te gustaría aprender este año?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (882, '¿Qué te gustaría aprender este año?', 'Texto', 'INACTIVO');
+
+-- Pregunta 883: ¿Qué metas tienes para los próximos cinco años?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (883, '¿Qué metas tienes para los próximos cinco años?', 'Texto', 'INACTIVO');
+
+-- Pregunta 884: ¿Qué aspectos de tu personalidad te gustaría mejorar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (884, '¿Qué aspectos de tu personalidad te gustaría mejorar?', 'Texto', 'INACTIVO');
+
+-- Pregunta 885: ¿Qué haces para mantener un equilibrio emocional?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (885, '¿Qué haces para mantener un equilibrio emocional?', 'Texto', 'INACTIVO');
+
+-- Pregunta 886: ¿Qué te apasiona más en la vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (886, '¿Qué te apasiona más en la vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 887: ¿Cuántos idiomas hablas con fluidez?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (887, '¿Cuántos idiomas hablas con fluidez?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 888: ¿Qué habilidades consideras fundamentales en el trabajo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (888, '¿Qué habilidades consideras fundamentales en el trabajo?', 'Texto', 'INACTIVO');
+
+-- Pregunta 889: ¿Qué hábitos saludables sigues regularmente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (889, '¿Qué hábitos saludables sigues regularmente?', 'Texto', 'INACTIVO');
+
+-- Pregunta 890: ¿Qué impacto te gustaría tener en la sociedad?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (890, '¿Qué impacto te gustaría tener en la sociedad?', 'Texto', 'INACTIVO');
+
+-- Pregunta 891: ¿Cómo te ves en diez años?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (891, '¿Cómo te ves en diez años?', 'Texto', 'INACTIVO');
+
+-- Pregunta 892: ¿Cuál es el mayor logro que has obtenido hasta ahora?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (892, '¿Cuál es el mayor logro que has obtenido hasta ahora?', 'Texto', 'INACTIVO');
+
+-- Pregunta 893: ¿Qué te gustaría cambiar en tu entorno laboral?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (893, '¿Qué te gustaría cambiar en tu entorno laboral?', 'Texto', 'INACTIVO');
+
+-- Pregunta 894: ¿Cómo te enfrentas a los fracasos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (894, '¿Cómo te enfrentas a los fracasos?', 'Texto', 'INACTIVO');
+
+-- Pregunta 895: ¿Qué valores son fundamentales para ti?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (895, '¿Qué valores son fundamentales para ti?', 'Texto', 'INACTIVO');
+
+-- Pregunta 896: ¿Qué significa para ti el éxito?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (896, '¿Qué significa para ti el éxito?', 'Texto', 'INACTIVO');
+
+-- Pregunta 897: ¿Cuántos proyectos personales tienes en mente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (897, '¿Cuántos proyectos personales tienes en mente?', 'Numérico', 'INACTIVO');
+
+-- Pregunta 898: ¿Qué importancia le das a la creatividad en tu vida?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (898, '¿Qué importancia le das a la creatividad en tu vida?', 'Texto', 'INACTIVO');
+
+-- Pregunta 899: ¿Qué habilidades son clave para tu profesión?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (899, '¿Qué habilidades son clave para tu profesión?', 'Texto', 'INACTIVO');
+
+-- Pregunta 900: ¿Qué acciones tomas para mejorar continuamente?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (900, '¿Qué acciones tomas para mejorar continuamente?', 'Texto', 'INACTIVO');
+-- Pregunta 901: ¿Te gusta la pizza?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (901, '¿Te gusta la pizza?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 901
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 901), ('No', 901);
+
+-- Pregunta 902: ¿Prefieres la comida dulce o salada?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (902, '¿Prefieres la comida dulce o salada?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 902
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Dulce', 902), ('Salada', 902);
+
+-- Pregunta 903: ¿Te gusta el fútbol?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (903, '¿Te gusta el fútbol?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 903
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 903), ('No', 903);
+
+-- Pregunta 904: ¿Prefieres ver películas o series?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (904, '¿Prefieres ver películas o series?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 904
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Películas', 904), ('Series', 904);
+
+-- Pregunta 905: ¿Te gustan los videojuegos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (905, '¿Te gustan los videojuegos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 905
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 905), ('No', 905);
+
+-- Pregunta 906: ¿Prefieres la playa o la montaña?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (906, '¿Prefieres la playa o la montaña?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 906
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Playa', 906), ('Montaña', 906);
+
+-- Pregunta 907: ¿Te gusta viajar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (907, '¿Te gusta viajar?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 907
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 907), ('No', 907);
+
+-- Pregunta 908: ¿Prefieres el cine o el teatro?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (908, '¿Prefieres el cine o el teatro?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 908
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Cine', 908), ('Teatro', 908);
+
+-- Pregunta 909: ¿Te gustan los deportes extremos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (909, '¿Te gustan los deportes extremos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 909
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 909), ('No', 909);
+
+-- Pregunta 910: ¿Prefieres el café o el té?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (910, '¿Prefieres el café o el té?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 910
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Café', 910), ('Té', 910);
+
+-- Pregunta 911: ¿Te gusta el sushi?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (911, '¿Te gusta el sushi?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 911
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 911), ('No', 911);
+
+-- Pregunta 912: ¿Prefieres leer libros físicos o digitales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (912, '¿Prefieres leer libros físicos o digitales?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 912
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Físicos', 912), ('Digitales', 912);
+
+-- Pregunta 913: ¿Te gusta bailar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (913, '¿Te gusta bailar?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 913
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 913), ('No', 913);
+
+-- Pregunta 914: ¿Prefieres el frío o el calor?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (914, '¿Prefieres el frío o el calor?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 914
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Frío', 914), ('Calor', 914);
+
+-- Pregunta 915: ¿Te gusta la música clásica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (915, '¿Te gusta la música clásica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 915
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 915), ('No', 915);
+
+-- Pregunta 916: ¿Prefieres los animales domésticos o salvajes?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (916, '¿Prefieres los animales domésticos o salvajes?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 916
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Domésticos', 916), ('Salvajes', 916);
+
+-- Pregunta 917: ¿Te gusta la música electrónica?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (917, '¿Te gusta la música electrónica?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 917
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 917), ('No', 917);
+
+-- Pregunta 918: ¿Prefieres las películas de acción o de comedia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (918, '¿Prefieres las películas de acción o de comedia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 918
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Acción', 918), ('Comedia', 918);
+
+-- Pregunta 919: ¿Te gusta leer novelas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (919, '¿Te gusta leer novelas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 919
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 919), ('No', 919);
+
+-- Pregunta 920: ¿Prefieres los deportes de equipo o individuales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (920, '¿Prefieres los deportes de equipo o individuales?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 920
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Equipo', 920), ('Individuales', 920);
+
+-- Pregunta 921: ¿Te gusta cocinar?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (921, '¿Te gusta cocinar?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 921
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 921), ('No', 921);
+
+-- Pregunta 922: ¿Prefieres la música rock o pop?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (922, '¿Prefieres la música rock o pop?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 922
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Rock', 922), ('Pop', 922);
+
+-- Pregunta 923: ¿Te gustan los documentales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (923, '¿Te gustan los documentales?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 923
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 923), ('No', 923);
+
+-- Pregunta 924: ¿Prefieres las vacaciones en la playa o en la ciudad?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (924, '¿Prefieres las vacaciones en la playa o en la ciudad?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 924
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Playa', 924), ('Ciudad', 924);
+
+-- Pregunta 925: ¿Te gusta el cine de terror?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (925, '¿Te gusta el cine de terror?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 925
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 925), ('No', 925);
+
+-- Pregunta 926: ¿Prefieres las series de ciencia ficción o drama?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (926, '¿Prefieres las series de ciencia ficción o drama?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 926
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciencia ficción', 926), ('Drama', 926);
+
+-- Pregunta 927: ¿Te gusta la música rap?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (927, '¿Te gusta la música rap?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 927
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 927), ('No', 927);
+
+-- Pregunta 928: ¿Prefieres las comidas picantes o suaves?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (928, '¿Prefieres las comidas picantes o suaves?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 928
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Picantes', 928), ('Suaves', 928);
+
+-- Pregunta 929: ¿Te gustan las actividades al aire libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (929, '¿Te gustan las actividades al aire libre?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 929
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 929), ('No', 929);
+
+-- Pregunta 930: ¿Prefieres el desayuno dulce o salado?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (930, '¿Prefieres el desayuno dulce o salado?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 930
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Dulce', 930), ('Salado', 930);
+
+-- Pregunta 931: ¿Te gusta la moda?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (931, '¿Te gusta la moda?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 931
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 931), ('No', 931);
+
+-- Pregunta 932: ¿Prefieres los libros de ficción o no ficción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (932, '¿Prefieres los libros de ficción o no ficción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 932
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ficción', 932), ('No ficción', 932);
+
+-- Pregunta 933: ¿Te gustan los museos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (933, '¿Te gustan los museos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 933
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 933), ('No', 933);
+
+-- Pregunta 934: ¿Prefieres la comida rápida o casera?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (934, '¿Prefieres la comida rápida o casera?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 934
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Rápida', 934), ('Casera', 934);
+
+-- Pregunta 935: ¿Te gustan las actividades culturales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (935, '¿Te gustan las actividades culturales?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 935
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 935), ('No', 935);
+
+-- Pregunta 936: ¿Prefieres las noches de cine o de juegos de mesa?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (936, '¿Prefieres las noches de cine o de juegos de mesa?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 936
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Cine', 936), ('Juegos de mesa', 936);
+
+-- Pregunta 937: ¿Te gusta el teatro?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (937, '¿Te gusta el teatro?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 937
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 937), ('No', 937);
+
+-- Pregunta 938: ¿Prefieres las novelas históricas o de ciencia ficción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (938, '¿Prefieres las novelas históricas o de ciencia ficción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 938
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Históricas', 938), ('Ciencia ficción', 938);
+
+-- Pregunta 939: ¿Te gustan las excursiones?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (939, '¿Te gustan las excursiones?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 939
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 939), ('No', 939);
+
+-- Pregunta 940: ¿Prefieres las películas subtituladas o dobladas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (940, '¿Prefieres las películas subtituladas o dobladas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 940
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Subtituladas', 940), ('Dobladas', 940);
+
+-- Pregunta 941: ¿Te gusta la comida asiática?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (941, '¿Te gusta la comida asiática?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 941
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 941), ('No', 941);
+
+-- Pregunta 942: ¿Prefieres las playas de arena o de roca?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (942, '¿Prefieres las playas de arena o de roca?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 942
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Arena', 942), ('Roca', 942);
+
+-- Pregunta 943: ¿Te gustan los festivales de música?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (943, '¿Te gustan los festivales de música?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 943
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 943), ('No', 943);
+
+-- Pregunta 944: ¿Prefieres las caminatas o el ciclismo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (944, '¿Prefieres las caminatas o el ciclismo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 944
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Caminatas', 944), ('Ciclismo', 944);
+
+-- Pregunta 945: ¿Te gustan las películas románticas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (945, '¿Te gustan las películas románticas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 945
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 945), ('No', 945);
+
+-- Pregunta 946: ¿Prefieres las vacaciones de invierno o de verano?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (946, '¿Prefieres las vacaciones de invierno o de verano?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 946
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Invierno', 946), ('Verano', 946);
+
+-- Pregunta 947: ¿Te gusta la comida mexicana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (947, '¿Te gusta la comida mexicana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 947
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 947), ('No', 947);
+
+-- Pregunta 948: ¿Prefieres el cine independiente o comercial?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (948, '¿Prefieres el cine independiente o comercial?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 948
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Independiente', 948), ('Comercial', 948);
+
+-- Pregunta 949: ¿Te gustan los videojuegos de estrategia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (949, '¿Te gustan los videojuegos de estrategia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 949
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 949), ('No', 949);
+
+-- Pregunta 950: ¿Prefieres los deportes acuáticos o de montaña?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (950, '¿Prefieres los deportes acuáticos o de montaña?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 950
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Acuáticos', 950), ('Montaña', 950);
+
+-- Pregunta 951: ¿Te gustan las películas de comedia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (951, '¿Te gustan las películas de comedia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 951
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 951), ('No', 951);
+
+-- Pregunta 952: ¿Prefieres los documentales sobre naturaleza o historia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (952, '¿Prefieres los documentales sobre naturaleza o historia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 952
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Naturaleza', 952), ('Historia', 952);
+
+-- Pregunta 953: ¿Te gustan las ferias de libros?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (953, '¿Te gustan las ferias de libros?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 953
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 953), ('No', 953);
+
+-- Pregunta 954: ¿Prefieres los parques de atracciones o los zoológicos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (954, '¿Prefieres los parques de atracciones o los zoológicos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 954
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Parques de atracciones', 954), ('Zoológicos', 954);
+
+-- Pregunta 955: ¿Te gusta la comida italiana?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (955, '¿Te gusta la comida italiana?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 955
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 955), ('No', 955);
+
+-- Pregunta 956: ¿Prefieres las series de misterio o de romance?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (956, '¿Prefieres las series de misterio o de romance?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 956
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Misterio', 956), ('Romance', 956);
+
+-- Pregunta 957: ¿Te gustan los deportes de invierno?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (957, '¿Te gustan los deportes de invierno?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 957
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 957), ('No', 957);
+
+-- Pregunta 958: ¿Prefieres los deportes de equipo o los individuales?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (958, '¿Prefieres los deportes de equipo o los individuales?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 958
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Equipo', 958), ('Individuales', 958);
+
+-- Pregunta 959: ¿Te gusta hacer yoga?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (959, '¿Te gusta hacer yoga?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 959
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 959), ('No', 959);
+
+-- Pregunta 960: ¿Prefieres los gatos o los perros?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (960, '¿Prefieres los gatos o los perros?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 960
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Gatos', 960), ('Perros', 960);
+
+-- Pregunta 961: ¿Te gusta el chocolate amargo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (961, '¿Te gusta el chocolate amargo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 961
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 961), ('No', 961);
+
+-- Pregunta 962: ¿Prefieres la música clásica o moderna?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (962, '¿Prefieres la música clásica o moderna?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 962
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Clásica', 962), ('Moderna', 962);
+
+-- Pregunta 963: ¿Te gustan las películas de ciencia ficción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (963, '¿Te gustan las películas de ciencia ficción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 963
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 963), ('No', 963);
+
+-- Pregunta 964: ¿Prefieres la fotografía o la pintura?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (964, '¿Prefieres la fotografía o la pintura?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 964
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Fotografía', 964), ('Pintura', 964);
+
+-- Pregunta 965: ¿Te gustan las series de misterio?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (965, '¿Te gustan las series de misterio?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 965
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 965), ('No', 965);
+
+-- Pregunta 966: ¿Prefieres los días soleados o nublados?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (966, '¿Prefieres los días soleados o nublados?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 966
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Soleados', 966), ('Nublados', 966);
+
+-- Pregunta 967: ¿Te gusta la comida picante?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (967, '¿Te gusta la comida picante?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 967
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 967), ('No', 967);
+
+-- Pregunta 968: ¿Prefieres las ciudades grandes o pequeñas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (968, '¿Prefieres las ciudades grandes o pequeñas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 968
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Grandes', 968), ('Pequeñas', 968);
+
+-- Pregunta 969: ¿Te gustan los juegos de mesa?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (969, '¿Te gustan los juegos de mesa?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 969
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 969), ('No', 969);
+
+-- Pregunta 970: ¿Prefieres el cine o el teatro?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (970, '¿Prefieres el cine o el teatro?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 970
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Cine', 970), ('Teatro', 970);
+
+-- Pregunta 971: ¿Te gusta la música jazz?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (971, '¿Te gusta la música jazz?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 971
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 971), ('No', 971);
+
+-- Pregunta 972: ¿Prefieres el invierno o el verano?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (972, '¿Prefieres el invierno o el verano?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 972
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Invierno', 972), ('Verano', 972);
+
+-- Pregunta 973: ¿Te gustan las películas de acción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (973, '¿Te gustan las películas de acción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 973
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 973), ('No', 973);
+
+-- Pregunta 974: ¿Prefieres los libros de ciencia ficción o de fantasía?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (974, '¿Prefieres los libros de ciencia ficción o de fantasía?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 974
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Ciencia ficción', 974), ('Fantasía', 974);
+
+-- Pregunta 975: ¿Te gusta hacer senderismo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (975, '¿Te gusta hacer senderismo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 975
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 975), ('No', 975);
+
+-- Pregunta 976: ¿Prefieres los deportes acuáticos o los de invierno?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (976, '¿Prefieres los deportes acuáticos o los de invierno?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 976
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Acuáticos', 976), ('Invierno', 976);
+
+-- Pregunta 977: ¿Te gustan las películas de aventuras?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (977, '¿Te gustan las películas de aventuras?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 977
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 977), ('No', 977);
+
+-- Pregunta 978: ¿Prefieres los juegos de estrategia o de rol?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (978, '¿Prefieres los juegos de estrategia o de rol?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 978
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Estrategia', 978), ('Rol', 978);
+
+-- Pregunta 979: ¿Te gustan las montañas rusas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (979, '¿Te gustan las montañas rusas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 979
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 979), ('No', 979);
+
+-- Pregunta 980: ¿Prefieres los días soleados o lluviosos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (980, '¿Prefieres los días soleados o lluviosos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 980
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Soleados', 980), ('Lluviosos', 980);
+
+-- Pregunta 981: ¿Te gustan los deportes de aventura?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (981, '¿Te gustan los deportes de aventura?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 981
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 981), ('No', 981);
+
+-- Pregunta 982: ¿Prefieres la comida italiana o china?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (982, '¿Prefieres la comida italiana o china?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 982
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Italiana', 982), ('China', 982);
+
+-- Pregunta 983: ¿Te gusta la jardinería?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (983, '¿Te gusta la jardinería?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 983
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 983), ('No', 983);
+
+-- Pregunta 984: ¿Prefieres los animales terrestres o marinos?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (984, '¿Prefieres los animales terrestres o marinos?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 984
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Terrestres', 984), ('Marinos', 984);
+
+-- Pregunta 985: ¿Te gustan los documentales sobre naturaleza?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (985, '¿Te gustan los documentales sobre naturaleza?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 985
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 985), ('No', 985);
+
+-- Pregunta 986: ¿Prefieres las películas de terror o de suspenso?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (986, '¿Prefieres las películas de terror o de suspenso?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 986
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Terror', 986), ('Suspenso', 986);
+
+-- Pregunta 987: ¿Te gustan los juegos de mesa de estrategia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (987, '¿Te gustan los juegos de mesa de estrategia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 987
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 987), ('No', 987);
+
+-- Pregunta 988: ¿Prefieres las series de acción o de comedia?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (988, '¿Prefieres las series de acción o de comedia?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 988
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Acción', 988), ('Comedia', 988);
+
+-- Pregunta 989: ¿Te gustan las actividades al aire libre?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (989, '¿Te gustan las actividades al aire libre?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 989
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 989), ('No', 989);
+
+-- Pregunta 990: ¿Prefieres las noches de cine o de juegos de mesa?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (990, '¿Prefieres las noches de cine o de juegos de mesa?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 990
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Cine', 990), ('Juegos de mesa', 990);
+
+-- Pregunta 991: ¿Te gusta el teatro?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (991, '¿Te gusta el teatro?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 991
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 991), ('No', 991);
+
+-- Pregunta 992: ¿Prefieres las novelas históricas o de ciencia ficción?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (992, '¿Prefieres las novelas históricas o de ciencia ficción?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 992
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Históricas', 992), ('Ciencia ficción', 992);
+
+-- Pregunta 993: ¿Te gustan las excursiones?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (993, '¿Te gustan las excursiones?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 993
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 993), ('No', 993);
+
+-- Pregunta 994: ¿Prefieres las películas subtituladas o dobladas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (994, '¿Prefieres las películas subtituladas o dobladas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 994
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Subtituladas', 994), ('Dobladas', 994);
+
+-- Pregunta 995: ¿Te gusta la comida asiática?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (995, '¿Te gusta la comida asiática?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 995
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 995), ('No', 995);
+
+-- Pregunta 996: ¿Prefieres las playas de arena o de roca?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (996, '¿Prefieres las playas de arena o de roca?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 996
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Arena', 996), ('Roca', 996);
+
+-- Pregunta 997: ¿Te gustan los festivales de música?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (997, '¿Te gustan los festivales de música?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 997
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 997), ('No', 997);
+
+-- Pregunta 998: ¿Prefieres las caminatas o el ciclismo?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (998, '¿Prefieres las caminatas o el ciclismo?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 998
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Caminatas', 998), ('Ciclismo', 998);
+
+-- Pregunta 999: ¿Te gustan las películas románticas?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (999, '¿Te gustan las películas románticas?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 999
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Sí', 999), ('No', 999);
+
+-- Pregunta 1000: ¿Prefieres las vacaciones de invierno o de verano?
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
+VALUES (1000, '¿Prefieres las vacaciones de invierno o de verano?', 'Seleccion', 'INACTIVO');
+
+-- Opciones para Pregunta 1000
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta) 
+VALUES ('Invierno', 1000), ('Verano', 1000);
