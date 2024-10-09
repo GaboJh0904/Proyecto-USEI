@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-10-04 15:05:10.452
+-- Last modification date: 2024-10-09 21:59:38.397
 
 -- tables
 -- Table: Certificado
@@ -7,6 +7,7 @@ CREATE TABLE Certificado (
     id_certificado serial  NOT NULL,
     formato varchar(50)  NOT NULL,
     version int  NOT NULL,
+    estado varchar(20)  NOT NULL,
     fecha_modificacion date  NOT NULL,
     Usuario_id_usuario int  NOT NULL,
     CONSTRAINT Certificado_pk PRIMARY KEY (id_certificado)
@@ -171,10 +172,21 @@ CREATE TABLE Noticias (
     CONSTRAINT Noticias_pk PRIMARY KEY (id_noticia)
 );
 
+-- Table: Notificacion
+CREATE TABLE Notificacion (
+    id_notificacion int  NOT NULL,
+    titulo varchar(80)  NOT NULL,
+    contenido text  NOT NULL,
+    estado_notificacion boolean  NOT NULL,
+    Estudiante_id_estudiante int  NOT NULL,
+    Tipo_Notificacion_id_notificacion int  NOT NULL,
+    CONSTRAINT Notificacion_pk PRIMARY KEY (id_notificacion)
+);
+
 -- Table: Opciones_Pregunta
 CREATE TABLE Opciones_Pregunta (
     id_opciones serial  NOT NULL,
-    opcion varchar(100)  NOT NULL,
+    opcion varchar(30)  NOT NULL,
     Pregunta_id_pregunta int  NOT NULL,
     CONSTRAINT Opciones_Pregunta_pk PRIMARY KEY (id_opciones)
 );
@@ -207,6 +219,30 @@ CREATE TABLE Respuesta (
     Pregunta_id_pregunta int  NOT NULL,
     Estudiante_id_estudiante int  NOT NULL,
     CONSTRAINT Respuesta_pk PRIMARY KEY (id_respuesta)
+);
+
+-- Table: Soporte
+CREATE TABLE Soporte (
+    id_soporte int  NOT NULL,
+    mensaje text  NOT NULL,
+    fecha timestamp  NOT NULL,
+    Estudiante_id_estudiante int  NOT NULL,
+    Tipo_Problema_id_problema int  NOT NULL,
+    CONSTRAINT Soporte_pk PRIMARY KEY (id_soporte)
+);
+
+-- Table: Tipo_Notificacion
+CREATE TABLE Tipo_Notificacion (
+    id_notificacion int  NOT NULL,
+    tipo varchar(80)  NOT NULL,
+    CONSTRAINT Tipo_Notificacion_pk PRIMARY KEY (id_notificacion)
+);
+
+-- Table: Tipo_Problema
+CREATE TABLE Tipo_Problema (
+    id_problema int  NOT NULL,
+    problema varchar(80)  NOT NULL,
+    CONSTRAINT Tipo_Problema_pk PRIMARY KEY (id_problema)
 );
 
 -- Table: Usuario
@@ -294,6 +330,22 @@ ALTER TABLE Noticias ADD CONSTRAINT Noticias_Usuario
     INITIALLY IMMEDIATE
 ;
 
+-- Reference: Notificacion_Tipo_Notificacion (table: Notificacion)
+ALTER TABLE Notificacion ADD CONSTRAINT Notificacion_Tipo_Notificacion
+    FOREIGN KEY (Tipo_Notificacion_id_notificacion)
+    REFERENCES Tipo_Notificacion (id_notificacion)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: Notificaciones_Estudiante (table: Notificacion)
+ALTER TABLE Notificacion ADD CONSTRAINT Notificaciones_Estudiante
+    FOREIGN KEY (Estudiante_id_estudiante)
+    REFERENCES Estudiante (id_estudiante)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
 -- Reference: Opciones_Pregunta_Pregunta (table: Opciones_Pregunta)
 ALTER TABLE Opciones_Pregunta ADD CONSTRAINT Opciones_Pregunta_Pregunta
     FOREIGN KEY (Pregunta_id_pregunta)
@@ -326,6 +378,20 @@ ALTER TABLE Respuesta ADD CONSTRAINT Respuesta_Pregunta
     INITIALLY IMMEDIATE
 ;
 
--- End of file.
+-- Reference: Soporte_Estudiante (table: Soporte)
+ALTER TABLE Soporte ADD CONSTRAINT Soporte_Estudiante
+    FOREIGN KEY (Estudiante_id_estudiante)
+    REFERENCES Estudiante (id_estudiante)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
 
--- Datos prueba
+-- Reference: Soporte_Tipo_Problema (table: Soporte)
+ALTER TABLE Soporte ADD CONSTRAINT Soporte_Tipo_Problema
+    FOREIGN KEY (Tipo_Problema_id_problema)
+    REFERENCES Tipo_Problema (id_problema)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- End of file.
