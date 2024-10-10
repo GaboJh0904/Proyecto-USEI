@@ -1,6 +1,9 @@
 package com.usei.usei.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,11 +16,9 @@ import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Noticias;
 import com.usei.usei.models.Usuario;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 @RestController
 @RequestMapping("/noticia")
 public class NoticiasAPI {
@@ -38,7 +39,7 @@ public class NoticiasAPI {
             Noticias noticias = new Noticias();
             noticias.setTitulo(titulo);
             noticias.setDescripcion(descripcion);
-            noticias.setFechaModificado(fechaModificado); // Aquí ahora se maneja solo la fecha
+            noticias.setFechaModificado(fechaModificado);
             noticias.setEstado(estado);
 
             Usuario usuario = new Usuario();
@@ -73,7 +74,7 @@ public class NoticiasAPI {
             Noticias noticias = noticiasOpt.get();
             noticias.setTitulo(titulo);
             noticias.setDescripcion(descripcion);
-            noticias.setFechaModificado(fechaModificado); // Aquí ahora se maneja solo la fecha
+            noticias.setFechaModificado(fechaModificado);
             noticias.setEstado(estado);
 
             Usuario usuario = new Usuario();
@@ -102,13 +103,57 @@ public class NoticiasAPI {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Obtener todas las noticias
-    @GetMapping
-    public ResponseEntity<Object> readAll() {
-        List<Noticias> noticias = (List<Noticias>) noticiasService.findAll();
-        return ResponseEntity.ok(noticias);
+    // Obtener noticias para el carrusel
+    @GetMapping("/carrusel")
+    public ResponseEntity<?> getNoticiasForCarrusel() {
+        try {
+            // Filtramos solo las noticias con estado 'publicado'
+            List<Noticias> noticiasPublicadas = noticiasService.findByEstado("publicado");
+            if (noticiasPublicadas.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(noticiasPublicadas, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
+    // Paginación para noticias existentes
+    @GetMapping
+    public ResponseEntity<Page<Noticias>> readAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        Pageable paging = PageRequest.of(page, size);
+        Page<Noticias> pagedNoticias = noticiasService.findAll(paging);
+
+        if (pagedNoticias.hasContent()) {
+            return new ResponseEntity<>(pagedNoticias, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    // Paginación para noticias archivadas
+    @GetMapping("/archivadas/paginadas")
+    public ResponseEntity<Page<Noticias>> getArchivedNewsPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        try {
+            Pageable paging = PageRequest.of(page, size);
+            Page<Noticias> noticiasArchivadas = noticiasService.findByEstadoWithPagination("archivado", paging);
+
+            if (noticiasArchivadas.hasContent()) {
+                return new ResponseEntity<>(noticiasArchivadas, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            // Cambia el bloque catch para devolver una respuesta vacía o un mensaje de error
+            return new ResponseEntity<>(Page.empty(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     // Eliminar noticia
     @DeleteMapping("/{id_noticia}")
@@ -178,10 +223,5 @@ public class NoticiasAPI {
         }
         return new ResponseEntity<>(noticias, HttpStatus.OK);
     }
-
-
-
-
-
 
 }

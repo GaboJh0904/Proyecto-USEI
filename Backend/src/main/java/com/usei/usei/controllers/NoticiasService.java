@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.usei.usei.models.Noticias;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 public interface NoticiasService {
 
@@ -24,4 +27,11 @@ public interface NoticiasService {
     public void delete(Long id);
 
     List<Noticias> findByEstado(String estado);
+
+    //Paginacion de noticias existentes
+    Page<Noticias> findAll(Pageable pageable);
+
+    //Paginacion noticias archivadas
+    Page<Noticias> findByEstadoWithPagination(String estado, Pageable pageable);
+
 }

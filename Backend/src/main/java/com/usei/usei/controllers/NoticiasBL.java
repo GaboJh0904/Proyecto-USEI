@@ -16,6 +16,9 @@ import com.usei.usei.repositories.NoticiasDAO;
 import com.usei.usei.models.Noticias;
 import com.usei.usei.models.Usuario;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 @Service
 public class NoticiasBL implements NoticiasService {
 
@@ -81,7 +84,7 @@ public class NoticiasBL implements NoticiasService {
             try {
                 if (file != null && !file.isEmpty()) {
                     String fileName = file.getOriginalFilename();
-                    noticiasToUpdate.setImg(fileName); // Guardamos solo el nombre del archivo
+                    noticiasToUpdate.setImg(fileName);
                 }
             } catch (Exception e) {
                 throw new RuntimeException("Error al procesar la imagen", e);
@@ -116,5 +119,18 @@ public class NoticiasBL implements NoticiasService {
     public List<Noticias> findByEstado(String estado) {
         return noticiasDAO.findByEstado(estado);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Noticias> findAll(Pageable pageable) {
+        return noticiasDAO.findAll(pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Noticias> findByEstadoWithPagination(String estado, Pageable pageable) {
+        return noticiasDAO.findByEstado(estado, pageable);
+    }
+
 }
 
