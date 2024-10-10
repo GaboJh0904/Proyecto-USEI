@@ -1,0 +1,105 @@
+package com.usei.usei.api;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.usei.usei.controllers.NotificacionService;
+import com.usei.usei.models.Estudiante;
+import com.usei.usei.models.MessageResponse;
+import com.usei.usei.models.Notificacion;
+import com.usei.usei.models.TipoNotificacion;
+
+@RestController
+@RequestMapping("/notificacion")
+public class NotificacionAPI {
+
+    @Autowired
+    private NotificacionService notificacionService;
+
+    @PostMapping
+    public ResponseEntity<Object> create(@RequestBody Notificacion notificacion) {
+        try {
+            Notificacion newNotificacion = new Notificacion();
+            newNotificacion.setTitulo(notificacion.getTitulo());
+            newNotificacion.setContenido(notificacion.getContenido());
+            newNotificacion.setFecha(notificacion.getFecha());
+            newNotificacion.setEstadoNotificacion(notificacion.getEstadoNotificacion());
+            
+            // Vincular a una tipo de notificacion
+            TipoNotificacion tipoNotificacion = new TipoNotificacion();
+            tipoNotificacion.setIdNotificacion(notificacion.getTipoNotificacionIdNotificacion().getIdNotificacion());
+            newNotificacion.setTipoNotificacionIdNotificacion(tipoNotificacion);
+            // Vincular a un estudiante
+            Estudiante estudiante = new Estudiante();
+            estudiante.setIdEstudiante(notificacion.getEstudianteIdEstudiante().getIdEstudiante());
+            newNotificacion.setEstudianteIdEstudiante(estudiante);
+
+            notificacionService.save(newNotificacion);
+
+            return new ResponseEntity<>(new MessageResponse("Notificacion registrada"), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping
+    public ResponseEntity<?> readAll() {
+        try {
+            return ResponseEntity.ok(notificacionService.findAll());
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/{id_notificacion}")
+    public ResponseEntity<?> readById(@PathVariable(value = "id_notificacion") Long id) {
+        try {
+            Optional<Notificacion> notificacion = notificacionService.findById(id);
+            if (notificacion.isPresent()) {
+                return ResponseEntity.ok(notificacion.get());
+            } else {
+                return new ResponseEntity<>(new MessageResponse("Notificacion inexistente"), HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/{id_notificacion}")
+    public ResponseEntity<?> update(@PathVariable(value = "id_notificacion") Long id, @RequestBody Notificacion notificacion) {
+
+        Optional<Notificacion> oNotificacion = notificacionService.findById(id);
+        if (oNotificacion.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        try {
+            oNotificacion.get().setTitulo(notificacion.getTitulo());
+            oNotificacion.get().setContenido(notificacion.getContenido());
+            oNotificacion.get().setFecha(notificacion.getFecha());
+            oNotificacion.get().setEstadoNotificacion(notificacion.getEstadoNotificacion());
+            
+            // Vincular a una tipo de notificacion
+            TipoNotificacion tipoNotificacion = new TipoNotificacion();
+            tipoNotificacion.setIdNotificacion(notificacion.getTipoNotificacionIdNotificacion().getIdNotificacion());
+            oNotificacion.get().setTipoNotificacionIdNotificacion(tipoNotificacion);
+            // Vincular a un estudiante
+            Estudiante estudiante = new Estudiante();
+            estudiante.setIdEstudiante(notificacion.getEstudianteIdEstudiante().getIdEstudiante());
+            oNotificacion.get().setEstudianteIdEstudiante(estudiante);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(notificacionService.save(oNotificacion.get()));
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+}
