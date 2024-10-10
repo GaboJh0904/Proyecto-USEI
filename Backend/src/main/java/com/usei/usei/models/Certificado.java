@@ -35,7 +35,9 @@ import jakarta.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Certificado.findAll", query = "SELECT c FROM Certificado c"),
     @NamedQuery(name = "Certificado.findByIdCertificado", query = "SELECT c FROM Certificado c WHERE c.idCertificado = :idCertificado"),
+    @NamedQuery(name = "Certificado.findByFormato", query = "SELECT c FROM Certificado c WHERE c.formato = :formato"),
     @NamedQuery(name = "Certificado.findByVersion", query = "SELECT c FROM Certificado c WHERE c.version = :version"),
+    @NamedQuery(name = "Certificado.findByEstado", query = "SELECT c FROM Certificado c WHERE c.estado = :estado"),
     @NamedQuery(name = "Certificado.findByFechaModificacion", query = "SELECT c FROM Certificado c WHERE c.fechaModificacion = :fechaModificacion")})
 public class Certificado implements Serializable {
 
@@ -51,6 +53,9 @@ public class Certificado implements Serializable {
     @Basic(optional = false)
     @Column(name = "version")
     private int version;
+    @Basic(optional = false)
+    @Column(name = "estado")
+    private String estado;
     @Basic(optional = false)
     @Column(name = "fechaModificacion")
     @Temporal(TemporalType.DATE)
@@ -69,10 +74,11 @@ public class Certificado implements Serializable {
         this.idCertificado = idCertificado;
     }
 
-    public Certificado(Long idCertificado, String formato, int version, Date fechaModificacion) {
+    public Certificado(Long idCertificado, String formato, int version, String estado, Date fechaModificacion) {
         this.idCertificado = idCertificado;
         this.formato = formato;
         this.version = version;
+        this.estado = estado;
         this.fechaModificacion = fechaModificacion;
     }
 
@@ -98,6 +104,14 @@ public class Certificado implements Serializable {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Date getFechaModificacion() {

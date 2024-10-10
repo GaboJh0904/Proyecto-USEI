@@ -13,7 +13,6 @@ import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Noticias;
 import com.usei.usei.models.Usuario;
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;

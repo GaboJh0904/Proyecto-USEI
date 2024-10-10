@@ -15,4 +15,6 @@ public interface TipoProblemaService {
 
     public TipoProblema update (TipoProblema newTipoProblema, Long id);
 
+    public void deleteById(Long id);
+
 }

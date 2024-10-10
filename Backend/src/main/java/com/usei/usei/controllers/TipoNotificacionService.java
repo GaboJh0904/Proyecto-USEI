@@ -15,4 +15,6 @@ public interface TipoNotificacionService {
 
     public TipoNotificacion update (TipoNotificacion newTipoNotificacion, Long id);
 
+    public void deleteById(Long id);
+
 }
