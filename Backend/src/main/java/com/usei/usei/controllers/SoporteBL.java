@@ -5,9 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.Soporte;
 import com.usei.usei.models.TipoProblema;
+import com.usei.usei.models.Usuario;
 import com.usei.usei.repositories.SoporteDAO;
 
 @Service
@@ -15,14 +15,14 @@ public class SoporteBL implements SoporteService {
 
     private final SoporteDAO soporteDAO;
     private final TipoProblemaService tipoProblemaService;
-    private final EstudianteService estudianteService;
+    private final UsuarioService usuarioService;
 
     @Autowired
     public SoporteBL(SoporteDAO soporteDAO, TipoProblemaService tipoProblemaService,
-            EstudianteService estudianteService) {
+            UsuarioService usuarioService) {
         this.soporteDAO = soporteDAO;
         this.tipoProblemaService = tipoProblemaService;
-        this.estudianteService = estudianteService;
+        this.usuarioService = usuarioService;
     }
 
     @Override
@@ -44,12 +44,12 @@ public class SoporteBL implements SoporteService {
                 .orElseThrow(() -> new RuntimeException(
                         "Tipo problema no encontrada con el id: " + soporte.getTipoProblemaIdProblema().getIdProblema()));
 
-        Estudiante estudiante = estudianteService.findById(soporte.getEstudianteIdEstudiante().getIdEstudiante())
-                .orElseThrow(() -> new RuntimeException("Estudiante no encontrado con el id: "
-                        + soporte.getEstudianteIdEstudiante().getIdEstudiante()));
+        Usuario usuario = usuarioService.findById(soporte.getUsuarioIdUsuario().getIdUsuario())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: "
+                        + soporte.getUsuarioIdUsuario().getIdUsuario()));
 
         soporte.setTipoProblemaIdProblema(tipoProblema);
-        soporte.setEstudianteIdEstudiante(estudiante);
+        soporte.setUsuarioIdUsuario(usuario);
 
         return soporteDAO.save(soporte);
     }
@@ -65,15 +65,15 @@ public class SoporteBL implements SoporteService {
                     .orElseThrow(() -> new RuntimeException(
                             "Tipo de problema no encontrada con el id: " + soporte.getTipoProblemaIdProblema().getIdProblema()));
 
-            Estudiante estudiante = estudianteService.findById(soporte.getEstudianteIdEstudiante().getIdEstudiante())
-                    .orElseThrow(() -> new RuntimeException("Estudiante no encontrado con el id: "
-                            + soporte.getEstudianteIdEstudiante().getIdEstudiante()));
+            Usuario usuario = usuarioService.findById(soporte.getUsuarioIdUsuario().getIdUsuario())
+                    .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: "
+                            + soporte.getUsuarioIdUsuario().getIdUsuario()));
 
             // Actualizar los campos de la respuesta con los valores correspondientes
             soporteToUpdate.setMensaje(soporte.getMensaje());
             soporteToUpdate.setFecha(soporte.getFecha());
             soporteToUpdate.setTipoProblemaIdProblema(tipoProblema);
-            soporteToUpdate.setEstudianteIdEstudiante(estudiante);
+            soporteToUpdate.setUsuarioIdUsuario(usuario);
 
             return soporteDAO.save(soporteToUpdate);
         } else {

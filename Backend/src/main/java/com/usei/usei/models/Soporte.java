@@ -46,9 +46,9 @@ public class Soporte implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-    @JoinColumn(name = "estudiante_id_estudiante", referencedColumnName = "id_estudiante")
+    @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
-    private Estudiante estudianteIdEstudiante;
+    private Usuario usuarioIdUsuario;
     @JoinColumn(name = "tipo_problema_id_problema", referencedColumnName = "id_problema")
     @ManyToOne(optional = false)
     private TipoProblema tipoProblemaIdProblema;
@@ -90,12 +90,12 @@ public class Soporte implements Serializable {
         this.fecha = fecha;
     }
 
-    public Estudiante getEstudianteIdEstudiante() {
-        return estudianteIdEstudiante;
+    public Usuario getUsuarioIdUsuario() {
+        return usuarioIdUsuario;
     }
 
-    public void setEstudianteIdEstudiante(Estudiante estudianteIdEstudiante) {
-        this.estudianteIdEstudiante = estudianteIdEstudiante;
+    public void setUsuarioIdUsuario(Usuario usuarioIdUsuario) {
+        this.usuarioIdUsuario = usuarioIdUsuario;
     }
 
     public TipoProblema getTipoProblemaIdProblema() {
