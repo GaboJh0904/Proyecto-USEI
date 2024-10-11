@@ -9015,7 +9015,7 @@ INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_ce
 
 -- ENCUESTA TABLA
 INSERT INTO Encuesta (titulo, descripcion, fecha_modificado, Usuario_id_usuario)
-VALUES ('Encuesta a Tiempo de graduación', 'Esta es una encuesta para recolicar la información de nuestros estudiantes, y analizar la satisfaccion y experiencia del estudiante con la universidad', '2024-10-04', 1);
+VALUES ('Encuesta a Tiempo de graduación', 'Esta es una encuesta para recolicar la información de nuestros estudiantes, y analizar la satisfaccion y experiencia del estudiante con la universidad', '2024-10-04',1);
 
 --PREGUNTAS Tabla: Pregunta
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado) 
@@ -9412,14 +9412,14 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 82', 'Descripcion de la noticia 82', 'noticia82.jpg', '01-09-2024', 'En revision', 10);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 83', 'Descripcion de la noticia 83', 'noticia83.jpg', '01-09-2024', 'En revision', 7);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 84', 'Descripcion de la noticia 84', 'noticia84.jpg', '01-09-2024', 'En revision', 5);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 85', 'Descripcion de la noticia 85', 'noticia85.jpg', '21-09-2024', 'En revision', 1);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 85', 'Descripcion de la noticia 85', 'noticia85.jpg', '12-09-2024', 'En revision', 1);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 86', 'Descripcion de la noticia 86', 'noticia86.jpg', '01-09-2024', 'En revision', 1);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 87', 'Descripcion de la noticia 87', 'noticia87.jpg', '25-09-2024', 'En revision', 10);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 87', 'Descripcion de la noticia 87', 'noticia87.jpg', '12-09-2024', 'En revision', 10);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 88', 'Descripcion de la noticia 88', 'noticia88.jpg', '01-09-2024', 'En revision', 7);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 89', 'Descripcion de la noticia 89', 'noticia89.jpg', '01-09-2024', 'En revision', 5);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 90', 'Descripcion de la noticia 90', 'noticia90.jpg', '01-09-2024', 'En revision', 5);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 91', 'Descripcion de la noticia 91', 'noticia91.jpg', '01-09-2024', 'En revision', 1);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 92', 'Descripcion de la noticia 92', 'noticia92.jpg', '17-09-2024', 'En revision', 9);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 92', 'Descripcion de la noticia 92', 'noticia92.jpg', '12-09-2024', 'En revision', 9);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 93', 'Descripcion de la noticia 93', 'noticia93.jpg', '01-09-2024', 'En revision', 1);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 94', 'Descripcion de la noticia 94', 'noticia94.jpg', '01-09-2024', 'En revision', 4);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 95', 'Descripcion de la noticia 95', 'noticia95.jpg', '01-09-2024', 'En revision', 6);
@@ -9434,7 +9434,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 104', 'Descripcion de la noticia 104', 'noticia104.jpg', '01-09-2024', 'En revision', 10);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 105', 'Descripcion de la noticia 105', 'noticia105.jpg', '01-09-2024', 'En revision', 4);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 106', 'Descripcion de la noticia 106', 'noticia106.jpg', '01-09-2024', 'En revision', 7);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 107', 'Descripcion de la noticia 107', 'noticia107.jpg', '14-09-2024', 'En revision', 5);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 107', 'Descripcion de la noticia 107', 'noticia107.jpg', '11-09-2024', 'En revision', 5);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 108', 'Descripcion de la noticia 108', 'noticia108.jpg', '01-09-2024', 'En revision', 9);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 109', 'Descripcion de la noticia 109', 'noticia109.jpg', '01-09-2024', 'En revision', 8);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 110', 'Descripcion de la noticia 110', 'noticia110.jpg', '01-09-2024', 'En revision', 8);
@@ -9456,7 +9456,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 126', 'Descripcion de la noticia 126', 'noticia126.jpg', '01-09-2024', 'En revision', 6);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 127', 'Descripcion de la noticia 127', 'noticia127.jpg', '01-09-2024', 'En revision', 3);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 128', 'Descripcion de la noticia 128', 'noticia128.jpg', '01-09-2024', 'En revision', 2);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 129', 'Descripcion de la noticia 129', 'noticia129.jpg', '13-09-2024', 'En revision', 6);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 129', 'Descripcion de la noticia 129', 'noticia129.jpg', '11-09-2024', 'En revision', 6);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 130', 'Descripcion de la noticia 130', 'noticia130.jpg', '01-09-2024', 'En revision', 8);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 131', 'Descripcion de la noticia 131', 'noticia131.jpg', '01-09-2024', 'En revision', 4);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 132', 'Descripcion de la noticia 132', 'noticia132.jpg', '01-09-2024', 'En revision', 2);
@@ -9474,7 +9474,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 144', 'Descripcion de la noticia 144', 'noticia144.jpg', '01-09-2024', 'En revision', 3);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 145', 'Descripcion de la noticia 145', 'noticia145.jpg', '01-09-2024', 'En revision', 3);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 146', 'Descripcion de la noticia 146', 'noticia146.jpg', '01-09-2024', 'En revision', 9);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 147', 'Descripcion de la noticia 147', 'noticia147.jpg', '26-09-2024', 'En revision', 8);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 147', 'Descripcion de la noticia 147', 'noticia147.jpg', '09-09-2024', 'En revision', 8);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 148', 'Descripcion de la noticia 148', 'noticia148.jpg', '01-09-2024', 'En revision', 8);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 149', 'Descripcion de la noticia 149', 'noticia149.jpg', '01-09-2024', 'En revision', 2);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 150', 'Descripcion de la noticia 150', 'noticia150.jpg', '01-09-2024', 'En revision', 3);
@@ -9680,7 +9680,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 350', 'Descripcion de la noticia 350', 'noticia350.jpg', '01-09-2024', 'En revision', 9);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 351', 'Descripcion de la noticia 351', 'noticia351.jpg', '01-09-2024', 'En revision', 1);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 352', 'Descripcion de la noticia 352', 'noticia352.jpg', '01-09-2024', 'En revision', 1);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 353', 'Descripcion de la noticia 353', 'noticia353.jpg', '21-09-2024', 'En revision', 7);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 353', 'Descripcion de la noticia 353', 'noticia353.jpg', '11-09-2024', 'En revision', 7);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 354', 'Descripcion de la noticia 354', 'noticia354.jpg', '01-09-2024', 'En revision', 4);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 355', 'Descripcion de la noticia 355', 'noticia355.jpg', '01-09-2024', 'En revision', 10);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 356', 'Descripcion de la noticia 356', 'noticia356.jpg', '01-09-2024', 'En revision', 3);
@@ -9783,7 +9783,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 453', 'Descripcion de la noticia 453', 'noticia453.jpg', '01-09-2024', 'En revision', 2);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 454', 'Descripcion de la noticia 454', 'noticia454.jpg', '01-09-2024', 'En revision', 1);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 455', 'Descripcion de la noticia 455', 'noticia455.jpg', '01-09-2024', 'En revision', 2);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 456', 'Descripcion de la noticia 456', 'noticia456.jpg', '30-09-2024', 'En revision', 5);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 456', 'Descripcion de la noticia 456', 'noticia456.jpg', '02-09-2024', 'En revision', 5);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 457', 'Descripcion de la noticia 457', 'noticia457.jpg', '01-09-2024', 'En revision', 5);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 458', 'Descripcion de la noticia 458', 'noticia458.jpg', '01-09-2024', 'En revision', 2);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 459', 'Descripcion de la noticia 459', 'noticia459.jpg', '01-09-2024', 'En revision', 2);
@@ -9930,7 +9930,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 600', 'Descripcion de la noticia 600', 'noticia600.jpg', '01-09-2024', 'En revision', 6);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 601', 'Descripcion de la noticia 601', 'noticia601.jpg', '01-09-2024', 'En revision', 3);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 602', 'Descripcion de la noticia 602', 'noticia602.jpg', '01-09-2024', 'En revision', 8);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 603', 'Descripcion de la noticia 603', 'noticia603.jpg', '20-09-2024', 'En revision', 3);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 603', 'Descripcion de la noticia 603', 'noticia603.jpg', '03-09-2024', 'En revision', 3);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 604', 'Descripcion de la noticia 604', 'noticia604.jpg', '01-09-2024', 'En revision', 6);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 605', 'Descripcion de la noticia 605', 'noticia605.jpg', '01-09-2024', 'En revision', 3);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 606', 'Descripcion de la noticia 606', 'noticia606.jpg', '01-09-2024', 'En revision', 6);
@@ -10017,7 +10017,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 687', 'Descripcion de la noticia 687', 'noticia687.jpg', '01-09-2024', 'En revision', 1);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 688', 'Descripcion de la noticia 688', 'noticia688.jpg', '01-09-2024', 'En revision', 2);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 689', 'Descripcion de la noticia 689', 'noticia689.jpg', '01-09-2024', 'En revision', 7);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 690', 'Descripcion de la noticia 690', 'noticia690.jpg', '18-09-2024', 'En revision', 1);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 690', 'Descripcion de la noticia 690', 'noticia690.jpg', '04-09-2024', 'En revision', 1);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 691', 'Descripcion de la noticia 691', 'noticia691.jpg', '01-09-2024', 'En revision', 6);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 692', 'Descripcion de la noticia 692', 'noticia692.jpg', '01-09-2024', 'En revision', 3);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 693', 'Descripcion de la noticia 693', 'noticia693.jpg', '01-09-2024', 'En revision', 3);
@@ -10040,7 +10040,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 710', 'Descripcion de la noticia 710', 'noticia710.jpg', '01-09-2024', 'En revision', 10);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 711', 'Descripcion de la noticia 711', 'noticia711.jpg', '01-09-2024', 'En revision', 2);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 712', 'Descripcion de la noticia 712', 'noticia712.jpg', '01-09-2024', 'En revision', 10);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 713', 'Descripcion de la noticia 713', 'noticia713.jpg', '14-09-2024', 'En revision', 5);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 713', 'Descripcion de la noticia 713', 'noticia713.jpg', '06-09-2024', 'En revision', 5);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 714', 'Descripcion de la noticia 714', 'noticia714.jpg', '05-09-2024', 'En revision', 4);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 715', 'Descripcion de la noticia 715', 'noticia715.jpg', '01-09-2024', 'En revision', 9);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 716', 'Descripcion de la noticia 716', 'noticia716.jpg', '01-09-2024', 'En revision', 1);
@@ -10219,7 +10219,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 889', 'Descripcion de la noticia 889', 'noticia889.jpg', '01-09-2024', 'En revision', 2);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 890', 'Descripcion de la noticia 890', 'noticia890.jpg', '01-09-2024', 'En revision', 7);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 891', 'Descripcion de la noticia 891', 'noticia891.jpg', '05-09-2024', 'En revision', 7);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 892', 'Descripcion de la noticia 892', 'noticia892.jpg', '28-09-2024', 'En revision', 1);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 892', 'Descripcion de la noticia 892', 'noticia892.jpg', '08-09-2024', 'En revision', 1);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 893', 'Descripcion de la noticia 893', 'noticia893.jpg', '01-09-2024', 'En revision', 8);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 894', 'Descripcion de la noticia 894', 'noticia894.jpg', '01-09-2024', 'En revision', 1);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 895', 'Descripcion de la noticia 895', 'noticia895.jpg', '01-09-2024', 'En revision', 8);
@@ -10233,7 +10233,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 903', 'Descripcion de la noticia 903', 'noticia903.jpg', '01-09-2024', 'En revision', 9);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 904', 'Descripcion de la noticia 904', 'noticia904.jpg', '01-09-2024', 'En revision', 6);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 905', 'Descripcion de la noticia 905', 'noticia905.jpg', '01-09-2024', 'En revision', 9);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 906', 'Descripcion de la noticia 906', 'noticia906.jpg', '23-09-2024', 'En revision', 1);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 906', 'Descripcion de la noticia 906', 'noticia906.jpg', '09-09-2024', 'En revision', 1);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 907', 'Descripcion de la noticia 907', 'noticia907.jpg', '01-09-2024', 'En revision', 4);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 908', 'Descripcion de la noticia 908', 'noticia908.jpg', '01-09-2024', 'En revision', 6);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 909', 'Descripcion de la noticia 909', 'noticia909.jpg', '01-09-2024', 'En revision', 1);
@@ -10253,7 +10253,7 @@ INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuari
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 923', 'Descripcion de la noticia 923', 'noticia923.jpg', '01-09-2024', 'En revision', 4);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 924', 'Descripcion de la noticia 924', 'noticia924.jpg', '01-09-2024', 'En revision', 8);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 925', 'Descripcion de la noticia 925', 'noticia925.jpg', '01-09-2024', 'En revision', 10);
-INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 926', 'Descripcion de la noticia 926', 'noticia926.jpg', '28-09-2024', 'En revision', 10);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 926', 'Descripcion de la noticia 926', 'noticia926.jpg', '09-09-2024', 'En revision', 10);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 927', 'Descripcion de la noticia 927', 'noticia927.jpg', '01-09-2024', 'En revision', 5);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 928', 'Descripcion de la noticia 928', 'noticia928.jpg', '01-09-2024', 'En revision', 4);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 929', 'Descripcion de la noticia 929', 'noticia929.jpg', '01-09-2024', 'En revision', 2);
