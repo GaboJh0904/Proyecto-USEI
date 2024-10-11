@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.usei.usei.controllers.SoporteService;
-import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Soporte;
 import com.usei.usei.models.TipoProblema;
+import com.usei.usei.models.Usuario;
 
 @RestController
 @RequestMapping("/soporte")
@@ -36,10 +36,10 @@ public class SoporteAPI {
             TipoProblema tipoProblema = new TipoProblema();
             tipoProblema.setIdProblema(soporte.getTipoProblemaIdProblema().getIdProblema());
             newSoporte.setTipoProblemaIdProblema(tipoProblema);
-            // Vincular a un estudiante
-            Estudiante estudiante = new Estudiante();
-            estudiante.setIdEstudiante(soporte.getEstudianteIdEstudiante().getIdEstudiante());
-            newSoporte.setEstudianteIdEstudiante(estudiante);
+            // Vincular a un usuario
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(soporte.getUsuarioIdUsuario().getIdUsuario());
+            newSoporte.setUsuarioIdUsuario(usuario);
 
             soporteService.save(newSoporte);
 
@@ -87,10 +87,10 @@ public class SoporteAPI {
             TipoProblema tipoProblema = new TipoProblema();
             tipoProblema.setIdProblema(soporte.getTipoProblemaIdProblema().getIdProblema());
             oSoporte.get().setTipoProblemaIdProblema(tipoProblema);
-            // Vincular a un estudiante
-            Estudiante estudiante = new Estudiante();
-            estudiante.setIdEstudiante(soporte.getEstudianteIdEstudiante().getIdEstudiante());
-            oSoporte.get().setEstudianteIdEstudiante(estudiante);
+            // Vincular a un usuario
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(soporte.getUsuarioIdUsuario().getIdUsuario());
+            oSoporte.get().setUsuarioIdUsuario(usuario);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(soporteService.save(oSoporte.get()));
         } catch (Exception e) {

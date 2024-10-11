@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-10-09 21:59:38.397
+-- Last modification date: 2024-10-11 03:46:49.92
 
 -- tables
 -- Table: Certificado
@@ -174,9 +174,10 @@ CREATE TABLE Noticias (
 
 -- Table: Notificacion
 CREATE TABLE Notificacion (
-    id_notificacion int  NOT NULL,
+    id_notificacion serial  NOT NULL,
     titulo varchar(80)  NOT NULL,
     contenido text  NOT NULL,
+    fecha timestamp  NOT NULL,
     estado_notificacion boolean  NOT NULL,
     Estudiante_id_estudiante int  NOT NULL,
     Tipo_Notificacion_id_notificacion int  NOT NULL,
@@ -223,24 +224,24 @@ CREATE TABLE Respuesta (
 
 -- Table: Soporte
 CREATE TABLE Soporte (
-    id_soporte int  NOT NULL,
+    id_soporte serial  NOT NULL,
     mensaje text  NOT NULL,
     fecha timestamp  NOT NULL,
-    Estudiante_id_estudiante int  NOT NULL,
     Tipo_Problema_id_problema int  NOT NULL,
+    Usuario_id_usuario int  NOT NULL,
     CONSTRAINT Soporte_pk PRIMARY KEY (id_soporte)
 );
 
 -- Table: Tipo_Notificacion
 CREATE TABLE Tipo_Notificacion (
-    id_notificacion int  NOT NULL,
+    id_notificacion serial  NOT NULL,
     tipo varchar(80)  NOT NULL,
     CONSTRAINT Tipo_Notificacion_pk PRIMARY KEY (id_notificacion)
 );
 
 -- Table: Tipo_Problema
 CREATE TABLE Tipo_Problema (
-    id_problema int  NOT NULL,
+    id_problema serial  NOT NULL,
     problema varchar(80)  NOT NULL,
     CONSTRAINT Tipo_Problema_pk PRIMARY KEY (id_problema)
 );
@@ -378,14 +379,6 @@ ALTER TABLE Respuesta ADD CONSTRAINT Respuesta_Pregunta
     INITIALLY IMMEDIATE
 ;
 
--- Reference: Soporte_Estudiante (table: Soporte)
-ALTER TABLE Soporte ADD CONSTRAINT Soporte_Estudiante
-    FOREIGN KEY (Estudiante_id_estudiante)
-    REFERENCES Estudiante (id_estudiante)  
-    NOT DEFERRABLE 
-    INITIALLY IMMEDIATE
-;
-
 -- Reference: Soporte_Tipo_Problema (table: Soporte)
 ALTER TABLE Soporte ADD CONSTRAINT Soporte_Tipo_Problema
     FOREIGN KEY (Tipo_Problema_id_problema)
@@ -394,4 +387,13 @@ ALTER TABLE Soporte ADD CONSTRAINT Soporte_Tipo_Problema
     INITIALLY IMMEDIATE
 ;
 
+-- Reference: Soporte_Usuario (table: Soporte)
+ALTER TABLE Soporte ADD CONSTRAINT Soporte_Usuario
+    FOREIGN KEY (Usuario_id_usuario)
+    REFERENCES Usuario (id_usuario)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
 -- End of file.
+
