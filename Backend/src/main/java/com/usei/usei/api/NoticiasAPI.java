@@ -119,26 +119,35 @@ public class NoticiasAPI {
         }
     }
 
-    // Endpoint para noticias existentes con paginación, ordenación y filtrado por título o descripción
+    // Endpoint para noticias existentes con paginación, ordenación y filtrado por título, descripción y estado
     @GetMapping
     public ResponseEntity<Page<Noticias>> readAll(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "titulo") String sortBy,  // Ordenar por campo, por defecto 'titulo'
-            @RequestParam(defaultValue = "asc") String sortDirection, // Direccion de orden 'asc' o 'desc'
-            @RequestParam(required = false) String filter) { // Filtro opcional
-
+            @RequestParam(defaultValue = "asc") String sortDirection, // Dirección de orden 'asc' o 'desc'
+            @RequestParam(required = false) String filter, // Filtro opcional
+            @RequestParam(required = false) String estado // Nuevo parámetro de estado
+    ) {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
                 ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
 
         Pageable paging = PageRequest.of(page, size, sort);
-
         Page<Noticias> pagedNoticias;
 
-        if (filter != null && !filter.isEmpty()) {
-            pagedNoticias = noticiasService.findByFilter(filter, paging);  // Aquí se filtran las noticias
+        // Lógica de filtrado combinando estado y filtro
+        if (filter != null && !filter.isEmpty() && estado != null && !estado.isEmpty()) {
+            // Filtrar tanto por estado como por título o descripción
+            pagedNoticias = noticiasService.findByEstadoAndFilter(estado, filter, paging);
+        } else if (filter != null && !filter.isEmpty()) {
+            // Filtrar solo por título o descripción
+            pagedNoticias = noticiasService.findByFilter(filter, paging);
+        } else if (estado != null && !estado.isEmpty()) {
+            // Filtrar solo por estado
+            pagedNoticias = noticiasService.findByEstadoWithPagination(estado, paging);
         } else {
+            // Sin filtros, devolver todas las noticias
             pagedNoticias = noticiasService.findAll(paging);
         }
 
@@ -148,6 +157,7 @@ public class NoticiasAPI {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
 
 
     // Endpoint para noticias archivadas con paginación, ordenación y filtrado por título o descripción

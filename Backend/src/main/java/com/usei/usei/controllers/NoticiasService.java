@@ -38,4 +38,7 @@ public interface NoticiasService {
 
     // Nuevo método para filtrar noticias archivadas con paginación
     Page<Noticias> findByEstadoWithFilter(String estado, String filter, Pageable pageable);
+
+
+    Page<Noticias> findByEstadoAndFilter(String estado, String filter, Pageable paging);
 }

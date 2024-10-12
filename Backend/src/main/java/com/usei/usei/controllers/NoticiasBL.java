@@ -144,7 +144,10 @@ public class NoticiasBL implements NoticiasService {
         return noticiasDAO.findByEstadoAndTituloContainingIgnoreCaseOrDescripcionContainingIgnoreCase(estado, filter, filter, pageable);
     }
 
-
+    @Override
+    public Page<Noticias> findByEstadoAndFilter(String estado, String filter, Pageable pageable) {
+        return null;
+    }
 
 }
 
