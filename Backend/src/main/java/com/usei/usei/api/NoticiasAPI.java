@@ -1,6 +1,10 @@
 package com.usei.usei.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,7 +20,6 @@ import com.usei.usei.models.Usuario;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 @RestController
 @RequestMapping("/noticia")
 public class NoticiasAPI {
@@ -37,7 +40,7 @@ public class NoticiasAPI {
             Noticias noticias = new Noticias();
             noticias.setTitulo(titulo);
             noticias.setDescripcion(descripcion);
-            noticias.setFechaModificado(fechaModificado); // Aquí ahora se maneja solo la fecha
+            noticias.setFechaModificado(fechaModificado);
             noticias.setEstado(estado);
 
             Usuario usuario = new Usuario();
@@ -72,7 +75,7 @@ public class NoticiasAPI {
             Noticias noticias = noticiasOpt.get();
             noticias.setTitulo(titulo);
             noticias.setDescripcion(descripcion);
-            noticias.setFechaModificado(fechaModificado); // Aquí ahora se maneja solo la fecha
+            noticias.setFechaModificado(fechaModificado);
             noticias.setEstado(estado);
 
             Usuario usuario = new Usuario();
@@ -101,11 +104,89 @@ public class NoticiasAPI {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Obtener todas las noticias
+    // Obtener noticias para el carrusel
+    @GetMapping("/carrusel")
+    public ResponseEntity<?> getNoticiasForCarrusel() {
+        try {
+            // Filtramos solo las noticias con estado 'publicado'
+            List<Noticias> noticiasPublicadas = noticiasService.findByEstado("publicado");
+            if (noticiasPublicadas.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(noticiasPublicadas, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // Endpoint para noticias existentes con paginación, ordenación y filtrado por título, descripción y estado
     @GetMapping
-    public ResponseEntity<Object> readAll() {
-        List<Noticias> noticias = (List<Noticias>) noticiasService.findAll();
-        return ResponseEntity.ok(noticias);
+    public ResponseEntity<Page<Noticias>> readAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "titulo") String sortBy,  // Ordenar por campo, por defecto 'titulo'
+            @RequestParam(defaultValue = "asc") String sortDirection, // Dirección de orden 'asc' o 'desc'
+            @RequestParam(required = false) String filter, // Filtro opcional
+            @RequestParam(required = false) String estado // Nuevo parámetro de estado
+    ) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        Pageable paging = PageRequest.of(page, size, sort);
+        Page<Noticias> pagedNoticias;
+
+        // Lógica de filtrado combinando estado y filtro
+        if (filter != null && !filter.isEmpty() && estado != null && !estado.isEmpty()) {
+            // Filtrar tanto por estado como por título o descripción
+            pagedNoticias = noticiasService.findByEstadoAndFilter(estado, filter, paging);
+        } else if (filter != null && !filter.isEmpty()) {
+            // Filtrar solo por título o descripción
+            pagedNoticias = noticiasService.findByFilter(filter, paging);
+        } else if (estado != null && !estado.isEmpty()) {
+            // Filtrar solo por estado
+            pagedNoticias = noticiasService.findByEstadoWithPagination(estado, paging);
+        } else {
+            // Sin filtros, devolver todas las noticias
+            pagedNoticias = noticiasService.findAll(paging);
+        }
+
+        if (pagedNoticias.hasContent()) {
+            return new ResponseEntity<>(pagedNoticias, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+
+
+    // Endpoint para noticias archivadas con paginación, ordenación y filtrado por título o descripción
+    @GetMapping("/archivadas/paginadas")
+    public ResponseEntity<Page<Noticias>> getArchivedNewsPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "titulo") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection,
+            @RequestParam(required = false) String filter) {
+
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        Pageable paging = PageRequest.of(page, size, sort);
+        Page<Noticias> noticiasArchivadas;
+
+        if (filter != null && !filter.isEmpty()) {
+            noticiasArchivadas = noticiasService.findByEstadoWithFilter("archivado", filter, paging);
+        } else {
+            noticiasArchivadas = noticiasService.findByEstadoWithPagination("archivado", paging);
+        }
+
+        if (noticiasArchivadas.hasContent()) {
+            return new ResponseEntity<>(noticiasArchivadas, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 
 
@@ -177,10 +258,5 @@ public class NoticiasAPI {
         }
         return new ResponseEntity<>(noticias, HttpStatus.OK);
     }
-
-
-
-
-
 
 }
