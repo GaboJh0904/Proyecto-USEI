@@ -132,5 +132,19 @@ public class NoticiasBL implements NoticiasService {
         return noticiasDAO.findByEstado(estado, pageable);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Noticias> findByFilter(String filter, Pageable pageable) {
+        return noticiasDAO.findByFilter(filter, pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Noticias> findByEstadoWithFilter(String estado, String filter, Pageable pageable) {
+        return noticiasDAO.findByEstadoAndTituloContainingIgnoreCaseOrDescripcionContainingIgnoreCase(estado, filter, filter, pageable);
+    }
+
+
+
 }
 

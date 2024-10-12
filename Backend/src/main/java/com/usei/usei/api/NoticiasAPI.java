@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -118,14 +119,28 @@ public class NoticiasAPI {
         }
     }
 
-    // Paginación para noticias existentes
+    // Endpoint para noticias existentes con paginación, ordenación y filtrado por título o descripción
     @GetMapping
     public ResponseEntity<Page<Noticias>> readAll(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size) {
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "titulo") String sortBy,  // Ordenar por campo, por defecto 'titulo'
+            @RequestParam(defaultValue = "asc") String sortDirection, // Direccion de orden 'asc' o 'desc'
+            @RequestParam(required = false) String filter) { // Filtro opcional
 
-        Pageable paging = PageRequest.of(page, size);
-        Page<Noticias> pagedNoticias = noticiasService.findAll(paging);
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        Pageable paging = PageRequest.of(page, size, sort);
+
+        Page<Noticias> pagedNoticias;
+
+        if (filter != null && !filter.isEmpty()) {
+            pagedNoticias = noticiasService.findByFilter(filter, paging);  // Aquí se filtran las noticias
+        } else {
+            pagedNoticias = noticiasService.findAll(paging);
+        }
 
         if (pagedNoticias.hasContent()) {
             return new ResponseEntity<>(pagedNoticias, HttpStatus.OK);
@@ -134,26 +149,36 @@ public class NoticiasAPI {
         }
     }
 
-    // Paginación para noticias archivadas
+
+    // Endpoint para noticias archivadas con paginación, ordenación y filtrado por título o descripción
     @GetMapping("/archivadas/paginadas")
     public ResponseEntity<Page<Noticias>> getArchivedNewsPaginated(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size) {
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "titulo") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection,
+            @RequestParam(required = false) String filter) {
 
-        try {
-            Pageable paging = PageRequest.of(page, size);
-            Page<Noticias> noticiasArchivadas = noticiasService.findByEstadoWithPagination("archivado", paging);
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
 
-            if (noticiasArchivadas.hasContent()) {
-                return new ResponseEntity<>(noticiasArchivadas, HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-        } catch (Exception e) {
-            // Cambia el bloque catch para devolver una respuesta vacía o un mensaje de error
-            return new ResponseEntity<>(Page.empty(), HttpStatus.INTERNAL_SERVER_ERROR);
+        Pageable paging = PageRequest.of(page, size, sort);
+        Page<Noticias> noticiasArchivadas;
+
+        if (filter != null && !filter.isEmpty()) {
+            noticiasArchivadas = noticiasService.findByEstadoWithFilter("archivado", filter, paging);
+        } else {
+            noticiasArchivadas = noticiasService.findByEstadoWithPagination("archivado", paging);
+        }
+
+        if (noticiasArchivadas.hasContent()) {
+            return new ResponseEntity<>(noticiasArchivadas, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
+
 
     // Eliminar noticia
     @DeleteMapping("/{id_noticia}")
