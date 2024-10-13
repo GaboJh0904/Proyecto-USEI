@@ -82,5 +82,16 @@ public class NotificacionBL implements NotificacionService {
             throw new RuntimeException("Respuesta no encontrada con el id: " + id);
         }
     }
+
+    @Override
+    @Transactional
+    public void marcarComoLeida(Long id) {
+        Optional<Notificacion> notificacion = notificacionDAO.findById(id);
+        if (notificacion.isPresent()) {
+            notificacionDAO.marcarComoLeida(id);
+        } else {
+            throw new RuntimeException("Notificación no encontrada con el id: " + id);
+        }
+    }
  
 }

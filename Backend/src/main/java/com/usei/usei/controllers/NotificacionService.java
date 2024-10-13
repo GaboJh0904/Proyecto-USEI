@@ -14,5 +14,7 @@ public interface NotificacionService {
     public Notificacion save(Notificacion newNopNotificacion);
 
     public Notificacion update (Notificacion newNotificacion, Long id);
+
+    void marcarComoLeida(Long id);
     
 }

@@ -102,4 +102,13 @@ public class NotificacionAPI {
         }
     }
 
+    @PutMapping("/{id_notificacion}/marcar-como-leida")
+    public ResponseEntity<?> marcarComoLeida(@PathVariable(value = "id_notificacion") Long id) {
+        try {
+            notificacionService.marcarComoLeida(id);
+            return ResponseEntity.ok(new MessageResponse("Notificación marcada como leída (estado = false)"));
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
