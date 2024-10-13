@@ -174,7 +174,7 @@ CREATE TABLE Noticias (
 
 -- Table: Notificacion
 CREATE TABLE Notificacion (
-    id_notificacion int  NOT NULL,
+    id_notificacion serial  NOT NULL,
     titulo varchar(80)  NOT NULL,
     contenido text  NOT NULL,
     estado_notificacion boolean  NOT NULL,
@@ -223,7 +223,7 @@ CREATE TABLE Respuesta (
 
 -- Table: Soporte
 CREATE TABLE Soporte (
-    id_soporte int  NOT NULL,
+    id_soporte serial  NOT NULL,
     mensaje text  NOT NULL,
     fecha timestamp  NOT NULL,
     Estudiante_id_estudiante int  NOT NULL,
@@ -233,14 +233,14 @@ CREATE TABLE Soporte (
 
 -- Table: Tipo_Notificacion
 CREATE TABLE Tipo_Notificacion (
-    id_notificacion int  NOT NULL,
+    id_notificacion serial  NOT NULL,
     tipo varchar(80)  NOT NULL,
     CONSTRAINT Tipo_Notificacion_pk PRIMARY KEY (id_notificacion)
 );
 
 -- Table: Tipo_Problema
 CREATE TABLE Tipo_Problema (
-    id_problema int  NOT NULL,
+    id_problema serial  NOT NULL,
     problema varchar(80)  NOT NULL,
     CONSTRAINT Tipo_Problema_pk PRIMARY KEY (id_problema)
 );
