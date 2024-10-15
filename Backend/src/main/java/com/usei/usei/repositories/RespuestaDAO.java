@@ -19,4 +19,7 @@ boolean existsByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante);
     @Query("SELECT DISTINCT e FROM Respuesta r JOIN r.estudianteIdEstudiante e")
     List<Estudiante> findEstudiantesQueCompletaronEncuesta();
 
+    List<Respuesta> findByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante);
+
+
 }

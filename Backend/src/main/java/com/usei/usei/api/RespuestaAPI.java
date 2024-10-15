@@ -1,7 +1,9 @@
 package com.usei.usei.api;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -133,4 +135,19 @@ public class RespuestaAPI {
             boolean hasFilled = respuestaService.hasFilledSurvey(id_estudiante);
             return ResponseEntity.ok().body(Map.of("filled", hasFilled));
         }
+
+        @GetMapping("/estudiante/{idEstudiante}")
+public ResponseEntity<?> getRespuestasPorEstudiante(@PathVariable Long idEstudiante) {
+    try {
+        List<Respuesta> respuestas = respuestaService.findRespuestasByEstudianteId(idEstudiante);
+        if (respuestas.isEmpty()) {
+            return new ResponseEntity<>(new MessageResponse("No se encontraron respuestas para este estudiante"), HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(respuestas);
+    } catch (Exception e) {
+        return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+
+
 }

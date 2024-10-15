@@ -1,5 +1,5 @@
 package com.usei.usei.controllers;
-import java.util.Optional;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,6 @@ import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.Pregunta;
 import com.usei.usei.models.Respuesta;
 import com.usei.usei.repositories.RespuestaDAO;
-
 @Service
 public class RespuestaBL implements RespuestaService {
 
@@ -85,7 +84,11 @@ public class RespuestaBL implements RespuestaService {
      @Transactional(readOnly = true)
      public boolean hasFilledSurvey(Long idEstudiante) {
         return respuestaDAO.existsByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
+     }
  
+    @Override
+    @Transactional(readOnly = true)
+    public List<Respuesta> findRespuestasByEstudianteId(Long idEstudiante) {
+        return respuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
     }
- 
 }
