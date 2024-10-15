@@ -1,27 +1,28 @@
 package com.usei.usei.controllers;
 
+import java.security.SecureRandom;
+import java.util.List;
 import java.util.Optional;
 
-//import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.repositories.EstudianteDAO;
+
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-
-import java.util.List;
 
 @Service
 public class EstudianteBL implements EstudianteService{
 
     private EstudianteDAO estudianteDAO;
     private JavaMailSender mailSender;
+
+    private String codigoVerificacion;
 
     //Listado-estudiantes
     @Override
@@ -108,6 +109,25 @@ public class EstudianteBL implements EstudianteService{
         }
     }
 
+    // Método que contiene la lógica completa para enviar correos de invitacion a todos los estudiantes
+    public void enviarCodigoVerificacion(String correo) throws MessagingException {
+
+        Estudiante estudiante = estudianteDAO.findByCorreoInstitucional(correo);
+
+        String asunto = "Codigo de Seguridad para cambio de contraseña";
+        String mensaje = "Estimado estudiante, usted a solicitado un cambio de contraseña, por favor ingrese el siguiente codigo de seguridad: ";
+
+        if (!correo.endsWith("@ucb.edu.bo")) {
+            System.out.println("Correo inválido: " + correo);
+        }else {
+            // Generar el código y guardarlo en la variable de instancia
+            codigoVerificacion = generarCodigoVerificacion();
+            String cuerpoCorreo = mensaje + codigoVerificacion;
+            enviarCorreo(correo, asunto, cuerpoCorreo);
+            System.out.println("Correo enviado a: " + estudiante.getNombre());
+        }
+    }
+
     // Método para enviar un correo de invitacion
     private void enviarCorreo(String to, String subject, String body) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
@@ -119,7 +139,22 @@ public class EstudianteBL implements EstudianteService{
         mailSender.send(message);  // Enviar el correo
     }
         
+    private String generarCodigoVerificacion() {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        SecureRandom random = new SecureRandom();
+        StringBuilder codigo = new StringBuilder(6);
+        
+        for (int i = 0; i < 6; i++) {
+            int index = random.nextInt(caracteres.length());
+            codigo.append(caracteres.charAt(index));
+        }
+        
+        return codigo.toString();
+    }
 
-
+    // Método para usar el código de verificación guardado en otra función
+    public String obtenerCodigoVerificacion() {
+        return codigoVerificacion;
+    }
 
 }
