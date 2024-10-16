@@ -1,4 +1,5 @@
 package com.usei.usei.controllers;
+import java.util.List;
 import java.util.Optional;
 
 import com.usei.usei.models.Respuesta;
@@ -15,4 +16,7 @@ public interface RespuestaService {
 
 // Metodo para verificar si el estudiante ya lleno la encuesta
 boolean hasFilledSurvey(Long idEstudiante);
+
+
+List<Respuesta> findRespuestasByEstudianteId(Long idEstudiante);
 }
