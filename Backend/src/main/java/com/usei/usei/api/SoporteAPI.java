@@ -1,22 +1,25 @@
 package com.usei.usei.api;
-import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.usei.usei.controllers.SoporteService;
-import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Soporte;
 import com.usei.usei.models.TipoProblema;
 import com.usei.usei.models.Usuario;
+import com.usei.usei.controllers.SoporteService;
+import com.usei.usei.repositories.TipoProblemaDAO;
+import com.usei.usei.repositories.UsuarioDAO;
+import com.usei.usei.models.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/soporte")
@@ -25,76 +28,117 @@ public class SoporteAPI {
     @Autowired
     private SoporteService soporteService;
 
+    @Autowired
+    private UsuarioDAO usuarioDAO;
+
+    @Autowired
+    private TipoProblemaDAO tipoProblemaDAO;
+
+    @Autowired
+    private EmailService emailService;  // Servicio para enviar correos
+
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Soporte soporte) {
         try {
-            Soporte newSoporte = new Soporte();
-            newSoporte.setMensaje(soporte.getMensaje());
-            newSoporte.setFecha(soporte.getFecha());
-            
-            // Vincular a una tipo de problema
-            TipoProblema tipoProblema = new TipoProblema();
-            tipoProblema.setIdProblema(soporte.getTipoProblemaIdProblema().getIdProblema());
-            newSoporte.setTipoProblemaIdProblema(tipoProblema);
-            // Vincular a un usuario
-            Usuario usuario = new Usuario();
-            usuario.setIdUsuario(soporte.getUsuarioIdUsuario().getIdUsuario());
-            newSoporte.setUsuarioIdUsuario(usuario);
+            // Validar tipo de problema
+            Optional<TipoProblema> tipoProblema = tipoProblemaDAO.findById(soporte.getTipoProblema().getIdProblema());
+            if (tipoProblema.isEmpty()) {
+                return new ResponseEntity<>("Tipo de problema no encontrado", HttpStatus.BAD_REQUEST);
+            }
 
-            soporteService.save(newSoporte);
+            // Validar usuario
+            Optional<Usuario> usuario = usuarioDAO.findById(soporte.getUsuario().getIdUsuario());
+            if (usuario.isEmpty()) {
+                return new ResponseEntity<>("Usuario no encontrado", HttpStatus.BAD_REQUEST);
+            }
 
-            return new ResponseEntity<>(new MessageResponse("Mensaje de Soporte registrada"), HttpStatus.CREATED);
+            // Establecer la fecha actual
+            soporte.setFecha(LocalDateTime.now());
+
+            // Guardar el soporte
+            soporteService.save(soporte);
+
+            // Obtener el tipo de problema seleccionado
+            String problemaSeleccionado = tipoProblema.get().getProblema();
+
+            // Enviar correo de notificación (opcional)
+            emailService.sendEmail(
+                    "misa26amane@gmail.com",  // Dirección del administrador
+                    "Reporte de un nuevo problema",  // Asunto del correo
+                    "Descripción del reporte del problema: \n\n" +
+                            "Tipo de problema: " + problemaSeleccionado + "\n" +
+                            "Mensaje: " + soporte.getMensaje() + "\n" +
+                            "Fecha: " + soporte.getFecha() + "\n" +
+                            "Usuario: " + usuario.get().getNombre()
+            );
+
+            return new ResponseEntity<>("Reporte de problema creado exitosamente", HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @GetMapping
-    public ResponseEntity<?> readAll() {
+    public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(soporteService.findAll());
         } catch (Exception e) {
-            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @GetMapping("/{id_soporte}")
-    public ResponseEntity<?> readById(@PathVariable(value = "id_soporte") Long id) {
+    // Nuevo endpoint: Obtener reportes de un usuario específico por su ID
+    @GetMapping("/usuario/{idUsuario}")
+    public ResponseEntity<?> getReportesPorUsuario(@PathVariable Long idUsuario) {
         try {
-            Optional<Soporte> soporte = soporteService.findById(id);
-            if (soporte.isPresent()) {
-                return ResponseEntity.ok(soporte.get());
-            } else {
-                return new ResponseEntity<>(new MessageResponse("Mensaje de Soporte inexistente"), HttpStatus.NOT_FOUND);
+            Optional<Usuario> usuario = usuarioDAO.findById(idUsuario);
+            if (usuario.isEmpty()) {
+                return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
             }
+
+            List<Soporte> reportes = soporteService.findByUsuarioId(idUsuario);
+            return ResponseEntity.ok(reportes);
         } catch (Exception e) {
-            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PutMapping("/{id_soporte}")
-    public ResponseEntity<?> update(@PathVariable(value = "id_soporte") Long id, @RequestBody Soporte soporte) {
+    // Endpoint para paginacion,filtrado y ordenacion para historial de reportes
+    @GetMapping("/paginado")
+    public ResponseEntity<Page<Soporte>> getAllSoportesPaginado(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "fecha") String sortBy,  // Ordenar por campo, por defecto 'fecha'
+            @RequestParam(defaultValue = "asc") String sortDirection,  // Dirección de orden 'asc' o 'desc'
+            @RequestParam(required = false) String filter,  // Filtro opcional para el mensaje
+            @RequestParam(required = false) Long idUsuario  // Filtro opcional para filtrar por usuario
+    ) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
 
-        Optional<Soporte> oSoporte = soporteService.findById(id);
-        if (oSoporte.isEmpty()) {
-            return ResponseEntity.notFound().build();
+        Pageable paging = PageRequest.of(page, size, sort);
+        Page<Soporte> pagedSoportes;
+
+        // Lógica de filtrado combinando idUsuario y filtro
+        if (filter != null && !filter.isEmpty() && idUsuario != null) {
+            // Filtrar por usuario y mensaje
+            pagedSoportes = soporteService.findByUsuarioAndFilter(idUsuario, filter, paging);
+        } else if (filter != null && !filter.isEmpty()) {
+            // Filtrar solo por mensaje
+            pagedSoportes = soporteService.findByFilter(filter, paging);
+        } else if (idUsuario != null) {
+            // Filtrar solo por usuario
+            pagedSoportes = soporteService.findByUsuarioId(idUsuario, paging);
+        } else {
+            // Sin filtros, devolver todos los reportes
+            pagedSoportes = soporteService.findAll(paging);
         }
 
-        try {
-            oSoporte.get().setMensaje(soporte.getMensaje());
-            oSoporte.get().setFecha(soporte.getFecha());
-            
-            // Vincular a una tipo de problema
-            TipoProblema tipoProblema = new TipoProblema();
-            tipoProblema.setIdProblema(soporte.getTipoProblemaIdProblema().getIdProblema());
-            oSoporte.get().setTipoProblemaIdProblema(tipoProblema);
-            // Vincular a un usuario
-            Usuario usuario = new Usuario();
-            usuario.setIdUsuario(soporte.getUsuarioIdUsuario().getIdUsuario());
-            oSoporte.get().setUsuarioIdUsuario(usuario);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(soporteService.save(oSoporte.get()));
-        } catch (Exception e) {
-            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        if (pagedSoportes.hasContent()) {
+            return new ResponseEntity<>(pagedSoportes, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 
