@@ -17427,3 +17427,10 @@ VALUES
 (98, 1, 2024, 1),
 (99, 1, 2024, 1),
 (100, 1, 2024, 1);
+
+-- Datos tabla tipo_problema
+INSERT INTO tipo_problema (problema) VALUES ('Problemas de Acceso');
+INSERT INTO tipo_problema (problema) VALUES ('Problemas con la Encuesta');
+INSERT INTO tipo_problema (problema) VALUES ('Problemas con la Emisión del Certificado');
+INSERT INTO tipo_problema (problema) VALUES ('Problemas con el Reporte de Datos');
+INSERT INTO tipo_problema (problema) VALUES ('Problemas Técnicos Generales');
