@@ -1,20 +1,25 @@
 package com.usei.usei.api;
 
-import com.usei.usei.controllers.UsuarioService;
-import com.usei.usei.dto.SuccessfulResponse;
-import com.usei.usei.dto.UnsuccessfulResponse;
-//import com.usei.usei.dto.request.LoginRequestDTO;
-import com.usei.usei.dto.request.LoginRequestUserDTO;
-//import com.usei.usei.models.Estudiante;
-import com.usei.usei.models.Usuario;
+import java.util.HashMap;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-//import java.util.Map;
-import java.util.Optional;
+import com.usei.usei.controllers.UsuarioService;
+import com.usei.usei.dto.SuccessfulResponse;
+import com.usei.usei.dto.UnsuccessfulResponse;
+import com.usei.usei.dto.request.LoginRequestUserDTO;
+import com.usei.usei.models.Usuario;
 
 @RestController
 @RequestMapping("/usuario")
@@ -63,6 +68,16 @@ public class UsuarioAPI {
         oUsuario.get().setCorreo(usuario.getCorreo());
         oUsuario.get().setRol(usuario.getRol());
         oUsuario.get().setUsuario(usuario.getUsuario());
+        oUsuario.get().setContrasenia(usuario.getContrasenia());
+        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(oUsuario.get()));
+    }
+
+    @PutMapping("/change-password/{id_usuario}")
+    public ResponseEntity<?> changePassword(@PathVariable(value = "id_usuario") Long id_usuario, @RequestBody Usuario usuario) {
+        Optional<Usuario> oUsuario = usuarioService.findById(id_usuario);
+        if (oUsuario.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         oUsuario.get().setContrasenia(usuario.getContrasenia());
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(oUsuario.get()));
     }

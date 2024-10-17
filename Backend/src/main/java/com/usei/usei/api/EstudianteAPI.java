@@ -1,11 +1,12 @@
 package com.usei.usei.api;
 
-import java.util.HashMap;
-import java.util.Optional;
 import java.io.InputStreamReader;
-import java.util.List;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -13,7 +14,6 @@ import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,17 +21,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.usei.usei.controllers.EstudianteService;
 import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
 import com.usei.usei.dto.request.LoginRequestDTO;
 import com.usei.usei.models.Estudiante;
-//import com.usei.usei.models.MessageResponse;
+
 import jakarta.mail.MessagingException;
-import java.nio.charset.StandardCharsets;
 
 
 @RestController
@@ -112,7 +112,15 @@ public class EstudianteAPI {
         return ResponseEntity.ok(estudianteExistente);
     }
 
-
+    @PutMapping("/change-password/{id_estudiante}")
+    public ResponseEntity<?> changePassword(@PathVariable(value = "id_estudiante") Long id_estudiante, @RequestBody Estudiante estudiante) {
+        Optional<Estudiante> oEstudiante = estudianteService.findById(id_estudiante);
+        if (oEstudiante.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        oEstudiante.get().setContrasena(estudiante.getContrasena());
+        return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.save(oEstudiante.get()));
+    }
 
 
     // Inicio de sesión de estudiante
@@ -202,5 +210,25 @@ public class EstudianteAPI {
         }
     }
 
+    @PostMapping("/enviarCodigoVerificacion/{correo}")
+    public ResponseEntity<?> enviarCodigoVerificacion(@PathVariable(value = "correo") String correo) {
+        try {
+            // Llamamos al servicio para enviar el código de verificación
+            estudianteService.enviarCodigoVerificacion(correo);
+            
+            // Devolver el código de verificación en la respuesta
+            String codigoVerificacion = estudianteService.obtenerCodigoVerificacion(); // Método que obtiene el código
+            
+            // Enviar el código también al frontend
+            return new ResponseEntity<>(new HashMap<String, Object>() {{
+                put("mensaje", "Código de verificación enviado exitosamente");
+                put("codigoVerificacion", codigoVerificacion); // Este es el código enviado al correo
+            }}, HttpStatus.OK);
+        } catch (MessagingException e) {
+            return new ResponseEntity<>("Error al enviar el código de verificación: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error inesperado: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }

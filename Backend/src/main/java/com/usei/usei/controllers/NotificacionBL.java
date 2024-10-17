@@ -93,5 +93,16 @@ public class NotificacionBL implements NotificacionService {
             throw new RuntimeException("Notificación no encontrada con el id: " + id);
         }
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Iterable<Notificacion> findByEstudiante(Long idEstudiante) {
+        // Buscar la entidad Estudiante usando el id
+        Estudiante estudiante = estudianteService.findById(idEstudiante)
+                .orElseThrow(() -> new RuntimeException("Estudiante no encontrado con el id: " + idEstudiante));
+
+        // Luego, pasar la entidad Estudiante a la consulta
+        return notificacionDAO.findByEstudianteIdEstudiante(estudiante);
+    }
  
 }
