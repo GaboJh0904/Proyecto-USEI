@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import com.usei.usei.controllers.OpcionesPreguntaService;
 import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.OpcionesPregunta;
+import com.usei.usei.models.Pregunta;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,8 +23,16 @@ public class OpcionesPreguntaAPI {
     @PostMapping
     public ResponseEntity<?> create (@RequestBody OpcionesPregunta opcionesPregunta){
         try {
+            OpcionesPregunta newOpcionesPregunta = new OpcionesPregunta();
+            newOpcionesPregunta.setOpcion(opcionesPregunta.getOpcion());
+
+            Pregunta newPregunta = new Pregunta();
+            newPregunta.setIdPregunta(opcionesPregunta.getPreguntaIdPregunta().getIdPregunta());
+
+            newOpcionesPregunta.setPreguntaIdPregunta(newPregunta);
+
             opcionesPreguntaService.save(opcionesPregunta);
-            return new ResponseEntity<>(new MessageResponse("Opcion registrado"), HttpStatus.CREATED);
+            return new ResponseEntity<>(new MessageResponse("Estado de encuesta registrada"), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -47,13 +57,37 @@ public class OpcionesPreguntaAPI {
     @PutMapping("/{id_opciones_pregunta}")
     public ResponseEntity<?> update(@PathVariable(value = "id_opciones_pregunta") Long id_opcionesPregunta, @RequestBody OpcionesPregunta opcionesPregunta){
 
+        Optional<OpcionesPregunta> oOpcionesPregunta = opcionesPreguntaService.findById(id_opcionesPregunta);
+        if (oOpcionesPregunta.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
         try {
-            OpcionesPregunta updatedOpcionesPregunta = opcionesPreguntaService.update( opcionesPregunta, id_opcionesPregunta);
-            return ResponseEntity.ok(updatedOpcionesPregunta);
+            oOpcionesPregunta.get().setOpcion(opcionesPregunta.getOpcion());
+            // Vincular a una pregunta
+            Pregunta pregunta = new Pregunta();
+            pregunta.setIdPregunta(opcionesPregunta.getPreguntaIdPregunta().getIdPregunta());
+            oOpcionesPregunta.get().setPreguntaIdPregunta(pregunta);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(opcionesPreguntaService.save(oOpcionesPregunta.get()));
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+        }
         
+    }
+
+    // Nuevo método para buscar por IdPregunta
+    @GetMapping("/pregunta/{id_pregunta}")
+    public ResponseEntity<?> readByPreguntaId(@PathVariable(value = "id_pregunta") Long idPregunta) {
+        try {
+            List<OpcionesPregunta> opcionesPreguntas = opcionesPreguntaService.findByPreguntaId(idPregunta);
+            if (opcionesPreguntas.isEmpty()) {
+                return new ResponseEntity<>(new MessageResponse("No se encontraron opciones para esta pregunta"), HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(opcionesPreguntas, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     

@@ -2,7 +2,11 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/proyecto-usei
     username: postgres
+<<<<<<< HEAD
     password: marceline25
+=======
+    password: admin
+>>>>>>> 2164f7e2a248ad5eda40c07c52651e6a078fc69c
     driver-class-name: org.postgresql.Driver
 
   jpa:

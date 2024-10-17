@@ -1,5 +1,5 @@
 
-POST http://localhost:8080/usuario
+POST http://localhost:8082/usuario
 Content-Type: application/json
 Accept: application/json
 

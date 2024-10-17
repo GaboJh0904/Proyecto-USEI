@@ -72,6 +72,7 @@
   import NavBar from '@/components/NavBar.vue';
   import ImageCarousel from '@/components/imageCarousel.vue';
   import FooterComponent from '@/components/FooterComponent.vue';
+  import axios from 'axios';
 
   export default {
     name: "MenuEstudiante",
@@ -82,20 +83,29 @@
     },
     data() {
       return {
-        username: '' // Para almacenar el nombre del estudiante
+        username: '', // Para almacenar el nombre del estudiante
+        estudianteId: null // Para almacenar el ID del estudiante
       };
     },
     mounted() {
       // Obtener el nombre del estudiante desde el localStorage directamente
-      const storedUsername = localStorage.getItem('username');  
+      const storedUsername = localStorage.getItem('username');
+      const storedEstudianteId = localStorage.getItem('id_estudiante');  
       
       if (storedUsername) {
         this.username = storedUsername;
       } else {
         console.error('No se encontró el nombre en el localStorage.');
       }
+        if (storedEstudianteId) {
+        this.estudianteId = storedEstudianteId;
+      } else {
+        console.error('No se encontró el ID del estudiante en el localStorage.');
+      }
+
     },
     methods: {
+      methods: {
       goToEncuesta() {
         this.$router.push('/encuesta-estudiante');
       },
@@ -103,6 +113,8 @@
         this.$router.push('/en-progreso');
       }
     }
+  }
+
   };
 </script>
 

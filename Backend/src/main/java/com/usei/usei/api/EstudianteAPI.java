@@ -67,7 +67,7 @@ public class EstudianteAPI{
         oEstudiante.get().setCi(estudiante.getCi());
         oEstudiante.get().setNombre(estudiante.getNombre());
         oEstudiante.get().setApellido(estudiante.getApellido());
-        oEstudiante.get().setCorreoInsitucional(estudiante.getCorreoInsitucional());
+        oEstudiante.get().setCorreoInstitucional(estudiante.getCorreoInstitucional());
         oEstudiante.get().setCorreoPersonal(estudiante.getCorreoPersonal());
         oEstudiante.get().setCarrera(estudiante.getCarrera());
         oEstudiante.get().setAsignatura(estudiante.getAsignatura());
@@ -89,8 +89,14 @@ public class EstudianteAPI{
                     "Inicio de sesión correcto",
                     new HashMap<String, Object>() {{
                         put("rol", "estudiante");
+<<<<<<< HEAD
                         put("ci", estudiante.get().getCi());
                         put("correoInsitucional", estudiante.get().getCorreoInsitucional());
+=======
+                        put("id_estudiante", estudiante.get().getIdEstudiante()); // Incluir el id_estudiante
+                        put("ci", estudiante.get().getCi());
+                        put("correoInsitucional", estudiante.get().getCorreoInstitucional());
+>>>>>>> 2164f7e2a248ad5eda40c07c52651e6a078fc69c
                         put("nombre", estudiante.get().getNombre());
                         put("apellido", estudiante.get().getApellido());
                         put("telefono", estudiante.get().getTelefono());
@@ -111,4 +117,8 @@ public class EstudianteAPI{
     }
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 2164f7e2a248ad5eda40c07c52651e6a078fc69c

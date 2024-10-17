@@ -74,6 +74,11 @@ export default {
         // Manejar respuesta exitosa
         if (response.data.status === "200 OK") {
           console.log('Inicio de sesión correcto');
+<<<<<<< HEAD
+=======
+          console.log(response.data.id_estudiante); // Mostrar el ID del estudiante
+
+>>>>>>> 2164f7e2a248ad5eda40c07c52651e6a078fc69c
           
           // Guardar información en el localStorage
           localStorage.setItem('ci', response.data.result.ci);
@@ -82,6 +87,11 @@ export default {
           localStorage.setItem('apellido', response.data.result.apellido);
           localStorage.setItem('rol', response.data.result.rol);
           localStorage.setItem('telefono', response.data.result.telefono);
+<<<<<<< HEAD
+=======
+
+          localStorage.setItem('id_estudiante', response.data.id_estudiante); // Guardar el id del estudiante
+>>>>>>> 2164f7e2a248ad5eda40c07c52651e6a078fc69c
 
           // Usar SweetAlert para mostrar éxito
           Swal.fire({
