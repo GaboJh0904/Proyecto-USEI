@@ -1,17 +1,24 @@
 package com.usei.usei.controllers;
 
+import java.util.List;
 import java.util.Optional;
+
+import com.usei.usei.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.usei.usei.models.Soporte;
 import com.usei.usei.repositories.SoporteDAO;
+import com.usei.usei.repositories.UsuarioDAO;  // Importa el UsuarioDAO
 
 @Service
 public class SoporteBL implements SoporteService {
 
     @Autowired
     private SoporteDAO soporteDAO;
+
+    @Autowired
+    private UsuarioDAO usuarioDAO;  // Inyecta UsuarioDAO
 
     @Override
     @Transactional(readOnly = true)
@@ -45,5 +52,13 @@ public class SoporteBL implements SoporteService {
         } else {
             throw new RuntimeException("Soporte no encontrado con id: " + id);
         }
+    }
+
+    @Override
+    public List<Soporte> findByUsuarioId(Long idUsuario) {
+        // Aquí se busca el usuario por su ID usando usuarioDAO
+        Usuario usuario = usuarioDAO.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        return soporteDAO.findByUsuario(usuario);  // Busca por el objeto Usuario
     }
 }

@@ -3,6 +3,8 @@ package com.usei.usei.models;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "soporte")
@@ -19,6 +21,7 @@ public class Soporte implements Serializable {
     private String mensaje;
 
     @Column(name = "fecha", nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime fecha;
 
     // Relación con TipoProblema

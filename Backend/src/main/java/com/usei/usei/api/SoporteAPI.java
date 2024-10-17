@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -72,12 +73,26 @@ public class SoporteAPI {
         }
     }
 
-
-
     @GetMapping
     public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(soporteService.findAll());
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // Nuevo endpoint: Obtener reportes de un usuario específico por su ID
+    @GetMapping("/usuario/{idUsuario}")
+    public ResponseEntity<?> getReportesPorUsuario(@PathVariable Long idUsuario) {
+        try {
+            Optional<Usuario> usuario = usuarioDAO.findById(idUsuario);
+            if (usuario.isEmpty()) {
+                return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
+            }
+
+            List<Soporte> reportes = soporteService.findByUsuarioId(idUsuario);
+            return ResponseEntity.ok(reportes);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

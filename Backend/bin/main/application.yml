@@ -10,11 +10,12 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
+
   servlet:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-  spring:
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -27,7 +28,13 @@ spring:
           starttls:
             enable: true
 
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    date-format: yyyy-MM-dd'T'HH:mm:ss
+
   debug: true
+
 server:
   port: 8082  # Cambia 8081 por el puerto que desees utilizar, puede ser 8081, 9000, etc.
 
