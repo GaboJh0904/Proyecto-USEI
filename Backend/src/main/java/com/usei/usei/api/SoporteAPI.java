@@ -11,6 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -97,4 +102,44 @@ public class SoporteAPI {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    // Endpoint para paginacion,filtrado y ordenacion para historial de reportes
+    @GetMapping("/paginado")
+    public ResponseEntity<Page<Soporte>> getAllSoportesPaginado(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "fecha") String sortBy,  // Ordenar por campo, por defecto 'fecha'
+            @RequestParam(defaultValue = "asc") String sortDirection,  // Dirección de orden 'asc' o 'desc'
+            @RequestParam(required = false) String filter,  // Filtro opcional para el mensaje
+            @RequestParam(required = false) Long idUsuario  // Filtro opcional para filtrar por usuario
+    ) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        Pageable paging = PageRequest.of(page, size, sort);
+        Page<Soporte> pagedSoportes;
+
+        // Lógica de filtrado combinando idUsuario y filtro
+        if (filter != null && !filter.isEmpty() && idUsuario != null) {
+            // Filtrar por usuario y mensaje
+            pagedSoportes = soporteService.findByUsuarioAndFilter(idUsuario, filter, paging);
+        } else if (filter != null && !filter.isEmpty()) {
+            // Filtrar solo por mensaje
+            pagedSoportes = soporteService.findByFilter(filter, paging);
+        } else if (idUsuario != null) {
+            // Filtrar solo por usuario
+            pagedSoportes = soporteService.findByUsuarioId(idUsuario, paging);
+        } else {
+            // Sin filtros, devolver todos los reportes
+            pagedSoportes = soporteService.findAll(paging);
+        }
+
+        if (pagedSoportes.hasContent()) {
+            return new ResponseEntity<>(pagedSoportes, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
 }

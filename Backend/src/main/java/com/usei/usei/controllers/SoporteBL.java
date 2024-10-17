@@ -5,11 +5,13 @@ import java.util.Optional;
 
 import com.usei.usei.models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.usei.usei.models.Soporte;
 import com.usei.usei.repositories.SoporteDAO;
-import com.usei.usei.repositories.UsuarioDAO;  // Importa el UsuarioDAO
+import com.usei.usei.repositories.UsuarioDAO;
 
 @Service
 public class SoporteBL implements SoporteService {
@@ -18,12 +20,18 @@ public class SoporteBL implements SoporteService {
     private SoporteDAO soporteDAO;
 
     @Autowired
-    private UsuarioDAO usuarioDAO;  // Inyecta UsuarioDAO
+    private UsuarioDAO usuarioDAO;
 
     @Override
     @Transactional(readOnly = true)
     public Iterable<Soporte> findAll() {
         return soporteDAO.findAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Soporte> findAll(Pageable pageable) {
+        return soporteDAO.findAll(pageable);
     }
 
     @Override
@@ -55,10 +63,31 @@ public class SoporteBL implements SoporteService {
     }
 
     @Override
-    public List<Soporte> findByUsuarioId(Long idUsuario) {
-        // Aquí se busca el usuario por su ID usando usuarioDAO
+    @Transactional(readOnly = true)
+    public Page<Soporte> findByUsuarioId(Long idUsuario, Pageable pageable) {
         Usuario usuario = usuarioDAO.findById(idUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        return soporteDAO.findByUsuario(usuario);  // Busca por el objeto Usuario
+        return soporteDAO.findByUsuario(usuario, pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Soporte> findByUsuarioAndFilter(Long idUsuario, String filter, Pageable pageable) {
+        Usuario usuario = usuarioDAO.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        return soporteDAO.findByUsuarioAndMensajeContaining(usuario, filter, pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Soporte> findByFilter(String filter, Pageable pageable) {
+        return soporteDAO.findByMensajeContaining(filter, pageable);
+    }
+
+    @Override
+    public List<Soporte> findByUsuarioId(Long idUsuario) {
+        Usuario usuario = usuarioDAO.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        return soporteDAO.findByUsuario(usuario);
     }
 }
