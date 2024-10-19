@@ -157,4 +157,15 @@ public class EstudianteBL implements EstudianteService{
         return codigoVerificacion;
     }
 
+    @SuppressWarnings("null")
+    public Long findByCorreoInst(String correo){
+        Estudiante estudiante = estudianteDAO.findByCorreoInstitucional(correo);
+        if(estudiante != null){
+            return 0L;
+        }else{
+            return estudiante.getIdEstudiante();
+        }
+        
+    }
+
 }

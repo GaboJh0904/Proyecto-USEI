@@ -27,6 +27,8 @@ public interface EstudianteService {
     public void enviarCodigoVerificacion(String correo) throws MessagingException;
 
     public String obtenerCodigoVerificacion();
+
+    public Long findByCorreoInst(String correo) throws MessagingException;
     
     public List<Estudiante> saveAll(List<Estudiante> estudiantes);
 

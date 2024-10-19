@@ -112,15 +112,19 @@ public class EstudianteAPI {
         return ResponseEntity.ok(estudianteExistente);
     }
 
-    @PutMapping("/change-password/{id_estudiante}")
-    public ResponseEntity<?> changePassword(@PathVariable(value = "id_estudiante") Long id_estudiante, @RequestBody Estudiante estudiante) {
-        Optional<Estudiante> oEstudiante = estudianteService.findById(id_estudiante);
+    @PutMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestParam Long idEstudiante, @RequestBody HashMap<String, String> passwordData) {
+        Optional<Estudiante> oEstudiante = estudianteService.findById(idEstudiante);
         if (oEstudiante.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        oEstudiante.get().setContrasena(estudiante.getContrasena());
-        return ResponseEntity.status(HttpStatus.CREATED).body(estudianteService.save(oEstudiante.get()));
+
+        oEstudiante.get().setContrasena(passwordData.get("newPassword"));
+        estudianteService.save(oEstudiante.get());
+
+        return ResponseEntity.ok("Contraseña actualizada exitosamente.");
     }
+
 
 
     // Inicio de sesión de estudiante
@@ -218,11 +222,19 @@ public class EstudianteAPI {
             
             // Devolver el código de verificación en la respuesta
             String codigoVerificacion = estudianteService.obtenerCodigoVerificacion(); // Método que obtiene el código
+
+            Long idEstudiante = estudianteService.findByCorreoInst(correo);
+
+            // Verificar si el idEstudiante es igual a 0 y devolver un error
+            if (idEstudiante == 0) {
+                return new ResponseEntity<>("No se encontró un estudiante con ese correo.", HttpStatus.NOT_FOUND);
+            }
             
             // Enviar el código también al frontend
             return new ResponseEntity<>(new HashMap<String, Object>() {{
                 put("mensaje", "Código de verificación enviado exitosamente");
                 put("codigoVerificacion", codigoVerificacion); // Este es el código enviado al correo
+                put("idEstudiante", idEstudiante);
             }}, HttpStatus.OK);
         } catch (MessagingException e) {
             return new ResponseEntity<>("Error al enviar el código de verificación: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

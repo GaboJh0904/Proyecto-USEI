@@ -73,14 +73,26 @@ public class UsuarioAPI {
     }
 
     @PutMapping("/change-password/{id_usuario}")
-    public ResponseEntity<?> changePassword(@PathVariable(value = "id_usuario") Long id_usuario, @RequestBody Usuario usuario) {
+    public ResponseEntity<?> changePassword(@PathVariable(value = "id_usuario") Long id_usuario, @RequestBody HashMap<String, String> passwordData) {
         Optional<Usuario> oUsuario = usuarioService.findById(id_usuario);
         if (oUsuario.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        oUsuario.get().setContrasenia(usuario.getContrasenia());
-        return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(oUsuario.get()));
+
+        // Verificar si la contraseña actual coincide
+        String currentPassword = passwordData.get("currentPassword");
+        if (!oUsuario.get().getContrasenia().equals(currentPassword)) {
+            // La contraseña actual no coincide
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("La contraseña actual es incorrecta.");
+        }
+
+        // Si la contraseña actual coincide, procedemos a actualizarla
+        oUsuario.get().setContrasenia(passwordData.get("newPassword"));
+        usuarioService.save(oUsuario.get());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("Contraseña actualizada exitosamente.");
     }
+
 
     // Nuevo endpoint de login con correo y contraseña
     @PostMapping("/login")
