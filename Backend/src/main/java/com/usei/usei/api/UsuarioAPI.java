@@ -1,20 +1,25 @@
 package com.usei.usei.api;
 
-import com.usei.usei.controllers.UsuarioService;
-import com.usei.usei.dto.SuccessfulResponse;
-import com.usei.usei.dto.UnsuccessfulResponse;
-//import com.usei.usei.dto.request.LoginRequestDTO;
-import com.usei.usei.dto.request.LoginRequestUserDTO;
-//import com.usei.usei.models.Estudiante;
-import com.usei.usei.models.Usuario;
+import java.util.HashMap;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-//import java.util.Map;
-import java.util.Optional;
+import com.usei.usei.controllers.UsuarioService;
+import com.usei.usei.dto.SuccessfulResponse;
+import com.usei.usei.dto.UnsuccessfulResponse;
+import com.usei.usei.dto.request.LoginRequestUserDTO;
+import com.usei.usei.models.Usuario;
 
 @RestController
 @RequestMapping("/usuario")
@@ -66,6 +71,28 @@ public class UsuarioAPI {
         oUsuario.get().setContrasenia(usuario.getContrasenia());
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(oUsuario.get()));
     }
+
+    @PutMapping("/change-password/{id_usuario}")
+    public ResponseEntity<?> changePassword(@PathVariable(value = "id_usuario") Long id_usuario, @RequestBody HashMap<String, String> passwordData) {
+        Optional<Usuario> oUsuario = usuarioService.findById(id_usuario);
+        if (oUsuario.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Verificar si la contraseña actual coincide
+        String currentPassword = passwordData.get("currentPassword");
+        if (!oUsuario.get().getContrasenia().equals(currentPassword)) {
+            // La contraseña actual no coincide
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("La contraseña actual es incorrecta.");
+        }
+
+        // Si la contraseña actual coincide, procedemos a actualizarla
+        oUsuario.get().setContrasenia(passwordData.get("newPassword"));
+        usuarioService.save(oUsuario.get());
+
+        return ResponseEntity.status(HttpStatus.CREATED).body("Contraseña actualizada exitosamente.");
+    }
+
 
     // Nuevo endpoint de login con correo y contraseña
     @PostMapping("/login")

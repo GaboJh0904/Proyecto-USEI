@@ -111,4 +111,23 @@ public class NotificacionAPI {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/estudiante/{id_estudiante}")
+    public ResponseEntity<?> readByEstudianteId(@PathVariable(value = "id_estudiante") Long idEstudiante) {
+        try {
+            // Llamamos al servicio para obtener las notificaciones por el id del estudiante
+            Iterable<Notificacion> notificaciones = notificacionService.findByEstudiante(idEstudiante);
+            
+            // Si no hay notificaciones, podemos devolver un código 404
+            if (!notificaciones.iterator().hasNext()) {
+                return new ResponseEntity<>(new MessageResponse("No se encontraron notificaciones para este estudiante"), HttpStatus.NOT_FOUND);
+            }
+            
+            // Si hay notificaciones, las devolvemos con un código 200 (OK)
+            return ResponseEntity.ok(notificaciones);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
