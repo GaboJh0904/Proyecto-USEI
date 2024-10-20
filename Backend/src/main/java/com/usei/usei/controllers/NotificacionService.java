@@ -16,5 +16,7 @@ public interface NotificacionService {
     public Notificacion update (Notificacion newNotificacion, Long id);
 
     void marcarComoLeida(Long id);
+
+    public Iterable<Notificacion> findByEstudiante(Long idEstudiante); // Cambiado para buscar por el id del estudiante
     
 }
