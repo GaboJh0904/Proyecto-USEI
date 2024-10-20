@@ -217,18 +217,18 @@ public class EstudianteAPI {
     @PostMapping("/enviarCodigoVerificacion/{correo}")
     public ResponseEntity<?> enviarCodigoVerificacion(@PathVariable(value = "correo") String correo) {
         try {
+
+            Long idEstudiante = estudianteService.findByCorreoInst(correo);
+            // Verificar si el idEstudiante es igual a 0 y devolver un error
+            if (idEstudiante == 0) {
+                return new ResponseEntity<>("No se encontró un estudiante con ese correo.", HttpStatus.NOT_FOUND);
+            }
+
             // Llamamos al servicio para enviar el código de verificación
             estudianteService.enviarCodigoVerificacion(correo);
             
             // Devolver el código de verificación en la respuesta
             String codigoVerificacion = estudianteService.obtenerCodigoVerificacion(); // Método que obtiene el código
-
-            Long idEstudiante = estudianteService.findByCorreoInst(correo);
-
-            // Verificar si el idEstudiante es igual a 0 y devolver un error
-            if (idEstudiante == 0) {
-                return new ResponseEntity<>("No se encontró un estudiante con ese correo.", HttpStatus.NOT_FOUND);
-            }
             
             // Enviar el código también al frontend
             return new ResponseEntity<>(new HashMap<String, Object>() {{
