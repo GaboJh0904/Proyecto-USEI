@@ -1,4 +1,5 @@
 package com.usei.usei.controllers;
+import java.util.List;
 
 import java.util.Optional;
 
@@ -61,4 +62,13 @@ public class PreguntaBL implements PreguntaService {
     public void deleteById(Long id) {
         preguntaDAO.deleteById(id);
     }
+
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<String> findDistinctTipoPregunta() {
+        return preguntaDAO.findDistinctTipoPregunta();
+    }
+
+
 }

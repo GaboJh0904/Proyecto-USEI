@@ -1,6 +1,8 @@
 package com.usei.usei.api;
 
 import java.util.Optional;
+import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,6 +61,15 @@ public class PreguntaAPI{
         oPregunta.get().setEstado(pregunta.getEstado());
         return ResponseEntity.status(HttpStatus.CREATED).body(preguntaService.save(oPregunta.get()));
     }
+
+    
+    @GetMapping("/tipos")
+    public ResponseEntity<?> getTiposDePregunta() {
+        List<String> tipos = preguntaService.findDistinctTipoPregunta();
+        return ResponseEntity.ok(tipos);
+    }
+
+
 
 
 
