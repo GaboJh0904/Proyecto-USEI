@@ -33,4 +33,16 @@ Accept: application/json
 
 //filtrar por tipo de pregunta
 ###
-GET http://localhost:8082/respuesta/estudiante/1?tipoPregunta=Texto
+GET http://localhost:8082/respuesta/estudiante/1?tipoPregunta=Numerico
+
+###
+//Ordenacion Ascendente por idPregunta
+GET http://localhost:8082/respuesta/estudiante/1?sortBy=idPregunta&sortType=ASC
+
+###
+//Ordenacion Descendente
+GET http://localhost:8082/respuesta/estudiante/1?sortBy=idPregunta&sortType=DESC
+
+###
+//filtrado tipoPregunta con ordenacion asc
+GET http://localhost:8082/respuesta/estudiante/1?tipoPregunta=opcionMultiple&sortBy=pregunta&sortType=ASC

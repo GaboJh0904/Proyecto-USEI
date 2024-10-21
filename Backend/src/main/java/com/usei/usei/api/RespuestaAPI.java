@@ -136,28 +136,33 @@ public class RespuestaAPI {
             return ResponseEntity.ok().body(Map.of("filled", hasFilled));
         }
 
-       @GetMapping("/estudiante/{idEstudiante}")
-public ResponseEntity<?> getRespuestasPorEstudiante(
-    @PathVariable Long idEstudiante,
-    @RequestParam(required = false) String tipoPregunta) {
-    try {
-        List<Respuesta> respuestas;
-        // Si se proporciona el tipo de pregunta, se filtran las respuestas
-        if (tipoPregunta != null && !tipoPregunta.isEmpty()) {
-            respuestas = respuestaService.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta);
-        } else {
-            respuestas = respuestaService.findRespuestasByEstudianteId(idEstudiante);
-        }
+    
+    @GetMapping("/estudiante/{idEstudiante}")
+    public ResponseEntity<?> getRespuestasPorEstudiante(
+        @PathVariable Long idEstudiante,
+        @RequestParam(required = false) String tipoPregunta,
+        @RequestParam(required = false, defaultValue = "pregunta") String sortBy,
+        @RequestParam(required = false, defaultValue = "ASC") String sortType) {
         
-        if (respuestas.isEmpty()) {
-            return new ResponseEntity<>(new MessageResponse("No se encontraron respuestas para este estudiante"), HttpStatus.NOT_FOUND);
+        try {
+            List<Respuesta> respuestas;
+    
+            // Verifica si los parámetros se están enviando y manejando correctamente
+            if (tipoPregunta != null && !tipoPregunta.isEmpty()) {
+                respuestas = respuestaService.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, sortBy, sortType);
+            } else {
+                respuestas = respuestaService.findRespuestasByEstudianteId(idEstudiante, sortBy, sortType);
+            }
+            
+            if (respuestas.isEmpty()) {
+                return new ResponseEntity<>(new MessageResponse("No se encontraron respuestas para este estudiante"), HttpStatus.NOT_FOUND);
+            }
+            return ResponseEntity.ok(respuestas);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        return ResponseEntity.ok(respuestas);
-    } catch (Exception e) {
-        return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
-}
-
+    
 
 
 }
