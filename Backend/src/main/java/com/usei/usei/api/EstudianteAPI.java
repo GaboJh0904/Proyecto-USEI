@@ -11,7 +11,11 @@ import java.util.Optional;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.hibernate.query.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,11 +60,6 @@ public class EstudianteAPI {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Obtener todos los estudiantes
-    @GetMapping
-    public ResponseEntity<?> readAll() {
-        return ResponseEntity.ok(estudianteService.findAll());
-    }
 
     // Eliminar un estudiante por ID
     @DeleteMapping("/{id_estudiante}")
@@ -242,5 +241,49 @@ public class EstudianteAPI {
             return new ResponseEntity<>("Error inesperado: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping
+    public ResponseEntity<org.springframework.data.domain.Page<Estudiante>> getEstudiantes(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) String filter,
+            @RequestParam(defaultValue = "nombre") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection) {
+
+        // Configurar la dirección del orden (ascendente o descendente)
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        // Configurar la paginación con el tamaño de página y la dirección de ordenación
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        org.springframework.data.domain.Page<Estudiante> pagedEstudiantes;
+
+        // Si el filtro no está vacío, decidir si buscar por nombre o por ci
+        if (filter != null && !filter.isEmpty()) {
+            try {
+                // Intentar convertir el filtro a un número
+                Integer ci = Integer.parseInt(filter);
+                // Buscar por CI si el filtro es un número
+                pagedEstudiantes = estudianteService.findByCi(ci, pageable);
+            } catch (NumberFormatException e) {
+                // Si no es un número, buscar por nombre
+                pagedEstudiantes = estudianteService.findByNombre(filter, pageable);
+            }
+        } else {
+            // Sin filtro, buscar todos los estudiantes
+            pagedEstudiantes = estudianteService.findAll(pageable);
+        }
+
+        if (pagedEstudiantes.hasContent()) {
+            return new ResponseEntity<>(pagedEstudiantes, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+
+
 
 }

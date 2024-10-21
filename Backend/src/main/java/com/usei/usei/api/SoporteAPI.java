@@ -63,7 +63,7 @@ public class SoporteAPI {
 
             // Enviar correo de notificación (opcional)
             emailService.sendEmail(
-                    "misa26amane@gmail.com",  // Dirección del administrador
+                    "willy.vargas@ucb.edu.bo",  // Dirección del encargado de soporte
                     "Reporte de un nuevo problema",  // Asunto del correo
                     "Descripción del reporte del problema: \n\n" +
                             "Tipo de problema: " + problemaSeleccionado + "\n" +

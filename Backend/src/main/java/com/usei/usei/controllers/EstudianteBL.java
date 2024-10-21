@@ -15,6 +15,8 @@ import com.usei.usei.repositories.EstudianteDAO;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class EstudianteBL implements EstudianteService{
@@ -91,10 +93,10 @@ public class EstudianteBL implements EstudianteService{
         String link = "<a href='http://localhost:5173/'>Acceder al enlace</a>";
 
         for (Estudiante estudiante : estudiantes) {
-            String correo = estudiante.getCorreoInstitucional();  
+            String correo = estudiante.getCorreoInstitucional();
             if (!correo.endsWith("@ucb.edu.bo")) {
                 System.out.println("Correo inválido: " + correo);
-                continue; 
+                continue;
             }
             if ("completo".equalsIgnoreCase(estudiante.getEstadoInvitacion())) {
                 System.out.println("Correo no enviado, estado de invitación completo para: " + estudiante.getNombre());
@@ -138,17 +140,17 @@ public class EstudianteBL implements EstudianteService{
 
         mailSender.send(message);  // Enviar el correo
     }
-        
+
     private String generarCodigoVerificacion() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         SecureRandom random = new SecureRandom();
         StringBuilder codigo = new StringBuilder(6);
-        
+
         for (int i = 0; i < 6; i++) {
             int index = random.nextInt(caracteres.length());
             codigo.append(caracteres.charAt(index));
         }
-        
+
         return codigo.toString();
     }
 
@@ -164,7 +166,28 @@ public class EstudianteBL implements EstudianteService{
         }else{
             return estudiante.getIdEstudiante();
         }
-        
+
+    }
+
+    @Override
+    public Page<Estudiante> findByNombreContainingOrCiContaining(String nombre, String ci, Pageable pageable) {
+        // Esta implementación ya no es necesaria; vamos a separar las búsquedas por nombre y CI
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Page<Estudiante> findByNombre(String nombre, Pageable pageable) {
+        return estudianteDAO.findByNombreContainingIgnoreCase(nombre, pageable);
+    }
+
+    @Override
+    public Page<Estudiante> findByCi(Integer ci, Pageable pageable) {
+        return estudianteDAO.findByCi(ci, pageable);
+    }
+
+    @Override
+    public Page<Estudiante> findAll(Pageable pageable) {
+        return estudianteDAO.findAll(pageable);
     }
 
 }

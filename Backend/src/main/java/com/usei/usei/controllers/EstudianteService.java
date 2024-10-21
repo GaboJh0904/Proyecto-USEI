@@ -6,6 +6,8 @@ import java.util.Optional;
 import com.usei.usei.models.Estudiante;
 
 import jakarta.mail.MessagingException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface EstudianteService {
 
@@ -32,5 +34,12 @@ public interface EstudianteService {
     
     public List<Estudiante> saveAll(List<Estudiante> estudiantes);
 
+    Page<Estudiante> findByNombreContainingOrCiContaining(String nombre, String ci, Pageable pageable);
 
+    // Nuevos métodos separados para buscar por nombre y CI
+    Page<Estudiante> findByNombre(String nombre, Pageable pageable); // Búsqueda por nombre
+
+    Page<Estudiante> findByCi(Integer ci, Pageable pageable); // Búsqueda por CI
+
+    Page<Estudiante> findAll(Pageable pageable); // Obtener todos los estudiantes con paginación
 }
