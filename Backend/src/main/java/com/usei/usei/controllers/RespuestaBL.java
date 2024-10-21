@@ -91,4 +91,10 @@ public class RespuestaBL implements RespuestaService {
     public List<Respuesta> findRespuestasByEstudianteId(Long idEstudiante) {
         return respuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
     }
+    //filtrado
+    @Override
+    @Transactional(readOnly = true)
+    public List<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta) {
+        return respuestaDAO.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta);
+    }
 }

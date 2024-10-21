@@ -1,9 +1,8 @@
 package com.usei.usei.api;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.usei.usei.controllers.EstadoCertificadoService;
@@ -136,10 +136,19 @@ public class RespuestaAPI {
             return ResponseEntity.ok().body(Map.of("filled", hasFilled));
         }
 
-        @GetMapping("/estudiante/{idEstudiante}")
-public ResponseEntity<?> getRespuestasPorEstudiante(@PathVariable Long idEstudiante) {
+       @GetMapping("/estudiante/{idEstudiante}")
+public ResponseEntity<?> getRespuestasPorEstudiante(
+    @PathVariable Long idEstudiante,
+    @RequestParam(required = false) String tipoPregunta) {
     try {
-        List<Respuesta> respuestas = respuestaService.findRespuestasByEstudianteId(idEstudiante);
+        List<Respuesta> respuestas;
+        // Si se proporciona el tipo de pregunta, se filtran las respuestas
+        if (tipoPregunta != null && !tipoPregunta.isEmpty()) {
+            respuestas = respuestaService.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta);
+        } else {
+            respuestas = respuestaService.findRespuestasByEstudianteId(idEstudiante);
+        }
+        
         if (respuestas.isEmpty()) {
             return new ResponseEntity<>(new MessageResponse("No se encontraron respuestas para este estudiante"), HttpStatus.NOT_FOUND);
         }
@@ -148,6 +157,7 @@ public ResponseEntity<?> getRespuestasPorEstudiante(@PathVariable Long idEstudia
         return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
+
 
 
 }

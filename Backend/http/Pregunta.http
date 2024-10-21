@@ -16,7 +16,16 @@ GET http://localhost:8082/pregunta
 
 ###
 
+GET http://localhost:8082/pregunta
+
+
+
+###
+
 GET http://localhost:8080/pregunta/2
+
+###
+GET http://localhost:8082/pregunta/tipos
 
 
 ###

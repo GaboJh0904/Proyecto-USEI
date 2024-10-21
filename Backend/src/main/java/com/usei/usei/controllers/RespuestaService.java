@@ -18,5 +18,7 @@ public interface RespuestaService {
 boolean hasFilledSurvey(Long idEstudiante);
 
 
-List<Respuesta> findRespuestasByEstudianteId(Long idEstudiante);
+ List<Respuesta> findRespuestasByEstudianteId(Long idEstudiante);
+ List<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta);
+
 }

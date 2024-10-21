@@ -30,3 +30,7 @@ Accept: application/json
     "preguntaIdPregunta": 4,
     "estudianteIdEstudiante": 1
 }
+
+//filtrar por tipo de pregunta
+###
+GET http://localhost:8082/respuesta/estudiante/1?tipoPregunta=Texto
