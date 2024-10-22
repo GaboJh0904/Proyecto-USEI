@@ -3,6 +3,9 @@ package com.usei.usei.controllers;
 // import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.usei.usei.models.Notificacion;
 
 public interface NotificacionService {
@@ -17,6 +20,6 @@ public interface NotificacionService {
 
     void marcarComoLeida(Long id);
 
-    public Iterable<Notificacion> findByEstudiante(Long idEstudiante); // Cambiado para buscar por el id del estudiante
+    public Page<Notificacion> findByEstudiante(Long idEstudiante, Pageable pageable); // Ahora retorna un Page en lugar de Iterable
     
 }
