@@ -4,12 +4,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.usei.usei.models.Estudiante;
-import com.usei.usei.models.Pregunta;
 import com.usei.usei.models.Respuesta;
 import com.usei.usei.repositories.RespuestaDAO;
+import com.usei.usei.repositories.RespuestaSpecification;
 
 @Service
 public class RespuestaBL implements RespuestaService {
@@ -64,8 +64,13 @@ public class RespuestaBL implements RespuestaService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta, PageRequest pageRequest) {
-        return respuestaDAO.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, pageRequest);
+    public Page<Respuesta> findRespuestasConFiltro(Long idEstudiante, String respuestaFiltro, PageRequest pageRequest) {
+        Specification<Respuesta> spec = RespuestaSpecification.byEstudianteId(idEstudiante);
+
+        if (respuestaFiltro != null && !respuestaFiltro.isEmpty()) {
+            spec = spec.and(RespuestaSpecification.byTextoRespuesta(respuestaFiltro));
+        }
+
+        return respuestaDAO.findAll(spec, pageRequest);
     }
 }
-

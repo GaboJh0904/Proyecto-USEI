@@ -21,6 +21,6 @@ public interface RespuestaService {
     // Paginación y ordenamiento para obtener respuestas de un estudiante
     Page<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, PageRequest pageRequest);
 
-    // Paginación, filtrado y ordenamiento para respuestas de un estudiante por tipo de pregunta
-    Page<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta, PageRequest pageRequest);
+    // Paginación, filtrado y ordenamiento para respuestas por texto de respuesta
+    Page<Respuesta> findRespuestasConFiltro(Long idEstudiante, String respuestaFiltro, PageRequest pageRequest);
 }
