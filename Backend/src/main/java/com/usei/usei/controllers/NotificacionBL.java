@@ -2,6 +2,8 @@ package com.usei.usei.controllers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,6 +11,7 @@ import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.Notificacion;
 import com.usei.usei.models.TipoNotificacion;
 import com.usei.usei.repositories.NotificacionDAO;
+
 
 @Service
 public class NotificacionBL implements NotificacionService {
@@ -96,13 +99,13 @@ public class NotificacionBL implements NotificacionService {
 
     @Override
     @Transactional(readOnly = true)
-    public Iterable<Notificacion> findByEstudiante(Long idEstudiante) {
+    public Page<Notificacion> findByEstudiante(Long idEstudiante, Pageable pageable) {
         // Buscar la entidad Estudiante usando el id
         Estudiante estudiante = estudianteService.findById(idEstudiante)
                 .orElseThrow(() -> new RuntimeException("Estudiante no encontrado con el id: " + idEstudiante));
 
         // Luego, pasar la entidad Estudiante a la consulta
-        return notificacionDAO.findByEstudianteIdEstudiante(estudiante);
+        return notificacionDAO.findByEstudianteIdEstudiante(estudiante, pageable);
     }
  
 }
