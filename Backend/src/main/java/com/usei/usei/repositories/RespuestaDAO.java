@@ -2,7 +2,8 @@ package com.usei.usei.repositories;
 //import org.hibernate.mapping.List;
 import java.util.List;
 
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,12 +22,10 @@ boolean existsByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante);
     @Query("SELECT DISTINCT e FROM Respuesta r JOIN r.estudianteIdEstudiante e")
     List<Estudiante> findEstudiantesQueCompletaronEncuesta();
 
-    List<Respuesta> findByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante, Sort sort);
+    // Obtener respuestas por estudiante con paginación y ordenación
+    Page<Respuesta> findByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante, Pageable pageable);
 
-    
-   // Filtrado y ordenacion por tipo de pregunta y por ID de la pregunta
-   @Query("SELECT r FROM Respuesta r WHERE r.estudianteIdEstudiante.idEstudiante = :idEstudiante AND r.preguntaIdPregunta.tipoPregunta = :tipoPregunta")
-   List<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(@Param("idEstudiante") Long idEstudiante, @Param("tipoPregunta") String tipoPregunta, Sort sort);
-
-
+    // Filtrado y ordenación por tipo de pregunta
+    @Query("SELECT r FROM Respuesta r WHERE r.estudianteIdEstudiante.idEstudiante = :idEstudiante AND r.preguntaIdPregunta.tipoPregunta = :tipoPregunta")
+    Page<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(@Param("idEstudiante") Long idEstudiante, @Param("tipoPregunta") String tipoPregunta, Pageable pageable);
 }

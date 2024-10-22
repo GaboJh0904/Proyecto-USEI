@@ -1,6 +1,7 @@
 package com.usei.usei.controllers;
-import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
 
 import com.usei.usei.models.Respuesta;
 
@@ -18,8 +19,8 @@ public interface RespuestaService {
 boolean hasFilledSurvey(Long idEstudiante);
 
 
-List<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, String sortBy, String sortType);
-List<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta, String sortBy, String sortType);
+ // Método actualizado para soportar paginación
+ Page<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, String sortBy, String sortType, int page, int pageSize);
 
-
+ Page<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta, String sortBy, String sortType, int page, int pageSize);
 }

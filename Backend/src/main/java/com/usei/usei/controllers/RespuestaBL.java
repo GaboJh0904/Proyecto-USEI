@@ -1,8 +1,10 @@
 package com.usei.usei.controllers;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -88,44 +90,33 @@ public class RespuestaBL implements RespuestaService {
         return respuestaDAO.existsByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
      }
  
-     @Override
-     @Transactional(readOnly = true)
-     public List<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, String sortBy, String sortType) {
-         String sortField;
-         if (sortBy.equals("idPregunta")) {
-             sortField = "preguntaIdPregunta.idPregunta"; 
-         } else if (sortBy.equals("pregunta")) {
-             sortField = "preguntaIdPregunta.pregunta"; 
-         } else if (sortBy.equals("respuesta")) {
-             sortField = "respuesta"; 
-         } else {
-             sortField = sortBy; 
-         }
-     
-         Sort sort = Sort.by(Sort.Direction.fromString(sortType), sortField);
-         return respuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante, sort);
-     }
-     
-     
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, String sortBy, String sortType, int page, int pageSize) {
+        String sortField = switch (sortBy) {
+            case "idPregunta" -> "preguntaIdPregunta.idPregunta";
+            case "pregunta" -> "preguntaIdPregunta.pregunta";
+            case "respuesta" -> "respuesta";
+            default -> sortBy;
+        };
+        Sort sort = Sort.by(Sort.Direction.fromString(sortType), sortField);
+        Pageable pageable = PageRequest.of(page, pageSize, sort);
+        return respuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante, pageable);
+    }
 
-
-     @Override
-     @Transactional(readOnly = true)
-     public List<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta, String sortBy, String sortType) {
-         String sortField;
-         if (sortBy.equals("idPregunta")) {
-             sortField = "preguntaIdPregunta.idPregunta"; 
-         } else if (sortBy.equals("pregunta")) {
-             sortField = "preguntaIdPregunta.pregunta"; 
-         } else if (sortBy.equals("respuesta")) {
-             sortField = "respuesta"; 
-         } else {
-             sortField = sortBy; 
-         }
-     
-         Sort sort = Sort.by(Sort.Direction.fromString(sortType), sortField);
-         return respuestaDAO.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, sort);
-     }
-
-   
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta, String sortBy, String sortType, int page, int pageSize) {
+        String sortField = switch (sortBy) {
+            case "idPregunta" -> "preguntaIdPregunta.idPregunta";
+            case "pregunta" -> "preguntaIdPregunta.pregunta";
+            case "respuesta" -> "respuesta";
+            default -> sortBy;
+        };
+        Sort sort = Sort.by(Sort.Direction.fromString(sortType), sortField);
+        Pageable pageable = PageRequest.of(page, pageSize, sort);
+        return respuestaDAO.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, pageable);
+    }
 }
+     
+
