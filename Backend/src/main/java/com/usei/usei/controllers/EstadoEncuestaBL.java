@@ -96,6 +96,12 @@ public class EstadoEncuestaBL implements EstadoEncuestaService{
         return estadoEncuestaDAO.findByEstado("Completado");
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<EstadoEncuesta> findByEstudianteIdEstudiante(Long idEstudiante) {
+        return estadoEncuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
+    }
+
 
 
 }

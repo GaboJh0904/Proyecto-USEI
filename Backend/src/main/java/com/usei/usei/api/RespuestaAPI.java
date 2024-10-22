@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.usei.usei.controllers.EstadoCertificadoService;
@@ -133,4 +135,44 @@ public class RespuestaAPI {
             boolean hasFilled = respuestaService.hasFilledSurvey(id_estudiante);
             return ResponseEntity.ok().body(Map.of("filled", hasFilled));
         }
+
+    
+        @GetMapping("/estudiante/{idEstudiante}")
+        public ResponseEntity<?> getRespuestasPorEstudiante(
+            @PathVariable Long idEstudiante,
+            @RequestParam(required = false) String tipoPregunta,
+            @RequestParam(required = false, defaultValue = "pregunta") String sortBy,
+            @RequestParam(required = false, defaultValue = "ASC") String sortType,
+            @RequestParam(required = false, defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "10") int pageSize) {
+    
+            try {
+                if (page < 0) {
+                    page = 0;
+                }
+                
+                Page<Respuesta> respuestas;
+                if (tipoPregunta != null && !tipoPregunta.isEmpty()) {
+                    respuestas = respuestaService.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, sortBy, sortType, page, pageSize);
+                } else {
+                    respuestas = respuestaService.findRespuestasByEstudianteId(idEstudiante, sortBy, sortType, page, pageSize);
+                }
+    
+                if (respuestas.isEmpty()) {
+                    return new ResponseEntity<>(new MessageResponse("No se encontraron respuestas para este estudiante"), HttpStatus.NOT_FOUND);
+                }
+    
+                return ResponseEntity.ok(respuestas);
+            } catch (Exception e) {
+                return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
+        
+        
+
+        
+    
+
+
 }

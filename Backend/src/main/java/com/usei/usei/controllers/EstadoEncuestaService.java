@@ -21,5 +21,7 @@ public interface EstadoEncuestaService {
 
     // método para obtener encuestas con estado "Completado"
     public List<EstadoEncuesta> findByEstadoCompletado();
+    Optional<EstadoEncuesta> findByEstudianteIdEstudiante(Long idEstudiante);
+
 
 }

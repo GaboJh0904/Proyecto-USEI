@@ -112,5 +112,22 @@ public class EstadoEncuestaAPI {
         }
     }
 
-
+    @GetMapping("/estudiante/{idEstudiante}")
+    public ResponseEntity<?> getEstadoEncuestaPorEstudiante(@PathVariable Long idEstudiante) {
+        try {
+            Optional<EstadoEncuesta> estadoEncuesta = estadoEncuestaService.findByEstudianteIdEstudiante(idEstudiante);
+            if (estadoEncuesta.isPresent()) {
+                return ResponseEntity.ok(estadoEncuesta.get());
+            } else {
+                return new ResponseEntity<>(new MessageResponse("No se encontró estado de encuesta para este estudiante"), HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
 }
+
+
+
+
