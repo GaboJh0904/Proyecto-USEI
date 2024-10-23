@@ -1,14 +1,14 @@
 package com.usei.usei.controllers;
-import java.util.List;
 
-import java.util.Optional;
-
+import com.usei.usei.models.Pregunta;
+import com.usei.usei.repositories.PreguntaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.usei.usei.repositories.PreguntaDAO;
-import com.usei.usei.models.Pregunta;
+import java.util.Optional;
 
 @Service
 public class PreguntaBL implements PreguntaService {
@@ -44,13 +44,10 @@ public class PreguntaBL implements PreguntaService {
         Optional<Pregunta> existingPregunta = preguntaDAO.findById(id);
         if (existingPregunta.isPresent()) {
             Pregunta preguntaToUpdate = existingPregunta.get();
-
-            // Actualizar los campos de la pregunta con los valores correspondientes
             preguntaToUpdate.setNumPregunta(pregunta.getNumPregunta());
             preguntaToUpdate.setPregunta(pregunta.getPregunta());
             preguntaToUpdate.setTipoPregunta(pregunta.getTipoPregunta());
             preguntaToUpdate.setEstado(pregunta.getEstado());
-
             return preguntaDAO.save(preguntaToUpdate);
         } else {
             throw new RuntimeException("Pregunta no encontrada con el id: " + id);
@@ -63,12 +60,13 @@ public class PreguntaBL implements PreguntaService {
         preguntaDAO.deleteById(id);
     }
 
-    
     @Override
     @Transactional(readOnly = true)
-    public List<String> findDistinctTipoPregunta() {
-        return preguntaDAO.findDistinctTipoPregunta();
+    public Page<Pregunta> findAllWithPaginationAndFilter(Pageable pageable, String filter) {
+        if (filter != null && !filter.isEmpty()) {
+            return preguntaDAO.findByFilter(pageable, filter);
+        } else {
+            return preguntaDAO.findAll(pageable);
+        }
     }
-
-
 }
