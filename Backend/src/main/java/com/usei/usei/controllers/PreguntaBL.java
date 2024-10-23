@@ -1,14 +1,13 @@
 package com.usei.usei.controllers;
+import java.util.List;
+import java.util.Optional;
 
-import com.usei.usei.models.Pregunta;
-import com.usei.usei.repositories.PreguntaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import com.usei.usei.models.Pregunta;
+import com.usei.usei.repositories.PreguntaDAO;
 
 @Service
 public class PreguntaBL implements PreguntaService {
@@ -60,13 +59,25 @@ public class PreguntaBL implements PreguntaService {
         preguntaDAO.deleteById(id);
     }
 
+
+    //para vista RespuestaEstudiante
     @Override
     @Transactional(readOnly = true)
-    public Page<Pregunta> findAllWithPaginationAndFilter(Pageable pageable, String filter) {
-        if (filter != null && !filter.isEmpty()) {
-            return preguntaDAO.findByFilter(pageable, filter);
-        } else {
-            return preguntaDAO.findAll(pageable);
-        }
+    public List<String> findDistinctTipoPregunta() {
+        return preguntaDAO.findDistinctTipoPregunta();
     }
+    ///
+
+
+    // @Override
+    // @Transactional(readOnly = true)
+    // public Page<Pregunta> findAllWithPaginationAndFilter(Pageable pageable, String filter) {
+    //     if (filter != null && !filter.isEmpty()) {
+    //         return preguntaDAO.findByFilter(pageable, filter);
+    //     } else {
+    //         return preguntaDAO.findAll(pageable);
+    //     }
+    // }
+
+
 }
