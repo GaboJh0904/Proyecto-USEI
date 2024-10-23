@@ -1,8 +1,8 @@
 package com.usei.usei.controllers;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import java.util.List;
 import java.util.Optional;
+
 import com.usei.usei.models.Pregunta;
 
 public interface PreguntaService {
@@ -17,6 +17,12 @@ public interface PreguntaService {
 
     public void deleteById(Long id);
 
+    //por tipo (no borrar)
+    public List<String> findDistinctTipoPregunta(); 
+
+
     // Método para obtener preguntas con paginación, filtro y ordenación
-    public Page<Pregunta> findAllWithPaginationAndFilter(Pageable pageable, String filter);
+    //public Page<Pregunta> findAllWithPaginationAndFilter(Pageable pageable, String filter);
+
+
 }
