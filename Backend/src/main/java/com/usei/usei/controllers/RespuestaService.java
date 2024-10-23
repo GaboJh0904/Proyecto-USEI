@@ -1,14 +1,15 @@
 package com.usei.usei.controllers;
 
 import java.util.Optional;
+
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
 import com.usei.usei.models.Respuesta;
 
 public interface RespuestaService {
 
-    // Paginación y ordenamiento para obtener todas las respuestas
-    Page<Respuesta> findAll(PageRequest pageRequest);
+   
+    public Iterable<Respuesta> findAll();
 
     Optional<Respuesta> findById(Long id);
 
@@ -18,9 +19,19 @@ public interface RespuestaService {
 
     boolean hasFilledSurvey(Long idEstudiante);
 
-    // Paginación y ordenamiento para obtener respuestas de un estudiante
-    Page<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, PageRequest pageRequest);
+     /// para vista respuestasEstudiante
+     Page<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, String sortBy, String sortType, int page, int pageSize);
 
-    // Paginación, filtrado y ordenamiento para respuestas por texto de respuesta
-    Page<Respuesta> findRespuestasConFiltro(Long idEstudiante, String respuestaFiltro, PageRequest pageRequest);
+     Page<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta, String sortBy, String sortType, int page, int pageSize);
+    ///
+
+
+     // Paginación y ordenamiento para obtener todas las respuestas
+    //  Page<Respuesta> findAll(PageRequest pageRequest);
+
+    // // Paginación y ordenamiento para obtener respuestas de un estudiante
+    // Page<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, PageRequest pageRequest);
+
+    // // Paginación, filtrado y ordenamiento para respuestas por texto de respuesta
+    // Page<Respuesta> findRespuestasConFiltro(Long idEstudiante, String respuestaFiltro, PageRequest pageRequest);
 }
