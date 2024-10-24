@@ -20,6 +20,6 @@ public interface CertificadoService {
 
     public void sendCertificadoEmail(String to, String subject, String body, String attachmentPath) throws MessagingException;
 
-    
+    public int obtenerUltimaVersion();
     
 }

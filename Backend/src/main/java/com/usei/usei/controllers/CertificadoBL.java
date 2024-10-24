@@ -150,4 +150,10 @@ public class CertificadoBL implements CertificadoService{
     }
 
 
+    @Override
+    public int obtenerUltimaVersion() {
+        return certificadoDAO.obtenerUltimaVersion().orElse(0);  // Retorna 0 si no hay registros
+    }
+
+
 }
