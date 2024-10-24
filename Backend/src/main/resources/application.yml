@@ -1,6 +1,13 @@
 spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+    
+  web:
+    resources:
+      add-mappings: true
+
   datasource:
-    url: jdbc:postgresql://localhost:5433/proyecto_usei
+    url: jdbc:postgresql://localhost:5434/proyecto_usei
     username: admin
     password: 12345
     driver-class-name: org.postgresql.Driver
@@ -16,13 +23,13 @@ spring:
   resources:
     static-locations: classpath:/static/documents/  # Ruta para servir archivos estáticos
     cache:
-    period: 3600s  # Cachea los archivos estáticos durante una hora
+      period: 3600s  # Cachea los archivos estáticos durante una hora
 
   servlet:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
-  spring:
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -38,6 +45,21 @@ spring:
 server:
   port: 8082  # Cambia 8081 por el puerto que desees utilizar, puede ser 8081, 9000, etc.
   time-zone: America/La_Paz
+
+# Swagger configuration
+springfox:
+  documentation:
+    swagger-ui:
+      base-url: /swagger-ui
+    api-docs:
+      path: /v2/api-docs
+
+# Configuración adicional para Swagger
+swagger:
+  api-info:
+    title: "Documentación de la API de Proyecto USEI"
+    description: "Documentación generada automáticamente con Swagger para Proyecto USEI"
+    version: "1.0"
 
 servlet:
   multipart:
