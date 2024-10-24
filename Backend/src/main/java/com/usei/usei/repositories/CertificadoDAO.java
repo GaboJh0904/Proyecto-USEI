@@ -13,5 +13,6 @@ public interface CertificadoDAO extends JpaRepository <Certificado, Long> {
     @Query("SELECT MAX(c.version) FROM Certificado c")
     Optional<Integer> obtenerUltimaVersion();  // Obtener la última versión registrada
 
-    
+     // Método para buscar un certificado que esté "En uso"
+     Optional<Certificado> findByEstado(String estado);
 }

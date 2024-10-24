@@ -18,8 +18,10 @@ public interface CertificadoService {
 
     public void enviarCertificadoConCondiciones(Long idEstudiante) throws MessagingException;
 
-    public void sendCertificadoEmail(String to, String subject, String body, String attachmentPath) throws MessagingException;
+    public void sendCertificadoEmail(String to, String subject, String body, String attachmentPath, String fileName) throws MessagingException;
 
     public int obtenerUltimaVersion();
+    public Optional<Certificado> findCertificadoEnUso();
+
     
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -72,6 +73,9 @@ public class CertificadoAPI {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> create(@RequestParam("formato") MultipartFile file,
                                     @RequestParam("UsuarioIdUsuario") Long usuarioId) {
+
+        System.out.println("ID de usuario recibido: " + usuarioId);  // Depuración
+
         // Asegúrate de que usuarioId no sea null
         if (usuarioId == null) {
             return new ResponseEntity<>(new MessageResponse("El ID del usuario no puede ser nulo"), HttpStatus.BAD_REQUEST);
@@ -175,6 +179,34 @@ public class CertificadoAPI {
             return new ResponseEntity<>(new MessageResponse("Error al enviar el certificado: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse("Error inesperado: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    // Actualizar el estado de un certificado
+    @PutMapping("/{id_certificado}/estado")
+    public ResponseEntity<?> updateCertificadoState(@PathVariable(value = "id_certificado") Long idCertificado,
+                                                    @RequestBody Certificado certificado) {
+        Optional<Certificado> existingCertificado = certificadoService.findById(idCertificado);
+
+        if (existingCertificado.isPresent()) {
+            Certificado certificadoToUpdate = existingCertificado.get();
+
+            // Si el estado del certificado cambia a "En uso", verificar que no haya otro "En uso"
+            if ("En uso".equals(certificado.getEstado())) {
+                Optional<Certificado> certificadoEnUso = certificadoService.findCertificadoEnUso();
+                if (certificadoEnUso.isPresent() && !certificadoEnUso.get().getIdCertificado().equals(idCertificado)) {
+                    return new ResponseEntity<>(new MessageResponse("Ya hay otro archivo en uso."), HttpStatus.CONFLICT);
+                }
+            }
+
+            // Actualizar el estado del certificado
+            certificadoToUpdate.setEstado(certificado.getEstado());
+            certificadoService.save(certificadoToUpdate);
+
+            return new ResponseEntity<>(new MessageResponse("Estado actualizado correctamente"), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new MessageResponse("Certificado no encontrado"), HttpStatus.NOT_FOUND);
         }
     }
 
