@@ -21,7 +21,7 @@ public interface NoticiasService {
     // Guardar noticia con imagen
     public Noticias save(Noticias newNoticias, MultipartFile file);
 
-    public Noticias update(Noticias newNoticias, Long id, MultipartFile file);
+    public Noticias actualizacionNoticia(Noticias newNoticias, Long id, MultipartFile file);
 
     public void delete(Long id);
 

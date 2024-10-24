@@ -28,7 +28,7 @@ public class NoticiasAPI {
 
     // Crear una nueva noticia
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> create(
+    public ResponseEntity<?> creacion(
             @RequestParam("img") MultipartFile file,
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
@@ -57,7 +57,7 @@ public class NoticiasAPI {
 
     // Actualizar una noticia
     @PutMapping("/{id_noticia}")
-    public ResponseEntity<?> update(
+    public ResponseEntity<?> actualizacionNoticia(
             @PathVariable(value = "id_noticia") Long id_noticias,
             @RequestParam(value = "img", required = false) MultipartFile file,
             @RequestParam("titulo") String titulo,
@@ -97,7 +97,7 @@ public class NoticiasAPI {
 
     // Obtener una noticia por ID
     @GetMapping("/{id_noticia}")
-    public ResponseEntity<?> read(@PathVariable(value = "id_noticia") Long id_noticias) {
+    public ResponseEntity<?> noticiasObtenidas(@PathVariable(value = "id_noticia") Long id_noticias) {
         Optional<Noticias> oNoticias = noticiasService.findById(id_noticias);
 
         return oNoticias.map(noticias -> ResponseEntity.ok(noticias))
@@ -106,7 +106,7 @@ public class NoticiasAPI {
 
     // Obtener noticias para el carrusel
     @GetMapping("/carrusel")
-    public ResponseEntity<?> getNoticiasForCarrusel() {
+    public ResponseEntity<?> noticiasObtenidasParaCarrusel() {
         try {
             // Filtramos solo las noticias con estado 'publicado'
             List<Noticias> noticiasPublicadas = noticiasService.findByEstado("publicado");
@@ -162,7 +162,7 @@ public class NoticiasAPI {
 
     // Endpoint para noticias archivadas con paginación, ordenación y filtrado por título o descripción
     @GetMapping("/archivadas/paginadas")
-    public ResponseEntity<Page<Noticias>> getArchivedNewsPaginated(
+    public ResponseEntity<Page<Noticias>> paginacionNoticiasArchivadas(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "titulo") String sortBy,
@@ -192,7 +192,7 @@ public class NoticiasAPI {
 
     // Eliminar noticia
     @DeleteMapping("/{id_noticia}")
-    public ResponseEntity<?> delete(@PathVariable(value = "id_noticia") Long id_noticias) {
+    public ResponseEntity<?> eliminacionNoticias(@PathVariable(value = "id_noticia") Long id_noticias) {
         if (noticiasService.findById(id_noticias).isPresent()) {
             noticiasService.delete(id_noticias);
             return new ResponseEntity<>(new MessageResponse("Noticia eliminada"), HttpStatus.OK);
@@ -203,7 +203,7 @@ public class NoticiasAPI {
 
     // Archivar noticia
     @PutMapping("/archivar/{id_noticia}")
-    public ResponseEntity<?> archiveNoticia(@PathVariable(value = "id_noticia") Long id_noticias) {
+    public ResponseEntity<?> noticiasArchivadas(@PathVariable(value = "id_noticia") Long id_noticias) {
         try {
             Optional<Noticias> noticiasOpt = noticiasService.findById(id_noticias);
             if (!noticiasOpt.isPresent()) {
@@ -222,7 +222,7 @@ public class NoticiasAPI {
 
     // Obtener noticias archivadas
     @GetMapping("/archivadas")
-    public ResponseEntity<?> getArchivedNews() {
+    public ResponseEntity<?> obtencionNoticiasArchivadas() {
         List<Noticias> noticiasArchivadas = noticiasService.findByEstado("archivado");
         if (noticiasArchivadas.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -232,7 +232,7 @@ public class NoticiasAPI {
 
     // Desarchivar una noticia
     @PutMapping("/desarchivar/{id_noticia}")
-    public ResponseEntity<?> desarchivarNoticia(@PathVariable(value = "id_noticia") Long id_noticias) {
+    public ResponseEntity<?> noticiasDesarcchivadas(@PathVariable(value = "id_noticia") Long id_noticias) {
         try {
             Optional<Noticias> noticiasOpt = noticiasService.findById(id_noticias);
             if (!noticiasOpt.isPresent()) {
@@ -251,7 +251,7 @@ public class NoticiasAPI {
 
     // Obtener noticias por estado
     @GetMapping("/estado/{estado}")
-    public ResponseEntity<?> getByEstado(@PathVariable String estado) {
+    public ResponseEntity<?> obtencionNoticiasPorEstado(@PathVariable String estado) {
         List<Noticias> noticias = noticiasService.findByEstado(estado);
         if (noticias.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
