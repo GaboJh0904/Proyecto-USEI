@@ -138,35 +138,41 @@ public class RespuestaAPI {
 
     
         @GetMapping("/estudiante/{idEstudiante}")
-        public ResponseEntity<?> getRespuestasPorEstudiante(
-            @PathVariable Long idEstudiante,
-            @RequestParam(required = false) String tipoPregunta,
-            @RequestParam(required = false, defaultValue = "pregunta") String sortBy,
-            @RequestParam(required = false, defaultValue = "ASC") String sortType,
-            @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "10") int pageSize) {
-    
-            try {
-                if (page < 0) {
-                    page = 0;
-                }
-                
-                Page<Respuesta> respuestas;
-                if (tipoPregunta != null && !tipoPregunta.isEmpty()) {
-                    respuestas = respuestaService.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, sortBy, sortType, page, pageSize);
-                } else {
-                    respuestas = respuestaService.findRespuestasByEstudianteId(idEstudiante, sortBy, sortType, page, pageSize);
-                }
-    
-                if (respuestas.isEmpty()) {
-                    return new ResponseEntity<>(new MessageResponse("No se encontraron respuestas para este estudiante"), HttpStatus.NOT_FOUND);
-                }
-    
-                return ResponseEntity.ok(respuestas);
-            } catch (Exception e) {
-                return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<?> getRespuestasPorEstudiante(
+        @PathVariable Long idEstudiante,
+        @RequestParam(required = false) String tipoPregunta,
+        @RequestParam(required = false) String searchQuery,
+        @RequestParam(required = false, defaultValue = "pregunta") String sortBy,
+        @RequestParam(required = false, defaultValue = "ASC") String sortType,
+        @RequestParam(required = false, defaultValue = "0") int page,
+        @RequestParam(required = false, defaultValue = "10") int pageSize) {
+
+        try {
+            if (page < 0) {
+                page = 0;
             }
+
+            Page<Respuesta> respuestas;
+
+            // Si se especifica una consulta de búsqueda, buscar por pregunta o respuesta
+            if (searchQuery != null && !searchQuery.isEmpty()) {
+                respuestas = respuestaService.findRespuestasByEstudianteIdAndSearchQuery(idEstudiante, searchQuery, sortBy, sortType, page, pageSize);
+            } else if (tipoPregunta != null && !tipoPregunta.isEmpty()) {
+                respuestas = respuestaService.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, sortBy, sortType, page, pageSize);
+            } else {
+                respuestas = respuestaService.findRespuestasByEstudianteId(idEstudiante, sortBy, sortType, page, pageSize);
+            }
+
+            if (respuestas.isEmpty()) {
+                return new ResponseEntity<>(new MessageResponse("No se encontraron respuestas para este estudiante"), HttpStatus.NOT_FOUND);
+            }
+
+            return ResponseEntity.ok(respuestas);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
     // @GetMapping
     // public ResponseEntity<?> readAll(
     //     @RequestParam(defaultValue = "0") int page,

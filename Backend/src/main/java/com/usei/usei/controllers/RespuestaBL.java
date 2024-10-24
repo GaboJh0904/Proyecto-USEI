@@ -118,6 +118,23 @@ public class RespuestaBL implements RespuestaService {
         return respuestaDAO.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, pageable);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Respuesta> findRespuestasByEstudianteIdAndSearchQuery(Long idEstudiante, String searchQuery, String sortBy, String sortType, int page, int pageSize) {
+        String sortField = switch (sortBy) {
+            case "idPregunta" -> "preguntaIdPregunta.idPregunta";
+            case "pregunta" -> "preguntaIdPregunta.pregunta";
+            case "respuesta" -> "respuesta";
+            default -> sortBy;
+        };
+        Sort sort = Sort.by(Sort.Direction.fromString(sortType), sortField);
+        Pageable pageable = PageRequest.of(page, pageSize, sort);
+        
+        // Realizar la búsqueda por pregunta o respuesta
+        return respuestaDAO.findRespuestasByEstudianteIdAndSearchQuery(idEstudiante, searchQuery, pageable);
+    }
+
+
 ///
     // @Override
     // @Transactional(readOnly = true)

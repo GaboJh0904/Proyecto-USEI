@@ -32,6 +32,12 @@ public interface RespuestaDAO extends JpaRepository<Respuesta, Long>, JpaSpecifi
     @Query("SELECT r FROM Respuesta r WHERE r.estudianteIdEstudiante.idEstudiante = :idEstudiante AND r.preguntaIdPregunta.tipoPregunta = :tipoPregunta")
     Page<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(@Param("idEstudiante") Long idEstudiante, @Param("tipoPregunta") String tipoPregunta, Pageable pageable);
 
+    @Query("SELECT r FROM Respuesta r WHERE r.estudianteIdEstudiante.idEstudiante = :idEstudiante AND " +
+       "(LOWER(r.preguntaIdPregunta.pregunta) LIKE LOWER(CONCAT('%', :searchQuery, '%')) " +
+       "OR LOWER(r.respuesta) LIKE LOWER(CONCAT('%', :searchQuery, '%')))")
+    Page<Respuesta> findRespuestasByEstudianteIdAndSearchQuery(@Param("idEstudiante") Long idEstudiante, @Param("searchQuery") String searchQuery, Pageable pageable);
+
+
     ///
 
 

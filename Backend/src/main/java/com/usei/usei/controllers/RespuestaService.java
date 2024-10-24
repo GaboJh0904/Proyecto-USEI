@@ -23,6 +23,9 @@ public interface RespuestaService {
      Page<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, String sortBy, String sortType, int page, int pageSize);
 
      Page<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta, String sortBy, String sortType, int page, int pageSize);
+
+     Page<Respuesta> findRespuestasByEstudianteIdAndSearchQuery(Long idEstudiante, String searchQuery, String sortBy, String sortType, int page, int pageSize);
+
     ///
 
 

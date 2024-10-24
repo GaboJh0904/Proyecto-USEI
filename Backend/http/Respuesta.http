@@ -51,8 +51,20 @@ GET http://localhost:8082/respuesta/estudiante/1?tipoPregunta=Numerico&sortBy=pr
 
 
 ###
-GET http://localhost:8082/respuesta/estudiante/1?sortBy=preguntaIdPregunta.idPregunta&sortType=ASC&page=1&pageSize=10
+
+GET http://localhost:8082/respuesta/estudiante/1?sortBy=preguntaIdPregunta.idPregunta&sortType=ASC&page=0&pageSize=10
 
 
+//paginacion
 ###
-GET http://localhost:8082/respuesta/estudiante/1?page=0&pageSize=10
+GET http://localhost:8082/respuesta/estudiante/1?page=0&pageSize=10&sortBy=idRespuesta&sortType=ASC
+
+//busqueda 
+###
+GET http://localhost:8082/respuesta/estudiante/1?page=0&pageSize=5&sortBy=pregunta&sortType=ASC&searchQuery=MAESTRÍA
+GET http://localhost:8082/respuesta/estudiante/1?page=0&pageSize=5&sortBy=idPregunta&sortType=DESC&searchQuery=seleccion
+
+
+//busqueda sin coincidencias
+###
+GET http://localhost:8082/respuesta/estudiante/1?page=0&pageSize=5&searchQuery=ZZZZZZZZZ
