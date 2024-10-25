@@ -168,7 +168,7 @@ public class CertificadoAPI {
         }
     }
 
-    @PostMapping("/enviar")
+    @PostMapping("/remision")
     public ResponseEntity<?> enviarCertificado(@RequestParam("idEstudiante") Long idEstudiante) {
         try {
             // Llamar a la función que gestiona el envío y verifica los estados
