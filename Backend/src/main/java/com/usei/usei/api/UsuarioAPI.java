@@ -72,7 +72,7 @@ public class UsuarioAPI {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(oUsuario.get()));
     }
 
-    @PutMapping("/change-password/{id_usuario}")
+    @PutMapping("/new-password/{id_usuario}")
     public ResponseEntity<?> changePassword(@PathVariable(value = "id_usuario") Long id_usuario, @RequestBody HashMap<String, String> passwordData) {
         Optional<Usuario> oUsuario = usuarioService.findById(id_usuario);
         if (oUsuario.isEmpty()) {

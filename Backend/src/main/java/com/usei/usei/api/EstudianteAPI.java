@@ -11,7 +11,6 @@ import java.util.Optional;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-import org.hibernate.query.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -111,7 +110,7 @@ public class EstudianteAPI {
         return ResponseEntity.ok(estudianteExistente);
     }
 
-    @PutMapping("/change-password")
+    @PutMapping("/new-password")
     public ResponseEntity<?> changePassword(@RequestParam Long idEstudiante, @RequestBody HashMap<String, String> passwordData) {
         Optional<Estudiante> oEstudiante = estudianteService.findById(idEstudiante);
         if (oEstudiante.isEmpty()) {
@@ -165,7 +164,7 @@ public class EstudianteAPI {
         }
     }
 
-    @PostMapping("/enviarEnlace")
+    @PostMapping("/enlaceInvitacion")
     public ResponseEntity<?> enviarEnlaceCertificado() {
         try {
             // Llamamos al servicio para enviar los correos
@@ -178,7 +177,7 @@ public class EstudianteAPI {
         }
     }
 
-    @PostMapping("/upload-csv")
+    @PostMapping("/csv-estudiantes")
     public ResponseEntity<?> uploadEstudiantesCSV(@RequestParam("file") MultipartFile file) {
         try (
             Reader reader = new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8); // Asegúrate de leer en UTF-8
@@ -213,7 +212,7 @@ public class EstudianteAPI {
         }
     }
 
-    @PostMapping("/enviarCodigoVerificacion/{correo}")
+    @PostMapping("/codigoVerificacion/{correo}")
     public ResponseEntity<?> enviarCodigoVerificacion(@PathVariable(value = "correo") String correo) {
         try {
 
