@@ -126,7 +126,7 @@ public class RespuestaAPI {
         }
     }
         //verifica si el estudiante ya realizo la encuesta
-        @GetMapping("/filled/{id_estudiante}")
+        @GetMapping("/llenado/{id_estudiante}")
         public ResponseEntity<?> hasFilledSurvey(@PathVariable Long id_estudiante) {
             if (id_estudiante == null) {
                 return new ResponseEntity<>(new MessageResponse("ID de estudiante no proporcionado"), HttpStatus.BAD_REQUEST);
