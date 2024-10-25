@@ -76,15 +76,15 @@ public class NoticiasBL implements NoticiasService {
 
     @Override
     @Transactional
-    public Noticias update(Noticias noticias, Long id, MultipartFile file) {
+    public Noticias actualizacionNoticia(Noticias noticias, Long id, MultipartFile file) {
         Optional<Noticias> existingNoticias = noticiasDAO.findById(id);
         if (existingNoticias.isPresent()) {
-            Noticias noticiasToUpdate = existingNoticias.get();
+            Noticias noticiasToActualizacion = existingNoticias.get();
 
             try {
                 if (file != null && !file.isEmpty()) {
                     String fileName = file.getOriginalFilename();
-                    noticiasToUpdate.setImg(fileName);
+                    noticiasToActualizacion.setImg(fileName);
                 }
             } catch (Exception e) {
                 throw new RuntimeException("Error al procesar la imagen", e);
@@ -93,13 +93,13 @@ public class NoticiasBL implements NoticiasService {
             Usuario usuario = usuarioService.findById(noticias.getUsuarioIdUsuario().getIdUsuario())
                     .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: " + noticias.getUsuarioIdUsuario().getIdUsuario()));
 
-            noticiasToUpdate.setTitulo(noticias.getTitulo());
-            noticiasToUpdate.setDescripcion(noticias.getDescripcion());
-            noticiasToUpdate.setFechaModificado(noticias.getFechaModificado());
-            noticiasToUpdate.setEstado(noticias.getEstado());
-            noticiasToUpdate.setUsuarioIdUsuario(usuario);
+            noticiasToActualizacion.setTitulo(noticias.getTitulo());
+            noticiasToActualizacion.setDescripcion(noticias.getDescripcion());
+            noticiasToActualizacion.setFechaModificado(noticias.getFechaModificado());
+            noticiasToActualizacion.setEstado(noticias.getEstado());
+            noticiasToActualizacion.setUsuarioIdUsuario(usuario);
 
-            return noticiasDAO.save(noticiasToUpdate);
+            return noticiasDAO.save(noticiasToActualizacion);
         } else {
             throw new RuntimeException("Noticia no encontrada con el id: " + id);
         }

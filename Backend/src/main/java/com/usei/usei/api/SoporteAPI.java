@@ -38,7 +38,7 @@ public class SoporteAPI {
     private EmailService emailService;  // Servicio para enviar correos
 
     @PostMapping
-    public ResponseEntity<Object> create(@RequestBody Soporte soporte) {
+    public ResponseEntity<Object> creacion(@RequestBody Soporte soporte) {
         try {
             // Validar tipo de problema
             Optional<TipoProblema> tipoProblema = tipoProblemaDAO.findById(soporte.getTipoProblema().getIdProblema());
