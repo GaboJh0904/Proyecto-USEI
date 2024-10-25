@@ -106,7 +106,7 @@ public class NotificacionAPI {
         }
     }
 
-    @PutMapping("/{id_notificacion}/marcar-como-leida")
+    @PutMapping("/{id_notificacion}/lectura")
     public ResponseEntity<?> marcarComoLeida(@PathVariable(value = "id_notificacion") Long id) {
         try {
             notificacionService.marcarComoLeida(id);
