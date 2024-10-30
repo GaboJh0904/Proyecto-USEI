@@ -17,7 +17,7 @@
         <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
 
         <div class="form-group">
-          <a href="#" @click.prevent="forgotPassword">Olvidé mi contraseña</a>
+          <a href="#" @click.prevent="$emit('switch-to-code-verification')">Olvidé mi contraseña</a>
         </div>
         <button type="submit" class="submit-btn">Ingresar</button>
       </form>
@@ -94,8 +94,6 @@ export default {
       localStorage.setItem('rol', response.data.result.rol);
       localStorage.setItem('telefono', response.data.result.telefono);
 
-
-          localStorage.setItem('id_estudiante', response.data.id_estudiante); // Guardar el id del estudiante
 
           // Usar SweetAlert para mostrar éxito
           Swal.fire({
