@@ -1,16 +1,18 @@
 package com.usei.usei.controllers;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.usei.usei.repositories.RespuestaDAO;
-import com.usei.usei.models.Respuesta;
-import com.usei.usei.models.Pregunta;
 import com.usei.usei.models.Estudiante;
-
+import com.usei.usei.models.Pregunta;
+import com.usei.usei.models.Respuesta;
+import com.usei.usei.repositories.RespuestaDAO;
 @Service
 public class RespuestaBL implements RespuestaService {
 
@@ -81,18 +83,74 @@ public class RespuestaBL implements RespuestaService {
         }
     }
 
-    // no permitir doble llenado de encuesta
+     // no permitir doble llenado de encuesta
+     @Override
+     @Transactional(readOnly = true)
+     public boolean hasFilledSurvey(Long idEstudiante) {
+        return respuestaDAO.existsByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
+     }
+ 
     @Override
     @Transactional(readOnly = true)
-    public boolean hasFilledSurvey(Long idEstudiante) {
-        List<Respuesta> respuestas = respuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
-        return !respuestas.isEmpty(); // Retorna true si el estudiante ya llenó la encuesta
+    public Page<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, String sortBy, String sortType, int page, int pageSize) {
+        String sortField = switch (sortBy) {
+            case "idPregunta" -> "preguntaIdPregunta.idPregunta";
+            case "pregunta" -> "preguntaIdPregunta.pregunta";
+            case "respuesta" -> "respuesta";
+            default -> sortBy;
+        };
+        Sort sort = Sort.by(Sort.Direction.fromString(sortType), sortField);
+        Pageable pageable = PageRequest.of(page, pageSize, sort);
+        return respuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante, pageable);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Estudiante> findEstudiantesQueCompletaronEncuesta() {
-        return respuestaDAO.findEstudiantesQueCompletaronEncuesta();
+    public Page<Respuesta> findRespuestasByEstudianteIdAndTipoPregunta(Long idEstudiante, String tipoPregunta, String sortBy, String sortType, int page, int pageSize) {
+        String sortField = switch (sortBy) {
+            case "idPregunta" -> "preguntaIdPregunta.idPregunta";
+            case "pregunta" -> "preguntaIdPregunta.pregunta";
+            case "respuesta" -> "respuesta";
+            default -> sortBy;
+        };
+        Sort sort = Sort.by(Sort.Direction.fromString(sortType), sortField);
+        Pageable pageable = PageRequest.of(page, pageSize, sort);
+        return respuestaDAO.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, pageable);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Respuesta> findRespuestasByEstudianteIdAndSearchQuery(Long idEstudiante, String searchQuery, String sortBy, String sortType, int page, int pageSize) {
+        String sortField = switch (sortBy) {
+            case "idPregunta" -> "preguntaIdPregunta.idPregunta";
+            case "pregunta" -> "preguntaIdPregunta.pregunta";
+            case "respuesta" -> "respuesta";
+            default -> sortBy;
+        };
+        Sort sort = Sort.by(Sort.Direction.fromString(sortType), sortField);
+        Pageable pageable = PageRequest.of(page, pageSize, sort);
+        
+        // Realizar la búsqueda por pregunta o respuesta
+        return respuestaDAO.findRespuestasByEstudianteIdAndSearchQuery(idEstudiante, searchQuery, pageable);
+    }
+
+
+///
+    // @Override
+    // @Transactional(readOnly = true)
+    // public Page<Respuesta> findRespuestasByEstudianteId(Long idEstudiante, PageRequest pageRequest) {
+    //     return respuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante, pageRequest);
+    // }
+
+    // @Override
+    // @Transactional(readOnly = true)
+    // public Page<Respuesta> findRespuestasConFiltro(Long idEstudiante, String respuestaFiltro, PageRequest pageRequest) {
+    //     Specification<Respuesta> spec = RespuestaSpecification.byEstudianteId(idEstudiante);
+
+    //     if (respuestaFiltro != null && !respuestaFiltro.isEmpty()) {
+    //         spec = spec.and(RespuestaSpecification.byTextoRespuesta(respuestaFiltro));
+    //     }
+
+    //     return respuestaDAO.findAll(spec, pageRequest);
+    // }
 }

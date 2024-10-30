@@ -30,3 +30,41 @@ Accept: application/json
     "preguntaIdPregunta": 4,
     "estudianteIdEstudiante": 1
 }
+
+###
+GET http://localhost:8082/respuesta/estudiante/1
+//filtrar por tipo de pregunta
+###
+GET http://localhost:8082/respuesta/estudiante/1?tipoPregunta=Numerico
+
+###
+//Ordenacion Ascendente por idPregunta
+GET http://localhost:8082/respuesta/estudiante/1?sortBy=idPregunta&sortType=ASC
+
+###
+//Ordenacion Descendente
+GET http://localhost:8082/respuesta/estudiante/1?sortBy=idPregunta&sortType=DESC
+
+###
+//filtrado tipoPregunta con ordenacion asc
+GET http://localhost:8082/respuesta/estudiante/1?tipoPregunta=Numerico&sortBy=pregunta&sortType=ASC
+
+
+###
+
+GET http://localhost:8082/respuesta/estudiante/1?sortBy=preguntaIdPregunta.idPregunta&sortType=ASC&page=0&pageSize=10
+
+
+//paginacion
+###
+GET http://localhost:8082/respuesta/estudiante/1?page=0&pageSize=10&sortBy=idRespuesta&sortType=ASC
+
+//busqueda 
+###
+GET http://localhost:8082/respuesta/estudiante/1?page=0&pageSize=5&sortBy=pregunta&sortType=ASC&searchQuery=MAESTRÍA
+GET http://localhost:8082/respuesta/estudiante/1?page=0&pageSize=5&sortBy=idPregunta&sortType=DESC&searchQuery=seleccion
+
+
+//busqueda sin coincidencias
+###
+GET http://localhost:8082/respuesta/estudiante/1?page=0&pageSize=5&searchQuery=ZZZZZZZZZ

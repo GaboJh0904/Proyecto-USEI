@@ -55,7 +55,7 @@ public class Estudiante implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @Basic(optional = false)
+    @Basic(optional = true) // Marca true para procesar el listado de estudiantes ya que no contiene apellido sino solo nombre donde ahi esta el nombre completo del estudiante
     @Column(name = "apellido")
     private String apellido;
     @Basic(optional = true)
@@ -78,11 +78,9 @@ public class Estudiante implements Serializable {
     @Basic(optional = false)
     @Column(name = "semestre")
     private int semestre;
-    
     @Basic(optional = false)
     @Column(name = "estadoInvitacion")
     private String estadoInvitacion;
-
     @Basic(optional = false)
     @Column(name = "contrasena")
     private String contrasena;
@@ -104,7 +102,7 @@ public class Estudiante implements Serializable {
         this.idEstudiante = idEstudiante;
     }
 
-    public Estudiante(long idEstudiante, int ci, String nombre, String apellido, String correoInstitucional, String carrera, String asignatura, int telefono, int anio, int semestre, String contrasena) {
+    public Estudiante(long idEstudiante, int ci, String nombre, String apellido, String correoInstitucional, String carrera, String asignatura, int telefono, int anio, int semestre,String estadoInvitacion, String contrasena) {
         this.idEstudiante = idEstudiante;
         this.ci = ci;
         this.nombre = nombre;
@@ -115,6 +113,7 @@ public class Estudiante implements Serializable {
         this.telefono = telefono;
         this.anio = anio;
         this.semestre = semestre;
+        this.estadoInvitacion = estadoInvitacion;
         this.contrasena = contrasena;
     }
     public Estudiante(Long idEstudiante, String nombre, String apellido) {
@@ -210,6 +209,14 @@ public class Estudiante implements Serializable {
 
     public void setSemestre(int semestre) {
         this.semestre = semestre;
+    }
+
+    public String getEstadoInvitacion() {
+        return estadoInvitacion;
+    }
+
+    public void setEstadoInvitacion(String estadoInvitacion) {
+        this.estadoInvitacion = estadoInvitacion;
     }
 
     public String getContrasena() {

@@ -1,8 +1,13 @@
 package com.usei.usei.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.usei.usei.models.Estudiante;
+
+import jakarta.mail.MessagingException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface EstudianteService {
 
@@ -17,5 +22,24 @@ public interface EstudianteService {
     public Estudiante update (Estudiante newEstudiante, Long id);
 
     public Optional<Estudiante> login(int ci, String contrasena);
+
+    // Método para enviar el correo
+    public void enviarCorreosEstudiantes() throws MessagingException;
+
+    public void enviarCodigoVerificacion(String correo) throws MessagingException;
+
+    public String obtenerCodigoVerificacion();
+
+    public Long findByCorreoInst(String correo) throws MessagingException;
     
+    public List<Estudiante> saveAll(List<Estudiante> estudiantes);
+
+    Page<Estudiante> findByNombreContainingOrCiContaining(String nombre, String ci, Pageable pageable);
+
+    // Nuevos métodos separados para buscar por nombre y CI
+    Page<Estudiante> findByNombre(String nombre, Pageable pageable); // Búsqueda por nombre
+
+    Page<Estudiante> findByCi(Integer ci, Pageable pageable); // Búsqueda por CI
+
+    Page<Estudiante> findAll(Pageable pageable); // Obtener todos los estudiantes con paginación
 }

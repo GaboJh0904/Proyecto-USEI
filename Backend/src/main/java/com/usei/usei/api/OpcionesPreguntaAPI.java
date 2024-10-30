@@ -90,5 +90,15 @@ public class OpcionesPreguntaAPI {
         }
     }
 
+    @DeleteMapping("/{id_opciones_pregunta}")
+    public ResponseEntity<?> delete(@PathVariable(value = "id_opciones_pregunta") Long id_opciones_pregunta) {
+        Optional<OpcionesPregunta> oOpcionesPregunta = opcionesPreguntaService.findById(id_opciones_pregunta);
+        if (oOpcionesPregunta.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        opcionesPreguntaService.deleteById(id_opciones_pregunta);
+        return ResponseEntity.ok(oOpcionesPregunta);
+    }
+
     
 }

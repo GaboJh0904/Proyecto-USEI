@@ -73,6 +73,7 @@
   import ImageCarousel from '@/components/imageCarousel.vue';
   import FooterComponent from '@/components/FooterComponent.vue';
   import axios from 'axios';
+  import Swal from 'sweetalert2';  
 
   export default {
     name: "MenuEstudiante",
@@ -89,35 +90,59 @@
     },
     mounted() {
       // Obtener el nombre del estudiante desde el localStorage directamente
-      const storedUsername = localStorage.getItem('username');
-      const storedEstudianteId = localStorage.getItem('id_estudiante');  
+      const storedUsername = localStorage.getItem('username'); 
+      const storedEstudianteId = localStorage.getItem('id_estudiante');
+ 
       
       if (storedUsername) {
         this.username = storedUsername;
       } else {
         console.error('No se encontró el nombre en el localStorage.');
       }
-        if (storedEstudianteId) {
-        this.estudianteId = storedEstudianteId;
-      } else {
-        console.error('No se encontró el ID del estudiante en el localStorage.');
-      }
+      if (storedEstudianteId) {
+      this.estudianteId = storedEstudianteId;
+    } else {
+      console.error('No se encontró el ID del estudiante en el localStorage.');
+    }
 
     },
     methods: {
-      methods: {
-      goToEncuesta() {
-        this.$router.push('/encuesta-estudiante');
-      },
-      goToEnProgreso(){
-        this.$router.push('/en-progreso');
-      }
-    }
-  }
+  async goToEncuesta() {
+    const estudianteId = localStorage.getItem('id_estudiante'); // Obtener el ID del estudiante del localStorage
 
+    if (!estudianteId) {
+      alert('No se encontró el ID del estudiante. Por favor, inicie sesión nuevamente.');
+      this.$router.push('/login'); // Redirigir al login si no hay ID del estudiante
+      return;
+    }
+
+    const url = `http://localhost:8082/respuesta/filled/${estudianteId}`;
+    console.log('Verificando encuesta con la URL:', url); // Para depurar
+
+    try {
+      const response = await axios.get(url);
+      const hasFilled = response.data.filled;
+
+      if (hasFilled) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Ya has llenado la encuesta',
+          confirmButtonText: 'Continuar',
+        });
+        return; 
+      } else {
+        this.$router.push('/encuesta-estudiante'); // Redirigir a la encuesta si no ha sido llenada
+      }
+    } catch (error) {
+      console.error('Error al verificar el estado de la encuesta:', error);
+    }
+  },
+  goToEnProgreso(){
+      this.$router.push('/en-progreso');
+  }
+}
   };
 </script>
-
 
   
   <style scoped>

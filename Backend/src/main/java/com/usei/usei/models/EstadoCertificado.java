@@ -6,6 +6,7 @@ package com.usei.usei.models;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

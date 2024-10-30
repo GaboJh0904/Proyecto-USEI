@@ -1,86 +1,78 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.usei.usei.models;
 
 import java.io.Serializable;
 import java.util.Collection;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
-/**
- *
- * @author gaboj
- */
 @Entity
 @Table(name = "usuario")
 @NamedQueries({
-    @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
-    @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
-    @NamedQuery(name = "Usuario.findByTelefono", query = "SELECT u FROM Usuario u WHERE u.telefono = :telefono"),
-    @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo"),
-    @NamedQuery(name = "Usuario.findByRol", query = "SELECT u FROM Usuario u WHERE u.rol = :rol"),
-    @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario"),
-    @NamedQuery(name = "Usuario.findByContrasenia", query = "SELECT u FROM Usuario u WHERE u.contrasenia = :contrasenia")})
+        @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
+        @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
+        @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
+        @NamedQuery(name = "Usuario.findByTelefono", query = "SELECT u FROM Usuario u WHERE u.telefono = :telefono"),
+        @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo"),
+        @NamedQuery(name = "Usuario.findByRol", query = "SELECT u FROM Usuario u WHERE u.rol = :rol"),
+        @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario"),
+        @NamedQuery(name = "Usuario.findByContrasenia", query = "SELECT u FROM Usuario u WHERE u.contrasenia = :contrasenia")
+})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    @Basic(optional = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Long idUsuario;
+
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
+
     @Basic(optional = false)
     @Column(name = "telefono")
     private int telefono;
+
     @Basic(optional = false)
     @Column(name = "correo")
     private String correo;
+
     @Basic(optional = false)
     @Column(name = "rol")
     private String rol;
+
     @Basic(optional = false)
     @Column(name = "usuario")
     private String usuario;
+
     @Basic(optional = false)
     @Column(name = "contrasenia")
     private String contrasenia;
+
+    // Relación con Soporte
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @JsonIgnore // Evita problemas de recursión en la serialización
+    private Collection<Soporte> soporteCollection;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
     @JsonIgnore
     private Collection<Encuesta> encuestaCollection;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
     @JsonIgnore
     private Collection<Certificado> certificadoCollection;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
     @JsonIgnore
     private Collection<Reporte> reporteCollection;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
     @JsonIgnore
     private Collection<Noticias> noticiasCollection;
 
-    public Usuario() {
-    }
-
-    public Usuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+    // Constructores
+    public Usuario() {}
 
     public Usuario(Long idUsuario, String nombre, int telefono, String correo, String rol, String usuario, String contrasenia) {
         this.idUsuario = idUsuario;
@@ -92,6 +84,7 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
     }
 
+    // Getters y Setters
     public Long getIdUsuario() {
         return idUsuario;
     }
@@ -148,6 +141,14 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
     }
 
+    public Collection<Soporte> getSoporteCollection() {
+        return soporteCollection;
+    }
+
+    public void setSoporteCollection(Collection<Soporte> soporteCollection) {
+        this.soporteCollection = soporteCollection;
+    }
+
     public Collection<Encuesta> getEncuestaCollection() {
         return encuestaCollection;
     }
@@ -189,7 +190,6 @@ public class Usuario implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Usuario)) {
             return false;
         }
@@ -204,5 +204,4 @@ public class Usuario implements Serializable {
     public String toString() {
         return "com.usei.usei.Usuario[ idUsuario=" + idUsuario + " ]";
     }
-    
 }

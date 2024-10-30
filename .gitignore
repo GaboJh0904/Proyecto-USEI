@@ -233,3 +233,5 @@ README.html
 *.iml
 .idea
 .exercism
+/Frontend/
+application.yml
