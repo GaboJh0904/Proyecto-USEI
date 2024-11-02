@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+    tools {
+        maven 'MVN_339'
+    }
+
+    environment {
+        WAR_FILE = "target/usei-0.0.1-SNAPSHOT.war" // Cambia "usei-0.0.1-SNAPSHOT" si es necesario
+        TOMCAT_URL = "http://localhost:9191/manager/text"
+        TOMCAT_CREDENTIALS = credentials('d1a27c8a-2d5e-4ac7-a2fc-7c6f612b1486') // ID de credenciales en Jenkins para Tomcat
+    }
+
+    stages {
+        stage('Clonar repositorio') {
+            steps {
+                git 'https://github.com/GaboJh0904/Proyecto-USEI.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                dir('Proyecto-USEI') {
+                    bat 'mvn clean package'
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                dir('Proyecto-USEI') {
+                    bat 'mvn test'
+                }
+            }
+        }
+
+        stage('Deploy to Tomcat') {
+            steps {
+                script {
+                    dir('Proyecto-USEI/target') {
+                        bat "curl -u %TOMCAT_CREDENTIALS_USR%:%TOMCAT_CREDENTIALS_PSW% --upload-file ${WAR_FILE} \"%TOMCAT_URL%/deploy?path=/usei&update=true\""
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            dir('Proyecto-USEI') {
+                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+                junit '**/target/surefire-reports/TEST-*.xml'
+            }
+        }
+    }
+}
