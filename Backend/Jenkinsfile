@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Clonar repositorio') {
             steps {
-                git 'https://github.com/GaboJh0904/Proyecto-USEI.git'
+                git branch: 'Backend-Branch', url: 'https://github.com/GaboJh0904/Proyecto-USEI.git'
             }
         }
 
