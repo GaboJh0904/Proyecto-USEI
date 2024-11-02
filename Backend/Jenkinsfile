@@ -5,9 +5,9 @@ pipeline {
     }
 
     environment {
-        WAR_FILE = "target/usei-0.0.1-SNAPSHOT.war"
+        WAR_FILE = "Backend/target/usei-0.0.1-SNAPSHOT.war" // Ruta completa del archivo WAR
         TOMCAT_URL = "http://localhost:9191/manager/text"
-        TOMCAT_CREDENTIALS = credentials('d1a27c8a-2d5e-4ac7-a2fc-7c6f612b1486')
+        TOMCAT_CREDENTIALS = credentials('d1a27c8a-2d5e-4ac7-a2fc-7c6f612b1486') // ID de credenciales en Jenkins para Tomcat
     }
 
     stages {
@@ -36,9 +36,7 @@ pipeline {
         stage('Deploy to Tomcat') {
             steps {
                 script {
-                    dir('Backend/target') {
-                        bat "curl -u %TOMCAT_CREDENTIALS_USR%:%TOMCAT_CREDENTIALS_PSW% --upload-file ${WAR_FILE} \"%TOMCAT_URL%/deploy?path=/usei&update=true\""
-                    }
+                    bat "curl -u %TOMCAT_CREDENTIALS_USR%:%TOMCAT_CREDENTIALS_PSW% --upload-file ${WAR_FILE} \"%TOMCAT_URL%/deploy?path=/usei&update=true\""
                 }
             }
         }
