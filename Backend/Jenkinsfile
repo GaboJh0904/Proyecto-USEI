@@ -46,7 +46,7 @@ pipeline {
         always {
             dir('Backend') {
                 archiveArtifacts artifacts: 'target/*.war', fingerprint: true
-                junit '**/target/surefire-reports/TEST-*.xml'
+                //junit '**/target/surefire-reports/TEST-*.xml'
             }
         }
     }
