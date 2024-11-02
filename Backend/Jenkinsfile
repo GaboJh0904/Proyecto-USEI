@@ -5,9 +5,9 @@ pipeline {
     }
 
     environment {
-        WAR_FILE = "target/usei-0.0.1-SNAPSHOT.war" // Cambia "usei-0.0.1-SNAPSHOT" si es necesario
+        WAR_FILE = "target/usei-0.0.1-SNAPSHOT.war"
         TOMCAT_URL = "http://localhost:9191/manager/text"
-        TOMCAT_CREDENTIALS = credentials('d1a27c8a-2d5e-4ac7-a2fc-7c6f612b1486') // ID de credenciales en Jenkins para Tomcat
+        TOMCAT_CREDENTIALS = credentials('d1a27c8a-2d5e-4ac7-a2fc-7c6f612b1486')
     }
 
     stages {
@@ -18,16 +18,16 @@ pipeline {
         }
 
         stage('Build') {
-            dir('Backend') {
             steps {
-                bat 'mvn clean package'
+                dir('Backend') {
+                    bat 'mvn clean package'
+                }
             }
-          }
         }
 
         stage('Test') {
             steps {
-                dir('Backend') {  // Cambia 'Backend' por el nombre del subdirectorio correcto
+                dir('Backend') {
                     bat 'mvn test'
                 }
             }
