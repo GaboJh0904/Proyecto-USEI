@@ -36,11 +36,7 @@ pipeline {
         stage('Deploy to Tomcat') {
             steps {
                 script {
-                    bat """
-                        curl -u ${TOMCAT_CREDENTIALS_USR}:${TOMCAT_CREDENTIALS_PSW} \
-                        --upload-file ${WAR_FILE} \
-                        "${TOMCAT_URL}/deploy?path=/usei&update=true"
-                    """
+                    bat "curl -u %TOMCAT_CREDENTIALS_USR%:%TOMCAT_CREDENTIALS_PSW% --upload-file ${WAR_FILE} \"%TOMCAT_URL%/deploy?path=/usei&update=true\""
                 }
             }
         }
@@ -50,6 +46,7 @@ pipeline {
         always {
             dir('Backend') {
                 archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+                //junit '**/target/surefire-reports/TEST-*.xml'
             }
         }
     }
