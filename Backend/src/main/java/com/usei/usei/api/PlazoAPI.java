@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.usei.usei.controllers.PlazoService;
-import com.usei.usei.models.Encuesta;
 import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Plazo;
 import com.usei.usei.models.Usuario;
@@ -39,9 +38,6 @@ public class PlazoAPI {
             usuario.setIdUsuario(plazo.getUsuarioIdUsuario().getIdUsuario());
             newPlazo.setUsuarioIdUsuario(usuario);
             // Vincular a un encuesta
-            Encuesta encuesta = new Encuesta();
-            encuesta.setIdEncuesta(plazo.getEncuestaIdEncuesta().getIdEncuesta());
-            newPlazo.setEncuestaIdEncuesta(encuesta);
 
             plazoService.save(newPlazo);
 
@@ -86,13 +82,9 @@ public class PlazoAPI {
             oPlazo.get().setFechaModificacion(plazo.getFechaModificacion());
             oPlazo.get().setEstado(plazo.getEstado());
 
-            // Vincular a una encuesta
-            Encuesta encuesta = new Encuesta();
-            encuesta.setIdEncuesta(plazo.getEncuestaIdEncuesta().getIdEncuesta());
-            oPlazo.get().setEncuestaIdEncuesta(encuesta);
             // Vincular a un usuario
             Usuario usuario = new Usuario();
-            usuario.setIdUsuario(plazo.getEncuestaIdEncuesta().getIdEncuesta());
+            usuario.setIdUsuario(plazo.getUsuarioIdUsuario().getIdUsuario());
             oPlazo.get().setUsuarioIdUsuario(usuario);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(plazoService.save(oPlazo.get()));

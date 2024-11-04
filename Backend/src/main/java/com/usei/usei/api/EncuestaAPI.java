@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import com.usei.usei.controllers.EncuestaService;
 import com.usei.usei.models.Encuesta;
 import com.usei.usei.models.MessageResponse;
+import com.usei.usei.models.Plazo;
 import com.usei.usei.models.Usuario;
 
 import java.util.Optional;
@@ -26,12 +27,15 @@ public class EncuestaAPI {
             newEncuesta.setTitulo(encuesta.getTitulo());
             newEncuesta.setDescripcion(encuesta.getDescripcion());
             newEncuesta.setFechaModificado(encuesta.getFechaModificado());
-            newEncuesta.setFechaLimite(encuesta.getFechaLimite());
 
             Usuario newUsuario = new Usuario();
             newUsuario.setIdUsuario(encuesta.getUsuarioIdUsuario().getIdUsuario());
-
             newEncuesta.setUsuarioIdUsuario(newUsuario);
+
+            Plazo newPlazo = new Plazo();
+            newPlazo.setIdPlazo(encuesta.getPlazoIdPlazo().getIdPlazo());
+            newEncuesta.setPlazoIdPlazo(newPlazo);
+
             encuestaService.save(newEncuesta);
             return new ResponseEntity<>(new MessageResponse("Encuesta registrado"), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -66,12 +70,15 @@ public class EncuestaAPI {
             oEncuesta.get().setTitulo(encuesta.getTitulo());
             oEncuesta.get().setDescripcion(encuesta.getDescripcion());
             oEncuesta.get().setFechaModificado(encuesta.getFechaModificado());
-            oEncuesta.get().setFechaLimite(encuesta.getFechaLimite());
 
             Usuario newUsuario = new Usuario();
             newUsuario.setIdUsuario(encuesta.getUsuarioIdUsuario().getIdUsuario());
-
             oEncuesta.get().setUsuarioIdUsuario(newUsuario);
+
+            Plazo newPlazo = new Plazo();
+            newPlazo.setIdPlazo(encuesta.getPlazoIdPlazo().getIdPlazo());
+            oEncuesta.get().setPlazoIdPlazo(newPlazo);
+
             return ResponseEntity.status(HttpStatus.CREATED).body(encuestaService.save(oEncuesta.get()));
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
