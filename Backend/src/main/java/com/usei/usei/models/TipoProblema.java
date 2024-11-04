@@ -42,7 +42,7 @@ public class TipoProblema implements Serializable {
     @Basic(optional = false)
     @Column(name = "problema")
     private String problema;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoProblemaIdProblema")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tipoProblema")
     @JsonIgnore
     private Collection<Soporte> soporteCollection;
 

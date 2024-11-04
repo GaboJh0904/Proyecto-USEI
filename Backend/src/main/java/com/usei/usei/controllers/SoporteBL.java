@@ -54,16 +54,16 @@ public class SoporteBL implements SoporteService {
     @Override
     @Transactional
     public Soporte save(Soporte soporte) {
-        TipoProblema tipoProblema = tipoProblemaService.findById(soporte.getTipoProblemaIdProblema().getIdProblema())
+        TipoProblema tipoProblema = tipoProblemaService.findById(soporte.getTipoProblema().getIdProblema())
                 .orElseThrow(() -> new RuntimeException(
-                        "Tipo de Problema no encontrada con el id: " + soporte.getTipoProblemaIdProblema().getIdProblema()));
+                        "Tipo de Problema no encontrada con el id: " + soporte.getTipoProblema().getIdProblema()));
 
-        Usuario usuario = usuarioService.findById(soporte.getUsuarioIdUsuario().getIdUsuario())
+        Usuario usuario = usuarioService.findById(soporte.getUsuario().getIdUsuario())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: "
-                        + soporte.getUsuarioIdUsuario().getIdUsuario()));
+                        + soporte.getUsuario().getIdUsuario()));
 
-        soporte.setTipoProblemaIdProblema(tipoProblema);
-        soporte.setUsuarioIdUsuario(usuario);
+        soporte.setTipoProblema(tipoProblema);
+        soporte.setUsuario(usuario);
 
         return soporteDAO.save(soporte);
     }
@@ -75,19 +75,19 @@ public class SoporteBL implements SoporteService {
         if (existingSoporte.isPresent()) {
             Soporte soporteToUpdate = existingSoporte.get();
 
-            TipoProblema tipoProblema = tipoProblemaService.findById(soporte.getTipoProblemaIdProblema().getIdProblema())
+            TipoProblema tipoProblema = tipoProblemaService.findById(soporte.getTipoProblema().getIdProblema())
                 .orElseThrow(() -> new RuntimeException(
-                    "Tipo de Problema no encontrada con el id: " + soporte.getTipoProblemaIdProblema().getIdProblema()));
+                    "Tipo de Problema no encontrada con el id: " + soporte.getTipoProblema().getIdProblema()));
 
-            Usuario usuario = usuarioService.findById(soporte.getUsuarioIdUsuario().getIdUsuario())
+            Usuario usuario = usuarioService.findById(soporte.getUsuario().getIdUsuario())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: "
-                        + soporte.getUsuarioIdUsuario().getIdUsuario()));
+                        + soporte.getUsuario().getIdUsuario()));
 
             // Actualizar los campos de la respuesta con los valores correspondientes
             soporteToUpdate.setMensaje(soporte.getMensaje());
             soporteToUpdate.setFecha(soporte.getFecha());
-            soporteToUpdate.setTipoProblemaIdProblema(tipoProblema);
-            soporteToUpdate.setUsuarioIdUsuario(usuario);
+            soporteToUpdate.setTipoProblema(tipoProblema);
+            soporteToUpdate.setUsuario(usuario);
 
             return soporteDAO.save(soporteToUpdate);
         } else {

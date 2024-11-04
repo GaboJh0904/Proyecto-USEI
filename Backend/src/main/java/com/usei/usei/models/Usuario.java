@@ -51,7 +51,7 @@ public class Usuario implements Serializable {
     private String contrasenia;
 
     // Relación con Soporte
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     @JsonIgnore // Evita problemas de recursión en la serialización
     private Collection<Soporte> soporteCollection;
 

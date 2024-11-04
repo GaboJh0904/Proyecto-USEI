@@ -49,10 +49,10 @@ public class Soporte implements Serializable {
     private LocalDateTime fecha;
     @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
-    private Usuario usuarioIdUsuario;
+    private Usuario usuario;
     @JoinColumn(name = "tipo_problema_id_problema", referencedColumnName = "id_problema")
     @ManyToOne(optional = false)
-    private TipoProblema tipoProblemaIdProblema;
+    private TipoProblema tipoProblema;
 
     public Soporte() {
     }
@@ -91,20 +91,20 @@ public class Soporte implements Serializable {
         this.fecha = fecha;
     }
 
-    public TipoProblema getTipoProblemaIdProblema() {
-        return tipoProblemaIdProblema;
+    public TipoProblema getTipoProblema() {
+        return tipoProblema;
     }
 
-    public void setTipoProblemaIdProblema(TipoProblema tipoProblemaIdProblema) {
-        this.tipoProblemaIdProblema = tipoProblemaIdProblema;
+    public void setTipoProblema(TipoProblema tipoProblema) {
+        this.tipoProblema = tipoProblema;
     }
 
-    public Usuario getUsuarioIdUsuario() {
-        return usuarioIdUsuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setUsuarioIdUsuario(Usuario usuarioIdUsuario) {
-        this.usuarioIdUsuario = usuarioIdUsuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

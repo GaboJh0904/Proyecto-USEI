@@ -41,13 +41,13 @@ public class SoporteAPI {
     public ResponseEntity<Object> creacion(@RequestBody Soporte soporte) {
         try {
             // Validar tipo de problema
-            Optional<TipoProblema> tipoProblema = tipoProblemaDAO.findById(soporte.getTipoProblemaIdProblema().getIdProblema());
+            Optional<TipoProblema> tipoProblema = tipoProblemaDAO.findById(soporte.getTipoProblema().getIdProblema());
             if (tipoProblema.isEmpty()) {
                 return new ResponseEntity<>("Tipo de problema no encontrado", HttpStatus.BAD_REQUEST);
             }
 
             // Validar usuario
-            Optional<Usuario> usuario = usuarioDAO.findById(soporte.getUsuarioIdUsuario().getIdUsuario());
+            Optional<Usuario> usuario = usuarioDAO.findById(soporte.getUsuario().getIdUsuario());
             if (usuario.isEmpty()) {
                 return new ResponseEntity<>("Usuario no encontrado", HttpStatus.BAD_REQUEST);
             }
