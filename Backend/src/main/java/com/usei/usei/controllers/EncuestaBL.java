@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.usei.usei.repositories.EncuestaDAO;
 import com.usei.usei.models.Encuesta;
+import com.usei.usei.models.Plazo;
 import com.usei.usei.models.Usuario;
 
 @Service
@@ -15,11 +16,13 @@ public class EncuestaBL implements EncuestaService {
 
     private final EncuestaDAO encuestaDAO;
     private final UsuarioService usuarioService;
+    private final PlazoService plazoService;
 
     @Autowired
-    public EncuestaBL(EncuestaDAO encuestaDAO, UsuarioService usuarioService) {
+    public EncuestaBL(EncuestaDAO encuestaDAO, UsuarioService usuarioService, PlazoService plazoService) {
         this.encuestaDAO = encuestaDAO;
         this.usuarioService = usuarioService;
+        this.plazoService = plazoService;
     }
 
     @Override
@@ -41,7 +44,12 @@ public class EncuestaBL implements EncuestaService {
                 .orElseThrow(() -> new RuntimeException(
                         "Usuario no encontrado con el id: " + encuesta.getUsuarioIdUsuario().getIdUsuario()));
 
+        Plazo plazo = plazoService.findById(encuesta.getPlazoIdPlazo().getIdPlazo())
+                .orElseThrow(() -> new RuntimeException(
+                        "Plazo no encontrado con el id: " + encuesta.getPlazoIdPlazo().getIdPlazo()));
+
         encuesta.setUsuarioIdUsuario(usuario);
+        encuesta.setPlazoIdPlazo(plazo);
 
         return encuestaDAO.save(encuesta);
     }
@@ -57,12 +65,16 @@ public class EncuestaBL implements EncuestaService {
                     .orElseThrow(() -> new RuntimeException(
                             "Usuario no encontrado con el id: " + encuesta.getUsuarioIdUsuario().getIdUsuario()));
 
+            Plazo plazo = plazoService.findById(encuesta.getPlazoIdPlazo().getIdPlazo())
+                    .orElseThrow(() -> new RuntimeException(
+                            "Plazo no encontrado con el id: " + encuesta.getPlazoIdPlazo().getIdPlazo()));
+
             // Actualizar los campos de la encuesta con los valores correspondientes
             encuestaToUpdate.setTitulo(encuesta.getTitulo());
             encuestaToUpdate.setDescripcion(encuesta.getDescripcion());
             encuestaToUpdate.setFechaModificado(encuesta.getFechaModificado());
-            encuestaToUpdate.setFechaLimite(encuesta.getFechaLimite());
             encuestaToUpdate.setUsuarioIdUsuario(usuario);
+            encuestaToUpdate.setPlazoIdPlazo(plazo);
 
             return encuestaDAO.save(encuestaToUpdate);
         } else {

@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.usei.usei.models.Plazo;
 import com.usei.usei.models.Usuario;
-import com.usei.usei.models.Encuesta;
 import com.usei.usei.repositories.PlazoDAO;
 
 
@@ -16,13 +15,11 @@ public class PlazoBL implements PlazoService {
 
     private final PlazoDAO plazoDAO;
     private final UsuarioService usuarioService;
-    private final EncuestaService encuestaService;
 
     @Autowired
-    public PlazoBL(PlazoDAO plazoDAO, UsuarioService usuarioService, EncuestaService encuestaService) {
+    public PlazoBL(PlazoDAO plazoDAO, UsuarioService usuarioService) {
         this.plazoDAO = plazoDAO;
         this.usuarioService = usuarioService;
-        this.encuestaService = encuestaService;
     }
 
     @Override
@@ -44,12 +41,7 @@ public class PlazoBL implements PlazoService {
                 .orElseThrow(() -> new RuntimeException(
                         "Usuario no encontrada con el id: " + plazo.getUsuarioIdUsuario().getIdUsuario()));
 
-        Encuesta encuesta = encuestaService.findById(plazo.getEncuestaIdEncuesta().getIdEncuesta())
-                .orElseThrow(() -> new RuntimeException(
-                        "Encuesta no encontrada con el id: " + plazo.getEncuestaIdEncuesta().getIdEncuesta()));
-
         plazo.setUsuarioIdUsuario(usuario);
-        plazo.setEncuestaIdEncuesta(encuesta);
 
         return plazoDAO.save(plazo);
     }
@@ -65,15 +57,10 @@ public class PlazoBL implements PlazoService {
                     .orElseThrow(() -> new RuntimeException(
                             "Usuario no encontrada con el id: " + plazo.getUsuarioIdUsuario().getIdUsuario()));
 
-            Encuesta encuesta = encuestaService.findById(plazo.getEncuestaIdEncuesta().getIdEncuesta())
-                    .orElseThrow(() -> new RuntimeException(
-                            "Encuesta no encontrada con el id: " + plazo.getEncuestaIdEncuesta().getIdEncuesta()));
-
             // Actualizar los campos de la respuesta con los valores correspondientes
             plazoToUpdate.setFechaFinalizacion(plazo.getFechaFinalizacion());
             plazoToUpdate.setFechaModificacion(plazo.getFechaModificacion());
             plazoToUpdate.setEstado(plazo.getEstado());
-            plazoToUpdate.setEncuestaIdEncuesta(encuesta);
             plazoToUpdate.setUsuarioIdUsuario(usuario);
 
             return plazoDAO.save(plazoToUpdate);

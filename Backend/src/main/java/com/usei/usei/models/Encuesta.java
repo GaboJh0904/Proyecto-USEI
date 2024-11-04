@@ -56,22 +56,18 @@ public class Encuesta implements Serializable {
     @Column(name = "fechaModificado")
     @Temporal(TemporalType.DATE)
     private Date fechaModificado;
-    @Basic(optional = false)
-    @Column(name = "fechaLimite")
-    @Temporal(TemporalType.DATE)
-    private Date fechaLimite;
     @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario usuarioIdUsuario;
+    @JoinColumn(name = "plazo_id_plazo", referencedColumnName = "id_plazo")
+    @ManyToOne(optional = false)
+    private Plazo plazoIdPlazo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "encuestaIdEncuesta")
     @JsonIgnore
     private Collection<EstadoEncuesta> estadoEncuestaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "encuestaIdEncuesta")
     @JsonIgnore
     private Collection<EncuestaGestion> encuestaGestionCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "encuestaIdEncuesta")
-    @JsonIgnore
-    private Collection<Plazo> plazoCollection;
 
     public Encuesta() {
     }
@@ -127,6 +123,14 @@ public class Encuesta implements Serializable {
         this.usuarioIdUsuario = usuarioIdUsuario;
     }
 
+    public Plazo getPlazoIdPlazo() {
+        return plazoIdPlazo;
+    }
+
+    public void setPlazoIdPlazo(Plazo plazoIdPlazo) {
+        this.plazoIdPlazo = plazoIdPlazo;
+    }
+
     public Collection<EstadoEncuesta> getEstadoEncuestaCollection() {
         return estadoEncuestaCollection;
     }
@@ -141,22 +145,6 @@ public class Encuesta implements Serializable {
 
     public void setEncuestaGestionCollection(Collection<EncuestaGestion> encuestaGestionCollection) {
         this.encuestaGestionCollection = encuestaGestionCollection;
-    }
-
-    public Date getFechaLimite() {
-        return fechaLimite;
-    }
-
-    public void setFechaLimite(Date fechaLimite) {
-        this.fechaLimite = fechaLimite;
-    }
-
-    public Collection<Plazo> getPlazoCollection() {
-        return plazoCollection;
-    }
-
-    public void setPlazoCollection(Collection<Plazo> plazoCollection) {
-        this.plazoCollection = plazoCollection;
     }
 
     @Override

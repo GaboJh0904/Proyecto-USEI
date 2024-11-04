@@ -5,21 +5,12 @@
 package com.usei.usei.models;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.*;
 /**
  *
  * @author gaboj
@@ -51,12 +42,12 @@ public class Plazo implements Serializable {
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
-    @JoinColumn(name = "encuesta_id_encuesta", referencedColumnName = "id_encuesta")
-    @ManyToOne(optional = false)
-    private Encuesta encuestaIdEncuesta;
     @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario usuarioIdUsuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "plazoIdPlazo")
+    @JsonIgnore
+    private Collection<Encuesta> encuestaCollection;
 
     public Plazo() {
     }
@@ -104,12 +95,12 @@ public class Plazo implements Serializable {
         this.estado = estado;
     }
 
-    public Encuesta getEncuestaIdEncuesta() {
-        return encuestaIdEncuesta;
+    public Collection<Encuesta> getEncuestaCollection() {
+        return encuestaCollection;
     }
 
-    public void setEncuestaIdEncuesta(Encuesta encuestaIdEncuesta) {
-        this.encuestaIdEncuesta = encuestaIdEncuesta;
+    public void setEncuestaCollection(Collection<Encuesta> encuestaCollection) {
+        this.encuestaCollection = encuestaCollection;
     }
 
     public Usuario getUsuarioIdUsuario() {
