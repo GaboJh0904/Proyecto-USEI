@@ -61,6 +61,7 @@ public class EncuestaBL implements EncuestaService {
             encuestaToUpdate.setTitulo(encuesta.getTitulo());
             encuestaToUpdate.setDescripcion(encuesta.getDescripcion());
             encuestaToUpdate.setFechaModificado(encuesta.getFechaModificado());
+            encuestaToUpdate.setFechaLimite(encuesta.getFechaLimite());
             encuestaToUpdate.setUsuarioIdUsuario(usuario);
 
             return encuestaDAO.save(encuestaToUpdate);

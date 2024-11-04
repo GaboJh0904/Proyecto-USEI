@@ -9,15 +9,26 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.usei.usei.models.Soporte;
+import com.usei.usei.models.TipoProblema;
 import com.usei.usei.repositories.SoporteDAO;
 import com.usei.usei.repositories.UsuarioDAO;
 
 @Service
 public class SoporteBL implements SoporteService {
 
+    private final SoporteDAO soporteDAO;
+    private final UsuarioService usuarioService;
+    private final TipoProblemaService tipoProblemaService;
+
     @Autowired
-    private SoporteDAO soporteDAO;
+    public SoporteBL(SoporteDAO soporteDAO, UsuarioService usuarioService,
+            TipoProblemaService tipoProblemaService) {
+        this.soporteDAO = soporteDAO;
+        this.usuarioService = usuarioService;
+        this.tipoProblemaService = tipoProblemaService;
+    }
 
     @Autowired
     private UsuarioDAO usuarioDAO;
@@ -43,22 +54,44 @@ public class SoporteBL implements SoporteService {
     @Override
     @Transactional
     public Soporte save(Soporte soporte) {
+        TipoProblema tipoProblema = tipoProblemaService.findById(soporte.getTipoProblemaIdProblema().getIdProblema())
+                .orElseThrow(() -> new RuntimeException(
+                        "Tipo de Problema no encontrada con el id: " + soporte.getTipoProblemaIdProblema().getIdProblema()));
+
+        Usuario usuario = usuarioService.findById(soporte.getUsuarioIdUsuario().getIdUsuario())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: "
+                        + soporte.getUsuarioIdUsuario().getIdUsuario()));
+
+        soporte.setTipoProblemaIdProblema(tipoProblema);
+        soporte.setUsuarioIdUsuario(usuario);
+
         return soporteDAO.save(soporte);
     }
 
     @Override
     @Transactional
     public Soporte update(Soporte soporte, Long id) {
-        Optional<Soporte> soporteExistente = soporteDAO.findById(id);
-        if (soporteExistente.isPresent()) {
-            Soporte soporteToUpdate = soporteExistente.get();
+        Optional<Soporte> existingSoporte = soporteDAO.findById(id);
+        if (existingSoporte.isPresent()) {
+            Soporte soporteToUpdate = existingSoporte.get();
+
+            TipoProblema tipoProblema = tipoProblemaService.findById(soporte.getTipoProblemaIdProblema().getIdProblema())
+                .orElseThrow(() -> new RuntimeException(
+                    "Tipo de Problema no encontrada con el id: " + soporte.getTipoProblemaIdProblema().getIdProblema()));
+
+            Usuario usuario = usuarioService.findById(soporte.getUsuarioIdUsuario().getIdUsuario())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: "
+                        + soporte.getUsuarioIdUsuario().getIdUsuario()));
+
+            // Actualizar los campos de la respuesta con los valores correspondientes
             soporteToUpdate.setMensaje(soporte.getMensaje());
             soporteToUpdate.setFecha(soporte.getFecha());
-            soporteToUpdate.setTipoProblema(soporte.getTipoProblema());
-            soporteToUpdate.setUsuario(soporte.getUsuario());
+            soporteToUpdate.setTipoProblemaIdProblema(tipoProblema);
+            soporteToUpdate.setUsuarioIdUsuario(usuario);
+
             return soporteDAO.save(soporteToUpdate);
         } else {
-            throw new RuntimeException("Soporte no encontrado con id: " + id);
+            throw new RuntimeException("Soporte no encontrada con el id: " + id);
         }
     }
 

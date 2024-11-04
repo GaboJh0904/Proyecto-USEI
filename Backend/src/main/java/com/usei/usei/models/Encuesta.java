@@ -56,6 +56,10 @@ public class Encuesta implements Serializable {
     @Column(name = "fechaModificado")
     @Temporal(TemporalType.DATE)
     private Date fechaModificado;
+    @Basic(optional = false)
+    @Column(name = "fechaLimite")
+    @Temporal(TemporalType.DATE)
+    private Date fechaLimite;
     @JoinColumn(name = "usuario_id_usuario", referencedColumnName = "id_usuario")
     @ManyToOne(optional = false)
     private Usuario usuarioIdUsuario;
@@ -65,6 +69,9 @@ public class Encuesta implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "encuestaIdEncuesta")
     @JsonIgnore
     private Collection<EncuestaGestion> encuestaGestionCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "encuestaIdEncuesta")
+    @JsonIgnore
+    private Collection<Plazo> plazoCollection;
 
     public Encuesta() {
     }
@@ -134,6 +141,22 @@ public class Encuesta implements Serializable {
 
     public void setEncuestaGestionCollection(Collection<EncuestaGestion> encuestaGestionCollection) {
         this.encuestaGestionCollection = encuestaGestionCollection;
+    }
+
+    public Date getFechaLimite() {
+        return fechaLimite;
+    }
+
+    public void setFechaLimite(Date fechaLimite) {
+        this.fechaLimite = fechaLimite;
+    }
+
+    public Collection<Plazo> getPlazoCollection() {
+        return plazoCollection;
+    }
+
+    public void setPlazoCollection(Collection<Plazo> plazoCollection) {
+        this.plazoCollection = plazoCollection;
     }
 
     @Override

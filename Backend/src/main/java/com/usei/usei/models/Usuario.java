@@ -51,7 +51,7 @@ public class Usuario implements Serializable {
     private String contrasenia;
 
     // Relación con Soporte
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
     @JsonIgnore // Evita problemas de recursión en la serialización
     private Collection<Soporte> soporteCollection;
 
@@ -70,6 +70,10 @@ public class Usuario implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
     @JsonIgnore
     private Collection<Noticias> noticiasCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonIgnore
+    private Collection<Plazo> plazoCollection;
 
     // Constructores
     public Usuario() {}
@@ -179,6 +183,14 @@ public class Usuario implements Serializable {
 
     public void setNoticiasCollection(Collection<Noticias> noticiasCollection) {
         this.noticiasCollection = noticiasCollection;
+    }
+
+    public Collection<Plazo> getPlazoCollection() {
+        return plazoCollection;
+    }
+
+    public void setPlazoCollection(Collection<Plazo> plazoCollection) {
+        this.plazoCollection = plazoCollection;
     }
 
     @Override

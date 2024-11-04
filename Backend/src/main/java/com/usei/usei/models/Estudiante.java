@@ -94,6 +94,9 @@ public class Estudiante implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudianteIdEstudiante")
     @JsonIgnore
     private Collection<Respuesta> respuestaCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudianteIdEstudiante")
+    @JsonIgnore
+    private Collection<Notificacion> notificacionCollection;
 
     public Estudiante() {
     }
@@ -249,6 +252,14 @@ public class Estudiante implements Serializable {
 
     public void setRespuestaCollection(Collection<Respuesta> respuestaCollection) {
         this.respuestaCollection = respuestaCollection;
+    }
+
+    public Collection<Notificacion> getNotificacionCollection() {
+        return notificacionCollection;
+    }
+
+    public void setNotificacionCollection(Collection<Notificacion> notificacionCollection) {
+        this.notificacionCollection = notificacionCollection;
     }
 
     @Override
