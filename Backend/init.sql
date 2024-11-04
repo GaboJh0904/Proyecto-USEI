@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-10-11 03:46:49.92
+-- Last modification date: 2024-11-01 15:22:54.821
 
 -- tables
 -- Table: Certificado
@@ -19,6 +19,7 @@ CREATE TABLE Encuesta (
     titulo varchar(40)  NOT NULL,
     descripcion text  NOT NULL,
     fecha_modificado date  NOT NULL,
+    fecha_limite date  NOT NULL,
     Usuario_id_usuario int  NOT NULL,
     CONSTRAINT Encuesta_pk PRIMARY KEY (id_encuesta)
 );
@@ -192,6 +193,26 @@ CREATE TABLE Opciones_Pregunta (
     CONSTRAINT Opciones_Pregunta_pk PRIMARY KEY (id_opciones)
 );
 
+-- Table: PLazo
+CREATE TABLE PLazo (
+    id_plazo int  NOT NULL,
+    Fecha_finalizacion date  NOT NULL,
+    fecha_modificacion date  NOT NULL,
+    estado varchar(50)  NOT NULL,
+    Usuario_id_usuario int  NOT NULL,
+    Encuesta_id_encuesta int  NOT NULL,
+    CONSTRAINT id_plazo PRIMARY KEY (id_plazo)
+);
+
+-- Table: Parametros_Aviso
+CREATE TABLE Parametros_Aviso (
+    id_parametro int  NOT NULL,
+    porcentaje int  NOT NULL,
+    fecha_cambio date  NOT NULL,
+    fecha_notificacion date  NOT NULL,
+    CONSTRAINT Parametros_Aviso_pk PRIMARY KEY (id_parametro)
+);
+
 -- Table: Pregunta
 CREATE TABLE Pregunta (
     id_pregunta serial  NOT NULL,
@@ -351,6 +372,22 @@ ALTER TABLE Notificacion ADD CONSTRAINT Notificaciones_Estudiante
 ALTER TABLE Opciones_Pregunta ADD CONSTRAINT Opciones_Pregunta_Pregunta
     FOREIGN KEY (Pregunta_id_pregunta)
     REFERENCES Pregunta (id_pregunta)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: PLazo_Encuesta (table: PLazo)
+ALTER TABLE PLazo ADD CONSTRAINT PLazo_Encuesta
+    FOREIGN KEY (Encuesta_id_encuesta)
+    REFERENCES Encuesta (id_encuesta)  
+    NOT DEFERRABLE 
+    INITIALLY IMMEDIATE
+;
+
+-- Reference: PLazo_Usuario (table: PLazo)
+ALTER TABLE PLazo ADD CONSTRAINT PLazo_Usuario
+    FOREIGN KEY (Usuario_id_usuario)
+    REFERENCES Usuario (id_usuario)  
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;

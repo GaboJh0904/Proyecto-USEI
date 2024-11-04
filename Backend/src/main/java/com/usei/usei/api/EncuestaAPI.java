@@ -26,6 +26,7 @@ public class EncuestaAPI {
             newEncuesta.setTitulo(encuesta.getTitulo());
             newEncuesta.setDescripcion(encuesta.getDescripcion());
             newEncuesta.setFechaModificado(encuesta.getFechaModificado());
+            newEncuesta.setFechaLimite(encuesta.getFechaLimite());
 
             Usuario newUsuario = new Usuario();
             newUsuario.setIdUsuario(encuesta.getUsuarioIdUsuario().getIdUsuario());
@@ -65,6 +66,7 @@ public class EncuestaAPI {
             oEncuesta.get().setTitulo(encuesta.getTitulo());
             oEncuesta.get().setDescripcion(encuesta.getDescripcion());
             oEncuesta.get().setFechaModificado(encuesta.getFechaModificado());
+            oEncuesta.get().setFechaLimite(encuesta.getFechaLimite());
 
             Usuario newUsuario = new Usuario();
             newUsuario.setIdUsuario(encuesta.getUsuarioIdUsuario().getIdUsuario());

@@ -71,6 +71,10 @@ public class Usuario implements Serializable {
     @JsonIgnore
     private Collection<Noticias> noticiasCollection;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioIdUsuario")
+    @JsonIgnore
+    private Collection<Plazo> plazoCollection;
+
     // Constructores
     public Usuario() {}
 
@@ -179,6 +183,14 @@ public class Usuario implements Serializable {
 
     public void setNoticiasCollection(Collection<Noticias> noticiasCollection) {
         this.noticiasCollection = noticiasCollection;
+    }
+
+    public Collection<Plazo> getPlazoCollection() {
+        return plazoCollection;
+    }
+
+    public void setPlazoCollection(Collection<Plazo> plazoCollection) {
+        this.plazoCollection = plazoCollection;
     }
 
     @Override
