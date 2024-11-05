@@ -37,8 +37,7 @@ pipeline {
         stage('Rename WAR') {
             steps {
                 script {
-                    // Renombrar el archivo .war antes del despliegue
-                    bat "copy /Y ${WAR_FILE} ${RENAMED_WAR}"
+                      bat 'copy /Y "Backend\\target\\usei-0.0.1-SNAPSHOT.war" "Backend\\target\\usei.war"'
                 }
             }
         }
