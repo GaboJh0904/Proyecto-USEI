@@ -144,6 +144,19 @@ public class EstadoCertificadoAPI {
        }
    }
 
+// Obtener el estado del certificado por ID de estudiante
+@GetMapping("/estado/{id_estudiante}")
+public ResponseEntity<?> getEstadoCertificadoByEstudianteId(@PathVariable Long id_estudiante) {
+    Optional<EstadoCertificado> estadoCertificado = estadoCertificadoService.findByEstudianteId(id_estudiante);
+    if (estadoCertificado.isPresent()) {
+        return ResponseEntity.ok(estadoCertificado.get().getEstado());
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("No se encontró un certificado para el estudiante con ID: " + id_estudiante));
+    }
+}
+
+
+
 /*
     @PostMapping("/enviar")
 public ResponseEntity<?> enviarCertificado() {

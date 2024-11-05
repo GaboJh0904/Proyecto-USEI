@@ -23,5 +23,7 @@ public interface EstadoCertificadoService {
 
     // método para obtener encuestas con estado "Completado"
     // public List<EstadoEncuesta> findByEstadoCompletado();
+
+    
     
 }
