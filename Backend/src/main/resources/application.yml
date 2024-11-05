@@ -1,10 +1,17 @@
 spring:
+  web:
+    resources:
+    #mostrar certificado del estudiante
+      static-locations: classpath:/static/, classpath:/static/documents/formatos/
+      cache:
+        period: 3600s
+
   mvc:
     throw-exception-if-no-handler-found: true
     
-  web:
-    resources:
-      add-mappings: true
+  # web:
+  #   resources:
+  #     add-mappings: true
 
   datasource:
     url: jdbc:postgresql://localhost:5433/proyecto_usei
@@ -20,10 +27,10 @@ spring:
     properties:
       hibernate.jdbc.time_zone: America/La_Paz
 
-  resources:
-    static-locations: classpath:/static/documents/  # Ruta para servir archivos estáticos
-    cache:
-      period: 3600s  # Cachea los archivos estáticos durante una hora
+  # resources:
+  #   static-locations: classpath:/static/documents/  # Ruta para servir archivos estáticos
+  #   cache:
+  #     period: 3600s  # Cachea los archivos estáticos durante una hora
 
   servlet:
     multipart:
