@@ -48,6 +48,7 @@ public class ParametrosAvisoBL implements ParametrosAvisoService {
         parametrosAvisoToUpdate.setPorcentaje(parametrosAviso.getPorcentaje());
         parametrosAvisoToUpdate.setFechaCambio(parametrosAviso.getFechaCambio());
         parametrosAvisoToUpdate.setFechaNotificacion(parametrosAviso.getFechaNotificacion());
+        parametrosAvisoToUpdate.setMensajePredeterminado(parametrosAviso.getMensajePredeterminado());
 
         return parametrosAvisoDAO.save(parametrosAvisoToUpdate);
     } else {

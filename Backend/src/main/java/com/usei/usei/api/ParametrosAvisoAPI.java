@@ -54,6 +54,7 @@ public class ParametrosAvisoAPI {
         oParametrosAviso.get().setPorcentaje(parametrosAviso.getPorcentaje());
         oParametrosAviso.get().setFechaCambio(parametrosAviso.getFechaCambio());
         oParametrosAviso.get().setFechaNotificacion(parametrosAviso.getFechaNotificacion());
+        oParametrosAviso.get().setMensajePredeterminado(parametrosAviso.getMensajePredeterminado());
         return ResponseEntity.status(HttpStatus.CREATED).body(parametrosAvisoService.save(oParametrosAviso.get()));
     }
 

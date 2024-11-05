@@ -1,5 +1,5 @@
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2024-11-04 19:04:10.928
+-- Last modification date: 2024-11-04 21:50:30.307
 
 -- tables
 -- Table: Certificado
@@ -195,16 +195,17 @@ CREATE TABLE Opciones_Pregunta (
 
 -- Table: Parametros_Aviso
 CREATE TABLE Parametros_Aviso (
-    id_parametro int  NOT NULL,
+    id_parametro serial  NOT NULL,
     porcentaje int  NOT NULL,
     fecha_cambio date  NOT NULL,
     fecha_notificacion date  NOT NULL,
+    mensaje_predeterminado text  NOT NULL,
     CONSTRAINT Parametros_Aviso_pk PRIMARY KEY (id_parametro)
 );
 
 -- Table: Plazo
 CREATE TABLE Plazo (
-    id_plazo int  NOT NULL,
+    id_plazo serial  NOT NULL,
     Fecha_finalizacion date  NOT NULL,
     fecha_modificacion date  NOT NULL,
     estado varchar(50)  NOT NULL,

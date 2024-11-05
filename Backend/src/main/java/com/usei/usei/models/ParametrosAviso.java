@@ -29,7 +29,8 @@ import jakarta.persistence.TemporalType;
     @NamedQuery(name = "ParametrosAviso.findByIdParametro", query = "SELECT p FROM ParametrosAviso p WHERE p.idParametro = :idParametro"),
     @NamedQuery(name = "ParametrosAviso.findByPorcentaje", query = "SELECT p FROM ParametrosAviso p WHERE p.porcentaje = :porcentaje"),
     @NamedQuery(name = "ParametrosAviso.findByFechaCambio", query = "SELECT p FROM ParametrosAviso p WHERE p.fechaCambio = :fechaCambio"),
-    @NamedQuery(name = "ParametrosAviso.findByFechaNotificacion", query = "SELECT p FROM ParametrosAviso p WHERE p.fechaNotificacion = :fechaNotificacion")})
+    @NamedQuery(name = "ParametrosAviso.findByFechaNotificacion", query = "SELECT p FROM ParametrosAviso p WHERE p.fechaNotificacion = :fechaNotificacion"),
+    @NamedQuery(name = "ParametrosAviso.findByMensajePredeterminado", query = "SELECT p FROM ParametrosAviso p WHERE p.mensajePredeterminado = :mensajePredeterminado")})
 public class ParametrosAviso implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,6 +50,9 @@ public class ParametrosAviso implements Serializable {
     @Column(name = "fechaNotificacion")
     @Temporal(TemporalType.DATE)
     private Date fechaNotificacion;
+    @Basic(optional = false)
+    @Column(name = "mensajePredeterminado")
+    private String mensajePredeterminado;
 
     public ParametrosAviso() {
     }
@@ -57,11 +61,12 @@ public class ParametrosAviso implements Serializable {
         this.idParametro = idParametro;
     }
 
-    public ParametrosAviso(Long idParametro, int porcentaje, Date fechaCambio, Date fechaNotificacion) {
+    public ParametrosAviso(Long idParametro, int porcentaje, Date fechaCambio, Date fechaNotificacion, String mensajePredeterminado) {
         this.idParametro = idParametro;
         this.porcentaje = porcentaje;
         this.fechaCambio = fechaCambio;
         this.fechaNotificacion = fechaNotificacion;
+        this.mensajePredeterminado = mensajePredeterminado;
     }
 
     public Long getIdParametro() {
@@ -94,6 +99,14 @@ public class ParametrosAviso implements Serializable {
 
     public void setFechaNotificacion(Date fechaNotificacion) {
         this.fechaNotificacion = fechaNotificacion;
+    }
+
+    public String getMensajePredeterminado() {
+        return mensajePredeterminado;
+    }
+
+    public void setMensajePredeterminado(String mensajePredeterminado) {
+        this.mensajePredeterminado = mensajePredeterminado;
     }
 
     @Override
