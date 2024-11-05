@@ -1,4 +1,6 @@
 package com.usei.usei.controllers;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 // import java.util.List;
 import java.util.Optional;
@@ -16,5 +18,7 @@ public interface PlazoService {
     public Plazo update (Plazo newPlazo, Long id);
 
     public void deleteById(Long id);
+
+    public Page<Plazo> findAll(Pageable pageable);
 
 }

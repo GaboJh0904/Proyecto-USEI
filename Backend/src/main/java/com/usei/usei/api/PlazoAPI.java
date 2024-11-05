@@ -1,21 +1,21 @@
 package com.usei.usei.api;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.usei.usei.controllers.PlazoService;
 import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Plazo;
 import com.usei.usei.models.Usuario;
+import com.usei.usei.controllers.UsuarioService;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/plazo")
@@ -24,37 +24,46 @@ public class PlazoAPI {
     @Autowired
     private PlazoService plazoService;
 
+    @Autowired
+    private UsuarioService usuarioService;
+
+    // Endpoint to create a new Plazo
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Plazo plazo) {
         try {
-            Plazo newPlazo = new Plazo();
-            newPlazo.setFechaFinalizacion(plazo.getFechaFinalizacion());
-            newPlazo.setFechaModificacion(plazo.getFechaModificacion());
-            newPlazo.setEstado(plazo.getEstado());
-
+            if (usuarioService.findById(plazo.getUsuarioIdUsuario().getIdUsuario()).isEmpty()) {
+                return new ResponseEntity<>(new MessageResponse("Usuario no encontrado"), HttpStatus.NOT_FOUND);
+            }
             
-            // Vincular a una usuario
-            Usuario usuario = new Usuario();
-            usuario.setIdUsuario(plazo.getUsuarioIdUsuario().getIdUsuario());
-            newPlazo.setUsuarioIdUsuario(usuario);
-            // Vincular a un encuesta
-
-            plazoService.save(newPlazo);
-
-            return new ResponseEntity<>(new MessageResponse("Plazo registrada"), HttpStatus.CREATED);
+            plazoService.save(plazo);
+            return new ResponseEntity<>(new MessageResponse("Plazo registrado"), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping
-    public ResponseEntity<?> readAll() {
+
+    // Endpoint to retrieve all Plazos with pagination
+    @GetMapping("/all")
+    public ResponseEntity<?> readAll(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "5") int size,
+        @RequestParam(defaultValue = "fechaModificacion") String sortBy,
+        @RequestParam(defaultValue = "asc") String sortDirection
+    ) {
         try {
-            return ResponseEntity.ok(plazoService.findAll());
+            Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                        ? Sort.by(sortBy).ascending()
+                        : Sort.by(sortBy).descending();
+            Pageable pageable = PageRequest.of(page, size, sort);
+            Page<Plazo> paginatedPlazos = plazoService.findAll(pageable);
+
+            return ResponseEntity.ok(paginatedPlazos);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
+    // Existing endpoint to fetch a specific Plazo by ID
     @GetMapping("/{id_plazo}")
     public ResponseEntity<?> readById(@PathVariable(value = "id_plazo") Long id) {
         try {
@@ -68,29 +77,4 @@ public class PlazoAPI {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @PutMapping("/{id_plazo}")
-    public ResponseEntity<?> update(@PathVariable(value = "id_plazo") Long id, @RequestBody Plazo plazo) {
-
-        Optional<Plazo> oPlazo = plazoService.findById(id);
-        if (oPlazo.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        try {
-            oPlazo.get().setFechaFinalizacion(plazo.getFechaFinalizacion());
-            oPlazo.get().setFechaModificacion(plazo.getFechaModificacion());
-            oPlazo.get().setEstado(plazo.getEstado());
-
-            // Vincular a un usuario
-            Usuario usuario = new Usuario();
-            usuario.setIdUsuario(plazo.getUsuarioIdUsuario().getIdUsuario());
-            oPlazo.get().setUsuarioIdUsuario(usuario);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(plazoService.save(oPlazo.get()));
-        } catch (Exception e) {
-            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 }

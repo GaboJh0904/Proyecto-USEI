@@ -204,7 +204,7 @@ CREATE TABLE Parametros_Aviso (
 
 -- Table: Plazo
 CREATE TABLE Plazo (
-    id_plazo int  NOT NULL,
+    id_plazo serial  NOT NULL,
     Fecha_finalizacion date  NOT NULL,
     fecha_modificacion date  NOT NULL,
     estado varchar(50)  NOT NULL,
