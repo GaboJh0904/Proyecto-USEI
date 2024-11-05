@@ -1,25 +1,24 @@
 package com.usei.usei.controllers;
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.usei.usei.models.Plazo;
-import com.usei.usei.models.Usuario;
 import com.usei.usei.repositories.PlazoDAO;
-
 
 @Service
 public class PlazoBL implements PlazoService {
 
     private final PlazoDAO plazoDAO;
-    private final UsuarioService usuarioService;
 
     @Autowired
-    public PlazoBL(PlazoDAO plazoDAO, UsuarioService usuarioService) {
+    public PlazoBL(PlazoDAO plazoDAO) {
         this.plazoDAO = plazoDAO;
-        this.usuarioService = usuarioService;
     }
 
     @Override
@@ -37,12 +36,14 @@ public class PlazoBL implements PlazoService {
     @Override
     @Transactional
     public Plazo save(Plazo plazo) {
-        Usuario usuario = usuarioService.findById(plazo.getUsuarioIdUsuario().getIdUsuario())
-                .orElseThrow(() -> new RuntimeException(
-                        "Usuario no encontrada con el id: " + plazo.getUsuarioIdUsuario().getIdUsuario()));
-
-        plazo.setUsuarioIdUsuario(usuario);
-
+            // Verificar si existe un plazo en estado "activo"
+        Optional<Plazo> activePlazo = plazoDAO.findByEstado("activo");
+        
+        // Si existe un plazo "activo", cambiar su estado a "antiguo"
+        activePlazo.ifPresent(existingPlazo -> {
+            existingPlazo.setEstado("antiguo");
+            plazoDAO.save(existingPlazo); // Guardar el cambio de estado
+        });
         return plazoDAO.save(plazo);
     }
 
@@ -52,20 +53,13 @@ public class PlazoBL implements PlazoService {
         Optional<Plazo> existingPlazo = plazoDAO.findById(id);
         if (existingPlazo.isPresent()) {
             Plazo plazoToUpdate = existingPlazo.get();
-
-            Usuario usuario = usuarioService.findById(plazo.getUsuarioIdUsuario().getIdUsuario())
-                    .orElseThrow(() -> new RuntimeException(
-                            "Usuario no encontrada con el id: " + plazo.getUsuarioIdUsuario().getIdUsuario()));
-
-            // Actualizar los campos de la respuesta con los valores correspondientes
             plazoToUpdate.setFechaFinalizacion(plazo.getFechaFinalizacion());
             plazoToUpdate.setFechaModificacion(plazo.getFechaModificacion());
             plazoToUpdate.setEstado(plazo.getEstado());
-            plazoToUpdate.setUsuarioIdUsuario(usuario);
-
+            plazoToUpdate.setUsuarioIdUsuario(plazo.getUsuarioIdUsuario());
             return plazoDAO.save(plazoToUpdate);
         } else {
-            throw new RuntimeException("Respuesta no encontrada con el id: " + id);
+            throw new RuntimeException("Plazo no encontrado con el id: " + id);
         }
     }
 
@@ -74,5 +68,11 @@ public class PlazoBL implements PlazoService {
     public void deleteById(Long id) {
         plazoDAO.deleteById(id);
     }
- 
+
+    // Implement the new paginated findAll method
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Plazo> findAll(Pageable pageable) {
+        return plazoDAO.findAll(pageable);
+    }
 }
