@@ -197,6 +197,7 @@ public class CertificadoBL implements CertificadoService{
 
         // Actualizar el estado del certificado a "enviado"
         estadoCertificado.setEstado("enviado");
+        estadoCertificado.setArchivo(fileName);
         estadoCertificadoDAO.save(estadoCertificado); // Guardar los cambios en la base de datos
 
         System.out.println("Certificado enviado a: " + correo);
