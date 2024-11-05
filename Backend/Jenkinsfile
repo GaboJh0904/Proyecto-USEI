@@ -5,7 +5,8 @@ pipeline {
     }
 
     environment {
-        WAR_FILE = "Backend/target/usei-0.0.1-SNAPSHOT.war" // Ruta completa del archivo WAR
+        WAR_FILE = "Backend/target/usei-0.0.1-SNAPSHOT.war"
+        RENAMED_WAR = "Backend/target/usei.war"
         TOMCAT_URL = "http://localhost:9191/manager/text"
         TOMCAT_CREDENTIALS = credentials('d1a27c8a-2d5e-4ac7-a2fc-7c6f612b1486') // ID de credenciales en Jenkins para Tomcat
     }
@@ -33,10 +34,19 @@ pipeline {
             }
         }
 
+        stage('Rename WAR') {
+            steps {
+                script {
+                    // Renombrar el archivo .war antes del despliegue
+                    bat "copy /Y ${WAR_FILE} ${RENAMED_WAR}"
+                }
+            }
+        }
+
         stage('Deploy to Tomcat') {
             steps {
                 script {
-                    bat "curl -u ${env.TOMCAT_CREDENTIALS_USR}:${env.TOMCAT_CREDENTIALS_PSW} --upload-file ${WAR_FILE} \"${env.TOMCAT_URL}/deploy?path=/usei&update=true\""
+                    bat "curl -u ${env.TOMCAT_CREDENTIALS_USR}:${env.TOMCAT_CREDENTIALS_PSW} --upload-file ${RENAMED_WAR} \"${env.TOMCAT_URL}/deploy?path=/usei&update=true\""
                 }
             }
         }
