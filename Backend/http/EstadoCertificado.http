@@ -1,0 +1,5 @@
+###
+GET http://localhost:8082/estado_certificado/estado/1
+
+###
+GET http://localhost:8082/estado_certificado/archivo/6

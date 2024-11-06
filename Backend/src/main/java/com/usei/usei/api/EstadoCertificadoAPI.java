@@ -1,13 +1,17 @@
 package com.usei.usei.api;
-
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -143,6 +147,63 @@ public class EstadoCertificadoAPI {
            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
        }
    }
+
+// Obtener el estado del certificado por ID de estudiante
+@GetMapping("/estado/{id_estudiante}")
+public ResponseEntity<?> getEstadoCertificadoByEstudianteId(@PathVariable Long id_estudiante) {
+    Optional<EstadoCertificado> estadoCertificado = estadoCertificadoService.findByEstudianteId(id_estudiante);
+    if (estadoCertificado.isPresent()) {
+        return ResponseEntity.ok(estadoCertificado.get().getEstado());
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new MessageResponse("No se encontró un certificado para el estudiante con ID: " + id_estudiante));
+    }
+}
+
+
+
+@GetMapping("/archivo/{id_estudiante}")
+public ResponseEntity<?> getArchivoCertificadoByEstudianteId(@PathVariable Long id_estudiante) {
+    Optional<EstadoCertificado> estadoCertificado = estadoCertificadoService.findByEstudianteId(id_estudiante);
+    if (estadoCertificado.isPresent() && estadoCertificado.get().getArchivo() != null) {
+        String archivoNombre = estadoCertificado.get().getArchivo();
+        
+        // Codificar el nombre del archivo
+        String archivoNombreCodificado = URLEncoder.encode(archivoNombre, StandardCharsets.UTF_8);
+        String archivoUrl = "/documents/formatos/" + archivoNombreCodificado;
+        
+        return ResponseEntity.ok(Map.of("archivoUrl", archivoUrl));
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                             .body(new MessageResponse("No se encontró un archivo para el estudiante con ID: " + id_estudiante));
+    }
+}
+
+
+@GetMapping("/archivo/directo/{id_estudiante}")
+public ResponseEntity<Resource> getDirectArchivoCertificadoByEstudianteId(@PathVariable Long id_estudiante) {
+    Optional<EstadoCertificado> estadoCertificado = estadoCertificadoService.findByEstudianteId(id_estudiante);
+    if (estadoCertificado.isPresent() && estadoCertificado.get().getArchivo() != null) {
+        try {
+            String archivoNombre = estadoCertificado.get().getArchivo();
+            Path rutaArchivo = Paths.get("src/main/resources/static/documents/formatos/" + archivoNombre).toAbsolutePath().normalize();
+            Resource recurso = new UrlResource(rutaArchivo.toUri());
+
+            if (recurso.exists()) {
+                return ResponseEntity.ok()
+                        .contentType(MediaType.APPLICATION_PDF)
+                        .body(recurso);
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    } else {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(null);
+    }
+}
+
 
 /*
     @PostMapping("/enviar")
