@@ -1,0 +1,39 @@
+-- Datos tabla noticias
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Doble titulación', 'Doble titulación UCB', 'noticia_titulacion.jpg', '04-10-2024', 'Publicado', 1);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Feria del empleo', 'Feria del empleo UCB', 'feria_empleo.png', '04-10-2024', 'Publicado', 1);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Graduaciones', 'Graduación UCB', 'graduacion_noticia.jpeg', '03-10-2024', 'Publicado', 1);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 4', 'Descripcion de la noticia 4', 'noticia4.jpg', '01-09-2024', 'En revision', 2);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 5', 'Descripcion de la noticia 5', 'noticia5.jpg', '01-09-2024', 'En revision', 4);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 6', 'Descripcion de la noticia 6', 'noticia6.jpg', '01-09-2024', 'En revision', 9);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 7', 'Descripcion de la noticia 7', 'noticia7.jpg', '01-09-2024', 'En revision', 2);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 8', 'Descripcion de la noticia 8', 'noticia8.jpg', '01-09-2024', 'En revision', 8);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 9', 'Descripcion de la noticia 9', 'noticia9.jpg', '01-09-2024', 'En revision', 9);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 10', 'Descripcion de la noticia 10', 'noticia10.jpg', '01-09-2024', 'En revision', 5);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 11', 'Descripcion de la noticia 11', 'noticia11.jpg', '01-09-2024', 'En revision', 3);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 12', 'Descripcion de la noticia 12', 'noticia12.jpg', '01-09-2024', 'En revision', 4);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 13', 'Descripcion de la noticia 13', 'noticia13.jpg', '01-09-2024', 'En revision', 9);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 14', 'Descripcion de la noticia 14', 'noticia14.jpg', '01-09-2024', 'En revision', 5);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 15', 'Descripcion de la noticia 15', 'noticia15.jpg', '01-09-2024', 'En revision', 2);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 16', 'Descripcion de la noticia 16', 'noticia16.jpg', '01-09-2024', 'En revision', 1);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 17', 'Descripcion de la noticia 17', 'noticia17.jpg', '01-09-2024', 'En revision', 3);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 18', 'Descripcion de la noticia 18', 'noticia18.jpg', '01-09-2024', 'En revision', 8);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 19', 'Descripcion de la noticia 19', 'noticia19.jpg', '01-09-2024', 'En revision', 8);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 20', 'Descripcion de la noticia 20', 'noticia20.jpg', '01-09-2024', 'En revision', 5);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 21', 'Descripcion de la noticia 21', 'noticia21.jpg', '01-09-2024', 'En revision', 7);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 22', 'Descripcion de la noticia 22', 'noticia22.jpg', '01-09-2024', 'En revision', 6);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 23', 'Descripcion de la noticia 23', 'noticia23.jpg', '01-09-2024', 'En revision', 7);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 24', 'Descripcion de la noticia 24', 'noticia24.jpg', '01-09-2024', 'En revision', 5);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 25', 'Descripcion de la noticia 25', 'noticia25.jpg', '01-09-2024', 'En revision', 9);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 26', 'Descripcion de la noticia 26', 'noticia26.jpg', '01-09-2024', 'En revision', 7);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 27', 'Descripcion de la noticia 27', 'noticia27.jpg', '01-09-2024', 'En revision', 5);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 28', 'Descripcion de la noticia 28', 'noticia28.jpg', '01-09-2024', 'En revision', 4);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 29', 'Descripcion de la noticia 29', 'noticia29.jpg', '01-09-2024', 'En revision', 3);
+INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Titulo 30', 'Descripcion de la noticia 30', 'noticia30.jpg', '01-09-2024', 'En revision', 7);
+
+-- Datos tabla tipo_problema
+INSERT INTO tipo_problema (problema) VALUES ('Problemas de Acceso');
+INSERT INTO tipo_problema (problema) VALUES ('Problemas con la Encuesta');
+INSERT INTO tipo_problema (problema) VALUES ('Problemas con la Emisión del Certificado');
+INSERT INTO tipo_problema (problema) VALUES ('Problemas con el Reporte de Datos');
+INSERT INTO tipo_problema (problema) VALUES ('Problemas Técnicos Generales');
+
