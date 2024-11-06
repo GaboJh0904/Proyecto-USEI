@@ -1,18 +1,32 @@
 package com.usei.usei.api;
 
 
+import java.util.HashMap;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.usei.usei.controllers.EstadoEncuestaService;
+import com.usei.usei.dto.request.EstadoEncuestaEstudianteDTO;
 import com.usei.usei.models.Encuesta;
 import com.usei.usei.models.EstadoEncuesta;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.MessageResponse;
 
-import java.util.Optional;
+import jakarta.mail.MessagingException;
 
 @RestController
 @RequestMapping("/estado_encuesta")
@@ -125,7 +139,49 @@ public class EstadoEncuestaAPI {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/pendientes/paginated")
+    public ResponseEntity<?> getEncuestasPendientesPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        try {
+            Pageable pageable = PageRequest.of(page, size);
+            Page<EstadoEncuestaEstudianteDTO> estadoEncuestas = estadoEncuestaService.findByEstadoPendientePaginated(pageable);
+            return ResponseEntity.ok(estadoEncuestas);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     
+    @PostMapping("/recordatorio_correo")
+    public ResponseEntity<?> recordatorioCorreo() {
+        try {
+            // Llamamos al servicio para enviar los correos
+            estadoEncuestaService.enviarCorreosEstudiantesPendientes();
+            return new ResponseEntity<>("Correos enviados exitosamente", HttpStatus.OK);
+        } catch (MessagingException e) {
+            return new ResponseEntity<>("Error al enviar los correos: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Error inesperado: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/recordatorio_personal")
+    public ResponseEntity<?> recordatorioCorreoPersonal(@RequestBody HashMap<String, String> studentData) {
+        try{
+            String correo = studentData.get("correo");
+            String cuerpo = studentData.get("cuerpo");
+            estadoEncuestaService.enviarCorreosEstudiantesPersonal(correo, cuerpo);
+            return ResponseEntity.ok("Correo recodatorio personal enviado.");
+        } catch (MessagingException e) {
+            return new ResponseEntity<>("Error al enviar el correo: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        
+    }
+
 }
 
 
