@@ -1,3 +1,314 @@
+-- Tabla de usuario
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Jorge Martínez', '65918962', 'jorgemartínez@gmail.com', 'Administrador',
+        'jorge_martínez', 'fuymrmQmulEaBbkyPCZBTi');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Carmen Sánchez', '68969918', 'carmensánchez@gmail.com', 'Director',
+        'carmen_sánchez', 'WE1UkLkj8w');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Pedro López', '73150362', 'pedrolópez@hotmail.com', 'Administrador',
+        'pedro_lópez', 'cvDMmYR0r7xVUNlkZem5I1lI0zlU9r');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Luis López', '78778064', 'luislópez@yahoo.com', 'Administrador',
+        'luis_lópez', 'wKwwfSdZjOamWtl');
+
+-- Datos tabla de estudiante
+
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (7534226, 'Juan', 'Flores', 'maría@ucb.edu.bo',
+        'juan@yahoo.com', 'Psicología', 'petae', '65660076',
+        2024, 2, 'No Completo', 'ft2n6bJyrh');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (3832567, 'Juan', 'González', 'carmen@ucb.edu.bo',
+        'carlos@yahoo.com', 'Ingeniería de Sistemas', 'taller de grado 1 y 2', '77075074',
+        2020, 2, 'Completo', 'Vyv2CRgQsA');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (3976848, 'Ana', 'Martínez', 'laura@ucb.edu.bo',
+        'maría@yahoo.com', 'Psicología', 'petae', '64065910',
+        2024, 1, 'No Completo', 'D2xr4Uae');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4873540, 'Juan', 'Rodríguez', 'ana@ucb.edu.bo',
+        'juan@yahoo.com', 'Arquitectura', 'tesis de grado', '74943532',
+        2023, 2, 'Completo', 'b10WYH2w');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (6771724, 'Luis', 'Flores', 'pedro@ucb.edu.bo',
+        'sofía@yahoo.com', 'Derecho', 'examen de grado', '75772979',
+        2023, 2, 'No Completo', '38BIJtlhBhXF');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8933587, 'Ana', 'González', 'carlos@ucb.edu.bo',
+        'jorge@gmail.com', 'Ingeniería de Sistemas', 'examen de grado', '65384869',
+        2022, 1, 'No Completo', 'Fpc9cM59fFQ');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (6632636, 'Carlos', 'Flores', 'maría@ucb.edu.bo',
+        'jorge@gmail.com', 'Medicina', 'trabajo de grado', '66250548',
+        2020, 2, 'No Completo', 'hUfJKzxh');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8795090, 'Ana', 'Sánchez', 'maría@ucb.edu.bo',
+        'maría@yahoo.com', 'Comunicación', 'graduación por diplomado', '69682162',
+        2024, 1, 'No Completo', '2qBaRE1i');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (3824805, 'Carmen', 'González', 'jorge@ucb.edu.bo',
+        'sofía@gmail.com', 'Ingeniería de Sistemas', 'taller de grado 1 y 2', '75605874',
+        2023, 2, 'Completo', 'GP46R9kZ80ON');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4562539, 'Carmen', 'Rodríguez', 'pedro@ucb.edu.bo',
+        'jorge@yahoo.com', 'Derecho', 'taller de grado 1 y 2', '64410885',
+        2024, 1, 'Completo', 'P3yLnPTv');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8350099, 'Juan', 'López', 'laura@ucb.edu.bo',
+        'carmen@gmail.com', 'Medicina', 'petae', '78136174',
+        2021, 1, 'No Completo', 'o4MRSjCoiv');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (2211547, 'Pedro', 'Ramírez', 'ana@ucb.edu.bo',
+        'ana@yahoo.com', 'Derecho', 'proyecto dirigido', '70974267',
+        2024, 2, 'No Completo', 'Oio6YfLsNlt');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (2365828, 'Carlos', 'Rodríguez', 'laura@ucb.edu.bo',
+        'luis@gmail.com', 'Arquitectura', 'examen de grado', '60345859',
+        2023, 1, 'No Completo', '1Gb6GGWEn');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (2709397, 'Juan', 'Sánchez', 'ana@ucb.edu.bo',
+        'carmen@gmail.com', 'Ingeniería de Sistemas', 'examen de grado', '66344537',
+        2022, 2, 'Completo', 'wu1grd5U');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8270246, 'María', 'Pérez', 'carmen@ucb.edu.bo',
+        'carmen@gmail.com', 'Derecho', 'taller de grado 1 y 2', '72556492',
+        2021, 1, 'Completo', '9QAun9bphg');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (9008051, 'Carlos', 'Rodríguez', 'jorge@ucb.edu.bo',
+        'luis@gmail.com', 'Derecho', 'proyecto dirigido', '73084764',
+        2021, 1, 'No Completo', 'ZtVBpAQqp');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (5163992, 'Carmen', 'Pérez', 'ana@ucb.edu.bo',
+        'nan', 'Arquitectura', 'petae', '79241357',
+        2024, 2, 'No Completo', 'MKj7SibePTed');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (7087761, 'Sofía', 'Martínez', 'maría@ucb.edu.bo',
+        'nan', 'Comunicación', 'examen de grado', '65321438',
+        2022, 2, 'No Completo', '8pCNha6biuWV');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (5387836, 'Pedro', 'Ramírez', 'laura@ucb.edu.bo',
+        'nan', 'Derecho', 'proyecto dirigido', '70692812',
+        2022, 1, 'Completo', 'm8CRV7px');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (1458108, 'María', 'González', 'pedro@ucb.edu.bo',
+        'ana@yahoo.com', 'Psicología', 'taller de grado 1 y 2', '65482282',
+        2022, 2, 'Completo', 'ipHqhdlpoor');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (6485187, 'Jorge', 'Rodríguez', 'pedro@ucb.edu.bo',
+        'nan', 'Psicología', 'proyecto dirigido', '79570770',
+        2021, 1, 'No Completo', 'DQO6SSZzsUT');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (9024014, 'Juan', 'Rodríguez', 'ana@ucb.edu.bo',
+        'luis@gmail.com', 'Arquitectura', 'proyecto dirigido', '65380986',
+        2023, 1, 'Completo', '8MM3lZDDmpC');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4842778, 'Carlos', 'Sánchez', 'laura@ucb.edu.bo',
+        'carlos@gmail.com', 'Comunicación', 'taller de grado 1 y 2', '75083688',
+        2024, 1, 'Completo', 'WUzCyJWYqZF');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8766799, 'Pedro', 'Sánchez', 'pedro@ucb.edu.bo',
+        'ana@yahoo.com', 'Psicología', 'tesis de grado', '74811675',
+        2020, 1, 'Completo', 'xPgoyIPCHMV');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8388741, 'Carlos', 'González', 'juan@ucb.edu.bo',
+        'ana@yahoo.com', 'Ingeniería de Sistemas', 'examen de grado', '75226077',
+        2024, 2, 'No Completo', 'J60FzvBbg');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4981147, 'Laura', 'Rodríguez', 'jorge@ucb.edu.bo',
+        'pedro@gmail.com', 'Medicina', 'petae', '71429941',
+        2022, 1, 'Completo', '372TwHu1ciN');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (9621709, 'Juan', 'Rodríguez', 'juan@ucb.edu.bo',
+        'laura@gmail.com', 'Arquitectura', 'graduación por diplomado', '61396803',
+        2024, 2, 'No Completo', 'g1M1Qztz14ib');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (2208616, 'Carlos', 'Martínez', 'maría@ucb.edu.bo',
+        'jorge@gmail.com', 'Ingeniería de Sistemas', 'tesis de grado', '61311704',
+        2020, 2, 'No Completo', 'Q2JVNuPAP6b');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (5131493, 'Laura', 'Pérez', 'carmen@ucb.edu.bo',
+        'nan', 'Comunicación', 'petae', '78345101',
+        2024, 1, 'No Completo', 'MtL1OL16AGqa');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (9754194, 'Luis', 'López', 'juan@ucb.edu.bo',
+        'jorge@gmail.com', 'Ingeniería de Sistemas', 'tesis de grado', '64713649',
+        2021, 1, 'No Completo', '9SJRomBCNj');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (1101851, 'Carmen', 'Martínez', 'sofía@ucb.edu.bo',
+        'ana@hotmail.com', 'Comunicación', 'petae', '64397116',
+        2021, 2, 'Completo', 'Fb9YpHBrhm');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8855324, 'Ana', 'Martínez', 'sofía@ucb.edu.bo',
+        'maría@gmail.com', 'Psicología', 'examen de grado', '74630320',
+        2024, 2, 'No Completo', 'W8dfIKgS8u');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (3313126, 'Sofía', 'Sánchez', 'jorge@ucb.edu.bo',
+        'luis@hotmail.com', 'Medicina', 'trabajo de grado', '73805859',
+        2022, 1, 'No Completo', 'ULGrb1hLo');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (3989253, 'María', 'Ramírez', 'sofía@ucb.edu.bo',
+        'carlos@hotmail.com', 'Medicina', 'examen de grado', '67304465',
+        2020, 1, 'Completo', 'EVCiOFNIsh');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8710776, 'Carlos', 'González', 'luis@ucb.edu.bo',
+        'sofía@yahoo.com', 'Arquitectura', 'graduación por diplomado', '65018483',
+        2024, 2, 'Completo', 'r0m8Zo8FXWL');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4990861, 'Carmen', 'Pérez', 'carlos@ucb.edu.bo',
+        'sofía@gmail.com', 'Ingeniería de Sistemas', 'trabajo de grado', '61728324',
+        2024, 2, 'No Completo', 'otJavSzKpdl');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (5249942, 'Luis', 'Flores', 'maría@ucb.edu.bo',
+        'carmen@gmail.com', 'Arquitectura', 'graduación por diplomado', '79226458',
+        2021, 2, 'Completo', 'UAmGlJto3SHw');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8864471, 'Sofía', 'Martínez', 'pedro@ucb.edu.bo',
+        'carmen@hotmail.com', 'Comunicación', 'trabajo de grado', '79329579',
+        2023, 2, 'No Completo', 'n4zkKk8Hh7J');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (6607274, 'Juan', 'Rodríguez', 'ana@ucb.edu.bo',
+        'maría@hotmail.com', 'Derecho', 'proyecto dirigido', '68185800',
+        2020, 1, 'Completo', 'RRLRmEVoFV');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8895991, 'Carmen', 'Rodríguez', 'jorge@ucb.edu.bo',
+        'nan', 'Ingeniería de Sistemas', 'petae', '70633766',
+        2021, 2, 'No Completo', 'KSw2oOQOSyjJ');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (1475427, 'Jorge', 'Martínez', 'carlos@ucb.edu.bo',
+        'carlos@hotmail.com', 'Ingeniería de Sistemas', 'taller de grado 1 y 2', '60586763',
+        2021, 1, 'Completo', '5hdpVfg5JTuZ');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (7356130, 'Pedro', 'Pérez', 'carmen@ucb.edu.bo',
+        'sofía@hotmail.com', 'Psicología', 'tesis de grado', '70041311',
+        2023, 2, 'Completo', 'N1z47etcS0');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (7954029, 'Jorge', 'Pérez', 'maría@ucb.edu.bo',
+        'carlos@gmail.com', 'Psicología', 'examen de grado', '73164014',
+        2023, 1, 'Completo', 'BNbjLwkS2');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (3722731, 'Luis', 'López', 'ana@ucb.edu.bo',
+        'nan', 'Psicología', 'trabajo de grado', '73210864',
+        2024, 2, 'No Completo', 'HO9x3OEVTSn');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (3792096, 'Carmen', 'Flores', 'sofía@ucb.edu.bo',
+        'juan@yahoo.com', 'Psicología', 'taller de grado 1 y 2', '74932328',
+        2023, 1, 'Completo', 'jTaVG2LpXpvX');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (9361386, 'Carmen', 'Pérez', 'ana@ucb.edu.bo',
+        'ana@hotmail.com', 'Psicología', 'examen de grado', '70914131',
+        2022, 1, 'Completo', 'giz4qD0JjhC');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8114022, 'Sofía', 'Sánchez', 'maría@ucb.edu.bo',
+        'carlos@gmail.com', 'Medicina', 'graduación por diplomado', '73008145',
+        2020, 1, 'Completo', 'DAxZERx9teB');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (2928899, 'María', 'González', 'juan@ucb.edu.bo',
+        'sofía@gmail.com', 'Derecho', 'tesis de grado', '71471577',
+        2022, 2, 'No Completo', 'pqN0KKDhIW2');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (3580567, 'Juan', 'Ramírez', 'sofía@ucb.edu.bo',
+        'nan', 'Derecho', 'proyecto dirigido', '79739269',
+        2020, 2, 'No Completo', 'wJvdJtWuYqe');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (9166948, 'María', 'Rodríguez', 'carlos@ucb.edu.bo',
+        'carmen@gmail.com', 'Ingeniería de Sistemas', 'graduación por diplomado', '73854186',
+        2023, 1, 'Completo', '2138ewEuTmZ');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (5052495, 'María', 'López', 'juan@ucb.edu.bo',
+        'ana@gmail.com', 'Ingeniería de Sistemas', 'graduación por diplomado', '73770567',
+        2024, 2, 'Completo', 'L36XyTbaweD');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (6662528, 'Juan', 'Sánchez', 'juan@ucb.edu.bo',
+        'nan', 'Arquitectura', 'petae', '74612106',
+        2024, 2, 'No Completo', 'pJKOx7JOM');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (6991847, 'Carmen', 'Flores', 'laura@ucb.edu.bo',
+        'juan@yahoo.com', 'Arquitectura', 'examen de grado', '78050994',
+        2021, 2, 'Completo', 'jKZCmg6ElilT');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (3876682, 'Juan', 'Ramírez', 'carlos@ucb.edu.bo',
+        'ana@hotmail.com', 'Arquitectura', 'graduación por diplomado', '65326800',
+        2024, 2, 'Completo', '117WwdHqki');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (7595290, 'Pedro', 'González', 'laura@ucb.edu.bo',
+        'carmen@yahoo.com', 'Arquitectura', 'petae', '74199993',
+        2021, 2, 'Completo', 'CP3tLkGz8');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (5646727, 'Juan', 'Martínez', 'luis@ucb.edu.bo',
+        'carlos@gmail.com', 'Ingeniería de Sistemas', 'petae', '63502459',
+        2020, 2, 'No Completo', 'Zzq6rtxWt');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (5477802, 'Pedro', 'Ramírez', 'sofía@ucb.edu.bo',
+        'ana@hotmail.com', 'Derecho', 'taller de grado 1 y 2', '78523014',
+        2023, 1, 'Completo', 'PnpK1TiphCk');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4408472, 'Luis', 'Rodríguez', 'carlos@ucb.edu.bo',
+        'laura@yahoo.com', 'Arquitectura', 'examen de grado', '77369236',
+        2021, 1, 'No Completo', 'ko6wAAmq');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (7191537, 'Pedro', 'Sánchez', 'laura@ucb.edu.bo',
+        'ana@gmail.com', 'Derecho', 'examen de grado', '78756679',
+        2021, 1, 'Completo', 'sS0bvUvtyHRv');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (5022303, 'Carmen', 'López', 'luis@ucb.edu.bo',
+        'nan', 'Arquitectura', 'graduación por diplomado', '72799091',
+        2022, 1, 'Completo', 'ca5A1lx2SRmX');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (6576338, 'Luis', 'Rodríguez', 'laura@ucb.edu.bo',
+        'ana@gmail.com', 'Medicina', 'proyecto dirigido', '78413988',
+        2023, 1, 'Completo', 'JzMewfG1');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (5848581, 'Jorge', 'Pérez', 'maría@ucb.edu.bo',
+        'juan@hotmail.com', 'Comunicación', 'tesis de grado', '76900350',
+        2020, 2, 'Completo', 'DCkQMia2ETPK');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (6918821, 'Carmen', 'Pérez', 'ana@ucb.edu.bo',
+        'laura@gmail.com', 'Arquitectura', 'petae', '69722517',
+        2023, 1, 'No Completo', 'xYm3jr8Bpcqg');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4323632, 'Luis', 'Pérez', 'laura@ucb.edu.bo',
+        'sofía@gmail.com', 'Medicina', 'proyecto dirigido', '70832552',
+        2023, 1, 'No Completo', 'des5WTox');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (6114910, 'María', 'Ramírez', 'juan@ucb.edu.bo',
+        'nan', 'Arquitectura', 'proyecto dirigido', '75648507',
+        2023, 1, 'No Completo', 'Xb2ZlKsUt4E');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4702834, 'Jorge', 'Martínez', 'juan@ucb.edu.bo',
+        'carlos@yahoo.com', 'Arquitectura', 'proyecto dirigido', '79684961',
+        2022, 2, 'Completo', 'VP4KybKmc');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (9253826, 'Luis', 'Martínez', 'carlos@ucb.edu.bo',
+        'carmen@hotmail.com', 'Medicina', 'examen de grado', '61105128',
+        2023, 2, 'Completo', 'EKD0YMTBmdPd');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4645864, 'Laura', 'Pérez', 'laura@ucb.edu.bo',
+        'luis@gmail.com', 'Psicología', 'taller de grado 1 y 2', '77358049',
+        2020, 1, 'Completo', '8oF4tD1QX1M0');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (7155329, 'Ana', 'Sánchez', 'carmen@ucb.edu.bo',
+        'sofía@gmail.com', 'Comunicación', 'proyecto dirigido', '60429262',
+        2023, 1, 'No Completo', 'vpQGSi6jWf');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (6462947, 'Carlos', 'Flores', 'luis@ucb.edu.bo',
+        'jorge@yahoo.com', 'Medicina', 'taller de grado 1 y 2', '61228369',
+        2024, 2, 'Completo', 'C4avCztY0g10');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4007599, 'Sofía', 'Ramírez', 'laura@ucb.edu.bo',
+        'juan@yahoo.com', 'Derecho', 'petae', '72351880',
+        2023, 1, 'Completo', 'Mt6bZGVFr');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (8501481, 'Laura', 'Martínez', 'ana@ucb.edu.bo',
+        'carlos@hotmail.com', 'Medicina', 'trabajo de grado', '77672253',
+        2020, 2, 'Completo', 'hWdjaqOaiP');
+INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
+        VALUES (4982472, 'María', 'Pérez', 'ana@ucb.edu.bo',
+        'laura@hotmail.com', 'Psicología', 'examen de grado', '73266127',
+        2024, 2, 'No Completo', 'WiwNpxAmdshY');
+
+
+
 -- Datos tabla noticias
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Doble titulación', 'Doble titulación UCB', 'noticia_titulacion.jpg', '04-10-2024', 'Publicado', 1);
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Feria del empleo', 'Feria del empleo UCB', 'feria_empleo.png', '04-10-2024', 'Publicado', 1);
@@ -36,4 +347,583 @@ INSERT INTO tipo_problema (problema) VALUES ('Problemas con la Encuesta');
 INSERT INTO tipo_problema (problema) VALUES ('Problemas con la Emisión del Certificado');
 INSERT INTO tipo_problema (problema) VALUES ('Problemas con el Reporte de Datos');
 INSERT INTO tipo_problema (problema) VALUES ('Problemas Técnicos Generales');
+
+-- Datos Tabla estado_certificado
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 1', 'pendiente', '2024-01-02', 1, 1);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 2', 'enviado', '2024-01-03', 2, 2);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 3', 'pendiente', '2024-01-04', 3, 3);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 4', 'enviado', '2024-01-05', 4, 4);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 5', 'pendiente', '2024-01-06', 5, 5);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 6', 'enviado', '2024-01-07', 6, 6);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 7', 'pendiente', '2024-01-08', 7, 7);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 8', 'enviado', '2024-01-09', 8, 8);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 9', 'pendiente', '2024-01-10', 9, 9);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 10', 'enviado', '2024-01-11', 10, 10);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 11', 'pendiente', '2024-01-12', 11, 11);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 12', 'enviado', '2024-01-13', 12, 12);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 13', 'pendiente', '2024-01-14', 13, 13);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 14', 'enviado', '2024-01-15', 14, 14);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 15', 'pendiente', '2024-01-16', 15, 15);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 16', 'enviado', '2024-01-17', 16, 16);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 17', 'pendiente', '2024-01-18', 17, 17);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 18', 'enviado', '2024-01-19', 18, 18);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 19', 'pendiente', '2024-01-20', 19, 19);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 20', 'enviado', '2024-01-21', 20, 20);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 21', 'pendiente', '2024-01-22', 21, 21);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 22', 'enviado', '2024-01-23', 22, 22);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 23', 'pendiente', '2024-01-24', 23, 23);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 24', 'enviado', '2024-01-25', 24, 24);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 25', 'pendiente', '2024-01-26', 25, 25);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 26', 'enviado', '2024-01-27', 26, 26);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 27', 'pendiente', '2024-01-28', 27, 27);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 28', 'enviado', '2024-01-29', 28, 28);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 29', 'pendiente', '2024-01-30', 29, 29);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 30', 'enviado', '2024-01-01', 30, 30);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 1', 'pendiente', '2024-01-02', 1, 1);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 2', 'enviado', '2024-01-03', 2, 2);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 3', 'pendiente', '2024-01-04', 3, 3);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 4', 'enviado', '2024-01-05', 4, 4);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 5', 'pendiente', '2024-01-06', 5, 5);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 6', 'enviado', '2024-01-07', 6, 6);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 7', 'pendiente', '2024-01-08', 7, 7);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 8', 'enviado', '2024-01-09', 8, 8);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 9', 'pendiente', '2024-01-10', 9, 9);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 10', 'enviado', '2024-01-11', 10, 10);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 11', 'pendiente', '2024-01-12', 11, 11);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 12', 'enviado', '2024-01-13', 12, 12);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 13', 'pendiente', '2024-01-14', 13, 13);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 14', 'enviado', '2024-01-15', 14, 14);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 15', 'pendiente', '2024-01-16', 15, 15);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 16', 'enviado', '2024-01-17', 16, 16);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 17', 'pendiente', '2024-01-18', 17, 17);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 18', 'enviado', '2024-01-19', 18, 18);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 19', 'pendiente', '2024-01-20', 19, 19);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 20', 'enviado', '2024-01-21', 20, 20);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 21', 'pendiente', '2024-01-22', 21, 21);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 22', 'enviado', '2024-01-23', 22, 22);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 23', 'pendiente', '2024-01-24', 23, 23);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 24', 'enviado', '2024-01-25', 24, 24);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 25', 'pendiente', '2024-01-26', 25, 25);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 26', 'enviado', '2024-01-27', 26, 26);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 27', 'pendiente', '2024-01-28', 27, 27);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 28', 'enviado', '2024-01-29', 28, 28);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 29', 'pendiente', '2024-01-30', 29, 29);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 30', 'enviado', '2024-01-01', 30, 30);
+
+-- ENCUESTA TABLA
+INSERT INTO Encuesta (titulo, descripcion, fecha_modificado, Usuario_id_usuario)
+VALUES ('Encuesta a Tiempo de graduación', 'Esta es una encuesta para recolicar la información de nuestros estudiantes, y analizar la satisfaccion y experiencia del estudiante con la universidad', '2024-10-04',1);
+
+--PREGUNTAS Tabla: Pregunta
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (1, 'Año que ingresó a la U.C.B.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (2, 'Carrera de la que se graduó:', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (3, 'Apellido paterno:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (4, 'Apellido materno:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (5, 'Nombres:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (6, 'Edad:', 'Numerico', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (7, 'Sexo:', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (8, 'Teléfono fijo:', 'Numerico', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (9, 'Teléfono móvil:', 'Numerico', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (10, 'Correo electrónico personal:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (11, 'Ciudad de nacimiento:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (12, 'Número de cédula o documento de identidad:', 'Numerico', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (13, 'Ciudad de residencia:', 'Texto', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (14, 'Indique su Estado Civil actual.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (15, '¿Tiene hijos?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (16, 'Indique el nivel de educación más alto alcanzado por su padre.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (17, 'Indique el nivel de educación más alto alcanzado por su madre.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (18, 'Indique si tienen alguna de las siguientes limitaciones permanentes.', 'Multiple', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (19, 'Indique el principal motivo que influyó en la elección de su carrera.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (20, '¿Cambió usted de carrera?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (21, 'Indique el motivo por el que cambió de carrera.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (22, '¿Cuál fue la principal fuente de recursos para financiar sus estudios?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (23, '¿El colegio/escuela en que concluyó el bachillerato enseñaba otro idioma además del español?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (24, '¿Volvería a estudiar en la U.C.B.?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (25, 'Indique la razón principal por la que volvería a estudiar en la U.C.B.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (26, 'Indique la razón principal por la que no volvería a estudiar en la U.C.B.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (27, '¿Realizó algún viaje de Intercambio al exterior de país?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (28, '¿Participó en alguna organización estudiantil? (centro de estudiantes o sociedad científica)', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (29, '¿Participó en alguna de las actividades extracurriculares como ser ballet, danza, tuna, teatro o deportes?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (30, '¿Participó en algún voluntariado?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (31, '¿Cuál es la actividad en la que actualmente ocupa mayor parte de su tiempo?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (32, '¿Este es su primer empleo?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (33, 'Indique el tiempo de antigüedad en su empleo actual.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (34, '¿Es usted propietario o socio del lugar donde trabaja?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (35, 'Indique el tipo de institución en la que trabaja.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (36, 'Indique qué tan relacionada está su actividad laboral con los estudios que realizó.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (37, 'Indique cuántas horas a la semana le dedica a su empleo.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (38, 'Indique la modalidad en que usted se encuentra vinculado a su empleo.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (39, 'Indique cuál es el rango salarial o ingreso promedio que percibe por mes.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (40, 'Indique cómo consiguió su primer empleo.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (41, '¿Está usted interesado(a) en conseguir empleo?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (42, 'En el último mes ha realizado alguna gestión para conseguir trabajo.', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (43, '¿Cuál es el principal motivo por el cual usted considera que no encuentra empleo?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (44, '¿Ha realizado cursos a nivel de posgrado?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (45, '¿Cuál es el máximo grado académico que ha obtenido?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (46, '¿Cuál es el grado académico al que está postulando?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (47, '¿Le interesaría seguir cursos a nivel de postgrado en la U.C.B.?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (48, '¿Cuál es el grado académico del curso que le interesaría alcanzar?', 'Seleccion', 'ACTIVO');
+INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
+VALUES (49, '¿Cuál es el área en que le interesaría realizar su curso de postgrado?', 'Texto', 'ACTIVO');
+
+
+
+-- OPCIONES PREGUNTA Tabla: Opciones_Pregunta
+-- Opciones para Pregunta 1: Año que ingresó a la U.C.B.
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES
+('2019', 1), ('2018', 1), ('2017', 1), ('2016', 1), ('2015', 1),
+('2014', 1), ('2013', 1), ('2012', 1), ('2011', 1), ('2010', 1),
+('2009', 1), ('2008', 1), ('2007', 1), ('2006', 1), ('2005', 1),
+('2004', 1), ('2003', 1), ('2002', 1), ('2001', 1), ('2000', 1),
+('ANTES 2000', 1);
+
+-- Opciones para Pregunta 2: Carrera de la que se graduó
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES
+('ADMIN. DE EMPRESAS', 2), ('ADMIN. TURÍSTICA', 2),
+('CONTADURÍA PÚBLICA', 2), ('ECONOMÍA', 2),
+('ECO. E INTELIG. DE NEGOCIOS', 2), ('INGENIERÍA COMERCIAL', 2),
+('ING. EN INNOV. EMPRESARIAL', 2), ('MARK. Y MEDIO DIGITALES', 2),
+('ING. AMBIENTAL', 2), ('ING. BIOMÉDICA', 2),
+('ING. BIOQ Y DE BIOPROCESOS', 2), ('ING. CIVIL', 2),
+('ING. EN ENERGÍA', 2), ('ING. MULT. E INTERAC DIGITAL', 2),
+('ING. ANALÍTICA DE CAD SUMIN.', 2), ('ING. INDUSTRIAL', 2),
+('ING. MECATRÓNICA', 2), ('ING. QUÍMICA', 2),
+('ING. EN SISTEMAS', 2), ('ING. EN TELECOMUNICACIONES', 2);
+
+-- Opciones para Pregunta 7: Sexo
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('MUJER', 7), ('VARÓN', 7);
+
+-- Opciones para Pregunta 14: Indique su Estado Civil actual
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SOLTERO(A)', 14), ('CASADO(A)', 14), ('CONCUBINO(A)', 14),
+('DIVORCIADO(A)', 14), ('VIUDO(A)', 14);
+
+-- Opciones para Pregunta 15: ¿Tiene hijos?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 15), ('NO', 15);
+
+-- Opciones para Pregunta 16: Indique el nivel de educación más alto alcanzado por su padre
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('NO SABE', 16), ('NUNCA ESTUDIÓ', 16), ('PRIMARIA', 16),
+('SECUNDARIA', 16), ('EDU TÉCNICA/TECNOLÓGICA', 16),
+('EDU UNIVERSITARIA INCOMPLETA', 16),
+('EDU UNIVERSITARIA COMPLETA', 16), ('EDU DE POSTGRADO', 16);
+
+-- Opciones para Pregunta 17: Indique el nivel de educación más alto alcanzado por su madre
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('NO SABE', 17), ('NUNCA ESTUDIÓ', 17), ('PRIMARIA', 17),
+('SECUNDARIA', 17), ('EDU TÉCNICA/TECNOLÓGICA', 17),
+('EDU UNIVERSITARIA INCOM', 17),
+('EDU UNIVERSITARIA COMPLETA', 17), ('EDU DE POSTGRADO', 17);
+
+-- Opciones para Pregunta 18: Indique si tienen alguna de las siguientes limitaciones permanentes
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES
+('NO TENGO', 18), ('MOVERSE O CAMINAR', 18),
+('USAR BRAZOS O MANOS', 18), ('VER, INCLUSO CON LENTES', 18),
+('OÍR, INCLUSO CON AUDÍF', 18), ('HABLAR', 18),
+('CONDICIONES MENTALES', 18), ('OTRA LIMITACIÓN', 18);
+
+-- Opciones para Pregunta 19: Indique el principal motivo que influyó en la elección de su carrera
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('FAMILIA', 19), ('AMIGOS', 19),
+('VOCACIÓN/HABILIDADES', 19), ('FUENTE LABORAL DE LA CARRERA', 19),
+('INGRESOS OFRECE LA CARRERA', 19), ('TEST VOCACIONAL', 19),
+('ORIENTACIÓN COLEGIO/ESCUELA', 19), ('OTRO', 19);
+
+-- Opciones para Pregunta 20: ¿Cambió usted de carrera?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 20), ('NO', 20);
+
+-- Opciones para Pregunta 21: Indique el motivo por el que cambió de carrera
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('NO ME GUSTABA LA CARRERA', 21),
+('RENDIMIENTO ACADÉMICO', 21), ('VOCACIÓN DESCUBIERTAS', 21),
+('EMPLEABILIDAD DE CARRERA', 21), ('INGRESOS OFRECE CARRERA', 21),
+('OTRO', 21);
+
+-- Opciones para Pregunta 22: ¿Cuál fue la principal fuente de recursos para financiar sus estudios?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('PADRES', 22), ('RECURSOS PROPIOS', 22),
+('OTROS FAMILIARES', 22), ('BECAS', 22),
+('CRÉDITOS EDUCATIVOS', 22), ('OTRA FUENTE', 22);
+
+-- Opciones para Pregunta 23: ¿El colegio/escuela en que concluyó el bachillerato enseñaba otro idioma además del español?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 23), ('NO', 23);
+
+-- Opciones para Pregunta 24: ¿Volvería a estudiar en la U.C.B.?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 24), ('NO', 24);
+
+-- Opciones para Pregunta 25: Indique la razón principal por la que volvería a estudiar en la U.C.B.
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('CALIDAD FORMACIÓN', 25), ('CALIDAD PROFESORES', 25),
+('ENCONTRAR EMPLEO', 25), ('PRESTIGIO', 25),
+('RECURSOS EDUCATIVOS', 25), ('OTRO MOTIVO', 25);
+
+-- Opciones para Pregunta 26: Indique la razón principal por la que no volvería a estudiar en la U.C.B.
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('BAJA CALID FORMACIÓN', 26), ('BAJA CALID PROFESORES', 26),
+('MALA REP. INSTITUCIÓN', 26), ('RECURSOS EDUCATIVOS', 26),
+('CALIDAD COMPETENCIA', 26), ('OTRO MOTIVO', 26);
+
+-- Opciones para Pregunta 27: ¿Realizó algún viaje de Intercambio al exterior de país?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 27), ('NO', 27);
+
+-- Opciones para Pregunta 28: ¿Participó en alguna organización estudiantil? (centro de estudiantes o sociedad científica)
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 28), ('NO', 28);
+
+-- Opciones para Pregunta 29: ¿Participó en alguna de las actividades extracurriculares como ser ballet, danza, tuna, teatro o deportes?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI ESPECIFICAR', 29), ('NO', 29);
+
+-- Opciones para Pregunta 30: ¿Participó en algún voluntariado?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 30), ('NO', 30);
+
+-- Opciones para Pregunta 31: ¿Cuál es la actividad en la que actualmente ocupa mayor parte de su tiempo?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('TRABAJO', 31), ('BUSCANDO TRABAJO', 31),
+('ESTUDIOS', 31), ('OTRA ACTIVIDAD', 31);
+
+-- Opciones para Pregunta 32: ¿Este es su primer empleo?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 32), ('NO', 32);
+
+-- Opciones para Pregunta 33: Indique el tiempo de antigüedad en su empleo actual
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('MENOS 3 MESES', 33), ('ENTRE 3 Y 6 MESES', 33),
+('ENTRE 6 MESES Y AÑO', 33), ('MÁS DE UN AÑO', 33);
+
+-- Opciones para Pregunta 34: ¿Es usted propietario o socio del lugar donde trabaja?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 34), ('NO', 34);
+
+-- Opciones para Pregunta 35: Indique el tipo de institución en la que trabaja
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('ESTATAL O PÚBLICA', 35), ('EMPRESA PRIVADA', 35),
+('ONG', 35), ('INDEPENDIENTE', 35), ('OTRA', 35);
+
+-- Opciones para Pregunta 36: Indique qué tan relacionada está su actividad laboral con los estudios que realizó
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('DIRECT. REL', 36), ('INDIRECT. REL', 36), ('NADA REL', 36);
+
+-- Opciones para Pregunta 37: Indique cuántas horas a la semana le dedica a su empleo
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('MENOS 20 HRS', 37), ('APROX. 20 HRS', 37),
+('APROX. 40 HRS/MÁS', 37);
+
+-- Opciones para Pregunta 38: Indique la modalidad en que usted se encuentra vinculado a su empleo
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('CONTR INDEFINIDO', 38), ('CONTR EVENTUAL /P. FIJO', 38),
+('CONTR POR PRESTACIÓN', 38), ('OTRO TIPO DE CONTRATO', 38);
+
+-- Opciones para Pregunta 39: Indique cuál es el rango salarial o ingreso promedio que percibe por mes
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES
+('≤ BS. 2122', 39), ('Bs. 2123 a 4244', 39),
+('Bs. 4245 a 6366', 39), ('Bs. 6367 a 8488', 39),
+('≥ Bs. 8489', 39);
+
+-- Opciones para Pregunta 40: Indique cómo consiguió su primer empleo
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('PASANTÍAS', 40), ('CONVENIOS', 40),
+('PERIÓDICO O ANUNCIOS', 40), ('BOLSA DE TRABAJO', 40),
+('RRSS O AMISTADES', 40), ('OTRO', 40);
+
+-- Opciones para Pregunta 41: ¿Está usted interesado(a) en conseguir empleo?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 41), ('NO', 41);
+
+-- Opciones para Pregunta 42: En el último mes ha realizado alguna gestión para conseguir trabajo
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 42), ('NO', 42);
+
+-- Opciones para Pregunta 43: ¿Cuál es el principal motivo por el cual usted considera que no encuentra empleo?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('NO HAY TRABAJO DISPONIBLE', 43),
+('QUE SOY MUY JOVEN', 43), ('SUFICIENTE EXPERIENCIA', 43),
+('SALARIOS SON MUY BAJOS', 43), ('NO BUSCAR EMPLEO', 43),
+('OTRO', 43);
+
+-- Opciones para Pregunta 44: ¿Ha realizado cursos a nivel de posgrado?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 44), ('PROCESO', 44), ('NO', 44);
+
+-- Opciones para Pregunta 45: ¿Cuál es el máximo grado académico que ha obtenido?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('DIPLOMADO', 45), ('ESPECIALIDAD', 45),
+('MAESTRÍA', 45), ('DOCTORADO', 45);
+
+-- Opciones para Pregunta 46: ¿Cuál es el grado académico al que está postulando?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('DIPLOMADO', 46), ('ESPECIALIDAD', 46),
+('MAESTRÍA', 46), ('DOCTORADO', 46);
+
+-- Opciones para Pregunta 47: ¿Le interesaría seguir cursos a nivel de postgrado en la U.C.B.?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('SI', 47), ('NO', 47);
+
+-- Opciones para Pregunta 48: ¿Cuál es el grado académico del curso que le interesaría alcanzar?
+INSERT INTO Opciones_Pregunta (opcion, Pregunta_id_pregunta)
+VALUES ('DIPLOMADO', 48), ('ESPECIALIDAD', 48),
+('MAESTRÍA', 48), ('DOCTORADO', 48);
+
+-- datos tabla Respuesta
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('2007', 1, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('ADMIN. DE EMPRESAS', 2, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Salazar', 3, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Calle', 4, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Ana', 5, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('23', 6, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MUJER', 7, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('1805248', 8, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('72298066', 9, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('example69@mail.com', 10, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Beni', 11, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('8256885', 12, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Chuquisaca', 13, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('CASADO(A)', 14, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 15, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('EDU TÉCNICA', 16, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('EDU TÉCNICA', 17, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('CONDICIONES MENTALES', 18, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('VOCACIÓN/HABILIDADES', 19, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 20, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('N/A', 21, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('RECURSOS PROPIOS', 22, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 23, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 24, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('PRESTIGIO', 25, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('N/A', 26, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 27, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 28, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 29, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 30, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('TRABAJO', 31, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 32, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MÁS DE UN AÑO', 33, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 34, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('ONG', 35, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('INDIRECT. REL', 36, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('APROX. 40 HRS/MÁS', 37, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('CONTR INDEFINIDO', 38, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Bs. 6367 a 8488', 39, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('PASANTÍAS', 40, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 41, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 42, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SUFICIENTE EXPERIENCIA', 43, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 44, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MAESTRÍA', 45, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MAESTRÍA', 46, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 47, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MAESTRÍA', 48, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Medicina', 49, 1);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('2001', 1, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('ING. EN SISTEMAS', 2, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Santos', 3, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Gómez', 4, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Pablo', 5, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('21', 6, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MUJER', 7, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('8003250', 8, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('63531751', 9, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('example59@mail.com', 10, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Beni', 11, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('4926304', 12, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Potosí', 13, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SOLTERO(A)', 14, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 15, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('EDU UNIVERSITARIA COMPLETA', 16, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('EDU UNIVERSITARIA COMPLETA', 17, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO TENGO', 18, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('INGRESOS OFRECE LA CARRERA', 19, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 20, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('N/A', 21, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('PADRES', 22, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 23, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 24, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('PRESTIGIO', 25, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('N/A', 26, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 27, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 28, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI ESPECIFICAR', 29, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 30, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('ESTUDIOS', 31, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 32, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MENOS 3 MESES', 33, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 34, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('EMPRESA PRIVADA', 35, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('INDIRECT. REL', 36, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('APROX. 20 HRS', 37, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('CONTR EVENTUAL /P. FIJO', 38, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('≤ BS. 2122', 39, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('PASANTÍAS', 40, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 41, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 42, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO HAY TRABAJO DISPONIBLE', 43, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 44, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('DIPLOMADO', 45, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('DIPLOMADO', 46, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 47, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('ESPECIALIDAD', 48, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Marketing', 49, 2);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('2017', 1, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('ADMIN. DE EMPRESAS', 2, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Gutiérrez', 3, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Robles', 4, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Sofía', 5, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('27', 6, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('VARÓN', 7, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('3494345', 8, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('77388902', 9, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('example76@mail.com', 10, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Oruro', 11, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('3667724', 12, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Santa Cruz', 13, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('CASADO(A)', 14, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 15, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('EDU UNIVERSITARIA COMPLETA', 16, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('EDU TÉCNICA', 17, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('CONDICIONES MENTALES', 18, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('VOCACIÓN/HABILIDADES', 19, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 20, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('N/A', 21, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('PADRES', 22, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 23, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 24, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('PRESTIGIO', 25, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('N/A', 26, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 27, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 28, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 29, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 30, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('ESTUDIOS', 31, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 32, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MÁS DE UN AÑO', 33, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 34, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('ONG', 35, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('INDIRECT. REL', 36, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('APROX. 20 HRS', 37, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('CONTR EVENTUAL /P. FIJO', 38, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('≤ BS. 2122', 39, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('RRSS O AMISTADES', 40, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 41, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 42, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO HAY TRABAJO DISPONIBLE', 43, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 44, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MAESTRÍA', 45, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MAESTRÍA', 46, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 47, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('ESPECIALIDAD', 48, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Marketing', 49, 3);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('2018', 1, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('ADMIN. DE EMPRESAS', 2, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Gómez', 3, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Gutiérrez', 4, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Jorge', 5, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('27', 6, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('MUJER', 7, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('6215184', 8, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('79961312', 9, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('example38@mail.com', 10, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Chuquisaca', 11, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('3767588', 12, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('Pando', 13, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('CASADO(A)', 14, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('SI', 15, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('EDU TÉCNICA', 16, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('EDU UNIVERSITARIA COMPLETA', 17, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO TENGO', 18, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('INGRESOS OFRECE LA CARRERA', 19, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 20, 4);
+INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('N/A', 21, 4);
+
+-- ENCUESTA_GESTION TABLA
+INSERT INTO Encuesta_Gestion (Pregunta_id_pregunta, Encuesta_id_encuesta, anio, semestre)
+VALUES
+(1, 1, 2024, 1),
+(2, 1, 2024, 1),
+(3, 1, 2024, 1),
+(4, 1, 2024, 1),
+(5, 1, 2024, 1),
+(6, 1, 2024, 1),
+(7, 1, 2024, 1),
+(8, 1, 2024, 1),
+(9, 1, 2024, 1),
+(10, 1, 2024, 1),
+(11, 1, 2024, 1),
+(12, 1, 2024, 1),
+(13, 1, 2024, 1),
+(14, 1, 2024, 1),
+(15, 1, 2024, 1),
+(16, 1, 2024, 1),
+(17, 1, 2024, 1),
+(18, 1, 2024, 1),
+(19, 1, 2024, 1),
+(20, 1, 2024, 1),
+(21, 1, 2024, 1),
+(22, 1, 2024, 1),
+(23, 1, 2024, 1),
+(24, 1, 2024, 1),
+(25, 1, 2024, 1),
+(26, 1, 2024, 1),
+(27, 1, 2024, 1),
+(28, 1, 2024, 1),
+(29, 1, 2024, 1),
+(30, 1, 2024, 1)
 
