@@ -1,5 +1,7 @@
 package com.usei.usei.controllers;
 
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +10,29 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
+import com.usei.usei.models.EstadoEncuesta;
+import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.Plazo;
 import com.usei.usei.repositories.PlazoDAO;
+
+import com.usei.usei.repositories.EstadoEncuestaDAO;
+import com.usei.usei.repositories.EstudianteDAO;
 
 @Service
 public class PlazoBL implements PlazoService {
 
     private final PlazoDAO plazoDAO;
+    @Autowired
+    private JavaMailSender mailSender;
+    @Autowired
+    private EstudianteDAO estudianteDAO;
+    @Autowired
+    private EstadoEncuestaDAO estadoEncuestaDAO;
 
     @Autowired
     public PlazoBL(PlazoDAO plazoDAO) {
@@ -74,5 +92,40 @@ public class PlazoBL implements PlazoService {
     @Transactional(readOnly = true)
     public Page<Plazo> findAll(Pageable pageable) {
         return plazoDAO.findAll(pageable);
+    }
+
+    //Notificación de plazo
+    @Transactional
+    @Override
+    public void notificarEstudiantesPlazo(Long idPlazo){
+        Optional<Plazo> plazoOpt = plazoDAO.findById(idPlazo);
+        if(plazoOpt.isEmpty()){
+            throw new RuntimeException("Plazo no encontrado con el id: "+idPlazo);
+        }
+        Plazo plazo = plazoOpt.get();
+        List<Estudiante> estudiantes = estudianteDAO.findAll();
+
+        for(Estudiante estudiante : estudiantes){
+            Optional<EstadoEncuesta> estadoEncuestaOpt = estadoEncuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(estudiante.getIdEstudiante());
+            if (estadoEncuestaOpt.isEmpty() || !"completado".equalsIgnoreCase(estadoEncuestaOpt.get().getEstado())) {
+                //No se completó la encuesta
+                try{
+                    enviarCorreoAviso(estudiante.getCorreoPersonal(), plazo.getFechaFinalizacion());
+
+                }catch(MessagingException e){
+                    throw new RuntimeException("Error al enviar el correo a: "+estudiante.getCorreoPersonal());
+                }
+            }
+        }
+    }
+    //Envio de correo
+    public void enviarCorreoAviso(String correo, Date fechaLimite) throws MessagingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, false); // 'false' indica que no hay adjuntos
+        helper.setTo(correo);
+        helper.setSubject("¡No olvides completar tu encuesta!");
+        helper.setText("Hola, esperamos que estés teniendo un gran día. Te recordamos amablemente que tienes hasta el " + fechaLimite + " para completar tu encuesta. ¡Tu opinión es muy importante para nosotros!");        
+
+        mailSender.send(message);
     }
 }
