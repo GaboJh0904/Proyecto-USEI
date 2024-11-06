@@ -133,13 +133,13 @@ public class EstudianteAPI {
 
         if (estudiante.isPresent()) {
             Estudiante foundEstudiante = estudiante.get();
-            
+
 
             // Crear la respuesta exitosa con los campos "ci", "correoInsitucional", "nombre" y "apellido"
             SuccessfulResponse response = new SuccessfulResponse(
                     "200 OK",
                     "Inicio de sesión correcto",
-                    
+
                     new HashMap<String, Object>() {{
                         put("id_estudiante", foundEstudiante.getIdEstudiante()); // Incluyendo el id_estudiante en la respuesta
                         put("rol", "estudiante");
@@ -150,7 +150,7 @@ public class EstudianteAPI {
                         put("apellido", estudiante.get().getApellido());
                         put("telefono", estudiante.get().getTelefono());
                     }}
-                    
+
 
             );
             return ResponseEntity.ok(response);
@@ -181,8 +181,8 @@ public class EstudianteAPI {
     @PostMapping("/upload-csv")
     public ResponseEntity<?> uploadEstudiantesCSV(@RequestParam("file") MultipartFile file) {
         try (
-            Reader reader = new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8); // Asegúrate de leer en UTF-8
-            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader());
+                Reader reader = new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8); // Asegúrate de leer en UTF-8
+                CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withHeader());
         ) {
             List<Estudiante> estudiantes = new ArrayList<>();
 
@@ -225,10 +225,10 @@ public class EstudianteAPI {
 
             // Llamamos al servicio para enviar el código de verificación
             estudianteService.enviarCodigoVerificacion(correo);
-            
+
             // Devolver el código de verificación en la respuesta
             String codigoVerificacion = estudianteService.obtenerCodigoVerificacion(); // Método que obtiene el código
-            
+
             // Enviar el código también al frontend
             return new ResponseEntity<>(new HashMap<String, Object>() {{
                 put("mensaje", "Código de verificación enviado exitosamente");
@@ -283,7 +283,28 @@ public class EstudianteAPI {
         }
     }
 
+    // Obtener ci y correo institucional para estudiantes registrados
+    @PutMapping("/update-ci-correo/{id_estudiante}")
+    public ResponseEntity<?> updateCiAndCorreo(@PathVariable(value = "id_estudiante") Long idEstudiante,
+                                               @RequestBody HashMap<String, Object> fields) {
+        Optional<Estudiante> oEstudiante = estudianteService.findById(idEstudiante);
+        if (oEstudiante.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
 
+        Estudiante estudianteExistente = oEstudiante.get();
 
+        // Validar y actualizar los campos ci y correoInstitucional
+        if (fields.containsKey("ci") && fields.get("ci") instanceof Integer) {
+            estudianteExistente.setCi((Integer) fields.get("ci"));
+        }
 
+        if (fields.containsKey("correoInstitucional") && fields.get("correoInstitucional") instanceof String) {
+            estudianteExistente.setCorreoInstitucional((String) fields.get("correoInstitucional"));
+        }
+
+        // Guardar los cambios
+        estudianteService.save(estudianteExistente);
+        return ResponseEntity.ok(estudianteExistente);
+    }
 }
