@@ -170,6 +170,7 @@ public class CertificadoAPI {
 
     @PostMapping("/remision")
     public ResponseEntity<?> enviarCertificado(@RequestParam("idEstudiante") Long idEstudiante) {
+        System.out.println("idEstudiante recibido: " + idEstudiante);
         try {
             // Llamar a la función que gestiona el envío y verifica los estados
             certificadoService.enviarCertificadoConCondiciones(idEstudiante);

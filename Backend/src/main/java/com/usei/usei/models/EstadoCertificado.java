@@ -56,6 +56,8 @@ public class EstadoCertificado implements Serializable {
     @JoinColumn(name = "estudiante_id_estudiante", referencedColumnName = "id_estudiante")
     @ManyToOne(optional = false)
     private Estudiante estudianteIdEstudiante;
+    @Column(name = "correo_enviado")
+    private String correoEnviado;
 
     public EstadoCertificado() {
     }
@@ -143,5 +145,12 @@ public class EstadoCertificado implements Serializable {
     public String toString() {
         return "com.usei.usei.EstadoCertificado[ idEstCertificado=" + idEstCertificado + " ]";
     }
-    
+
+    public void setCorreoEnviado(String nuevoCorreo) {
+        this.correoEnviado = correoEnviado;
+    }
+
+    public String getCorreoEnviado() {
+        return correoEnviado;
+    }
 }
