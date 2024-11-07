@@ -1,29 +1,22 @@
 package com.usei.usei.dto;
 
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.Map;
 
 public class SuccessfulResponse {
 
-    private String timeStamp;
     private String status;
     private String message;
-    private Object result;
+    private String token;
+    private int expiresIn;
+    private Map<String, Object> data;
 
-    public SuccessfulResponse(String status, String message, Object result) {
-        this.timeStamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    public SuccessfulResponse(String status, String message, String token, int expiresIn, Map<String, Object> data) {
         this.status = status;
         this.message = message;
-        this.result = result;
-    }
-
-    public String getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+        this.token = token;
+        this.expiresIn = expiresIn;
+        this.data = data;
     }
 
     public String getStatus() {
@@ -42,11 +35,27 @@ public class SuccessfulResponse {
         this.message = message;
     }
 
-    public Object getResult() {
-        return result;
+    public String getToken() {
+        return token;
     }
 
-    public void setResult(Object result) {
-        this.result = result;
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public int getExpiresIn() {
+        return expiresIn;
+    }
+
+    public void setExpiresIn(int expiresIn) {
+        this.expiresIn = expiresIn;
+    }
+
+    public Map<String, Object> getData() {
+        return data;
+    }
+
+    public void setData(Map<String, Object> data) {
+        this.data = data;
     }
 }
