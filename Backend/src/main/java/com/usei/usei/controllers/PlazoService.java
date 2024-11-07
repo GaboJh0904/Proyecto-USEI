@@ -22,5 +22,7 @@ public interface PlazoService {
     public Page<Plazo> findAll(Pageable pageable);
 
     public void notificarEstudiantesPlazo(Long idPlazo);
+    
+    public Optional<Plazo> findPlazoActivo();
 
 }

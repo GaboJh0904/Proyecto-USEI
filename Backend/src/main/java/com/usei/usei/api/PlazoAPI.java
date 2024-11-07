@@ -1,5 +1,10 @@
 package com.usei.usei.api;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -7,25 +12,27 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import org.springframework.mail.javamail.*;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.usei.usei.controllers.PlazoService;
 import com.usei.usei.controllers.UsuarioService;
-import com.usei.usei.repositories.EstadoEncuestaDAO;
-import com.usei.usei.repositories.EstudianteDAO;
 import com.usei.usei.models.EstadoEncuesta;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Plazo;
+import com.usei.usei.repositories.EstadoEncuestaDAO;
+import com.usei.usei.repositories.EstudianteDAO;
+
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/plazo")
@@ -98,20 +105,13 @@ public class PlazoAPI {
         }
     }
 
-    //Endpoint para notificar
     @PostMapping("/recordatorio")
-    public ResponseEntity<?> notificarEstudiantesPlazo(@RequestBody Map<String, Long> request) {
-        Long idPlazo = request.get("idPlazo");
+    public ResponseEntity<?> notificarEstudiantesPlazo() {
         try {
-            // Validar si el idPlazo no es nulo
-            if (idPlazo == null) {
-                return new ResponseEntity<>(new MessageResponse("El parámetro idPlazo es requerido."), HttpStatus.BAD_REQUEST);
-            }
-
-            // Obtener la fecha de finalización del plazo
-            Optional<Plazo> plazoOpt = plazoService.findById(idPlazo);
+            // Buscar el plazo con estado "activo"
+            Optional<Plazo> plazoOpt = plazoService.findPlazoActivo();
             if (plazoOpt.isEmpty()) {
-                return new ResponseEntity<>(new MessageResponse("Plazo no encontrado con el id: " + idPlazo), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(new MessageResponse("No hay plazos activos."), HttpStatus.NOT_FOUND);
             }
 
             Plazo plazo = plazoOpt.get();
@@ -120,12 +120,11 @@ public class PlazoAPI {
             // Iterar sobre los estudiantes y verificar si han completado la encuesta
             for (Estudiante estudiante : estudiantes) {
                 Optional<EstadoEncuesta> estadoEncuestaOpt = estadoEncuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(estudiante.getIdEstudiante());
-                if (estadoEncuestaOpt.isEmpty() || !"completado".equalsIgnoreCase(estadoEncuestaOpt.get().getEstado())) {
+                if (estadoEncuestaOpt.isEmpty() || !"Completado".equalsIgnoreCase(estadoEncuestaOpt.get().getEstado())) {
                     // El estudiante no ha completado la encuesta, enviar correo
                     try {
                         enviarCorreoAviso(estudiante.getCorreoPersonal(), plazo.getFechaFinalizacion());
                     } catch (MessagingException e) {
-                        // Registrar el error en lugar de lanzar una excepción para evitar interrumpir el bucle
                         System.err.println("Error al enviar el correo a: " + estudiante.getCorreoPersonal() + " - " + e.getMessage());
                     }
                 }
@@ -137,10 +136,20 @@ public class PlazoAPI {
         }
     }
 
-    
+    // Endpoint para obtener el último plazo activo
+    @GetMapping("/activo")
+    public ResponseEntity<?> obtenerPlazoActivo() {
+        Optional<Plazo> plazoActivo = plazoService.findPlazoActivo();
+        if (plazoActivo.isPresent()) {
+            return ResponseEntity.ok(plazoActivo.get());
+        } else {
+            return new ResponseEntity<>(new MessageResponse("No hay plazos activos."), HttpStatus.NOT_FOUND);
+        }
+    }
+
     private void enviarCorreoAviso(String correo, Date fechaLimite) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, false); // 'false' indica que no hay adjuntos
+        MimeMessageHelper helper = new MimeMessageHelper(message, false);
         helper.setTo(correo);
         helper.setSubject("Recordatorio: Completa tu Encuesta");
         helper.setText("Estimado estudiante, te recordamos que debes completar tu encuesta antes del " + fechaLimite + ".");

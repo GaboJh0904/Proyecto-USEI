@@ -128,4 +128,9 @@ public class PlazoBL implements PlazoService {
 
         mailSender.send(message);
     }
+
+    @Override
+    public Optional<Plazo> findPlazoActivo() {
+        return plazoDAO.findByEstado("activo");
+    }
 }
