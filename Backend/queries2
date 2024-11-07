@@ -12,6 +12,11 @@ INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
         VALUES ('Luis López', '78778064', 'luislópez@yahoo.com', 'Administrador',
         'luis_lópez', 'wKwwfSdZjOamWtl');
 
+-- Datos tabla Parametros Aviso
+
+INSERT INTO Parametros_Aviso (porcentaje, fecha_cambio, fecha_notificacion, mensaje_predeterminado)
+VALUES (70, '2024-11-07', '2024-11-15', 'Estimado estudiante, se le solicita que por favor llene la encuesta a tiempo de graduacion.');
+
 -- Datos tabla de estudiante
 
 INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
@@ -307,7 +312,9 @@ INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_perso
         'laura@hotmail.com', 'Psicología', 'examen de grado', '73266127',
         2024, 2, 'No Completo', 'WiwNpxAmdshY');
 
+-- Datos tabla tipo notificacion
 
+insert into tipo_notificacion (tipo) values ('Encuesta completa')
 
 -- Datos tabla noticias
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Doble titulación', 'Doble titulación UCB', 'noticia_titulacion.jpg', '04-10-2024', 'Publicado', 1);
