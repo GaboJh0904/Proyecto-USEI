@@ -34,6 +34,7 @@ import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
 import com.usei.usei.dto.request.LoginRequestDTO;
 import com.usei.usei.models.Estudiante;
+import com.usei.usei.models.MessageResponse;
 
 import jakarta.mail.MessagingException;
 
@@ -283,6 +284,15 @@ public class EstudianteAPI {
         }
     }
 
+    @GetMapping("/no_completaron_encuesta")
+    public ResponseEntity<?> getEstudiantesNoCompletaronEncuesta() {
+        try {
+            List<Estudiante> estudiantes = estudianteService.findEstudiantesNoCompletaronEncuesta();
+            return ResponseEntity.ok(estudiantes);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 
