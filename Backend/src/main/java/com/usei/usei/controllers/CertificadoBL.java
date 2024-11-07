@@ -142,66 +142,68 @@ public class CertificadoBL implements CertificadoService{
      
      // Función para enviar el certificado que está en uso
      public void enviarCertificadoConCondiciones(Long idEstudiante) throws MessagingException {
+         // Verificar el estado de la encuesta
+         EstadoEncuesta estadoEncuesta = estadoEncuestaDAO
+                 .findByEstudianteIdEstudiante_IdEstudiante(idEstudiante)
+                 .orElseThrow(() -> new RuntimeException(
+                         "Estado de encuesta no encontrado para el estudiante con ID: " + idEstudiante));
 
-        // Verificar el estado de la encuesta
-        EstadoEncuesta estadoEncuesta = estadoEncuestaDAO
-                .findByEstudianteIdEstudiante_IdEstudiante(idEstudiante)
-                .orElseThrow(() -> new RuntimeException(
-                        "Estado de encuesta no encontrado para el estudiante con ID: " + idEstudiante));
+         if (!"completado".equalsIgnoreCase(estadoEncuesta.getEstado())) {
+             System.out.println("No se puede enviar el certificado. El estado de la encuesta no está completado.");
+             return;
+         }
 
-        if (!"completado".equalsIgnoreCase(estadoEncuesta.getEstado())) {
-            System.out.println("No se puede enviar el certificado. El estado de la encuesta no está completado.");
-            return;
-        }
+         // Verificar el estado del certificado
+         EstadoCertificado estadoCertificado = estadoCertificadoDAO
+                 .findByEstudianteIdEstudiante_IdEstudiante(idEstudiante)
+                 .orElseThrow(() -> new RuntimeException(
+                         "Estado de certificado no encontrado para el estudiante con ID: " + idEstudiante));
 
-        // Verificar el estado del certificado
-        EstadoCertificado estadoCertificado = estadoCertificadoDAO
-                .findByEstudianteIdEstudiante_IdEstudiante(idEstudiante)
-                .orElseThrow(() -> new RuntimeException(
-                        "Estado de certificado no encontrado para el estudiante con ID: " + idEstudiante));
+         Estudiante estudiante = estudianteDAO.findById(idEstudiante)
+                 .orElseThrow(() -> new RuntimeException("Estudiante no encontrado con el ID: " + idEstudiante));
 
-        if (!"pendiente".equalsIgnoreCase(estadoCertificado.getEstado())) {
-            System.out.println("No se puede enviar el certificado. Ya ha sido enviado anteriormente.");
-            return;
-        }
+         String nuevoCorreo = estudiante.getCorreoInstitucional();
+         String correoAnterior = estadoCertificado.getCorreoEnviado();
 
-        // Obtener el correo del estudiante
-        Estudiante estudiante = estudianteDAO.findById(idEstudiante)
-                .orElseThrow(() -> new RuntimeException("Estudiante no encontrado con el ID: " + idEstudiante));
-        String correo = estudiante.getCorreoInstitucional();
-        String asunto = "Certificado Académico";
-        String mensaje = "Estimado " + estudiante.getNombre() + ", adjunto encontrarás tu certificado académico.";
+         // Permitir envío solo si no ha sido enviado o si el correo es nuevo
+         if ("enviado".equalsIgnoreCase(estadoCertificado.getEstado()) && nuevoCorreo.equals(correoAnterior)) {
+             System.out.println("No se puede enviar el certificado. Ya ha sido enviado anteriormente al mismo correo.");
+             return;
+         }
 
-        Optional<Certificado> certificadoEnUso = certificadoDAO.findByEstado("En uso");
-        if (certificadoEnUso.isEmpty()) {
-            System.out.println("No hay certificado en uso para enviar.");
-            throw new RuntimeException("No hay certificado en uso para enviar.");
-        }
+         String asunto = "Certificado Académico";
+         String mensaje = "Estimado " + estudiante.getNombre() + ", adjunto encontrarás tu certificado académico.";
 
-        Certificado certificado = certificadoEnUso.get();
-        String basePath = "src/main/resources/static/documents/formatos/";
+         Optional<Certificado> certificadoEnUso = certificadoDAO.findByEstado("En uso");
+         if (certificadoEnUso.isEmpty()) {
+             System.out.println("No hay certificado en uso para enviar.");
+             throw new RuntimeException("No hay certificado en uso para enviar.");
+         }
 
-        String attachmentPath = basePath + certificado.getFormato(); // Crear la ruta completa
+         Certificado certificado = certificadoEnUso.get();
+         String basePath = "src/main/resources/static/documents/formatos/";
+         String attachmentPath = basePath + certificado.getFormato();
 
-         // Validar si el archivo existe
          java.nio.file.Path path = java.nio.file.Paths.get(attachmentPath);
          if (!path.toFile().exists()) {
              System.err.println("Error: El archivo de certificado no existe en la ruta: " + attachmentPath);
              throw new RuntimeException("El archivo de certificado no existe en la ruta especificada.");
          }
- 
-         String fileName = path.getFileName().toString(); // Obtener el nombre del archivo
- 
-        // Enviar el correo con el certificado adjunto
-        sendCertificadoEmail(correo, asunto, mensaje, attachmentPath, fileName);
 
-        // Actualizar el estado del certificado a "enviado"
-        estadoCertificado.setEstado("enviado");
-        estadoCertificado.setArchivo(fileName);
-        estadoCertificadoDAO.save(estadoCertificado); // Guardar los cambios en la base de datos
+         String fileName = path.getFileName().toString();
 
-        System.out.println("Certificado enviado a: " + correo);
-    }
+         // Enviar el correo con el certificado adjunto
+         sendCertificadoEmail(nuevoCorreo, asunto, mensaje, attachmentPath, fileName);
+
+         // Actualizar el estado del certificado a "enviado"
+         estadoCertificado.setEstado("enviado");
+         estadoCertificado.setArchivo(fileName);
+         estadoCertificado.setCorreoEnviado(nuevoCorreo); // Guardar el nuevo correo al que se envió
+         estadoCertificadoDAO.save(estadoCertificado); // Guardar los cambios en la base de datos
+
+         System.out.println("Certificado enviado a: " + nuevoCorreo);
+     }
+
 
     @Override
     public void sendCertificadoEmail(String to, String subject, String body, String attachmentPath, String fileName)
