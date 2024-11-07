@@ -3,11 +3,12 @@ package com.usei.usei.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.usei.usei.models.Estudiante;
 
 import jakarta.mail.MessagingException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 public interface EstudianteService {
 
@@ -42,4 +43,7 @@ public interface EstudianteService {
     Page<Estudiante> findByCi(Integer ci, Pageable pageable); // Búsqueda por CI
 
     Page<Estudiante> findAll(Pageable pageable); // Obtener todos los estudiantes con paginación
+
+    List<Estudiante> findEstudiantesNoCompletaronEncuesta();
+
 }

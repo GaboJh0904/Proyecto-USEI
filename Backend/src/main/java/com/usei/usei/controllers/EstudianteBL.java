@@ -190,4 +190,10 @@ public class EstudianteBL implements EstudianteService{
         return estudianteDAO.findAll(pageable);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<Estudiante> findEstudiantesNoCompletaronEncuesta() {
+        return estudianteDAO.findEstudiantesNoCompletaronEncuesta();
+    }
+
 }

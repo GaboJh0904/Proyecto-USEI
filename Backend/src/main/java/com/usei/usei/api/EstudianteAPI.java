@@ -36,6 +36,7 @@ import com.usei.usei.dto.request.LoginRequestDTO;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.LoginResponse;
 import com.usei.usei.util.TokenGenerator;
+import com.usei.usei.models.MessageResponse;
 
 import jakarta.mail.MessagingException;
 
@@ -292,6 +293,17 @@ public class EstudianteAPI {
         }
     }
 
+    
+    @GetMapping("/no_completaron_encuesta")
+    public ResponseEntity<?> getEstudiantesNoCompletaronEncuesta() {
+        try {
+            List<Estudiante> estudiantes = estudianteService.findEstudiantesNoCompletaronEncuesta();
+            return ResponseEntity.ok(estudiantes);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     // Obtener ci y correo institucional para estudiantes registrados
     @PutMapping("/update-ci-correo/{id_estudiante}")
     public ResponseEntity<?> updateCiAndCorreo(@PathVariable(value = "id_estudiante") Long idEstudiante,
@@ -300,7 +312,6 @@ public class EstudianteAPI {
         if (oEstudiante.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-
         Estudiante estudianteExistente = oEstudiante.get();
 
         // Validar y actualizar los campos ci y correoInstitucional
@@ -316,4 +327,5 @@ public class EstudianteAPI {
         estudianteService.save(estudianteExistente);
         return ResponseEntity.ok(estudianteExistente);
     }
+
 }
