@@ -1,6 +1,7 @@
 package com.usei.usei.api;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,9 @@ import com.usei.usei.controllers.UsuarioService;
 import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
 import com.usei.usei.dto.request.LoginRequestUserDTO;
+import com.usei.usei.models.LoginResponse;
 import com.usei.usei.models.Usuario;
+import com.usei.usei.util.TokenGenerator;
 
 @RestController
 @RequestMapping("/usuario")
@@ -27,6 +30,9 @@ public class UsuarioAPI {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private TokenGenerator tokenGenerator;
 
     // Crear un nuevo usuario:
     @PostMapping
@@ -96,33 +102,42 @@ public class UsuarioAPI {
 
     // Nuevo endpoint de login con correo y contraseña
     @PostMapping("/login")
-public ResponseEntity<?> login(@RequestBody LoginRequestUserDTO loginRequestUser) {
-    Optional<Usuario> usuario = usuarioService.login(loginRequestUser.getCorreo(), loginRequestUser.getContrasena());
+    public ResponseEntity<?> login(@RequestBody LoginRequestUserDTO loginRequestUser) {
+        try{
+            Optional<Usuario> usuario = usuarioService.login(loginRequestUser.getCorreo(), loginRequestUser.getContrasena());
+            if (usuario.isPresent()) {
+                usuario.get().setContrasenia(null); // No enviar la contraseña en la respuesta
+                String token = tokenGenerator.generateToken(String.valueOf(usuario.get().getIdUsuario()), usuario.get().getRol(), usuario.get().getCorreo(), 60);
 
-        if (usuario.isPresent()) {
-            // Crear la respuesta exitosa con el id_usuario y otros campos
-            SuccessfulResponse response = new SuccessfulResponse(
-                    "200 OK",
-                    "Inicio de sesión correcto",
-                    new HashMap<String, Object>() {{
-                        put("id_usuario", usuario.get().getIdUsuario());  // Incluir el id_usuario
-                        put("rol", usuario.get().getRol());
-                        put("correo", usuario.get().getCorreo());
-                        put("nombre", usuario.get().getNombre());
-                        put("usuario", usuario.get().getUsuario());
-                    }}
-            );
+                //
+                Map<String, Object> data = new HashMap<>();
+                data.put("id_usuario", usuario.get().getIdUsuario());  // Incluir el id_usuario
+                data.put("rol", usuario.get().getRol());
+                data.put("correo", usuario.get().getCorreo());
+                data.put("nombre", usuario.get().getNombre());
+                data.put("usuario", usuario.get().getUsuario());
 
-            return ResponseEntity.ok(response);
-        } else {
-            // Crear la respuesta fallida en caso de credenciales incorrectas
-            UnsuccessfulResponse response = new UnsuccessfulResponse(
-                    "401 Unauthorized",
-                    "Credenciales incorrectas",
-                    "/usuario/login"
-            );
+                // Crear la respuesta exitosa con el id_usuario y otros campos
+                SuccessfulResponse response = new SuccessfulResponse(
+                        "200 OK",
+                        "Inicio de sesión correcto",
+                        token,
+                        60,
+                        data
+                );
+                return ResponseEntity.ok(response);
+            } else {
+                // Crear la respuesta fallida en caso de credenciales incorrectas
+                UnsuccessfulResponse response = new UnsuccessfulResponse(
+                        "401 Unauthorized",
+                        "Credenciales incorrectas",
+                        "/usuario/login"
+                );
 
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(new LoginResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
