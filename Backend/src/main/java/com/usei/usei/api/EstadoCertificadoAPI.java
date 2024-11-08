@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.usei.usei.controllers.EstadoCertificadoBL;
 import com.usei.usei.controllers.EstadoCertificadoService;
 import com.usei.usei.models.Certificado;
 import com.usei.usei.models.EstadoCertificado;
@@ -37,6 +38,11 @@ import com.usei.usei.models.MessageResponse;
 public class EstadoCertificadoAPI {
     @Autowired
     private EstadoCertificadoService estadoCertificadoService;
+    private final EstadoCertificadoBL estadoCertificadoBL;
+    @Autowired
+    public EstadoCertificadoAPI(EstadoCertificadoBL estadoCertificadoBL) {
+        this.estadoCertificadoBL = estadoCertificadoBL;
+    }
 
     // Crear un nuevo certificado
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -203,6 +209,12 @@ public ResponseEntity<Resource> getDirectArchivoCertificadoByEstudianteId(@PathV
                 .body(null);
     }
 }
+@GetMapping("/certificados-emitidos")
+    public ResponseEntity<List<Map<String, Object>>> getCertificadosEmitidosPorCarrera(
+        @RequestParam(required = false) Integer year) {
+        List<Map<String, Object>> data = estadoCertificadoBL.getCertificadosEmitidosPorCarrera(year);
+        return ResponseEntity.ok(data);
+    }
 
 
 /*

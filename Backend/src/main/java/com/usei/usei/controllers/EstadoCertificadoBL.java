@@ -1,6 +1,7 @@
 package com.usei.usei.controllers;
 
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,11 @@ import com.usei.usei.models.Certificado;
 import com.usei.usei.models.EstadoCertificado;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.repositories.EstadoCertificadoDAO;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
 
 @Service
 public class EstadoCertificadoBL implements EstadoCertificadoService{
@@ -86,6 +92,29 @@ public class EstadoCertificadoBL implements EstadoCertificadoService{
             throw new RuntimeException("Estado_Encuesta no encontrado con el id: " + id);
         }
     }
+    @Transactional(readOnly = true)
+    public List<Map<String, Object>> getCertificadosEmitidosPorCarrera(Integer year) {
+        List<Object[]> rawData;
+        
+        if (year == null) {
+            rawData = estadoCertificadoDAO.countCertificadosEmitidosByCarrera("enviado");
+        } else {
+            rawData = estadoCertificadoDAO.countCertificadosEmitidosByCarreraAndYear(year, "enviado");
+        }
+
+        // Convertir List<Object[]> a List<Map<String, Object>>
+        List<Map<String, Object>> resultado = new ArrayList<>();
+        for (Object[] row : rawData) {
+            Map<String, Object> item = new HashMap<>();
+            item.put("carrera", row[0]);  // Carrera
+            item.put("cantidad", row[1]); // Conteo
+            resultado.add(item);
+        }
+
+        return resultado;
+    }
+
+
 /* 
     @Override
     @Transactional
