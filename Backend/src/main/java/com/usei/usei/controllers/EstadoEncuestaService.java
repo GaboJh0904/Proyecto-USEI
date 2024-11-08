@@ -37,4 +37,7 @@ public interface EstadoEncuestaService {
 
     public void enviarCorreosEstudiantesPersonal(String correo, String cuerpo) throws MessagingException;
 
+    List<EstadoEncuesta> findCompletadasByAnioAndSemestre(Integer anio, Integer semestre);
+
+
 }

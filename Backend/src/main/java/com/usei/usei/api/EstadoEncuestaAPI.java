@@ -3,6 +3,8 @@ package com.usei.usei.api;
 
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -55,6 +57,7 @@ public class EstadoEncuestaAPI {
             estadoEncuestaService.save(newEstadoEncuesta);
             return new ResponseEntity<>(new MessageResponse("Estado de encuesta registrada"), HttpStatus.CREATED);
         } catch (Exception e) {
+            e.printStackTrace(); // Log para ver el detalle del error en consola
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -117,14 +120,25 @@ public class EstadoEncuestaAPI {
         }
     }
 
+    // @GetMapping("/completadas")
+    // public ResponseEntity<?> getEncuestasCompletadas() {
+    //     try {
+    //     return ResponseEntity.ok(estadoEncuestaService.findByEstadoCompletado());
+    //     } catch (Exception e) {
+    //     return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    //     }
+    // }
     @GetMapping("/completadas")
-    public ResponseEntity<?> getEncuestasCompletadas() {
-        try {
-        return ResponseEntity.ok(estadoEncuestaService.findByEstadoCompletado());
-        } catch (Exception e) {
+public ResponseEntity<?> getEncuestasCompletadas(
+    @RequestParam(required = false) Integer anio,
+    @RequestParam(required = false) Integer semestre) {
+    try {
+        List<EstadoEncuesta> completadas = estadoEncuestaService.findCompletadasByAnioAndSemestre(anio, semestre);
+        return ResponseEntity.ok(completadas);
+    } catch (Exception e) {
         return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
     }
+}
 
     @GetMapping("/estudiante/{idEstudiante}")
     public ResponseEntity<?> getEstadoEncuestaPorEstudiante(@PathVariable Long idEstudiante) {

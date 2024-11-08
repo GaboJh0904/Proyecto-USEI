@@ -35,8 +35,8 @@ import com.usei.usei.dto.UnsuccessfulResponse;
 import com.usei.usei.dto.request.LoginRequestDTO;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.LoginResponse;
-import com.usei.usei.util.TokenGenerator;
 import com.usei.usei.models.MessageResponse;
+import com.usei.usei.util.TokenGenerator;
 
 import jakarta.mail.MessagingException;
 
@@ -294,15 +294,40 @@ public class EstudianteAPI {
     }
 
     
+    // @GetMapping("/no_completaron_encuesta")
+    // public ResponseEntity<?> getEstudiantesNoCompletaronEncuesta() {
+    //     try {
+    //         List<Estudiante> estudiantes = estudianteService.findEstudiantesNoCompletaronEncuesta();
+    //         return ResponseEntity.ok(estudiantes);
+    //     } catch (Exception e) {
+    //         return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    //     }
+    // }
     @GetMapping("/no_completaron_encuesta")
-    public ResponseEntity<?> getEstudiantesNoCompletaronEncuesta() {
+    public ResponseEntity<?> getEstudiantesNoCompletaronEncuesta(
+        @RequestParam(required = false) Integer anio,
+        @RequestParam(required = false) Integer semestre) {
         try {
-            List<Estudiante> estudiantes = estudianteService.findEstudiantesNoCompletaronEncuesta();
+            List<Estudiante> estudiantes = estudianteService.findNoCompletaronEncuestaByAnioAndSemestre(anio, semestre);
             return ResponseEntity.ok(estudiantes);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @GetMapping("/opciones_filtro")
+public ResponseEntity<?> getOpcionesFiltro() {
+    try {
+        List<Integer> anios = estudianteService.findDistinctAnios();
+        List<Integer> periodos = estudianteService.findDistinctSemestres();
+        Map<String, List<Integer>> opciones = new HashMap<>();
+        opciones.put("anios", anios);
+        opciones.put("periodos", periodos);
+        return ResponseEntity.ok(opciones);
+    } catch (Exception e) {
+        return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+
 
     // Obtener ci y correo institucional para estudiantes registrados
     @PutMapping("/update-ci-correo/{id_estudiante}")

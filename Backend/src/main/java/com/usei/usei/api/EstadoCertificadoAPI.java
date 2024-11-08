@@ -210,11 +210,12 @@ public ResponseEntity<Resource> getDirectArchivoCertificadoByEstudianteId(@PathV
     }
 }
 @GetMapping("/certificados-emitidos")
-    public ResponseEntity<List<Map<String, Object>>> getCertificadosEmitidosPorCarrera(
-        @RequestParam(required = false) Integer year) {
-        List<Map<String, Object>> data = estadoCertificadoBL.getCertificadosEmitidosPorCarrera(year);
-        return ResponseEntity.ok(data);
-    }
+public ResponseEntity<List<Map<String, Object>>> getCertificadosEmitidosPorCarrera(
+    @RequestParam(required = false) Integer anio,
+    @RequestParam(required = false) Integer semestre) {
+    List<Map<String, Object>> data = estadoCertificadoBL.getCertificadosEmitidosPorCarrera(anio, semestre);
+    return ResponseEntity.ok(data);
+}
 
 
 /*

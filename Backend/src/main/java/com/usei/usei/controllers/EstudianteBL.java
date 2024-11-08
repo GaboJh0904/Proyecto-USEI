@@ -190,10 +190,26 @@ public class EstudianteBL implements EstudianteService{
         return estudianteDAO.findAll(pageable);
     }
 
+    // @Override
+    // @Transactional(readOnly = true)
+    // public List<Estudiante> findEstudiantesNoCompletaronEncuesta() {
+    //     return estudianteDAO.findEstudiantesNoCompletaronEncuesta();
+    // }
     @Override
     @Transactional(readOnly = true)
-    public List<Estudiante> findEstudiantesNoCompletaronEncuesta() {
-        return estudianteDAO.findEstudiantesNoCompletaronEncuesta();
+    public List<Integer> findDistinctAnios() {
+        return estudianteDAO.findDistinctAnios();
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<Integer> findDistinctSemestres() {
+        return estudianteDAO.findDistinctSemestres();
+    }
+        @Override
+    @Transactional(readOnly = true)
+    public List<Estudiante> findNoCompletaronEncuestaByAnioAndSemestre(Integer anio, Integer semestre) {
+        return estudianteDAO.findNoCompletaronEncuestaByAnioAndSemestre(anio, semestre);
     }
 
 }
