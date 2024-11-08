@@ -293,16 +293,6 @@ public class EstudianteAPI {
         }
     }
 
-    
-    // @GetMapping("/no_completaron_encuesta")
-    // public ResponseEntity<?> getEstudiantesNoCompletaronEncuesta() {
-    //     try {
-    //         List<Estudiante> estudiantes = estudianteService.findEstudiantesNoCompletaronEncuesta();
-    //         return ResponseEntity.ok(estudiantes);
-    //     } catch (Exception e) {
-    //         return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-    // }
     @GetMapping("/no_completaron_encuesta")
     public ResponseEntity<?> getEstudiantesNoCompletaronEncuesta(
         @RequestParam(required = false) Integer anio,
