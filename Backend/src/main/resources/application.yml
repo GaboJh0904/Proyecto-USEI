@@ -14,9 +14,9 @@ spring:
   #     add-mappings: true
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/proyecto_usei
-    username: postgres
-    password: marceline25
+    url: jdbc:postgresql://localhost:5433/proyecto_usei
+    username: admin
+    password: 12345
     driver-class-name: org.postgresql.Driver
 
   jpa:
