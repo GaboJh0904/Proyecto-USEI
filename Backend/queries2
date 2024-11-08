@@ -1,5 +1,5 @@
 -- Datos Usuario
- INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
         VALUES ('Rosario Calisaya', '67304790', 'rosa26caly@gmail.com', 'Administrador',
         'rosario_calisaya', 'seiya26');
 INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
@@ -38,6 +38,15 @@ INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
 INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
         VALUES ('María López', '64426223', 'maríalópez@gmail.com', 'Director',
         'maría_lópez', 'cKfhduHJZIpaLe7t4Swfnh5piwk');
+
+-- Datos tabla de Plazo
+INSERT INTO Plazo (Fecha_finalizacion, fecha_modificacion, estado, Usuario_id_usuario)
+VALUES ('2024-12-31', CURRENT_DATE, 'Activo', 1);
+
+
+-- ENCUESTA TABLA
+INSERT INTO Encuesta (titulo, descripcion, fecha_modificado, Usuario_id_usuario, Plazo_id_plazo)
+VALUES ('Encuesta a Tiempo de graduación', 'Esta es una encuesta para recolicar la información de nuestros estudiantes, y analizar la satisfaccion y experiencia del estudiante con la universidad', '2024-10-04', 1, 1);
 
 -- Datos tabla Parametros Aviso
 
@@ -341,7 +350,7 @@ INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_perso
 
 -- Datos tabla tipo notificacion
 
-insert into tipo_notificacion (tipo) values ('Encuesta completa')
+insert into tipo_notificacion (tipo) values ('Encuesta completa');
 
 -- Datos tabla noticias
 INSERT INTO Noticias (titulo, descripcion, img, fecha_modificado, estado, Usuario_id_usuario) VALUES ('Doble titulación', 'Doble titulación UCB', 'noticia_titulacion.jpg', '04-10-2024', 'Publicado', 1);
@@ -443,10 +452,6 @@ INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_ce
 INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 28', 'enviado', '2024-01-29', 28, 28);
 INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 29', 'pendiente', '2024-01-30', 29, 29);
 INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 30', 'enviado', '2024-01-01', 30, 30);
-
--- ENCUESTA TABLA
-INSERT INTO Encuesta (titulo, descripcion, fecha_modificado, Usuario_id_usuario)
-VALUES ('Encuesta a Tiempo de graduación', 'Esta es una encuesta para recolicar la información de nuestros estudiantes, y analizar la satisfaccion y experiencia del estudiante con la universidad', '2024-10-04',1);
 
 --PREGUNTAS Tabla: Pregunta
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
@@ -959,7 +964,7 @@ VALUES
 (27, 1, 2024, 1),
 (28, 1, 2024, 1),
 (29, 1, 2024, 1),
-(30, 1, 2024, 1)
+(30, 1, 2024, 1);
 
 -- Datos tabla Parametros Aviso
 INSERT INTO Parametros_Aviso (porcentaje, fecha_cambio, fecha_notificacion, mensaje_predeterminado)
