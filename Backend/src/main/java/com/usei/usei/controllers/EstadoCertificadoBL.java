@@ -92,27 +92,31 @@ public class EstadoCertificadoBL implements EstadoCertificadoService{
             throw new RuntimeException("Estado_Encuesta no encontrado con el id: " + id);
         }
     }
-    @Transactional(readOnly = true)
-    public List<Map<String, Object>> getCertificadosEmitidosPorCarrera(Integer year) {
-        List<Object[]> rawData;
-        
-        if (year == null) {
-            rawData = estadoCertificadoDAO.countCertificadosEmitidosByCarrera("enviado");
-        } else {
-            rawData = estadoCertificadoDAO.countCertificadosEmitidosByCarreraAndYear(year, "enviado");
-        }
-
-        // Convertir List<Object[]> a List<Map<String, Object>>
-        List<Map<String, Object>> resultado = new ArrayList<>();
-        for (Object[] row : rawData) {
-            Map<String, Object> item = new HashMap<>();
-            item.put("carrera", row[0]);  // Carrera
-            item.put("cantidad", row[1]); // Conteo
-            resultado.add(item);
-        }
-
-        return resultado;
+@Transactional(readOnly = true)
+public List<Map<String, Object>> getCertificadosEmitidosPorCarrera(Integer anio, Integer semestre) {
+    List<Object[]> rawData;
+    
+    if (anio == null && semestre == null) {
+        rawData = estadoCertificadoDAO.countCertificadosEmitidosByCarrera("enviado");
+    } else if (anio != null && semestre == null) {
+        rawData = estadoCertificadoDAO.countCertificadosEmitidosByCarreraAndAnio(anio, "enviado");
+    } else if (anio == null && semestre != null) {
+        rawData = estadoCertificadoDAO.countCertificadosEmitidosByCarreraAndSemestre(semestre, "enviado");
+    } else {
+        rawData = estadoCertificadoDAO.countCertificadosEmitidosByCarreraAnioAndSemestre(anio, semestre, "enviado");
     }
+
+    // Convertir List<Object[]> a List<Map<String, Object>>
+    List<Map<String, Object>> resultado = new ArrayList<>();
+    for (Object[] row : rawData) {
+        Map<String, Object> item = new HashMap<>();
+        item.put("carrera", row[0]);  // Carrera
+        item.put("cantidad", row[1]); // Conteo
+        resultado.add(item);
+    }
+
+    return resultado;
+}
 
 
 /* 

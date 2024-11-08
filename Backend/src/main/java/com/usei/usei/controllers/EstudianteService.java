@@ -44,6 +44,11 @@ public interface EstudianteService {
 
     Page<Estudiante> findAll(Pageable pageable); // Obtener todos los estudiantes con paginación
 
-    List<Estudiante> findEstudiantesNoCompletaronEncuesta();
+    //List<Estudiante> findEstudiantesNoCompletaronEncuesta();
+
+    List<Integer> findDistinctAnios();
+    List<Integer> findDistinctSemestres();
+    List<Estudiante> findNoCompletaronEncuestaByAnioAndSemestre(Integer anio, Integer semestre);
+
 
 }

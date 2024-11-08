@@ -165,4 +165,12 @@ public class EstadoEncuestaBL implements EstadoEncuestaService{
         mailSender.send(message);  // Enviar el correo
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public List<EstadoEncuesta> findCompletadasByAnioAndSemestre(Integer anio, Integer semestre) {
+        return estadoEncuestaDAO.findCompletadasByAnioAndSemestre(anio, semestre);
+    }
+    
+
+
 }

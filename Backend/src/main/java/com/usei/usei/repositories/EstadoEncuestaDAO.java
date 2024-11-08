@@ -29,5 +29,10 @@ public interface EstadoEncuestaDAO extends  JpaRepository<EstadoEncuesta, Long> 
 
     Optional<EstadoEncuesta> findByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante);
 
+    @Query("SELECT ee FROM EstadoEncuesta ee WHERE ee.estado = 'Completado' " +
+    "AND (:anio IS NULL OR ee.estudianteIdEstudiante.anio = :anio) " +
+    "AND (:semestre IS NULL OR ee.estudianteIdEstudiante.semestre = :semestre)")
+    List<EstadoEncuesta> findCompletadasByAnioAndSemestre(@Param("anio") Integer anio, @Param("semestre") Integer semestre);
+
 
 }
