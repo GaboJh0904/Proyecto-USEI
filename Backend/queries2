@@ -1,7 +1,7 @@
--- Tabla de usuario
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Jorge Martínez', '65918962', 'jorgemartínez@gmail.com', 'Administrador',
-        'jorge_martínez', 'fuymrmQmulEaBbkyPCZBTi');
+-- Datos Usuario
+ INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Rosario Calisaya', '67304790', 'rosa26caly@gmail.com', 'Administrador',
+        'rosario_calisaya', 'seiya26');
 INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
         VALUES ('Carmen Sánchez', '68969918', 'carmensánchez@gmail.com', 'Director',
         'carmen_sánchez', 'WE1UkLkj8w');
@@ -11,6 +11,33 @@ INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
 INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
         VALUES ('Luis López', '78778064', 'luislópez@yahoo.com', 'Administrador',
         'luis_lópez', 'wKwwfSdZjOamWtl');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Carmen Martínez', '62024309', 'carmenmartínez@hotmail.com', 'Administrador',
+        'carmen_martínez', 'dxvpQYHDCDPpEyiLDAQ3i0Jd5yZyn');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Juan Martínez', '69138559', 'juanmartínez@gmail.com', 'Administrador',
+        'juan_martínez', 'w3MlRYI4OvCacK9Vya6ze');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Jorge Pérez', '66851593', 'jorgepérez@gmail.com', 'Director',
+        'jorge_pérez', 'lAYPuWlAk');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('María Pérez', '70004965', 'maríapérez@gmail.com', 'Director',
+        'maría_pérez', 'GLui3C3vd0');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Carlos Rodríguez', '68132129', 'carlosrodríguez@yahoo.com', 'Director',
+        'carlos_rodríguez', 'oTEq1eBk');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('María González', '71155908', 'maríagonzález@hotmail.com', 'Administrador',
+        'maría_gonzález', 'egSYWWgL');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Ana Pérez', '69255512', 'anapérez@hotmail.com', 'Administrador',
+        'ana_pérez', 'wz6Cz6hJkliZ9nB1u106iTU6');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('Luis Martínez', '61002868', 'luismartínez@hotmail.com', 'Administrador',
+        'luis_martínez', 'R6nAn676KPk2r8CS3RJ11DJ');
+INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
+        VALUES ('María López', '64426223', 'maríalópez@gmail.com', 'Director',
+        'maría_lópez', 'cKfhduHJZIpaLe7t4Swfnh5piwk');
 
 -- Datos tabla Parametros Aviso
 
@@ -933,4 +960,8 @@ VALUES
 (28, 1, 2024, 1),
 (29, 1, 2024, 1),
 (30, 1, 2024, 1)
+
+-- Datos tabla Parametros Aviso
+INSERT INTO Parametros_Aviso (porcentaje, fecha_cambio, fecha_notificacion, mensaje_predeterminado)
+VALUES (70, '2024-11-07', '2024-11-15', 'Estimado estudiante, se le solicita que por favor llene la encuesta a tiempo de graduacion.');
 
