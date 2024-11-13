@@ -15,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import java.time.format.DateTimeFormatter;
+
 
 
 import java.time.LocalDateTime;
@@ -61,14 +63,18 @@ public class SoporteAPI {
             // Obtener el tipo de problema seleccionado
             String problemaSeleccionado = tipoProblema.get().getProblema();
 
+            // Formatear la fecha
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            String fechaFormateada = soporte.getFecha().format(formatter);
+
             // Enviar correo de notificación (opcional)
             emailService.sendEmail(
-                    "willy.vargas@ucb.edu.bo",  // Dirección del encargado de soporte
+                    "misa26amane@gmail.com",  // Dirección del encargado de soporte
                     "Reporte de un nuevo problema",  // Asunto del correo
                     "Descripción del reporte del problema: \n\n" +
                             "Tipo de problema: " + problemaSeleccionado + "\n" +
                             "Mensaje: " + soporte.getMensaje() + "\n" +
-                            "Fecha: " + soporte.getFecha() + "\n" +
+                            "Fecha: " + fechaFormateada + "\n" +
                             "Usuario: " + usuario.get().getNombre()
             );
 
@@ -78,6 +84,7 @@ public class SoporteAPI {
             return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @GetMapping
     public ResponseEntity<?> getAll() {
