@@ -6,6 +6,7 @@ package com.usei.usei.models;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,10 +48,10 @@ public class EstadoEncuesta implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaEstado;
     @JoinColumn(name = "encuesta_id_encuesta", referencedColumnName = "id_encuesta")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Encuesta encuestaIdEncuesta;
     @JoinColumn(name = "estudiante_id_estudiante", referencedColumnName = "id_estudiante")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = true)
     private Estudiante estudianteIdEstudiante;
 
     public Long getEstudianteId() {

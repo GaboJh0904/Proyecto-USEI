@@ -50,11 +50,11 @@ public class EstadoCertificado implements Serializable {
     @Column(name = "fechaEstado")
     @Temporal(TemporalType.DATE)
     private Date fechaEstado;
-    @JoinColumn(name = "certificado_id_certificado", referencedColumnName = "id_certificado")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "certificado_id_certificado", referencedColumnName = "id_certificado", nullable = true)
+    @ManyToOne(optional = true)
     private Certificado certificadoIdCertificado;
-    @JoinColumn(name = "estudiante_id_estudiante", referencedColumnName = "id_estudiante")
-    @ManyToOne(optional = false)
+    @JoinColumn(name = "estudiante_id_estudiante", referencedColumnName = "id_estudiante", nullable = true)
+    @ManyToOne(optional = true)
     private Estudiante estudianteIdEstudiante;
     @Column(name = "correo_enviado")
     private String correoEnviado;
