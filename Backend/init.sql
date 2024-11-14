@@ -40,7 +40,7 @@ CREATE TABLE Estado_Certificado (
     archivo varchar(50)  NOT NULL,
     estado varchar(15)  NOT NULL,
     fecha_estado date  NOT NULL,
-    Certificado_id_certificado int  NOT NULL,
+    Certificado_id_certificado int,
     Estudiante_id_estudiante int  NOT NULL,
     CONSTRAINT Estado_Certificado_pk PRIMARY KEY (id_est_certificado)
 );
@@ -434,9 +434,8 @@ ALTER TABLE Soporte ADD CONSTRAINT Soporte_Usuario
 
 -- End of file.
 
--- TRIGGERS DE LA BASE DE DATOS
-
--- Trigger para registrar el estado de una encuesta para un nuevo estudiante
+-- INICIO DE TRIGGERS
+-- Crear un trigger que registre el estado de una encuesta como "Pendiente" para un nuevo estudiante
 -- Paso 1: Crear la función para el trigger
 CREATE OR REPLACE FUNCTION registrar_estado_encuesta()
 RETURNS TRIGGER AS $$
@@ -462,3 +461,61 @@ CREATE TRIGGER trigger_registrar_estado_encuesta
 AFTER INSERT ON Estudiante
 FOR EACH ROW
 EXECUTE FUNCTION registrar_estado_encuesta();
+
+-- Crear un trigger que inserte un nuevo registro en Estado_Certificado con el estado "Pendiente" para un nuevo estudiante
+-- Paso 1: Crear la función para insertar en Estado_Certificado
+CREATE OR REPLACE FUNCTION insertar_estado_certificado()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO Estado_Certificado (
+        archivo, estado, fecha_estado, Certificado_id_certificado, Estudiante_id_estudiante
+    ) VALUES (
+        '',               -- archivo vacío
+        'Pendiente',      -- estado
+        CURRENT_DATE,     -- fecha_estado con la fecha actual
+        NULL,             -- Certificado_id_certificado vacío (NULL)
+        NEW.id_estudiante -- id del estudiante recién insertado
+    );
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Paso 2: Crear el trigger que llama a la función después de insertar en Estudiante
+CREATE TRIGGER trigger_estado_certificado
+AFTER INSERT ON Estudiante
+FOR EACH ROW
+EXECUTE FUNCTION insertar_estado_certificado();
+
+-- Trigger para eliminar registros relacionados en Estado_Encuesta y Estado_Certificado antes de eliminar un estudiante
+-- Crear la función para eliminar registros en Estado_Encuesta
+CREATE OR REPLACE FUNCTION eliminar_estado_encuesta()
+RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM Estado_Encuesta
+    WHERE Estudiante_id_estudiante = OLD.id_estudiante;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Crear el trigger para eliminar en Estado_Encuesta antes de eliminar un estudiante
+CREATE TRIGGER trigger_eliminar_estado_encuesta
+BEFORE DELETE ON Estudiante
+FOR EACH ROW
+EXECUTE FUNCTION eliminar_estado_encuesta();
+
+
+-- Crear la función para eliminar registros en Estado_Certificado
+CREATE OR REPLACE FUNCTION eliminar_estado_certificado()
+RETURNS TRIGGER AS $$
+BEGIN
+    DELETE FROM Estado_Certificado
+    WHERE Estudiante_id_estudiante = OLD.id_estudiante;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Crear el trigger para eliminar en Estado_Certificado antes de eliminar un estudiante
+CREATE TRIGGER trigger_eliminar_estado_certificado
+BEFORE DELETE ON Estudiante
+FOR EACH ROW
+EXECUTE FUNCTION eliminar_estado_certificado();

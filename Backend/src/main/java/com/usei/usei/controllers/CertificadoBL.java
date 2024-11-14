@@ -148,9 +148,8 @@ public class CertificadoBL implements CertificadoService{
                  .orElseThrow(() -> new RuntimeException(
                          "Estado de encuesta no encontrado para el estudiante con ID: " + idEstudiante));
 
-         if (!"completado".equalsIgnoreCase(estadoEncuesta.getEstado())) {
-             System.out.println("No se puede enviar el certificado. El estado de la encuesta no está completado.");
-             return;
+         if (!"Completado".equalsIgnoreCase(estadoEncuesta.getEstado())) {
+             throw new RuntimeException("No se puede enviar el certificado. El estado de la encuesta no está completado.");
          }
 
          // Verificar el estado del certificado
@@ -166,9 +165,8 @@ public class CertificadoBL implements CertificadoService{
          String correoAnterior = estadoCertificado.getCorreoEnviado();
 
          // Permitir envío solo si no ha sido enviado o si el correo es nuevo
-         if ("enviado".equalsIgnoreCase(estadoCertificado.getEstado()) && nuevoCorreo.equals(correoAnterior)) {
-             System.out.println("No se puede enviar el certificado. Ya ha sido enviado anteriormente al mismo correo.");
-             return;
+         if ("Enviado".equalsIgnoreCase(estadoCertificado.getEstado()) && nuevoCorreo.equals(correoAnterior)) {
+             throw new RuntimeException("No se puede enviar el certificado. Ya ha sido enviado anteriormente al mismo correo.");
          }
 
          String asunto = "Certificado Académico";
@@ -196,8 +194,9 @@ public class CertificadoBL implements CertificadoService{
          sendCertificadoEmail(nuevoCorreo, asunto, mensaje, attachmentPath, fileName);
 
          // Actualizar el estado del certificado a "enviado"
-         estadoCertificado.setEstado("enviado");
+         estadoCertificado.setEstado("Enviado");
          estadoCertificado.setArchivo(fileName);
+         estadoCertificado.setCertificadoIdCertificado(certificado);
          estadoCertificado.setCorreoEnviado(nuevoCorreo); // Guardar el nuevo correo al que se envió
          estadoCertificadoDAO.save(estadoCertificado); // Guardar los cambios en la base de datos
 
