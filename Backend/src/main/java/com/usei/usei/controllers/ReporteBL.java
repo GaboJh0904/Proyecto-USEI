@@ -7,11 +7,6 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.usei.usei.models.Pregunta;
 import com.usei.usei.models.Reporte;
 import com.usei.usei.models.Respuesta;
@@ -171,9 +170,6 @@ public class ReporteBL implements ReporteService {
             }
 
             document.close();
-
-            // Guardar el reporte
-            save(reporte);
 
             return fileName;
         } catch (DocumentException | IOException e) {

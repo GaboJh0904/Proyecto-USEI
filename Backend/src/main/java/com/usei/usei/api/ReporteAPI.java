@@ -1,5 +1,9 @@
 package com.usei.usei.api;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -9,6 +13,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -62,15 +68,15 @@ public class ReporteAPI {
     public ResponseEntity<?> creacionDashboard(
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
-            @RequestParam("fecha") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fecha,
+            @RequestParam("fecha") OffsetDateTime fecha,
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
         try {
-            System.out.println("Generando PDF de dashboard...");
             Reporte reporte = new Reporte();
             reporte.setTitulo(titulo);
             reporte.setDescripcion(descripcion);
-            reporte.setFecha(fecha);
+            // Convertir OffsetDateTime a LocalDateTime o Date según sea necesario
+            reporte.setFecha(Date.from(fecha.toInstant()));
 
             Usuario usuario = new Usuario();
             usuario.setIdUsuario(usuarioId);
@@ -79,6 +85,7 @@ public class ReporteAPI {
             // Llamar al servicio para generar el PDF y guardar el reporte
             String pdfPath = reporteService.generateDashboardPDF(reporte);
             reporte.setFormato(pdfPath);
+            reporteService.save(reporte);
 
             return new ResponseEntity<>(new MessageResponse("Reporte y PDF generados con éxito"), HttpStatus.CREATED);
         } catch (Exception e) {
@@ -173,6 +180,44 @@ public class ReporteAPI {
             return new ResponseEntity<>(new MessageResponse("Reporte eliminada"), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(new MessageResponse("Reporte no encontrada"), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/download/{id_reporte}")
+    public ResponseEntity<byte[]> descargarReporte(@PathVariable Long id_reporte) {
+        try {
+            Optional<Reporte> reporteOpt = reporteService.findById(id_reporte);
+            if (!reporteOpt.isPresent()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                    .body(null);
+            }
+
+            Reporte reporte = reporteOpt.get();
+
+            // Ruta del archivo en el sistema
+            String filePath = "src/main/resources/static/documents/reportes/" + reporte.getFormato();
+            File file = new File(filePath);
+
+            if (!file.exists()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                    .body(null);
+            }
+
+            // Leer el archivo en bytes
+            byte[] fileBytes = Files.readAllBytes(file.toPath());
+
+            // Configurar headers para la respuesta
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_PDF);
+            headers.setContentDisposition(ContentDisposition.builder("attachment")
+                                                            .filename(file.getName())
+                                                            .build());
+
+            return new ResponseEntity<>(fileBytes, headers, HttpStatus.OK);
+
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                .body(null);
         }
     }
 
