@@ -16,9 +16,6 @@ import com.usei.usei.models.Respuesta;
 public interface RespuestaDAO extends JpaRepository<Respuesta, Long>, JpaSpecificationExecutor<Respuesta> {
     boolean existsByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante);
 
-
-    
-
     // Obtener lista de estudiantes que completaron la encuesta
     @Query("SELECT DISTINCT e FROM Respuesta r JOIN r.estudianteIdEstudiante e")
     List<Estudiante> findEstudiantesQueCompletaronEncuesta();

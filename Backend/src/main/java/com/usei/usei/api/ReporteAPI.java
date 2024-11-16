@@ -32,7 +32,7 @@ public class ReporteAPI {
     @Autowired
     private ReporteService reporteService;
 
-    // Crear una nueva noticia
+    // Crear un nuevo reporte
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> creacion(
             @RequestParam("formato") MultipartFile file,
@@ -58,6 +58,33 @@ public class ReporteAPI {
         }
     }
 
+    @PostMapping("/generate-dashboard")
+    public ResponseEntity<?> creacionDashboard(
+            @RequestParam("titulo") String titulo,
+            @RequestParam("descripcion") String descripcion,
+            @RequestParam("fecha") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fecha,
+            @RequestParam("UsuarioIdUsuario") Long usuarioId) {
+
+        try {
+            System.out.println("Generando PDF de dashboard...");
+            Reporte reporte = new Reporte();
+            reporte.setTitulo(titulo);
+            reporte.setDescripcion(descripcion);
+            reporte.setFecha(fecha);
+
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(usuarioId);
+            reporte.setUsuarioIdUsuario(usuario);
+
+            // Llamar al servicio para generar el PDF y guardar el reporte
+            String pdfPath = reporteService.generateDashboardPDF(reporte);
+            reporte.setFormato(pdfPath);
+
+            return new ResponseEntity<>(new MessageResponse("Reporte y PDF generados con éxito"), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new MessageResponse("Error: " + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     // Actualizar una reporte
     @PutMapping("/{id_reporte}")

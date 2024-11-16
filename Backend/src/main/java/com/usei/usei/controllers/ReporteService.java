@@ -31,4 +31,7 @@ public interface ReporteService {
     // Paginación de reporte existentes
     Page<Reporte> findAll(Pageable pageable);
 
+    // Generar PDF de reporte
+    public String generateDashboardPDF(Reporte reporte);
+
 }
