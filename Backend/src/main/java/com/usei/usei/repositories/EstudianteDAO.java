@@ -42,6 +42,17 @@ public interface EstudianteDAO extends  JpaRepository<Estudiante, Long> {
        "AND (:semestre IS NULL OR e.semestre = :semestre)")
 List<Estudiante> findNoCompletaronEncuestaByAnioAndSemestre(@Param("anio") Integer anio, @Param("semestre") Integer semestre);
 
+    
+    @Query("SELECT op.opcion, COUNT(e) " +
+    "FROM Estudiante e " +
+    "JOIN e.estadoEncuestaCollection ee " +
+    "JOIN ee.encuestaIdEncuesta en " +
+    "JOIN en.preguntas p " +
+    "JOIN p.respuestaCollection r " +
+    "JOIN r.opcionesPregunta op " +
+    "WHERE p.numPregunta = 7 AND ee.estado = 'Completado' " +
+    "GROUP BY op.opcion")
+    List<Object[]> countEstudiantesCompletaronEncuestaByGenero();
 
 }
  

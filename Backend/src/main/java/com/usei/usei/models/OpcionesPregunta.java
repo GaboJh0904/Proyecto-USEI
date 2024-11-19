@@ -15,7 +15,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.List;
+
 
 /**
  *
@@ -41,6 +44,9 @@ public class OpcionesPregunta implements Serializable {
     @JoinColumn(name = "pregunta_id_pregunta", referencedColumnName = "id_pregunta")
     @ManyToOne(optional = false)
     private Pregunta preguntaIdPregunta;
+    @OneToMany(mappedBy = "opcionesPregunta")
+    private List<Respuesta> respuestaCollection;
+
 
     public OpcionesPregunta() {
     }

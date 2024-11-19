@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.usei.usei.controllers.EstudianteBL;
 import com.usei.usei.controllers.EstudianteService;
 import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
@@ -50,6 +51,10 @@ public class EstudianteAPI {
 
     @Autowired
     private TokenGenerator tokenGenerator;
+
+
+    @Autowired
+    private EstudianteBL estudianteBL;
 
     // Crear un nuevo estudiante
     @PostMapping
@@ -342,5 +347,12 @@ public ResponseEntity<?> getOpcionesFiltro() {
         estudianteService.save(estudianteExistente);
         return ResponseEntity.ok(estudianteExistente);
     }
+
+    @GetMapping("/countByGenero")
+    public ResponseEntity<?> countEstudiantesByGenero() {
+        List<Object[]> result = estudianteService.getEstudiantesCompletaronEncuestaByGenero();
+        return ResponseEntity.ok(result);
+    }
+
 
 }

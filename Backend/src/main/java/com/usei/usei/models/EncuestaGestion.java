@@ -48,6 +48,11 @@ public class EncuestaGestion implements Serializable {
     @JoinColumn(name = "pregunta_id_pregunta", referencedColumnName = "id_pregunta")
     @ManyToOne(optional = false)
     private Pregunta preguntaIdPregunta;
+    @JoinColumn(name = "encuesta_id_encuesta", referencedColumnName = "id_encuesta", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Encuesta encuesta;
+
+
 
     public EncuestaGestion() {
     }

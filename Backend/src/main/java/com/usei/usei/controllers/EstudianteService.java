@@ -49,6 +49,8 @@ public interface EstudianteService {
     List<Integer> findDistinctAnios();
     List<Integer> findDistinctSemestres();
     List<Estudiante> findNoCompletaronEncuestaByAnioAndSemestre(Integer anio, Integer semestre);
+    List<Object[]> getEstudiantesCompletaronEncuestaByGenero();
+
 
 
 }
