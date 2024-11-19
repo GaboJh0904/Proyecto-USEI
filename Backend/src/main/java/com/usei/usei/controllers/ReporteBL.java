@@ -1,12 +1,25 @@
 package com.usei.usei.controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtils;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,12 +29,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.usei.usei.models.EstadoEncuesta;
 import com.usei.usei.models.Pregunta;
 import com.usei.usei.models.Reporte;
 import com.usei.usei.models.Respuesta;
 import com.usei.usei.models.Usuario;
+import com.usei.usei.repositories.EstadoEncuestaDAO;
 import com.usei.usei.repositories.PreguntaDAO;
 import com.usei.usei.repositories.ReporteDAO;
 import com.usei.usei.repositories.RespuestaDAO;
@@ -33,13 +49,15 @@ public class ReporteBL implements ReporteService {
     private final UsuarioService usuarioService;
     private final PreguntaDAO preguntaDAO;
     private final RespuestaDAO respuestaDAO;
+    private final EstadoEncuestaDAO estadoEncuestaDAO;
 
     @Autowired
-    public ReporteBL(ReporteDAO reporteDAO, UsuarioService usuarioService, PreguntaDAO preguntaDAO, RespuestaDAO respuestaDAO) {
+    public ReporteBL(ReporteDAO reporteDAO, UsuarioService usuarioService, PreguntaDAO preguntaDAO, RespuestaDAO respuestaDAO, EstadoEncuestaDAO estadoEncuestaDAO) {
         this.reporteDAO = reporteDAO;
         this.usuarioService = usuarioService;
         this.preguntaDAO = preguntaDAO;
         this.respuestaDAO = respuestaDAO;
+        this.estadoEncuestaDAO = estadoEncuestaDAO;
     }
 
     @Override
@@ -142,8 +160,9 @@ public class ReporteBL implements ReporteService {
     public String generateDashboardPDF(Reporte reporte, String carrera) {
         try {
             // Obtener datos de la base de datos (Preguntas, Respuestas, etc.)
-            List<Pregunta> preguntas = preguntaDAO.findAll(); // Supongamos que tienes un DAO para Pregunta
-            List<Respuesta> respuestas = respuestaDAO.findByCarreraFromEstudiante(carrera); // Supongamos que tienes un DAO para Respuesta
+            List<Pregunta> preguntas = preguntaDAO.findAll();
+            List<Respuesta> respuestas = respuestaDAO.findByCarreraFromEstudiante(carrera);
+            List<EstadoEncuesta> estadosEncuesta = estadoEncuestaDAO.findByEstadoFromEstudiante(carrera);
 
             // Generar contenido del PDF
             String directory = "src/main/resources/static/documents/reportes/";
@@ -158,22 +177,66 @@ public class ReporteBL implements ReporteService {
             document.add(new Paragraph("Descripción: " + reporte.getDescripcion()));
             document.add(new Paragraph("Fecha: " + reporte.getFecha()));
 
-            // Agregar información de las preguntas y respuestas
-            document.add(new Paragraph("Preguntas y Respuestas:"));
+            // Crear un gráfico de torta para los estados de encuesta
+            DefaultPieDataset pieDataset = new DefaultPieDataset();
+            long pendientes = estadosEncuesta.stream().filter(e -> "Pendiente".equals(e.getEstado())).count();
+            long completados = estadosEncuesta.stream().filter(e -> "Completado".equals(e.getEstado())).count();
+            pieDataset.setValue("Pendiente", pendientes);
+            pieDataset.setValue("Completado", completados);
+
+            JFreeChart pieChart = ChartFactory.createPieChart(
+                    "Estudiantes pendientes a completar la encuesta", 
+                    pieDataset, 
+                    true, 
+                    true, 
+                    false
+            );
+
+            PiePlot plot = (PiePlot) pieChart.getPlot();
+            plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}: {1} ({2})"));
+
+            BufferedImage pieChartImage = pieChart.createBufferedImage(500, 300);
+            ByteArrayOutputStream pieChartBaos = new ByteArrayOutputStream();
+            ChartUtils.writeBufferedImageAsPNG(pieChartBaos, pieChartImage);
+            Image pieChartPdfImage = Image.getInstance(pieChartBaos.toByteArray());
+            document.add(pieChartPdfImage);
+
+            // Crear un gráfico de barras para cada pregunta
             for (Pregunta pregunta : preguntas) {
-                document.add(new Paragraph("Pregunta: " + pregunta.getPregunta()));
-                for (Respuesta respuesta : respuestas) {
-                    if (respuesta.getPreguntaIdPregunta().getIdPregunta().equals(pregunta.getIdPregunta())) {
-                        document.add(new Paragraph(" - Respuesta: " + respuesta.getRespuesta()));
-                    }
-                }
+                DefaultCategoryDataset barDataset = new DefaultCategoryDataset();
+
+                // Filtrar respuestas por pregunta y agrupar por respuesta
+                Map<String, Long> respuestaCount = respuestas.stream()
+                    .filter(r -> Objects.equals(r.getPreguntaIdPregunta().getIdPregunta(), pregunta.getIdPregunta()))
+                    .collect(Collectors.groupingBy(Respuesta::getRespuesta, Collectors.counting()));
+
+                // Agregar datos al dataset
+                respuestaCount.forEach((respuesta, count) -> barDataset.addValue(count, "Respuestas", respuesta));
+
+                // Crear el gráfico de barras
+                JFreeChart barChart = ChartFactory.createBarChart(
+                        pregunta.getPregunta(), // Título del gráfico
+                        "Respuestas", // Etiqueta del eje X
+                        "Cantidad", // Etiqueta del eje Y
+                        barDataset, 
+                        PlotOrientation.VERTICAL, 
+                        true, 
+                        true, 
+                        false
+                );
+
+                BufferedImage barChartImage = barChart.createBufferedImage(500, 300);
+                ByteArrayOutputStream barChartBaos = new ByteArrayOutputStream();
+                ChartUtils.writeBufferedImageAsPNG(barChartBaos, barChartImage);
+                Image barChartPdfImage = Image.getInstance(barChartBaos.toByteArray());
+                document.add(barChartPdfImage);
             }
 
             document.close();
-
-            return fileName;
+            return filePath.toString();
         } catch (DocumentException | IOException e) {
-            throw new RuntimeException("Error al generar el PDF", e);
+            e.printStackTrace();
+            return null;
         }
     }
 
