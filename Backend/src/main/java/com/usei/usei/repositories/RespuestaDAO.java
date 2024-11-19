@@ -16,9 +16,6 @@ import com.usei.usei.models.Respuesta;
 public interface RespuestaDAO extends JpaRepository<Respuesta, Long>, JpaSpecificationExecutor<Respuesta> {
     boolean existsByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante);
 
-
-    
-
     // Obtener lista de estudiantes que completaron la encuesta
     @Query("SELECT DISTINCT e FROM Respuesta r JOIN r.estudianteIdEstudiante e")
     List<Estudiante> findEstudiantesQueCompletaronEncuesta();
@@ -38,7 +35,9 @@ public interface RespuestaDAO extends JpaRepository<Respuesta, Long>, JpaSpecifi
     Page<Respuesta> findRespuestasByEstudianteIdAndSearchQuery(@Param("idEstudiante") Long idEstudiante, @Param("searchQuery") String searchQuery, Pageable pageable);
 
 
-    ///
+    @Query("SELECT r FROM Respuesta r JOIN r.estudianteIdEstudiante e WHERE e.carrera = :carrera")
+    List<Respuesta> findByCarreraFromEstudiante(@Param("carrera") String carrera);
+
 
 
 

@@ -2,8 +2,20 @@ package com.usei.usei.models;
 
 import java.io.Serializable;
 import java.util.Collection;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
@@ -13,6 +25,7 @@ import jakarta.persistence.*;
         @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre"),
         @NamedQuery(name = "Usuario.findByTelefono", query = "SELECT u FROM Usuario u WHERE u.telefono = :telefono"),
         @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo"),
+        @NamedQuery(name = "Usuario.findByCarrera", query = "SELECT u FROM Usuario u WHERE u.carrera = :carrera"),
         @NamedQuery(name = "Usuario.findByRol", query = "SELECT u FROM Usuario u WHERE u.rol = :rol"),
         @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario"),
         @NamedQuery(name = "Usuario.findByContrasenia", query = "SELECT u FROM Usuario u WHERE u.contrasenia = :contrasenia")
@@ -37,6 +50,10 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "correo")
     private String correo;
+
+    @Basic(optional = true)
+    @Column(name = "carrera")
+    private String carrera;
 
     @Basic(optional = false)
     @Column(name = "rol")
@@ -78,11 +95,12 @@ public class Usuario implements Serializable {
     // Constructores
     public Usuario() {}
 
-    public Usuario(Long idUsuario, String nombre, int telefono, String correo, String rol, String usuario, String contrasenia) {
+    public Usuario(Long idUsuario, String nombre, int telefono, String correo, String carrera, String rol, String usuario, String contrasenia) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.telefono = telefono;
         this.correo = correo;
+        this.carrera = carrera;
         this.rol = rol;
         this.usuario = usuario;
         this.contrasenia = contrasenia;
@@ -119,6 +137,14 @@ public class Usuario implements Serializable {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
     }
 
     public String getRol() {
