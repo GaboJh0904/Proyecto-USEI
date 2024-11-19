@@ -69,6 +69,7 @@ public class ReporteAPI {
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
             @RequestParam("fecha") OffsetDateTime fecha,
+            @RequestParam("carrera") String carrera,
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
         try {
@@ -83,7 +84,7 @@ public class ReporteAPI {
             reporte.setUsuarioIdUsuario(usuario);
 
             // Llamar al servicio para generar el PDF y guardar el reporte
-            String pdfPath = reporteService.generateDashboardPDF(reporte);
+            String pdfPath = reporteService.generateDashboardPDF(reporte, carrera);
             reporte.setFormato(pdfPath);
             reporteService.save(reporte);
 

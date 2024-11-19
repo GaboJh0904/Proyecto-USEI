@@ -139,11 +139,11 @@ public class ReporteBL implements ReporteService {
 
     @Override
     @Transactional
-    public String generateDashboardPDF(Reporte reporte) {
+    public String generateDashboardPDF(Reporte reporte, String carrera) {
         try {
             // Obtener datos de la base de datos (Preguntas, Respuestas, etc.)
             List<Pregunta> preguntas = preguntaDAO.findAll(); // Supongamos que tienes un DAO para Pregunta
-            List<Respuesta> respuestas = respuestaDAO.findAll(); // Supongamos que tienes un DAO para Respuesta
+            List<Respuesta> respuestas = respuestaDAO.findByCarreraFromEstudiante(carrera); // Supongamos que tienes un DAO para Respuesta
 
             // Generar contenido del PDF
             String directory = "src/main/resources/static/documents/reportes/";
