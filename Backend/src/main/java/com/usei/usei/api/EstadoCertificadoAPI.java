@@ -247,23 +247,29 @@ public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
         @RequestParam(defaultValue = "5") int size,
         @RequestParam(defaultValue = "fechaEstado") String sortBy,
         @RequestParam(defaultValue = "asc") String sortDirection,
-        @RequestParam(required = false) String estado
+        @RequestParam(required = false) String estado,
+        @RequestParam(required = false) String searchQuery
 ) {
     Pageable pageable;
+    Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+            ? Sort.by(sortBy).ascending()
+            : Sort.by(sortBy).descending();
+    pageable = PageRequest.of(page, size, sort);
 
-    if ("nombre".equalsIgnoreCase(sortBy)) {
-        pageable = PageRequest.of(page, size); // Sin especificar sort, usaremos el query personalizado
-        Page<EstadoCertificado> result = estadoCertificadoService.findAllOrderByNombre(pageable);
-        return ResponseEntity.ok(result);
+    Page<EstadoCertificado> result;
+
+    // Lógica para manejar diferentes combinaciones de filtros
+    if (searchQuery != null && !searchQuery.isEmpty() && estado != null && !estado.isEmpty()) {
+        result = estadoCertificadoService.findByEstadoAndNombre(estado, searchQuery, pageable);
+    } else if (searchQuery != null && !searchQuery.isEmpty()) {
+        result = estadoCertificadoService.findByNombreEstudiante(searchQuery, pageable);
+    } else if (estado != null && !estado.isEmpty()) {
+        result = estadoCertificadoService.findByEstado(estado, pageable);
     } else {
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
-                ? Sort.by(sortBy).ascending()
-                : Sort.by(sortBy).descending();
-        pageable = PageRequest.of(page, size, sort);
-
-        Page<EstadoCertificado> result = estadoCertificadoService.findByEstado(estado, pageable);
-        return ResponseEntity.ok(result);
+        result = estadoCertificadoService.findAll(pageable);
     }
+
+    return ResponseEntity.ok(result);
 }
 
 

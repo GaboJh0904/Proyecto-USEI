@@ -149,7 +149,7 @@ public List<Map<String, Object>> getCertificadosEmitidosPorCarrera(Integer anio,
 
     @Override
     public Page<EstadoCertificado> findByEstadoAndNombre(String estado, String nombre, Pageable pageable) {
-        return estadoCertificadoDAO.findByEstadoAndNombre(estado, nombre, pageable);
+        return estadoCertificadoDAO.findByNombreAndEstado(nombre, estado, pageable);
     }
 
     @Override

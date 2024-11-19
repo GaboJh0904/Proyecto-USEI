@@ -41,9 +41,13 @@ List<Object[]> countCertificadosEmitidosByCarreraAnioAndSemestre(@Param("anio") 
     Page<EstadoCertificado> findByNombreEstudiante(@Param("nombre") String nombre, Pageable pageable);
 
     // Buscar por estado y nombre del estudiante
-    @Query("SELECT ec FROM EstadoCertificado ec WHERE LOWER(ec.estado) LIKE LOWER(CONCAT('%', :estado, '%')) AND LOWER(ec.estudianteIdEstudiante.nombre) LIKE LOWER(CONCAT('%', :nombre, '%'))")
-    Page<EstadoCertificado> findByEstadoAndNombre(@Param("estado") String estado, @Param("nombre") String nombre, Pageable pageable);
-
+    @Query("SELECT e FROM EstadoCertificado e JOIN e.estudianteIdEstudiante est " +
+            "WHERE LOWER(est.nombre) LIKE LOWER(CONCAT('%', :searchQuery, '%')) " +
+            "AND (:estado IS NULL OR e.estado = :estado) " +
+            "ORDER BY est.nombre ASC")
+    Page<EstadoCertificado> findByNombreAndEstado(@Param("searchQuery") String searchQuery,
+                                                  @Param("estado") String estado,
+                                                  Pageable pageable);
     // Todos los certificados (con paginación)
     Page<EstadoCertificado> findAll(Pageable pageable);
 
