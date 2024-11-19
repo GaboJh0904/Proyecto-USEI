@@ -144,7 +144,13 @@ public List<Map<String, Object>> getCertificadosEmitidosPorCarrera(Integer anio,
 
     @Override
     public Page<EstadoCertificado> findByNombreEstudiante(String nombre, Pageable pageable) {
-        return estadoCertificadoDAO.findByNombreEstudiante(nombre, pageable);
+        return null;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<EstadoCertificado> findByNombreCompletoEstudiante(String searchQuery, Pageable pageable) {
+        return estadoCertificadoDAO.findByNombreCompletoEstudiante(searchQuery, pageable);
     }
 
     @Override
@@ -156,12 +162,6 @@ public List<Map<String, Object>> getCertificadosEmitidosPorCarrera(Integer anio,
     public Page<EstadoCertificado> findAll(Pageable pageable) {
         return estadoCertificadoDAO.findAll(pageable);
     }
-
-    @Override
-    public Page<EstadoCertificado> findAllOrderByNombre(Pageable pageable) {
-        return estadoCertificadoDAO.findAllOrderByNombre(pageable);
-    }
-
 
 
 }

@@ -250,6 +250,13 @@ public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
         @RequestParam(required = false) String estado,
         @RequestParam(required = false) String searchQuery
 ) {
+    System.out.println("Página solicitada: " + page);
+    System.out.println("Tamaño de página: " + size);
+    System.out.println("Ordenar por: " + sortBy);
+    System.out.println("Dirección: " + sortDirection);
+    System.out.println("Estado: " + estado);
+    System.out.println("Query de búsqueda: " + searchQuery);
+
     Pageable pageable;
     Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
             ? Sort.by(sortBy).ascending()
@@ -258,11 +265,10 @@ public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
 
     Page<EstadoCertificado> result;
 
-    // Lógica para manejar diferentes combinaciones de filtros
     if (searchQuery != null && !searchQuery.isEmpty() && estado != null && !estado.isEmpty()) {
         result = estadoCertificadoService.findByEstadoAndNombre(estado, searchQuery, pageable);
     } else if (searchQuery != null && !searchQuery.isEmpty()) {
-        result = estadoCertificadoService.findByNombreEstudiante(searchQuery, pageable);
+        result = estadoCertificadoService.findByNombreCompletoEstudiante(searchQuery, pageable);
     } else if (estado != null && !estado.isEmpty()) {
         result = estadoCertificadoService.findByEstado(estado, pageable);
     } else {
@@ -271,6 +277,5 @@ public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
 
     return ResponseEntity.ok(result);
 }
-
 
 }

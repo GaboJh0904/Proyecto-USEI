@@ -35,6 +35,7 @@ public interface EstadoCertificadoService {
 
     Page<EstadoCertificado> findAll(Pageable pageable);
 
+    Page<EstadoCertificado> findByNombreCompletoEstudiante(String searchQuery, Pageable pageable);
 
-    Page<EstadoCertificado> findAllOrderByNombre(Pageable pageable);
+
 }

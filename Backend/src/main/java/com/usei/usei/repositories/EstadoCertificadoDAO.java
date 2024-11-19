@@ -36,9 +36,13 @@ List<Object[]> countCertificadosEmitidosByCarreraAnioAndSemestre(@Param("anio") 
     // Buscar por estado
     Page<EstadoCertificado> findByEstadoContainingIgnoreCase(String estado, Pageable pageable);
 
-    // Buscar por nombre del estudiante
-    @Query("SELECT ec FROM EstadoCertificado ec WHERE LOWER(ec.estudianteIdEstudiante.nombre) LIKE LOWER(CONCAT('%', :nombre, '%'))")
-    Page<EstadoCertificado> findByNombreEstudiante(@Param("nombre") String nombre, Pageable pageable);
+    // Buscar por nombre y apellido del estudiante
+    @Query("SELECT ec FROM EstadoCertificado ec " +
+            "WHERE LOWER(FUNCTION('TRANSLATE', CONCAT(ec.estudianteIdEstudiante.nombre, ' ', ec.estudianteIdEstudiante.apellido), " +
+            "'áéíóúÁÉÍÓÚ', 'aeiouAEIOU')) " +
+            "LIKE LOWER(FUNCTION('TRANSLATE', CONCAT('%', :searchQuery, '%'), 'áéíóúÁÉÍÓÚ', 'aeiouAEIOU'))")
+    Page<EstadoCertificado> findByNombreCompletoEstudiante(@Param("searchQuery") String searchQuery, Pageable pageable);
+
 
     // Buscar por estado y nombre del estudiante
     @Query("SELECT e FROM EstadoCertificado e JOIN e.estudianteIdEstudiante est " +
