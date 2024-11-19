@@ -4,6 +4,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,7 +37,8 @@ public class EstadoCertificadoBL implements EstadoCertificadoService{
     public Optional<EstadoCertificado> findByEstudianteId(Long idEstudiante) {
         return estadoCertificadoDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante);
     }
-    
+
+
 
     @Override
     @Transactional(readOnly = true)
@@ -133,6 +136,27 @@ public List<Map<String, Object>> getCertificadosEmitidosPorCarrera(Integer anio,
         return estadoEncuestaDAO.findByEstado("Completado");
     }
 */
+
+    @Override
+    public Page<EstadoCertificado> findByEstado(String estado, Pageable pageable) {
+        return estadoCertificadoDAO.findByEstadoContainingIgnoreCase(estado, pageable);
+    }
+
+    @Override
+    public Page<EstadoCertificado> findByNombreEstudiante(String nombre, Pageable pageable) {
+        return estadoCertificadoDAO.findByNombreEstudiante(nombre, pageable);
+    }
+
+    @Override
+    public Page<EstadoCertificado> findByEstadoAndNombre(String estado, String nombre, Pageable pageable) {
+        return estadoCertificadoDAO.findByEstadoAndNombre(estado, nombre, pageable);
+    }
+
+    @Override
+    public Page<EstadoCertificado> findAll(Pageable pageable) {
+        return estadoCertificadoDAO.findAll(pageable);
+    }
+
 
 
 }
