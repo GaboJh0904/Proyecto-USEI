@@ -53,8 +53,8 @@ public class EstadoCertificado implements Serializable {
     @JoinColumn(name = "certificado_id_certificado", referencedColumnName = "id_certificado", nullable = true)
     @ManyToOne(optional = true)
     private Certificado certificadoIdCertificado;
-    @JoinColumn(name = "estudiante_id_estudiante", referencedColumnName = "id_estudiante", nullable = true)
     @ManyToOne(optional = true)
+    @JoinColumn(name = "estudiante_id_estudiante", referencedColumnName = "id_estudiante", nullable = true)
     private Estudiante estudianteIdEstudiante;
     @Column(name = "correo_enviado")
     private String correoEnviado;

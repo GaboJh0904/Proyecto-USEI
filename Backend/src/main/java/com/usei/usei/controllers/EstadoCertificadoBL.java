@@ -157,6 +157,11 @@ public List<Map<String, Object>> getCertificadosEmitidosPorCarrera(Integer anio,
         return estadoCertificadoDAO.findAll(pageable);
     }
 
+    @Override
+    public Page<EstadoCertificado> findAllOrderByNombre(Pageable pageable) {
+        return estadoCertificadoDAO.findAllOrderByNombre(pageable);
+    }
+
 
 
 }

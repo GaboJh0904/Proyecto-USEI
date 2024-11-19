@@ -28,11 +28,13 @@ public interface EstadoCertificadoService {
 
     Page<EstadoCertificado> findByEstado(String estado, Pageable pageable);
 
+
     Page<EstadoCertificado> findByNombreEstudiante(String nombre, Pageable pageable);
 
     Page<EstadoCertificado> findByEstadoAndNombre(String estado, String nombre, Pageable pageable);
 
     Page<EstadoCertificado> findAll(Pageable pageable);
-    
-    
+
+
+    Page<EstadoCertificado> findAllOrderByNombre(Pageable pageable);
 }

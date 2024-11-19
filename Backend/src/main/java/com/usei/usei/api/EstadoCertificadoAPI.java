@@ -240,40 +240,31 @@ public ResponseEntity<?> enviarCertificado() {
     }
 }
 */
-    //Paginacion,filtraod y ordenacion por estado o nombre estudiante
-    @GetMapping("/paginado")
-    public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "fechaEstado") String sortBy,  // Campo para ordenar
-            @RequestParam(defaultValue = "asc") String sortDirection,  // Dirección de orden (asc o desc)
-            @RequestParam(required = false) String filter,  // Filtro opcional para el estado
-            @RequestParam(required = false) String nombreEstudiante  // Filtro opcional por nombre
-    ) {
+    //Paginacion,filtrado y ordenacion por estado o nombre estudiante
+@GetMapping("/paginado")
+public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "5") int size,
+        @RequestParam(defaultValue = "fechaEstado") String sortBy,
+        @RequestParam(defaultValue = "asc") String sortDirection,
+        @RequestParam(required = false) String estado
+) {
+    Pageable pageable;
+
+    if ("nombre".equalsIgnoreCase(sortBy)) {
+        pageable = PageRequest.of(page, size); // Sin especificar sort, usaremos el query personalizado
+        Page<EstadoCertificado> result = estadoCertificadoService.findAllOrderByNombre(pageable);
+        return ResponseEntity.ok(result);
+    } else {
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
                 ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
+        pageable = PageRequest.of(page, size, sort);
 
-        Pageable paging = PageRequest.of(page, size, sort);
-        Page<EstadoCertificado> pagedCertificados;
-
-        // Lógica de filtrado combinando `filter` y `nombreEstudiante`
-        if (filter != null && nombreEstudiante != null) {
-            pagedCertificados = estadoCertificadoService.findByEstadoAndNombre(filter, nombreEstudiante, paging);
-        } else if (filter != null) {
-            pagedCertificados = estadoCertificadoService.findByEstado(filter, paging);
-        } else if (nombreEstudiante != null) {
-            pagedCertificados = estadoCertificadoService.findByNombreEstudiante(nombreEstudiante, paging);
-        } else {
-            pagedCertificados = estadoCertificadoService.findAll(paging);
-        }
-
-        if (pagedCertificados.hasContent()) {
-            return new ResponseEntity<>(pagedCertificados, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+        Page<EstadoCertificado> result = estadoCertificadoService.findByEstado(estado, pageable);
+        return ResponseEntity.ok(result);
     }
+}
 
 
 }

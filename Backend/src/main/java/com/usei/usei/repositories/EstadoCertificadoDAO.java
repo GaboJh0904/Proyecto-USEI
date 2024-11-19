@@ -46,5 +46,9 @@ List<Object[]> countCertificadosEmitidosByCarreraAnioAndSemestre(@Param("anio") 
 
     // Todos los certificados (con paginación)
     Page<EstadoCertificado> findAll(Pageable pageable);
+
+    @Query("SELECT e FROM EstadoCertificado e JOIN e.estudianteIdEstudiante est ORDER BY est.nombre ASC")
+    Page<EstadoCertificado> findAllOrderByNombre(Pageable pageable);
+
 }
 
