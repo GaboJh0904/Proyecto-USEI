@@ -63,6 +63,7 @@ public class UsuarioBL implements UsuarioService {
         usuarioToUpdate.setNombre(usuario.getNombre());
         usuarioToUpdate.setTelefono(usuario.getTelefono());
         usuarioToUpdate.setCorreo(usuario.getCorreo());
+        usuarioToUpdate.setCarrera(usuario.getCarrera());
         usuarioToUpdate.setRol(usuario.getRol());
         usuarioToUpdate.setUsuario(usuario.getUsuario());
         usuarioToUpdate.setContrasenia(usuario.getContrasenia());

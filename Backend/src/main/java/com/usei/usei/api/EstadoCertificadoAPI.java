@@ -24,6 +24,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 
 import com.usei.usei.controllers.EstadoCertificadoBL;
 import com.usei.usei.controllers.EstadoCertificadoService;
@@ -235,5 +240,40 @@ public ResponseEntity<?> enviarCertificado() {
     }
 }
 */
+    //Paginacion,filtraod y ordenacion por estado o nombre estudiante
+    @GetMapping("/paginado")
+    public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "fechaEstado") String sortBy,  // Campo para ordenar
+            @RequestParam(defaultValue = "asc") String sortDirection,  // Dirección de orden (asc o desc)
+            @RequestParam(required = false) String filter,  // Filtro opcional para el estado
+            @RequestParam(required = false) String nombreEstudiante  // Filtro opcional por nombre
+    ) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        Pageable paging = PageRequest.of(page, size, sort);
+        Page<EstadoCertificado> pagedCertificados;
+
+        // Lógica de filtrado combinando `filter` y `nombreEstudiante`
+        if (filter != null && nombreEstudiante != null) {
+            pagedCertificados = estadoCertificadoService.findByEstadoAndNombre(filter, nombreEstudiante, paging);
+        } else if (filter != null) {
+            pagedCertificados = estadoCertificadoService.findByEstado(filter, paging);
+        } else if (nombreEstudiante != null) {
+            pagedCertificados = estadoCertificadoService.findByNombreEstudiante(nombreEstudiante, paging);
+        } else {
+            pagedCertificados = estadoCertificadoService.findAll(paging);
+        }
+
+        if (pagedCertificados.hasContent()) {
+            return new ResponseEntity<>(pagedCertificados, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
 
 }

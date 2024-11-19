@@ -273,6 +273,7 @@ CREATE TABLE Usuario (
     nombre varchar(50)  NOT NULL,
     telefono int  NOT NULL,
     correo varchar(40)  NOT NULL,
+    carrera varchar(40),
     rol varchar(20)  NOT NULL,
     usuario varchar(30)  NOT NULL,
     contrasenia varchar(30)  NOT NULL,
