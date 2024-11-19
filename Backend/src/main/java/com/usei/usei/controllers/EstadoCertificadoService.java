@@ -38,4 +38,11 @@ public interface EstadoCertificadoService {
     Page<EstadoCertificado> findByNombreCompletoEstudiante(String searchQuery, Pageable pageable);
 
 
+    Page<EstadoCertificado> findByAsignatura(String asignatura, Pageable pageable);
+
+    Page<EstadoCertificado> findByNombreYAsignatura(String searchQuery, String asignatura, Pageable pageable);
+
+    Page<EstadoCertificado> findByEstadoYAsignatura(String estado, String asignatura, Pageable pageable);
+
+    Page<EstadoCertificado> findByEstadoNombreYAsignatura(String estado, String searchQuery, String asignatura, Pageable pageable);
 }

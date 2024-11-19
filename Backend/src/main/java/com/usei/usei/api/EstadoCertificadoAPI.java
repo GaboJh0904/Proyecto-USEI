@@ -248,15 +248,9 @@ public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
         @RequestParam(defaultValue = "fechaEstado") String sortBy,
         @RequestParam(defaultValue = "asc") String sortDirection,
         @RequestParam(required = false) String estado,
-        @RequestParam(required = false) String searchQuery
+        @RequestParam(required = false) String searchQuery,
+        @RequestParam(required = false) String asignatura // Nuevo parámetro
 ) {
-    System.out.println("Página solicitada: " + page);
-    System.out.println("Tamaño de página: " + size);
-    System.out.println("Ordenar por: " + sortBy);
-    System.out.println("Dirección: " + sortDirection);
-    System.out.println("Estado: " + estado);
-    System.out.println("Query de búsqueda: " + searchQuery);
-
     Pageable pageable;
     Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
             ? Sort.by(sortBy).ascending()
@@ -265,8 +259,14 @@ public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
 
     Page<EstadoCertificado> result;
 
-    if (searchQuery != null && !searchQuery.isEmpty() && estado != null && !estado.isEmpty()) {
-        result = estadoCertificadoService.findByEstadoAndNombre(estado, searchQuery, pageable);
+    if (searchQuery != null && !searchQuery.isEmpty() && estado != null && !estado.isEmpty() && asignatura != null && !asignatura.isEmpty()) {
+        result = estadoCertificadoService.findByEstadoNombreYAsignatura(estado, searchQuery, asignatura, pageable);
+    } else if (searchQuery != null && !searchQuery.isEmpty() && asignatura != null && !asignatura.isEmpty()) {
+        result = estadoCertificadoService.findByNombreYAsignatura(searchQuery, asignatura, pageable);
+    } else if (estado != null && !estado.isEmpty() && asignatura != null && !asignatura.isEmpty()) {
+        result = estadoCertificadoService.findByEstadoYAsignatura(estado, asignatura, pageable);
+    } else if (asignatura != null && !asignatura.isEmpty()) {
+        result = estadoCertificadoService.findByAsignatura(asignatura, pageable);
     } else if (searchQuery != null && !searchQuery.isEmpty()) {
         result = estadoCertificadoService.findByNombreCompletoEstudiante(searchQuery, pageable);
     } else if (estado != null && !estado.isEmpty()) {
