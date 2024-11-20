@@ -1,42 +1,42 @@
 -- Datos Usuario
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Rosario Calisaya', '67304790', 'rosa26caly@gmail.com', 'Administrador',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('Rosario Calisaya', '67304790', 'rosa26caly@gmail.com', NULL, 'Administrador',
         'rosario_calisaya', 'seiya26');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Carmen Sánchez', '68969918', 'carmensánchez@gmail.com', 'Director',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('Carmen Sánchez', '68969918', 'carmensánchez@gmail.com', 'Ingeniería de Sistemas', 'Director',
         'carmen_sánchez', 'WE1UkLkj8w');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Pedro López', '73150362', 'pedrolópez@hotmail.com', 'Administrador',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('Pedro López', '73150362', 'pedrolópez@hotmail.com', NULL, 'Administrador',
         'pedro_lópez', 'cvDMmYR0r7xVUNlkZem5I1lI0zlU9r');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Luis López', '78778064', 'luislópez@yahoo.com', 'Administrador',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('Luis López', '78778064', 'luislópez@yahoo.com', NULL, 'Administrador',
         'luis_lópez', 'wKwwfSdZjOamWtl');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Carmen Martínez', '62024309', 'carmenmartínez@hotmail.com', 'Administrador',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('Carmen Martínez', '62024309', 'carmenmartínez@hotmail.com', NULL, 'Administrador',
         'carmen_martínez', 'dxvpQYHDCDPpEyiLDAQ3i0Jd5yZyn');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Juan Martínez', '69138559', 'juanmartínez@gmail.com', 'Administrador',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('Juan Martínez', '69138559', 'juanmartínez@gmail.com', NULL, 'Administrador',
         'juan_martínez', 'w3MlRYI4OvCacK9Vya6ze');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Jorge Pérez', '66851593', 'jorgepérez@gmail.com', 'Director',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('Jorge Pérez', '66851593', 'jorgepérez@gmail.com', 'Ingeniería de Sistemas', 'Director',
         'jorge_pérez', 'lAYPuWlAk');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('María Pérez', '70004965', 'maríapérez@gmail.com', 'Director',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('María Pérez', '70004965', 'maríapérez@gmail.com', 'Ingeniería de Sistemas', 'Director',
         'maría_pérez', 'GLui3C3vd0');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Carlos Rodríguez', '68132129', 'carlosrodríguez@yahoo.com', 'Director',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('Carlos Rodríguez', '68132129', 'carlosrodríguez@yahoo.com', 'Ingeniería de Sistemas', 'Director',
         'carlos_rodríguez', 'oTEq1eBk');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('María González', '71155908', 'maríagonzález@hotmail.com', 'Administrador',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('María González', '71155908', 'maríagonzález@hotmail.com', NULL, 'Administrador',
         'maría_gonzález', 'egSYWWgL');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Ana Pérez', '69255512', 'anapérez@hotmail.com', 'Administrador',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('Ana Pérez', '69255512', 'anapérez@hotmail.com', NULL, 'Administrador',
         'ana_pérez', 'wz6Cz6hJkliZ9nB1u106iTU6');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('Luis Martínez', '61002868', 'luismartínez@hotmail.com', 'Administrador',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('Luis Martínez', '61002868', 'luismartínez@hotmail.com', NULL, 'Administrador',
         'luis_martínez', 'R6nAn676KPk2r8CS3RJ11DJ');
-INSERT INTO usuario (nombre, telefono, correo, rol, usuario, contrasenia)
-        VALUES ('María López', '64426223', 'maríalópez@gmail.com', 'Director',
+INSERT INTO usuario (nombre, telefono, correo, carrera, rol, usuario, contrasenia)
+        VALUES ('María López', '64426223', 'maríalópez@gmail.com', 'Ingeniería de Sistemas', 'Director',
         'maría_lópez', 'cKfhduHJZIpaLe7t4Swfnh5piwk');
 
 -- Datos tabla de Plazo
@@ -390,68 +390,6 @@ INSERT INTO tipo_problema (problema) VALUES ('Problemas con la Encuesta');
 INSERT INTO tipo_problema (problema) VALUES ('Problemas con la Emisión del Certificado');
 INSERT INTO tipo_problema (problema) VALUES ('Problemas con el Reporte de Datos');
 INSERT INTO tipo_problema (problema) VALUES ('Problemas Técnicos Generales');
-
--- Datos Tabla estado_certificado
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 1', 'pendiente', '2024-01-02', 1, 1);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 2', 'enviado', '2024-01-03', 2, 2);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 3', 'pendiente', '2024-01-04', 3, 3);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 4', 'enviado', '2024-01-05', 4, 4);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 5', 'pendiente', '2024-01-06', 5, 5);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 6', 'enviado', '2024-01-07', 6, 6);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 7', 'pendiente', '2024-01-08', 7, 7);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 8', 'enviado', '2024-01-09', 8, 8);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 9', 'pendiente', '2024-01-10', 9, 9);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 10', 'enviado', '2024-01-11', 10, 10);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 11', 'pendiente', '2024-01-12', 11, 11);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 12', 'enviado', '2024-01-13', 12, 12);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 13', 'pendiente', '2024-01-14', 13, 13);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 14', 'enviado', '2024-01-15', 14, 14);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 15', 'pendiente', '2024-01-16', 15, 15);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 16', 'enviado', '2024-01-17', 16, 16);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 17', 'pendiente', '2024-01-18', 17, 17);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 18', 'enviado', '2024-01-19', 18, 18);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 19', 'pendiente', '2024-01-20', 19, 19);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 20', 'enviado', '2024-01-21', 20, 20);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 21', 'pendiente', '2024-01-22', 21, 21);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 22', 'enviado', '2024-01-23', 22, 22);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 23', 'pendiente', '2024-01-24', 23, 23);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 24', 'enviado', '2024-01-25', 24, 24);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 25', 'pendiente', '2024-01-26', 25, 25);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 26', 'enviado', '2024-01-27', 26, 26);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 27', 'pendiente', '2024-01-28', 27, 27);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 28', 'enviado', '2024-01-29', 28, 28);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 29', 'pendiente', '2024-01-30', 29, 29);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 30', 'enviado', '2024-01-01', 30, 30);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 1', 'pendiente', '2024-01-02', 1, 1);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 2', 'enviado', '2024-01-03', 2, 2);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 3', 'pendiente', '2024-01-04', 3, 3);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 4', 'enviado', '2024-01-05', 4, 4);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 5', 'pendiente', '2024-01-06', 5, 5);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 6', 'enviado', '2024-01-07', 6, 6);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 7', 'pendiente', '2024-01-08', 7, 7);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 8', 'enviado', '2024-01-09', 8, 8);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 9', 'pendiente', '2024-01-10', 9, 9);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 10', 'enviado', '2024-01-11', 10, 10);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 11', 'pendiente', '2024-01-12', 11, 11);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 12', 'enviado', '2024-01-13', 12, 12);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 13', 'pendiente', '2024-01-14', 13, 13);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 14', 'enviado', '2024-01-15', 14, 14);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 15', 'pendiente', '2024-01-16', 15, 15);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 16', 'enviado', '2024-01-17', 16, 16);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 17', 'pendiente', '2024-01-18', 17, 17);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 18', 'enviado', '2024-01-19', 18, 18);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 19', 'pendiente', '2024-01-20', 19, 19);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 20', 'enviado', '2024-01-21', 20, 20);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 21', 'pendiente', '2024-01-22', 21, 21);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 22', 'enviado', '2024-01-23', 22, 22);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 23', 'pendiente', '2024-01-24', 23, 23);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 24', 'enviado', '2024-01-25', 24, 24);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 25', 'pendiente', '2024-01-26', 25, 25);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 26', 'enviado', '2024-01-27', 26, 26);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 27', 'pendiente', '2024-01-28', 27, 27);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 28', 'enviado', '2024-01-29', 28, 28);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 29', 'pendiente', '2024-01-30', 29, 29);
-INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 30', 'enviado', '2024-01-01', 30, 30);
 
 --PREGUNTAS Tabla: Pregunta
 INSERT INTO Pregunta (num_pregunta, pregunta, tipo_pregunta, estado)
@@ -931,6 +869,68 @@ INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante
 INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('INGRESOS OFRECE LA CARRERA', 19, 4);
 INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('NO', 20, 4);
 INSERT INTO Respuesta (respuesta, Pregunta_id_pregunta, Estudiante_id_estudiante) VALUES ('N/A', 21, 4);
+
+-- Datos Tabla estado_certificado
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 1', 'pendiente', '2024-01-02', 1, 1);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 2', 'enviado', '2024-01-03', 2, 2);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 3', 'pendiente', '2024-01-04', 3, 3);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 4', 'enviado', '2024-01-05', 4, 4);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 5', 'pendiente', '2024-01-06', 5, 5);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 6', 'enviado', '2024-01-07', 6, 6);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 7', 'pendiente', '2024-01-08', 7, 7);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 8', 'enviado', '2024-01-09', 8, 8);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 9', 'pendiente', '2024-01-10', 9, 9);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 10', 'enviado', '2024-01-11', 10, 10);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 11', 'pendiente', '2024-01-12', 11, 11);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 12', 'enviado', '2024-01-13', 12, 12);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 13', 'pendiente', '2024-01-14', 13, 13);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 14', 'enviado', '2024-01-15', 14, 14);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 15', 'pendiente', '2024-01-16', 15, 15);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 16', 'enviado', '2024-01-17', 16, 16);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 17', 'pendiente', '2024-01-18', 17, 17);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 18', 'enviado', '2024-01-19', 18, 18);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 19', 'pendiente', '2024-01-20', 19, 19);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 20', 'enviado', '2024-01-21', 20, 20);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 21', 'pendiente', '2024-01-22', 21, 21);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 22', 'enviado', '2024-01-23', 22, 22);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 23', 'pendiente', '2024-01-24', 23, 23);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 24', 'enviado', '2024-01-25', 24, 24);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 25', 'pendiente', '2024-01-26', 25, 25);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 26', 'enviado', '2024-01-27', 26, 26);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 27', 'pendiente', '2024-01-28', 27, 27);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 28', 'enviado', '2024-01-29', 28, 28);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 29', 'pendiente', '2024-01-30', 29, 29);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 30', 'enviado', '2024-01-01', 30, 30);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 1', 'pendiente', '2024-01-02', 1, 1);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 2', 'enviado', '2024-01-03', 2, 2);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 3', 'pendiente', '2024-01-04', 3, 3);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 4', 'enviado', '2024-01-05', 4, 4);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 5', 'pendiente', '2024-01-06', 5, 5);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 6', 'enviado', '2024-01-07', 6, 6);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 7', 'pendiente', '2024-01-08', 7, 7);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 8', 'enviado', '2024-01-09', 8, 8);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 9', 'pendiente', '2024-01-10', 9, 9);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 10', 'enviado', '2024-01-11', 10, 10);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 11', 'pendiente', '2024-01-12', 11, 11);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 12', 'enviado', '2024-01-13', 12, 12);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 13', 'pendiente', '2024-01-14', 13, 13);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 14', 'enviado', '2024-01-15', 14, 14);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 15', 'pendiente', '2024-01-16', 15, 15);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 16', 'enviado', '2024-01-17', 16, 16);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 17', 'pendiente', '2024-01-18', 17, 17);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 18', 'enviado', '2024-01-19', 18, 18);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 19', 'pendiente', '2024-01-20', 19, 19);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 20', 'enviado', '2024-01-21', 20, 20);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 21', 'pendiente', '2024-01-22', 21, 21);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 22', 'enviado', '2024-01-23', 22, 22);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 23', 'pendiente', '2024-01-24', 23, 23);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 24', 'enviado', '2024-01-25', 24, 24);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 25', 'pendiente', '2024-01-26', 25, 25);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 26', 'enviado', '2024-01-27', 26, 26);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 27', 'pendiente', '2024-01-28', 27, 27);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 28', 'enviado', '2024-01-29', 28, 28);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 29', 'pendiente', '2024-01-30', 29, 29);
+INSERT INTO estado_certificado (archivo, estado, fecha_estado, certificado_id_certificado, estudiante_id_estudiante) VALUES ('certificado 30', 'enviado', '2024-01-01', 30, 30);
 
 -- ENCUESTA_GESTION TABLA
 INSERT INTO Encuesta_Gestion (Pregunta_id_pregunta, Encuesta_id_encuesta, anio, semestre)

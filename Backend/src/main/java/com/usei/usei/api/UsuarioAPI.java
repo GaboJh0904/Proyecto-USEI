@@ -72,6 +72,7 @@ public class UsuarioAPI {
         oUsuario.get().setNombre(usuario.getNombre());
         oUsuario.get().setTelefono(usuario.getTelefono());
         oUsuario.get().setCorreo(usuario.getCorreo());
+        oUsuario.get().setCarrera(usuario.getCarrera());
         oUsuario.get().setRol(usuario.getRol());
         oUsuario.get().setUsuario(usuario.getUsuario());
         oUsuario.get().setContrasenia(usuario.getContrasenia());
@@ -114,6 +115,7 @@ public class UsuarioAPI {
                 data.put("id_usuario", usuario.get().getIdUsuario());  // Incluir el id_usuario
                 data.put("rol", usuario.get().getRol());
                 data.put("correo", usuario.get().getCorreo());
+                data.put("carrera", usuario.get().getCarrera());
                 data.put("nombre", usuario.get().getNombre());
                 data.put("usuario", usuario.get().getUsuario());
 
