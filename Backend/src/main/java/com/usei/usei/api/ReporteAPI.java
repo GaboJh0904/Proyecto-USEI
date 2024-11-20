@@ -196,8 +196,8 @@ public class ReporteAPI {
             Reporte reporte = reporteOpt.get();
 
             // Ruta del archivo en el sistema
-            String filePath = "src/main/resources/static/documents/reportes/" + reporte.getFormato();
-            File file = new File(filePath);
+            //String filePath = "src/main/resources/static/documents/reportes/" + reporte.getFormato();
+            File file = new File(reporte.getFormato());
 
             if (!file.exists()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
