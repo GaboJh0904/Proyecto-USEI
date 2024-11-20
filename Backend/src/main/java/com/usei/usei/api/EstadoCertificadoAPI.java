@@ -259,17 +259,20 @@ public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
 
     Page<EstadoCertificado> result;
 
-    if (searchQuery != null && !searchQuery.isEmpty() && estado != null && !estado.isEmpty() && asignatura != null && !asignatura.isEmpty()) {
+    // Ajustamos el filtro para "Todos los estados"
+    boolean filtrarPorEstado = estado != null && !estado.isEmpty() && !"Todos los estados".equalsIgnoreCase(estado);
+
+    if (searchQuery != null && !searchQuery.isEmpty() && filtrarPorEstado && asignatura != null && !asignatura.isEmpty()) {
         result = estadoCertificadoService.findByEstadoNombreYAsignatura(estado, searchQuery, asignatura, pageable);
     } else if (searchQuery != null && !searchQuery.isEmpty() && asignatura != null && !asignatura.isEmpty()) {
         result = estadoCertificadoService.findByNombreYAsignatura(searchQuery, asignatura, pageable);
-    } else if (estado != null && !estado.isEmpty() && asignatura != null && !asignatura.isEmpty()) {
+    } else if (filtrarPorEstado && asignatura != null && !asignatura.isEmpty()) {
         result = estadoCertificadoService.findByEstadoYAsignatura(estado, asignatura, pageable);
     } else if (asignatura != null && !asignatura.isEmpty()) {
         result = estadoCertificadoService.findByAsignatura(asignatura, pageable);
     } else if (searchQuery != null && !searchQuery.isEmpty()) {
         result = estadoCertificadoService.findByNombreCompletoEstudiante(searchQuery, pageable);
-    } else if (estado != null && !estado.isEmpty()) {
+    } else if (filtrarPorEstado) {
         result = estadoCertificadoService.findByEstado(estado, pageable);
     } else {
         result = estadoCertificadoService.findAll(pageable);
@@ -277,5 +280,6 @@ public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
 
     return ResponseEntity.ok(result);
 }
+
 
 }

@@ -60,7 +60,7 @@ List<Object[]> countCertificadosEmitidosByCarreraAnioAndSemestre(@Param("anio") 
 
     // Filtrar por asignatura
     @Query("SELECT ec FROM EstadoCertificado ec " +
-            "WHERE LOWER(ec.estudianteIdEstudiante.asignatura) LIKE LOWER(CONCAT('%', :asignatura, '%'))")
+            "WHERE LOWER(ec.estudianteIdEstudiante.asignatura) = LOWER(:asignatura)")
     Page<EstadoCertificado> findByAsignatura(@Param("asignatura") String asignatura, Pageable pageable);
 
     // Filtrar por nombre y asignatura
