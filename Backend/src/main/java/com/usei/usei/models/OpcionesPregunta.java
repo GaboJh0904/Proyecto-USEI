@@ -44,8 +44,7 @@ public class OpcionesPregunta implements Serializable {
     @JoinColumn(name = "pregunta_id_pregunta", referencedColumnName = "id_pregunta")
     @ManyToOne(optional = false)
     private Pregunta preguntaIdPregunta;
-    @OneToMany(mappedBy = "opcionesPregunta")
-    private List<Respuesta> respuestaCollection;
+
 
 
     public OpcionesPregunta() {

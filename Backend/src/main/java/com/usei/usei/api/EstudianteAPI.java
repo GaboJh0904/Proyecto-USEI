@@ -348,11 +348,11 @@ public ResponseEntity<?> getOpcionesFiltro() {
         return ResponseEntity.ok(estudianteExistente);
     }
 
-    @GetMapping("/countByGenero")
-    public ResponseEntity<?> countEstudiantesByGenero() {
-        List<Object[]> result = estudianteService.getEstudiantesCompletaronEncuestaByGenero();
-        return ResponseEntity.ok(result);
-    }
+    @GetMapping("/countByGeneroAndAnio")
+    public ResponseEntity<?> countByGeneroAndAnio(@RequestParam(required = false) Integer anio) {
+        List<Object[]> results = estudianteService.getEstudiantesCompletaronEncuestaByGeneroAndAnio(anio);
+        return ResponseEntity.ok(results);
+    }    
 
 
 }

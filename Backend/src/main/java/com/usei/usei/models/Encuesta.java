@@ -65,10 +65,9 @@ public class Encuesta implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "encuestaIdEncuesta")
     @JsonIgnore
     private Collection<EstadoEncuesta> estadoEncuestaCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "encuesta")
+    
+    @OneToMany(mappedBy = "encuestaIdEncuesta", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Collection<Pregunta> preguntas;
-    @OneToMany(mappedBy = "encuesta", cascade = CascadeType.ALL)
     private Collection<EncuestaGestion> encuestaGestionCollection;
 
     public Encuesta() {

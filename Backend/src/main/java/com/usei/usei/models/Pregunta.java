@@ -65,9 +65,7 @@ public class Pregunta implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "preguntaIdPregunta")
     @JsonIgnore
     private Collection<Respuesta> respuestaCollection;
-    @ManyToOne
-    @JoinColumn(name = "encuesta_id_encuesta", referencedColumnName = "id_encuesta")
-    private Encuesta encuesta;
+    
 
     public Pregunta() {
     }

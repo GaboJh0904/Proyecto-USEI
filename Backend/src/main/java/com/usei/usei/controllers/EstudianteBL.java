@@ -213,8 +213,8 @@ public class EstudianteBL implements EstudianteService{
     }
     @Override
     @Transactional(readOnly = true)
-    public List<Object[]> getEstudiantesCompletaronEncuestaByGenero() {
-        return estudianteDAO.countEstudiantesCompletaronEncuestaByGenero();
+    public List<Object[]> getEstudiantesCompletaronEncuestaByGeneroAndAnio(Integer anio) {
+        return estudianteDAO.countEstudiantesCompletaronEncuestaByGeneroAndAnio(anio);
     }
 
 
