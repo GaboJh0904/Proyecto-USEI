@@ -59,5 +59,9 @@ List<Object[]> countEstudiantesCompletaronEncuestaByGeneroAndAnio(@Param("anio")
 List<Integer> findUniqueYears();
 
 
+@Query("SELECT e FROM Estudiante e WHERE e.carrera = :carrera")
+List<Estudiante> findByCarrera(@Param("carrera") String carrera);
+
+
+
 }
- 

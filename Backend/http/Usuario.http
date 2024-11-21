@@ -36,3 +36,11 @@ Accept: application/json
   "usuario": "alvaJH",
   "contrasenia": "302030"
 }
+###
+POST http://localhost:8082/usuario/login
+Content-Type: application/json
+
+{
+  "correo": "mario@ucb.edu.bo",
+  "contrasenia": "123456"
+}

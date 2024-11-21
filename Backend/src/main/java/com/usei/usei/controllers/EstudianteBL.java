@@ -222,4 +222,24 @@ public class EstudianteBL implements EstudianteService{
         return estudianteDAO.findUniqueYears();
     }
 
+// @Override
+// @Transactional(readOnly = true)
+// public List<Estudiante> findByCarrera(String carrera) {
+//     System.out.println("Buscando estudiantes para la carrera: " + carrera);
+//     List<Estudiante> estudiantes = estudianteDAO.findByCarrera(carrera);
+//     System.out.println("Estudiantes encontrados: " + estudiantes.size());
+//     return estudiantes;
+// }
+
+@Override
+@Transactional(readOnly = true)
+public List<Estudiante> findByCarrera(String carrera) {
+    System.out.println("Buscando estudiantes para la carrera: " + carrera);
+    List<Estudiante> estudiantes = estudianteDAO.findByCarrera(carrera);
+    System.out.println("Estudiantes encontrados: " + estudiantes.size());
+    return estudiantes;
+}
+
+
+
 }

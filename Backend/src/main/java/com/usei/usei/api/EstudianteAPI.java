@@ -30,10 +30,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.usei.usei.controllers.EstudianteBL;
+import com.usei.usei.controllers.EstadoCertificadoService;
+import com.usei.usei.controllers.EstadoEncuestaService;
 import com.usei.usei.controllers.EstudianteService;
 import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
 import com.usei.usei.dto.request.LoginRequestDTO;
+import com.usei.usei.models.EstadoCertificado;
+import com.usei.usei.models.EstadoEncuesta;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.LoginResponse;
 import com.usei.usei.models.MessageResponse;
@@ -45,6 +49,12 @@ import jakarta.mail.MessagingException;
 @RestController
 @RequestMapping("/estudiante")
 public class EstudianteAPI {
+    @Autowired
+private EstadoCertificadoService estadoCertificadoService;
+
+@Autowired
+private EstadoEncuestaService estadoEncuestaService;
+
 
     @Autowired
     private EstudianteService estudianteService;
@@ -360,6 +370,57 @@ public ResponseEntity<?> getOpcionesFiltro() {
         return ResponseEntity.ok(uniqueYears);
     }
 
+    @GetMapping("/por-carrera")
+public ResponseEntity<?> getEstudiantesPorCarrera(
+        @RequestParam String carrera,
+        @RequestParam(required = false) String estadoCertificado,
+        @RequestParam(required = false) String estadoEncuesta,
+        @RequestParam(required = false) String searchQuery) {
+
+    try {
+        List<Estudiante> estudiantes = estudianteService.findByCarrera(carrera);
+
+        // Filtrar por estado del certificado si se proporciona
+        if (estadoCertificado != null && !estadoCertificado.isEmpty()) {
+            estudiantes = estudiantes.stream()
+                    .filter(estudiante -> {
+                        Optional<EstadoCertificado> estado = estadoCertificadoService.findByEstudianteId(estudiante.getIdEstudiante());
+                        return estado.isPresent() && estado.get().getEstado().equalsIgnoreCase(estadoCertificado);
+                    })
+                    .toList();
+        }
+
+        // Filtrar por estado de la encuesta si se proporciona
+        if (estadoEncuesta != null && !estadoEncuesta.isEmpty()) {
+            estudiantes = estudiantes.stream()
+                    .filter(estudiante -> {
+                        Optional<EstadoEncuesta> estado = estadoEncuestaService.findByEstudianteIdEstudiante(estudiante.getIdEstudiante());
+                        return estado.isPresent() && estado.get().getEstado().equalsIgnoreCase(estadoEncuesta);
+                    })
+                    .toList();
+        }
+
+        // Filtrar por búsqueda de nombre o apellido
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            estudiantes = estudiantes.stream()
+                    .filter(estudiante -> estudiante.getNombre().toLowerCase().contains(searchQuery.toLowerCase()) ||
+                            estudiante.getApellido().toLowerCase().contains(searchQuery.toLowerCase()))
+                    .toList();
+        }
+
+        if (!estudiantes.isEmpty()) {
+            return ResponseEntity.ok(estudiantes);
+        } else {
+            return ResponseEntity.noContent().build();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+
+
+    }
+  }
+    
 
 
 }
