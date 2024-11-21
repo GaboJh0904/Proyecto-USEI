@@ -353,6 +353,13 @@ public ResponseEntity<?> getOpcionesFiltro() {
         List<Object[]> results = estudianteService.getEstudiantesCompletaronEncuestaByGeneroAndAnio(anio);
         return ResponseEntity.ok(results);
     }    
+    //filtrpo de anio en estado_encuesta para el reportes de dashboard
+    @GetMapping("/anios_unicos")
+    public ResponseEntity<List<Integer>> getUniqueYears() {
+        List<Integer> uniqueYears = estudianteService.findUniqueYears();
+        return ResponseEntity.ok(uniqueYears);
+    }
+
 
 
 }

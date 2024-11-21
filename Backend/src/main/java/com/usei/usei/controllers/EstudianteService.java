@@ -3,10 +3,12 @@ package com.usei.usei.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.usei.usei.models.Estudiante;
+import com.usei.usei.repositories.EstadoEncuestaDAO;
 
 import jakarta.mail.MessagingException;
 
@@ -51,6 +53,7 @@ public interface EstudianteService {
     List<Estudiante> findNoCompletaronEncuestaByAnioAndSemestre(Integer anio, Integer semestre);
     List<Object[]> getEstudiantesCompletaronEncuestaByGeneroAndAnio(Integer anio);
 
+    public List<Integer> findUniqueYears();
 
 
 }
