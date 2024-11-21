@@ -222,4 +222,38 @@ public class ReporteAPI {
         }
     }
 
+    @GetMapping("/historial/{id_usuario}")
+    public ResponseEntity<Page<Reporte>> readAllFromUser(@PathVariable(value = "id_usuario") Long id_usuario,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "titulo") String sortBy,  // Ordenar por campo, por defecto 'titulo'
+            @RequestParam(defaultValue = "asc") String sortDirection, // Dirección de orden 'asc' o 'desc'
+            @RequestParam(required = false) String filter // Filtro opcional
+    ) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
+        Pageable paging = PageRequest.of(page, size, sort);
+        Page<Reporte> pagedReporte;
+
+        Usuario UsuarioExistente = new Usuario();
+        UsuarioExistente.setIdUsuario(id_usuario);
+
+        // Lógica de filtrado combinando estado y filtro
+        if (filter != null && !filter.isEmpty()) {
+            // Filtrar solo por título o descripción
+            pagedReporte = reporteService.findByFilterFromUser(filter, paging, UsuarioExistente);
+        } else {
+            // Sin filtros, devolver todas las reportes
+            pagedReporte = reporteService.findAllFromUser(paging, UsuarioExistente);
+        }
+
+        if (pagedReporte.hasContent()) {
+            return new ResponseEntity<>(pagedReporte, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
 }

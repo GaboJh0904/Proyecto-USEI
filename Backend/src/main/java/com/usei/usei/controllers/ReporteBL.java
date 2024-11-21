@@ -240,5 +240,17 @@ public class ReporteBL implements ReporteService {
         }
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Reporte> findByFilterFromUser(String filter, Pageable pageable, Usuario usuario) {
+        return reporteDAO.findByFilterFromUser(filter, pageable, usuario);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Reporte> findAllFromUser(Pageable pageable, Usuario usuario) {
+        return reporteDAO.findAllFromUser(pageable, usuario);
+    }
+
 }
 
