@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.usei.usei.controllers.EstadoCertificadoService;
+import com.usei.usei.controllers.EstadoEncuestaService;
 import com.usei.usei.controllers.EstudianteService;
 import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
@@ -44,6 +46,12 @@ import jakarta.mail.MessagingException;
 @RestController
 @RequestMapping("/estudiante")
 public class EstudianteAPI {
+    @Autowired
+private EstadoCertificadoService estadoCertificadoService;
+
+@Autowired
+private EstadoEncuestaService estadoEncuestaService;
+
 
     @Autowired
     private EstudianteService estudianteService;
@@ -342,5 +350,30 @@ public ResponseEntity<?> getOpcionesFiltro() {
         estudianteService.save(estudianteExistente);
         return ResponseEntity.ok(estudianteExistente);
     }
+
+    @GetMapping("/por-carrera")
+    public ResponseEntity<?> getEstudiantesPorCarrera(@RequestParam String carrera) {
+
+        
+        try {
+            System.out.println("Carrera recibida: " + carrera);
+            List<Estudiante> estudiantes = estudianteService.findByCarrera(carrera);
+    
+            if (!estudiantes.isEmpty()) {
+                System.out.println("Estudiantes encontrados: " + estudiantes.size());
+                return ResponseEntity.ok(estudiantes);
+            } else {
+                System.out.println("No se encontraron estudiantes para la carrera: " + carrera);
+                return ResponseEntity.noContent().build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+ 
+    
+
 
 }

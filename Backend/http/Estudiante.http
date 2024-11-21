@@ -28,8 +28,8 @@ GET http://localhost:8080/estudiante/3
 
 ###
 GET http://localhost:8082/estudiante/no_completaron_encuesta
-
-
+###
+GET http://localhost:8082/estudiante/por-carrera?carrera=Ingeniería de Sistemas
 ###
 DELETE http://localhost:8080/estudiante/2
 

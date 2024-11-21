@@ -43,5 +43,9 @@ public interface EstudianteDAO extends  JpaRepository<Estudiante, Long> {
 List<Estudiante> findNoCompletaronEncuestaByAnioAndSemestre(@Param("anio") Integer anio, @Param("semestre") Integer semestre);
 
 
+@Query("SELECT e FROM Estudiante e WHERE e.carrera = :carrera")
+List<Estudiante> findByCarrera(@Param("carrera") String carrera);
+
+
+
 }
- 
