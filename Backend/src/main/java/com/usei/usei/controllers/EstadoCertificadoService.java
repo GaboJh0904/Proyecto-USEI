@@ -28,11 +28,21 @@ public interface EstadoCertificadoService {
 
     Page<EstadoCertificado> findByEstado(String estado, Pageable pageable);
 
+
     Page<EstadoCertificado> findByNombreEstudiante(String nombre, Pageable pageable);
 
     Page<EstadoCertificado> findByEstadoAndNombre(String estado, String nombre, Pageable pageable);
 
     Page<EstadoCertificado> findAll(Pageable pageable);
-    
-    
+
+    Page<EstadoCertificado> findByNombreCompletoEstudiante(String searchQuery, Pageable pageable);
+
+
+    Page<EstadoCertificado> findByAsignatura(String asignatura, Pageable pageable);
+
+    Page<EstadoCertificado> findByNombreYAsignatura(String searchQuery, String asignatura, Pageable pageable);
+
+    Page<EstadoCertificado> findByEstadoYAsignatura(String estado, String asignatura, Pageable pageable);
+
+    Page<EstadoCertificado> findByEstadoNombreYAsignatura(String estado, String searchQuery, String asignatura, Pageable pageable);
 }

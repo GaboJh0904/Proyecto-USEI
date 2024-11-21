@@ -240,40 +240,46 @@ public ResponseEntity<?> enviarCertificado() {
     }
 }
 */
-    //Paginacion,filtraod y ordenacion por estado o nombre estudiante
-    @GetMapping("/paginado")
-    public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "fechaEstado") String sortBy,  // Campo para ordenar
-            @RequestParam(defaultValue = "asc") String sortDirection,  // Dirección de orden (asc o desc)
-            @RequestParam(required = false) String filter,  // Filtro opcional para el estado
-            @RequestParam(required = false) String nombreEstudiante  // Filtro opcional por nombre
-    ) {
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
-                ? Sort.by(sortBy).ascending()
-                : Sort.by(sortBy).descending();
+    //Paginacion,filtrado y ordenacion por estado o nombre estudiante
+@GetMapping("/paginado")
+public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "5") int size,
+        @RequestParam(defaultValue = "fechaEstado") String sortBy,
+        @RequestParam(defaultValue = "asc") String sortDirection,
+        @RequestParam(required = false) String estado,
+        @RequestParam(required = false) String searchQuery,
+        @RequestParam(required = false) String asignatura // Nuevo parámetro
+) {
+    Pageable pageable;
+    Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+            ? Sort.by(sortBy).ascending()
+            : Sort.by(sortBy).descending();
+    pageable = PageRequest.of(page, size, sort);
 
-        Pageable paging = PageRequest.of(page, size, sort);
-        Page<EstadoCertificado> pagedCertificados;
+    Page<EstadoCertificado> result;
 
-        // Lógica de filtrado combinando `filter` y `nombreEstudiante`
-        if (filter != null && nombreEstudiante != null) {
-            pagedCertificados = estadoCertificadoService.findByEstadoAndNombre(filter, nombreEstudiante, paging);
-        } else if (filter != null) {
-            pagedCertificados = estadoCertificadoService.findByEstado(filter, paging);
-        } else if (nombreEstudiante != null) {
-            pagedCertificados = estadoCertificadoService.findByNombreEstudiante(nombreEstudiante, paging);
-        } else {
-            pagedCertificados = estadoCertificadoService.findAll(paging);
-        }
+    // Ajustamos el filtro para "Todos los estados"
+    boolean filtrarPorEstado = estado != null && !estado.isEmpty() && !"Todos los estados".equalsIgnoreCase(estado);
 
-        if (pagedCertificados.hasContent()) {
-            return new ResponseEntity<>(pagedCertificados, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+    if (searchQuery != null && !searchQuery.isEmpty() && filtrarPorEstado && asignatura != null && !asignatura.isEmpty()) {
+        result = estadoCertificadoService.findByEstadoNombreYAsignatura(estado, searchQuery, asignatura, pageable);
+    } else if (searchQuery != null && !searchQuery.isEmpty() && asignatura != null && !asignatura.isEmpty()) {
+        result = estadoCertificadoService.findByNombreYAsignatura(searchQuery, asignatura, pageable);
+    } else if (filtrarPorEstado && asignatura != null && !asignatura.isEmpty()) {
+        result = estadoCertificadoService.findByEstadoYAsignatura(estado, asignatura, pageable);
+    } else if (asignatura != null && !asignatura.isEmpty()) {
+        result = estadoCertificadoService.findByAsignatura(asignatura, pageable);
+    } else if (searchQuery != null && !searchQuery.isEmpty()) {
+        result = estadoCertificadoService.findByNombreCompletoEstudiante(searchQuery, pageable);
+    } else if (filtrarPorEstado) {
+        result = estadoCertificadoService.findByEstado(estado, pageable);
+    } else {
+        result = estadoCertificadoService.findAll(pageable);
     }
+
+    return ResponseEntity.ok(result);
+}
 
 
 }

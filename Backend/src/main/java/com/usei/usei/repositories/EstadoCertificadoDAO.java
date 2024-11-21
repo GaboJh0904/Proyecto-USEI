@@ -14,7 +14,7 @@ import com.usei.usei.models.EstadoCertificado;
 @Repository
 public interface EstadoCertificadoDAO extends  JpaRepository<EstadoCertificado, Long> {
     Optional<EstadoCertificado> findByEstudianteIdEstudiante_IdEstudiante(Long idEstudiante);
-    
+
     @Query("SELECT e.carrera, COUNT(ec) FROM EstadoCertificado ec JOIN ec.estudianteIdEstudiante e WHERE ec.estado = :estado GROUP BY e.carrera")
     List<Object[]> countCertificadosEmitidosByCarrera(@Param("estado") String estado);
 
@@ -36,15 +36,55 @@ List<Object[]> countCertificadosEmitidosByCarreraAnioAndSemestre(@Param("anio") 
     // Buscar por estado
     Page<EstadoCertificado> findByEstadoContainingIgnoreCase(String estado, Pageable pageable);
 
-    // Buscar por nombre del estudiante
-    @Query("SELECT ec FROM EstadoCertificado ec WHERE LOWER(ec.estudianteIdEstudiante.nombre) LIKE LOWER(CONCAT('%', :nombre, '%'))")
-    Page<EstadoCertificado> findByNombreEstudiante(@Param("nombre") String nombre, Pageable pageable);
+    // Buscar por nombre y apellido del estudiante
+    @Query("SELECT ec FROM EstadoCertificado ec " +
+            "WHERE LOWER(FUNCTION('TRANSLATE', CONCAT(ec.estudianteIdEstudiante.nombre, ' ', ec.estudianteIdEstudiante.apellido), " +
+            "'áéíóúÁÉÍÓÚ', 'aeiouAEIOU')) " +
+            "LIKE LOWER(FUNCTION('TRANSLATE', CONCAT('%', :searchQuery, '%'), 'áéíóúÁÉÍÓÚ', 'aeiouAEIOU'))")
+    Page<EstadoCertificado> findByNombreCompletoEstudiante(@Param("searchQuery") String searchQuery, Pageable pageable);
+
 
     // Buscar por estado y nombre del estudiante
-    @Query("SELECT ec FROM EstadoCertificado ec WHERE LOWER(ec.estado) LIKE LOWER(CONCAT('%', :estado, '%')) AND LOWER(ec.estudianteIdEstudiante.nombre) LIKE LOWER(CONCAT('%', :nombre, '%'))")
-    Page<EstadoCertificado> findByEstadoAndNombre(@Param("estado") String estado, @Param("nombre") String nombre, Pageable pageable);
-
+    @Query("SELECT e FROM EstadoCertificado e JOIN e.estudianteIdEstudiante est " +
+            "WHERE LOWER(est.nombre) LIKE LOWER(CONCAT('%', :searchQuery, '%')) " +
+            "AND (:estado IS NULL OR e.estado = :estado) " +
+            "ORDER BY est.nombre ASC")
+    Page<EstadoCertificado> findByNombreAndEstado(@Param("searchQuery") String searchQuery,
+                                                  @Param("estado") String estado,
+                                                  Pageable pageable);
     // Todos los certificados (con paginación)
     Page<EstadoCertificado> findAll(Pageable pageable);
+
+    @Query("SELECT e FROM EstadoCertificado e JOIN e.estudianteIdEstudiante est ORDER BY est.nombre ASC")
+    Page<EstadoCertificado> findAllOrderByNombre(Pageable pageable);
+
+    // Filtrar por asignatura
+    @Query("SELECT ec FROM EstadoCertificado ec " +
+            "WHERE LOWER(ec.estudianteIdEstudiante.asignatura) = LOWER(:asignatura)")
+    Page<EstadoCertificado> findByAsignatura(@Param("asignatura") String asignatura, Pageable pageable);
+
+    // Filtrar por nombre y asignatura
+    @Query("SELECT ec FROM EstadoCertificado ec " +
+            "WHERE LOWER(CONCAT(ec.estudianteIdEstudiante.nombre, ' ', ec.estudianteIdEstudiante.apellido)) LIKE LOWER(CONCAT('%', :searchQuery, '%')) " +
+            "AND LOWER(ec.estudianteIdEstudiante.asignatura) LIKE LOWER(CONCAT('%', :asignatura, '%'))")
+    Page<EstadoCertificado> findByNombreYAsignatura(@Param("searchQuery") String searchQuery,
+                                                    @Param("asignatura") String asignatura, Pageable pageable);
+
+    // Filtrar por estado y asignatura
+    @Query("SELECT ec FROM EstadoCertificado ec " +
+            "WHERE LOWER(ec.estado) = LOWER(:estado) " +
+            "AND LOWER(ec.estudianteIdEstudiante.asignatura) = LOWER(:asignatura)")
+    Page<EstadoCertificado> findByEstadoYAsignatura(@Param("estado") String estado,
+                                                    @Param("asignatura") String asignatura, Pageable pageable);
+
+    // Filtrar por estado, nombre y asignatura
+    @Query("SELECT ec FROM EstadoCertificado ec " +
+            "WHERE LOWER(CONCAT(ec.estudianteIdEstudiante.nombre, ' ', ec.estudianteIdEstudiante.apellido)) LIKE LOWER(CONCAT('%', :searchQuery, '%')) " +
+            "AND LOWER(ec.estado) = LOWER(:estado) " +
+            "AND LOWER(ec.estudianteIdEstudiante.asignatura) = LOWER(:asignatura)")
+    Page<EstadoCertificado> findByEstadoNombreYAsignatura(@Param("estado") String estado,
+                                                          @Param("searchQuery") String searchQuery,
+                                                          @Param("asignatura") String asignatura, Pageable pageable);
+
 }
 
