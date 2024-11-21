@@ -52,7 +52,7 @@ public class Usuario implements Serializable {
     private String correo;
 
     @Basic(optional = true)
-    @Column(name = "carrera")
+    @Column(name = "carrera", nullable = true)
     private String carrera;
 
     @Basic(optional = false)

@@ -107,6 +107,10 @@ public class UsuarioAPI {
         try{
             Optional<Usuario> usuario = usuarioService.login(loginRequestUser.getCorreo(), loginRequestUser.getContrasena());
             if (usuario.isPresent()) {
+                Usuario user = usuario.get();
+                System.out.println("Usuario encontrado: " + user.getNombre());
+                System.out.println("Carrera del usuario: " + user.getCarrera()); // Verifica si la carrera es nula
+    
                 usuario.get().setContrasenia(null); // No enviar la contraseña en la respuesta
                 String token = tokenGenerator.generateToken(String.valueOf(usuario.get().getIdUsuario()), usuario.get().getRol(), usuario.get().getCorreo(), 60);
 
