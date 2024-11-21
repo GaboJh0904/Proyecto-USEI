@@ -211,5 +211,15 @@ public class EstudianteBL implements EstudianteService{
     public List<Estudiante> findNoCompletaronEncuestaByAnioAndSemestre(Integer anio, Integer semestre) {
         return estudianteDAO.findNoCompletaronEncuestaByAnioAndSemestre(anio, semestre);
     }
+    @Override
+    @Transactional(readOnly = true)
+    public List<Object[]> getEstudiantesCompletaronEncuestaByGeneroAndAnio(Integer anio) {
+        return estudianteDAO.countEstudiantesCompletaronEncuestaByGeneroAndAnio(anio);
+    }
+    @Override
+    @Transactional(readOnly = true)
+    public List<Integer> findUniqueYears() {
+        return estudianteDAO.findUniqueYears();
+    }
 
 }

@@ -42,6 +42,22 @@ public interface EstudianteDAO extends  JpaRepository<Estudiante, Long> {
        "AND (:semestre IS NULL OR e.semestre = :semestre)")
 List<Estudiante> findNoCompletaronEncuestaByAnioAndSemestre(@Param("anio") Integer anio, @Param("semestre") Integer semestre);
 
+    
+@Query(value = "SELECT op.opcion, COUNT(DISTINCT r.estudiante_id_estudiante) " +
+               "FROM estado_encuesta ee " +
+               "JOIN respuesta r ON r.estudiante_id_estudiante = ee.estudiante_id_estudiante " +
+               "JOIN pregunta p ON r.pregunta_id_pregunta = p.id_pregunta " +
+               "JOIN opciones_pregunta op ON op.pregunta_id_pregunta = p.id_pregunta " +
+               "WHERE p.num_pregunta = 7 " +
+               "AND ee.estado = 'Completado' " +
+               "AND (:anio IS NULL OR EXTRACT(YEAR FROM ee.fecha_estado) = :anio) " +
+               "AND r.respuesta = op.opcion " +
+               "GROUP BY op.opcion", nativeQuery = true)
+List<Object[]> countEstudiantesCompletaronEncuestaByGeneroAndAnio(@Param("anio") Integer anio);
+
+@Query("SELECT DISTINCT EXTRACT(YEAR FROM ee.fechaEstado) FROM EstadoEncuesta ee ORDER BY EXTRACT(YEAR FROM ee.fechaEstado) ASC")
+List<Integer> findUniqueYears();
+
 
 }
  

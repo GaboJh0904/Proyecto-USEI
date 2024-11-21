@@ -96,6 +96,7 @@ public class Estudiante implements Serializable {
     private Collection<Respuesta> respuestaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "estudianteIdEstudiante")
     @JsonIgnore
+    
     private Collection<Notificacion> notificacionCollection;
 
     public Estudiante() {
