@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.usei.usei.models.Reporte;
+import com.usei.usei.models.Usuario;
 
 public interface ReporteService {
     
@@ -33,5 +34,11 @@ public interface ReporteService {
 
     // Generar PDF de reporte
     public String generateDashboardPDF(Reporte reporte, String carrera);
+
+    // Nuevo método para filtrar reporte por título o autor con paginación
+    Page<Reporte> findByFilterFromUser(String filter, Pageable pageable, Usuario usuario);
+
+    // Paginación de reporte existentes
+    Page<Reporte> findAllFromUser(Pageable pageable, Usuario usuario);
 
 }
