@@ -223,18 +223,29 @@ public class ReporteAPI {
     }
 
     @GetMapping("/historial/{id_usuario}")
-    public ResponseEntity<Page<Reporte>> readAllFromUser(@PathVariable(value = "id_usuario") Long id_usuario,
-            @RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<Page<Reporte>> readAllFromUser(
+            @PathVariable(value = "id_usuario") Long id_usuario,
+            @RequestParam(defaultValue = "0") String page, // Recibir como String para validación inicial
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "titulo") String sortBy,  // Ordenar por campo, por defecto 'titulo'
-            @RequestParam(defaultValue = "asc") String sortDirection, // Dirección de orden 'asc' o 'desc'
-            @RequestParam(required = false) String filter // Filtro opcional
-    ) {
+            @RequestParam(defaultValue = "titulo") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection,
+            @RequestParam(value = "filter", required = false) String filter) {
+        int pageNumber;
+
+        // Validar que 'page' sea un entero válido
+        try {
+            pageNumber = Integer.parseInt(page);
+        } catch (NumberFormatException e) {
+            return ResponseEntity.badRequest().body(null); // Respuesta 400 si el parámetro es inválido
+        }
+
+        // Configurar ordenamiento
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
                 ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
 
-        Pageable paging = PageRequest.of(page, size, sort);
+        Pageable paging = PageRequest.of(pageNumber, size, sort);
+
         Page<Reporte> pagedReporte;
 
         Usuario UsuarioExistente = new Usuario();
