@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,11 @@ public class NoticiasBL implements NoticiasService {
                     .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id: " + noticias.getUsuarioIdUsuario().getIdUsuario()));
             noticias.setUsuarioIdUsuario(usuario);
 
+            // Asegúrate de que `fechaModificado` esté siempre definido
+            if (noticias.getFechaModificado() == null) {
+                noticias.setFechaModificado(LocalDateTime.now()); // Si no se proporciona, usa la fecha actual
+            }
+
             return noticiasDAO.save(noticias);
 
         } catch (IOException e) {
@@ -83,11 +89,16 @@ public class NoticiasBL implements NoticiasService {
 
             try {
                 if (file != null && !file.isEmpty()) {
+                    String directory = "src/main/resources/static/documents/imagenes/";
                     String fileName = file.getOriginalFilename();
+
+                    Path filePath = Paths.get(directory, fileName);
+                    Files.copy(file.getInputStream(), filePath);
+
                     noticiasToActualizacion.setImg(fileName);
                 }
-            } catch (Exception e) {
-                throw new RuntimeException("Error al procesar la imagen", e);
+            } catch (IOException e) {
+                throw new RuntimeException("Error al guardar la imagen", e);
             }
 
             Usuario usuario = usuarioService.findById(noticias.getUsuarioIdUsuario().getIdUsuario())
@@ -95,7 +106,14 @@ public class NoticiasBL implements NoticiasService {
 
             noticiasToActualizacion.setTitulo(noticias.getTitulo());
             noticiasToActualizacion.setDescripcion(noticias.getDescripcion());
-            noticiasToActualizacion.setFechaModificado(noticias.getFechaModificado());
+
+            // Asegúrate de actualizar fechaModificado solo si se proporciona
+            if (noticias.getFechaModificado() != null) {
+                noticiasToActualizacion.setFechaModificado(noticias.getFechaModificado());
+            } else {
+                noticiasToActualizacion.setFechaModificado(LocalDateTime.now()); // Por defecto, usa la fecha actual
+            }
+
             noticiasToActualizacion.setEstado(noticias.getEstado());
             noticiasToActualizacion.setUsuarioIdUsuario(usuario);
 

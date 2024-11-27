@@ -1,6 +1,6 @@
 package com.usei.usei.api;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +39,7 @@ public class NoticiasAPI {
             @RequestParam("img") MultipartFile file,
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
-            @RequestParam("fechaModificado") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaModificado,
+            @RequestParam("fechaModificado") @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm") LocalDateTime fechaModificado,
             @RequestParam("estado") String estado,
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
@@ -69,7 +69,7 @@ public class NoticiasAPI {
             @RequestParam(value = "img", required = false) MultipartFile file,
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
-            @RequestParam("fechaModificado") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaModificado,
+            @RequestParam("fechaModificado") @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm") LocalDateTime fechaModificado,
             @RequestParam("estado") String estado,
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
