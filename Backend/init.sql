@@ -111,7 +111,7 @@ CREATE TABLE H_Noticias (
     titulo varchar(50)  NOT NULL,
     descripcion text  NOT NULL,
     img varchar(50)  NOT NULL,
-    fecha_modificado date  NOT NULL,
+    fecha_modificado timestamp  NOT NULL,
     estado varchar(30)  NOT NULL,
     Usuario_id_usuario int  NOT NULL,
     ver int  NOT NULL,
@@ -520,3 +520,4 @@ CREATE TRIGGER trigger_eliminar_estado_certificado
 BEFORE DELETE ON Estudiante
 FOR EACH ROW
 EXECUTE FUNCTION eliminar_estado_certificado();
+
