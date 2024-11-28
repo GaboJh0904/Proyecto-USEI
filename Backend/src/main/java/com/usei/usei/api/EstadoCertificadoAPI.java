@@ -243,7 +243,7 @@ public ResponseEntity<?> enviarCertificado() {
     //Paginacion,filtrado y ordenacion por estado o nombre estudiante
 @GetMapping("/paginado")
 public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
-        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "1") int page, // Por defecto empieza en página 1
         @RequestParam(defaultValue = "5") int size,
         @RequestParam(defaultValue = "fechaEstado") String sortBy,
         @RequestParam(defaultValue = "asc") String sortDirection,
@@ -251,11 +251,14 @@ public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
         @RequestParam(required = false) String searchQuery,
         @RequestParam(required = false) String asignatura // Nuevo parámetro
 ) {
+    // Convertir el índice de página basado en 1 a base 0
+    int pageIndex = Math.max(page - 1, 0);
+
     Pageable pageable;
     Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
             ? Sort.by(sortBy).ascending()
             : Sort.by(sortBy).descending();
-    pageable = PageRequest.of(page, size, sort);
+    pageable = PageRequest.of(pageIndex, size, sort);
 
     Page<EstadoCertificado> result;
 
@@ -280,6 +283,7 @@ public ResponseEntity<Page<EstadoCertificado>> getEstadoCertificadosPaginado(
 
     return ResponseEntity.ok(result);
 }
+
 
 
 }

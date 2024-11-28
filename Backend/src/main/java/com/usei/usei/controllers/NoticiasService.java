@@ -27,9 +27,9 @@ public interface NoticiasService {
 
     Page<Noticias> findAll(Pageable pageable);
 
-    Page<Noticias> findByEstadoWithPagination(String estado, Pageable pageable);
+    Page<Noticias> findByEstadoWithPagination(String estado, Pageable paging);
 
-    Page<Noticias> findByFilter(String filter, Pageable pageable);
+    Page<Noticias> findByFilter(String filter, Pageable paging);
 
     Page<Noticias> findByEstadoWithFilter(String estado, String filter, Pageable pageable);
 
