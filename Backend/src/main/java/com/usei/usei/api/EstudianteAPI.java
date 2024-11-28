@@ -29,9 +29,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.usei.usei.controllers.EstudianteBL;
 import com.usei.usei.controllers.EstadoCertificadoService;
 import com.usei.usei.controllers.EstadoEncuestaService;
+import com.usei.usei.controllers.EstudianteBL;
 import com.usei.usei.controllers.EstudianteService;
 import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
@@ -214,13 +214,16 @@ private EstadoEncuestaService estadoEncuestaService;
             // Iterar sobre los registros del CSV
             for (CSVRecord csvRecord : csvParser) {
                 Estudiante estudiante = new Estudiante();
-                estudiante.setNombre(csvRecord.get("NOMBRE"));
-                estudiante.setCi(Integer.parseInt(csvRecord.get("CI")));
-                estudiante.setCarrera(csvRecord.get("CARRERA"));
-                estudiante.setAsignatura(csvRecord.get("ASIGNATURA"));
-                estudiante.setTelefono((int) Double.parseDouble(csvRecord.get("TELEFONO")));
-                estudiante.setCorreoInstitucional(csvRecord.get("CORREOINSTITUCIONAL"));
-                estudiante.setApellido("N/A"); // Valor predeterminado para apellido
+                estudiante.setCi(Integer.parseInt(csvRecord.get("ci")));
+                estudiante.setNombre(csvRecord.get("nombre"));
+                estudiante.setApellido(csvRecord.get("apellido"));
+                estudiante.setCorreoInstitucional(csvRecord.get("correo_institucional"));
+                estudiante.setCorreoPersonal(csvRecord.get("correo_personal"));
+                estudiante.setCarrera(csvRecord.get("carrera"));
+                estudiante.setAsignatura(csvRecord.get("asignatura"));
+                estudiante.setTelefono((int) Double.parseDouble(csvRecord.get("telefono")));
+                estudiante.setAnio(Integer.parseInt(csvRecord.get("anio")));
+                estudiante.setSemestre(Integer.parseInt(csvRecord.get("semestre")));
                 estudiante.setContrasena("123456"); // Valor predeterminado para la contraseña
                 estudiante.setEstadoInvitacion("No Completado"); // Valor predeterminado para el estado de la invitación
 
