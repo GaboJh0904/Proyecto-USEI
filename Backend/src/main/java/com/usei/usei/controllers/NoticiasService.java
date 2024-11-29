@@ -15,10 +15,8 @@ public interface NoticiasService {
 
     public Optional<Noticias> findById(Long id);
 
-    // Guardar noticia sin imagen
     public Noticias save(Noticias newNoticias);
 
-    // Guardar noticia con imagen
     public Noticias save(Noticias newNoticias, MultipartFile file);
 
     public Noticias actualizacionNoticia(Noticias newNoticias, Long id, MultipartFile file);
@@ -27,18 +25,13 @@ public interface NoticiasService {
 
     List<Noticias> findByEstado(String estado);
 
-    // Paginación de noticias existentes
     Page<Noticias> findAll(Pageable pageable);
 
-    // Paginación noticias archivadas
-    Page<Noticias> findByEstadoWithPagination(String estado, Pageable pageable);
+    Page<Noticias> findByEstadoWithPagination(String estado, Pageable paging);
 
-    // Nuevo método para filtrar noticias por título o autor con paginación
-    Page<Noticias> findByFilter(String filter, Pageable pageable);
+    Page<Noticias> findByFilter(String filter, Pageable paging);
 
-    // Nuevo método para filtrar noticias archivadas con paginación
     Page<Noticias> findByEstadoWithFilter(String estado, String filter, Pageable pageable);
-
 
     Page<Noticias> findByEstadoAndFilter(String estado, String filter, Pageable paging);
 }

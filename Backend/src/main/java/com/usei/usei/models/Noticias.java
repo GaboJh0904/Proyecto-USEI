@@ -5,8 +5,9 @@
 package com.usei.usei.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -56,8 +57,9 @@ public class Noticias implements Serializable {
     private String img;
 
     @Basic(optional = false)
-    @Column(name = "fechaModificado")
-    private Date fechaModificado;
+    @Column(name = "fecha_modificado", columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    private LocalDateTime fechaModificado;
 
     @Basic(optional = false)
     @Column(name = "estado")
@@ -74,7 +76,7 @@ public class Noticias implements Serializable {
         this.idNoticia = idNoticia;
     }
 
-    public Noticias(Long idNoticia, String titulo, String descripcion, String img, Date fechaModificado, String estado) {
+    public Noticias(Long idNoticia, String titulo, String descripcion, String img, LocalDateTime fechaModificado, String estado) {
         this.idNoticia = idNoticia;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -115,11 +117,11 @@ public class Noticias implements Serializable {
         this.img = img;
     }
 
-    public Date getFechaModificado() {
+    public LocalDateTime getFechaModificado() {
         return fechaModificado;
     }
 
-    public void setFechaModificado(Date fechaModificado) {
+    public void setFechaModificado(LocalDateTime fechaModificado) {
         this.fechaModificado = fechaModificado;
     }
 
@@ -160,4 +162,3 @@ public class Noticias implements Serializable {
         return "com.usei.usei.models.Noticias[ idNoticia=" + idNoticia + " ]";
     }
 }
-

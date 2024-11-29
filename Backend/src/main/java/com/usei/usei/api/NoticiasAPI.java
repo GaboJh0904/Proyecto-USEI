@@ -1,6 +1,6 @@
 package com.usei.usei.api;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +39,7 @@ public class NoticiasAPI {
             @RequestParam("img") MultipartFile file,
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
-            @RequestParam("fechaModificado") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaModificado,
+            @RequestParam("fechaModificado") @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm") LocalDateTime fechaModificado,
             @RequestParam("estado") String estado,
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
@@ -69,7 +69,7 @@ public class NoticiasAPI {
             @RequestParam(value = "img", required = false) MultipartFile file,
             @RequestParam("titulo") String titulo,
             @RequestParam("descripcion") String descripcion,
-            @RequestParam("fechaModificado") @DateTimeFormat(pattern = "dd-MM-yyyy") Date fechaModificado,
+            @RequestParam("fechaModificado") @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm") LocalDateTime fechaModificado,
             @RequestParam("estado") String estado,
             @RequestParam("UsuarioIdUsuario") Long usuarioId) {
 
@@ -129,41 +129,38 @@ public class NoticiasAPI {
     // Endpoint para noticias existentes con paginación, ordenación y filtrado por título, descripción y estado
     @GetMapping
     public ResponseEntity<Page<Noticias>> readAll(
-            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "1") int page, // Ahora base 1
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "titulo") String sortBy,  // Ordenar por campo, por defecto 'titulo'
-            @RequestParam(defaultValue = "asc") String sortDirection, // Dirección de orden 'asc' o 'desc'
-            @RequestParam(required = false) String filter, // Filtro opcional
-            @RequestParam(required = false) String estado // Nuevo parámetro de estado
+            @RequestParam(defaultValue = "titulo") String sortBy,
+            @RequestParam(defaultValue = "asc") String sortDirection,
+            @RequestParam(required = false) String filter,
+            @RequestParam(required = false) String estado
     ) {
+        // Convertir índice base 1 a base 0
+        int pageIndex = page - 1;
+        if (pageIndex < 0) pageIndex = 0; // Asegurarse de no tener valores negativos
+
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
                 ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
 
-        Pageable paging = PageRequest.of(page, size, sort);
+        Pageable paging = PageRequest.of(pageIndex, size, sort);
         Page<Noticias> pagedNoticias;
 
-        // Lógica de filtrado combinando estado y filtro
         if (filter != null && !filter.isEmpty() && estado != null && !estado.isEmpty()) {
-            // Filtrar tanto por estado como por título o descripción
             pagedNoticias = noticiasService.findByEstadoAndFilter(estado, filter, paging);
         } else if (filter != null && !filter.isEmpty()) {
-            // Filtrar solo por título o descripción
             pagedNoticias = noticiasService.findByFilter(filter, paging);
         } else if (estado != null && !estado.isEmpty()) {
-            // Filtrar solo por estado
             pagedNoticias = noticiasService.findByEstadoWithPagination(estado, paging);
         } else {
-            // Sin filtros, devolver todas las noticias
             pagedNoticias = noticiasService.findAll(paging);
         }
 
-        if (pagedNoticias.hasContent()) {
-            return new ResponseEntity<>(pagedNoticias, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+        return new ResponseEntity<>(pagedNoticias, HttpStatus.OK);
     }
+
+
 
 
 
