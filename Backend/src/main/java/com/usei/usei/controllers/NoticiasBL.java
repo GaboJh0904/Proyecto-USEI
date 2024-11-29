@@ -46,8 +46,11 @@ public class NoticiasBL implements NoticiasService {
     }
 
     @Override
-    public Noticias save(Noticias newNoticias) {
-        return noticiasDAO.save(newNoticias);
+    public Noticias save(Noticias noticias) {
+        if (noticias.getEstado() != null) {
+            noticias.setEstado(noticias.getEstado().trim().toLowerCase()); // Normalizar el estado
+        }
+        return noticiasDAO.save(noticias);
     }
 
     @Override
@@ -147,7 +150,7 @@ public class NoticiasBL implements NoticiasService {
     @Override
     @Transactional(readOnly = true)
     public Page<Noticias> findByEstadoWithPagination(String estado, Pageable pageable) {
-        return noticiasDAO.findByEstado(estado, pageable);
+        return noticiasDAO.findByEstadoIgnoreCase(estado, pageable);
     }
 
     @Override
@@ -163,8 +166,9 @@ public class NoticiasBL implements NoticiasService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Page<Noticias> findByEstadoAndFilter(String estado, String filter, Pageable pageable) {
-        return null;
+        return noticiasDAO.findByEstadoAndFilter(estado, filter, pageable);
     }
 
 }

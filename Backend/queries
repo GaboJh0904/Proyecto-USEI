@@ -17434,3 +17434,4 @@ INSERT INTO tipo_problema (problema) VALUES ('Problemas con la Encuesta');
 INSERT INTO tipo_problema (problema) VALUES ('Problemas con la Emisión del Certificado');
 INSERT INTO tipo_problema (problema) VALUES ('Problemas con el Reporte de Datos');
 INSERT INTO tipo_problema (problema) VALUES ('Problemas Técnicos Generales');
+
