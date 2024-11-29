@@ -521,3 +521,7 @@ BEFORE DELETE ON Estudiante
 FOR EACH ROW
 EXECUTE FUNCTION eliminar_estado_certificado();
 
+-- Normalizar noticias minusculas y mayusculas
+UPDATE noticias SET estado = LOWER(estado);
+
+
