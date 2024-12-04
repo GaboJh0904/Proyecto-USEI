@@ -129,46 +129,40 @@ public class NoticiasAPI {
     // Endpoint para noticias existentes con paginación, ordenación y filtrado por título, descripción y estado
     @GetMapping
     public ResponseEntity<Page<Noticias>> readAll(
-            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "titulo") String sortBy,
-            @RequestParam(defaultValue = "asc") String sortDirection,
-            @RequestParam(required = false) String filter,
-            @RequestParam(required = false) String estado
+            @RequestParam(defaultValue = "titulo") String sortBy,  // Ordenar por campo, por defecto 'titulo'
+            @RequestParam(defaultValue = "asc") String sortDirection, // Dirección de orden 'asc' o 'desc'
+            @RequestParam(required = false) String filter, // Filtro opcional
+            @RequestParam(required = false) String estado // Nuevo parámetro de estado
     ) {
-        int pageIndex = page - 1;
-        if (pageIndex < 0) pageIndex = 0;
-
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
                 ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
 
-        Pageable paging = PageRequest.of(pageIndex, size, sort);
-
-        // Normalizar valores de estado y filtro
-        if (estado != null) {
-            estado = estado.trim().toLowerCase();
-        }
-        if (filter != null) {
-            filter = filter.trim().toLowerCase();
-        }
-
+        Pageable paging = PageRequest.of(page, size, sort);
         Page<Noticias> pagedNoticias;
-        if (estado != null && !estado.isEmpty() && filter != null && !filter.isEmpty()) {
-            // Filtrar por estado y búsqueda, con ordenación
+
+        // Lógica de filtrado combinando estado y filtro
+        if (filter != null && !filter.isEmpty() && estado != null && !estado.isEmpty()) {
+            // Filtrar tanto por estado como por título o descripción
             pagedNoticias = noticiasService.findByEstadoAndFilter(estado, filter, paging);
-        } else if (estado != null && !estado.isEmpty()) {
-            // Filtrar solo por estado, con ordenación
-            pagedNoticias = noticiasService.findByEstadoWithPagination(estado, paging);
         } else if (filter != null && !filter.isEmpty()) {
-            // Filtrar solo por búsqueda, con ordenación
+            // Filtrar solo por título o descripción
             pagedNoticias = noticiasService.findByFilter(filter, paging);
+        } else if (estado != null && !estado.isEmpty()) {
+            // Filtrar solo por estado
+            pagedNoticias = noticiasService.findByEstadoWithPagination(estado, paging);
         } else {
-            // Sin filtros, con ordenación
+            // Sin filtros, devolver todas las noticias
             pagedNoticias = noticiasService.findAll(paging);
         }
 
-        return new ResponseEntity<>(pagedNoticias, HttpStatus.OK);
+        if (pagedNoticias.hasContent()) {
+            return new ResponseEntity<>(pagedNoticias, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 
 
