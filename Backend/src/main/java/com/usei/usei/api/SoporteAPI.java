@@ -69,7 +69,7 @@ public class SoporteAPI {
 
             // Enviar correo de notificación (opcional)
             emailService.sendEmail(
-                    "misa26amane@gmail.com",  // Dirección del encargado de soporte
+                    "lauravictoriamallea@gmail.com",  // Dirección del encargado de soporte
                     "Reporte de un nuevo problema",  // Asunto del correo
                     "Descripción del reporte del problema: \n\n" +
                             "Tipo de problema: " + problemaSeleccionado + "\n" +
@@ -114,7 +114,7 @@ public class SoporteAPI {
     // Endpoint para paginacion,filtrado y ordenacion para historial de reportes
     @GetMapping("/paginado")
     public ResponseEntity<Page<Soporte>> getAllSoportesPaginado(
-            @RequestParam(defaultValue = "0z") int page,
+            @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "fecha") String sortBy,  // Ordenar por campo, por defecto 'fecha'
             @RequestParam(defaultValue = "asc") String sortDirection,  // Dirección de orden 'asc' o 'desc'
