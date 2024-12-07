@@ -22,6 +22,8 @@ public interface EstudianteDAO extends  JpaRepository<Estudiante, Long> {
 
     Estudiante findByCorreoInstitucional(String correoInstitucional);
 
+    Optional<Estudiante> findByCi(int ci);
+
     // Búsqueda por nombre usando LIKE, con paginación
     Page<Estudiante> findByNombreContainingIgnoreCase(String nombre, Pageable pageable);
 
