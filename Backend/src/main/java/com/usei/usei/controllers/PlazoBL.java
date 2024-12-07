@@ -1,5 +1,7 @@
 package com.usei.usei.controllers;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -62,6 +64,26 @@ public class PlazoBL implements PlazoService {
             existingPlazo.setEstado("antiguo");
             plazoDAO.save(existingPlazo); // Guardar el cambio de estado
         });
+        // Ajustar las fechas del plazo recibido
+        if (plazo.getFechaFinalizacion() != null) {
+            // Convertir Date a LocalDate
+            LocalDate fechaFinalizacion = plazo.getFechaFinalizacion().toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate()
+                    .plusDays(1);
+            // Volver a convertir LocalDate a Date
+            plazo.setFechaFinalizacion(Date.from(fechaFinalizacion.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        }
+
+        if (plazo.getFechaModificacion() != null) {
+            LocalDate fechaModificacion = plazo.getFechaModificacion().toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate()
+                    .plusDays(1);
+            plazo.setFechaModificacion(Date.from(fechaModificacion.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        }
+
+
         return plazoDAO.save(plazo);
     }
 
