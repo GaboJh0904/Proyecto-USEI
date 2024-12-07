@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.usei.usei.controllers.UsuarioService;
@@ -81,6 +82,7 @@ public class UsuarioAPI {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(oUsuario.get()));
     }
 
+    /*
     @PutMapping("/new-password/{id_usuario}")
     public ResponseEntity<?> changePassword(@PathVariable(value = "id_usuario") Long id_usuario, @RequestBody HashMap<String, String> passwordData) {
         Optional<Usuario> oUsuario = usuarioService.findById(id_usuario);
@@ -101,7 +103,20 @@ public class UsuarioAPI {
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Contraseña actualizada exitosamente.");
     }
+   */
+  
+   @PutMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestParam Long idUsuario, @RequestBody HashMap<String, String> passwordData) {
+        Optional<Usuario> oUsuario = usuarioService.findById(idUsuario);
+        if (oUsuario.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        System.out.println("Llego hasta aqui");
+        oUsuario.get().setContrasenia(passwordData.get("newPassword"));
+        usuarioService.save(oUsuario.get());
 
+        return ResponseEntity.ok("Contraseña actualizada exitosamente.");
+    }
 
     // Nuevo endpoint de login con correo y contraseña
     @PostMapping("/login")
@@ -152,7 +167,6 @@ public class UsuarioAPI {
     @PostMapping("/enviarCodigoVerificacion/{correo}")
     public ResponseEntity<?> enviarCodigoVerificacion(@PathVariable(value = "correo") String correo) {
         try {
-
             Long idDirector = usuarioService.findByMail(correo);
             // Verificar si el idEstudiante es igual a 0 y devolver un error
             if (idDirector == 0) {
