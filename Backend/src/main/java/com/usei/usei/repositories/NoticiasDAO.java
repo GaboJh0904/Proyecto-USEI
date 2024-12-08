@@ -32,7 +32,6 @@ public interface NoticiasDAO extends JpaRepository<Noticias, Long> {
     // Buscar por estado con insensibilidad a mayúsculas
     Page<Noticias> findByEstadoIgnoreCase(String estado, Pageable pageable);
 
-    // Buscar por estado y filtro con insensibilidad a mayúsculas
     Page<Noticias> findByEstadoAndTituloContainingIgnoreCaseOrDescripcionContainingIgnoreCase(
             String estado, String titulo, String descripcion, Pageable pageable);
 
@@ -40,10 +39,15 @@ public interface NoticiasDAO extends JpaRepository<Noticias, Long> {
     Page<Noticias> findByTituloContainingIgnoreCaseOrDescripcionContainingIgnoreCase(
             String titulo, String descripcion, Pageable pageable);
 
-    @Query("SELECT n FROM Noticias n WHERE n.estado = :estado AND " +
-            "(LOWER(n.titulo) LIKE %:filter% OR LOWER(n.descripcion) LIKE %:filter%)")
-    Page<Noticias> findByEstadoAndFilter(@Param("estado") String estado,
-                                         @Param("filter") String filter,
-                                         Pageable pageable);
+    @Query("SELECT n FROM Noticias n WHERE " +
+            "(:estado IS NULL OR LOWER(n.estado) = LOWER(:estado)) AND " +
+            "(LOWER(n.titulo) LIKE LOWER(CONCAT('%', :filter, '%')) OR " +
+            "LOWER(n.descripcion) LIKE LOWER(CONCAT('%', :filter, '%')))")
+    Page<Noticias> findByEstadoAndFilter(
+            @Param("estado") String estado,
+            @Param("filter") String filter,
+            Pageable pageable);
 
+
+    Page<Noticias> findByEstadoAndTituloContainingIgnoreCaseOrEstadoAndDescripcionContainingIgnoreCase(String estado, String filter, String estado1, String filter1, Pageable pageable);
 }
