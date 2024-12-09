@@ -154,19 +154,20 @@ public class NoticiasAPI {
         }
 
         Page<Noticias> pagedNoticias;
-        if (estado != null && !estado.isEmpty() && filter != null && !filter.isEmpty()) {
-            // Filtrar por estado y búsqueda, con ordenación
-            pagedNoticias = noticiasService.findByEstadoAndFilter(estado, filter, paging);
-        } else if (estado != null && !estado.isEmpty()) {
-            // Filtrar solo por estado, con ordenación
-            pagedNoticias = noticiasService.findByEstadoWithPagination(estado, paging);
-        } else if (filter != null && !filter.isEmpty()) {
-            // Filtrar solo por búsqueda, con ordenación
-            pagedNoticias = noticiasService.findByFilter(filter, paging);
-        } else {
-            // Sin filtros, con ordenación
+        if ((estado == null || estado.isEmpty()) && (filter == null || filter.isEmpty())) {
+            // Sin filtros, devuelve todo
             pagedNoticias = noticiasService.findAll(paging);
+        } else if (estado == null || estado.isEmpty()) {
+            // Filtro solo por búsqueda (sin filtrar por estado)
+            pagedNoticias = noticiasService.findByFilter(filter, paging);
+        } else if (filter == null || filter.isEmpty()) {
+            // Filtro solo por estado
+            pagedNoticias = noticiasService.findByEstadoWithPagination(estado, paging);
+        } else {
+            // Filtro por estado y búsqueda
+            pagedNoticias = noticiasService.findByEstadoAndFilter(estado, filter, paging);
         }
+
 
         return new ResponseEntity<>(pagedNoticias, HttpStatus.OK);
     }

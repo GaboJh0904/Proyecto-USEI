@@ -111,21 +111,26 @@ public class SoporteAPI {
         }
     }
 
-    // Endpoint para paginacion,filtrado y ordenacion para historial de reportes
     @GetMapping("/paginado")
     public ResponseEntity<Page<Soporte>> getAllSoportesPaginado(
-            @RequestParam(defaultValue = "0z") int page,
+            @RequestParam(defaultValue = "1") int page,  // Cambia el valor predeterminado a 1
             @RequestParam(defaultValue = "5") int size,
             @RequestParam(defaultValue = "fecha") String sortBy,  // Ordenar por campo, por defecto 'fecha'
             @RequestParam(defaultValue = "asc") String sortDirection,  // Dirección de orden 'asc' o 'desc'
             @RequestParam(required = false) String filter,  // Filtro opcional para el mensaje
             @RequestParam(required = false) Long idUsuario  // Filtro opcional para filtrar por usuario
     ) {
+        // Resta 1 a la página para que funcione con índices basados en 1
+        int adjustedPage = page - 1;
+        if (adjustedPage < 0) {
+            adjustedPage = 0; // Asegúrate de que no sea negativo
+        }
+
         Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
                 ? Sort.by(sortBy).ascending()
                 : Sort.by(sortBy).descending();
 
-        Pageable paging = PageRequest.of(page, size, sort);
+        Pageable paging = PageRequest.of(adjustedPage, size, sort);
         Page<Soporte> pagedSoportes;
 
         // Lógica de filtrado combinando idUsuario y filtro

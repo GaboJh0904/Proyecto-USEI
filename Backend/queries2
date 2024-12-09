@@ -341,11 +341,11 @@ INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_perso
         2023, 1, 'Completo', 'Mt6bZGVFr');
 INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
         VALUES (8501481, 'Laura', 'Martínez', 'ana@ucb.edu.bo',
-        'carlos@hotmail.com', 'Medicina', 'trabajo de grado', '77672253',
+        'carlos@hotmail.com', 'Medicina', 'Taller de grado II', '77672253',
         2020, 2, 'Completo', 'hWdjaqOaiP');
 INSERT INTO estudiante (ci, nombre, apellido, correo_institucional, correo_personal, carrera, asignatura, telefono, anio, semestre, estado_invitacion, contrasena)
         VALUES (4982472, 'María', 'Pérez', 'ana@ucb.edu.bo',
-        'laura@hotmail.com', 'Psicología', 'examen de grado', '73266127',
+        'laura@hotmail.com', 'Psicología', 'Taller de grado I', '73266127',
         2024, 2, 'No Completo', 'WiwNpxAmdshY');
 
 -- Datos tabla tipo notificacion
