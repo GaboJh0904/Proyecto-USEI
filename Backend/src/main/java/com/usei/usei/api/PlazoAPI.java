@@ -72,18 +72,28 @@ public class PlazoAPI {
     // Endpoint to retrieve all Plazos with pagination
     @GetMapping("/all")
     public ResponseEntity<?> readAll(
-        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "1") int page,
         @RequestParam(defaultValue = "5") int size,
         @RequestParam(defaultValue = "fechaModificacion") String sortBy,
         @RequestParam(defaultValue = "asc") String sortDirection
     ) {
         try {
+            // Ajustar índice de la página
+            int pageIndex = page - 1;
+            if (pageIndex < 0) pageIndex = 0;
+
+            // Configurar ordenamiento
             Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
                         ? Sort.by(sortBy).ascending()
                         : Sort.by(sortBy).descending();
-            Pageable pageable = PageRequest.of(page, size, sort);
+
+            // Configurar paginación
+            Pageable pageable = PageRequest.of(pageIndex, size, sort);
+
+            // Obtener datos paginados
             Page<Plazo> paginatedPlazos = plazoService.findAll(pageable);
 
+            // Devolver respuesta
             return ResponseEntity.ok(paginatedPlazos);
         } catch (Exception e) {
             return new ResponseEntity<>(new MessageResponse(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
