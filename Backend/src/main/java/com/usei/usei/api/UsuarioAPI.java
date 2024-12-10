@@ -55,14 +55,24 @@ public class UsuarioAPI {
 
     @DeleteMapping("/{id_usuario}")
     public ResponseEntity<?> delete(@PathVariable(value = "id_usuario") Long id_usuario) {
+        System.out.println("ID recibido para eliminación: " + id_usuario); // Debugging
+    
         Optional<Usuario> oUsuario = usuarioService.findById(id_usuario);
         if (oUsuario.isEmpty()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado.");
         }
-        usuarioService.deleteById(id_usuario);
-        return ResponseEntity.ok(oUsuario);
+    
+        try {
+            usuarioService.deleteById(id_usuario);
+            return ResponseEntity.ok("Usuario eliminado correctamente.");
+        } catch (Exception e) {
+            // Manejar posibles errores, como restricciones de clave foránea
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("No se pudo eliminar el usuario: " + e.getMessage());
+        }
     }
-
+    
+    
     @PutMapping("/{id_usuario}")
     public ResponseEntity<?> update(@PathVariable(value = "id_usuario") Long id_usuario, @RequestBody Usuario usuario) {
         Optional<Usuario> oUsuario = usuarioService.findById(id_usuario);
