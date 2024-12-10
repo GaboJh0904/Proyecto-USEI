@@ -5,8 +5,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 import java.util.Optional;
+import org.springframework.data.domain.Sort;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -131,9 +134,19 @@ public class CertificadoAPI {
     }
 
     @GetMapping
-    public ResponseEntity<?> readAll() {
-        return ResponseEntity.ok(certificadoService.findAll());
-    }
+public ResponseEntity<?> readAll(
+        @RequestParam(defaultValue = "idCertificado") String sortBy,
+        @RequestParam(defaultValue = "ASC") String sortType) {
+
+    Sort sort = sortType.equalsIgnoreCase("ASC")
+            ? Sort.by(sortBy).ascending()
+            : Sort.by(sortBy).descending();
+
+    Iterable<Certificado> certificados = certificadoService.findAll(sort);
+
+    return ResponseEntity.ok(certificados);
+}
+
 
     @PutMapping("/{id_certificado}")
     public ResponseEntity<?> update(@PathVariable(value = "id_certificado") Long id_certificado,
