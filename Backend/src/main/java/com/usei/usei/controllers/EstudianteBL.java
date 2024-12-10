@@ -83,21 +83,17 @@ public class EstudianteBL implements EstudianteService{
     }
 
 
-    // Método que contiene la lógica completa para enviar correos de invitacion a todos los estudiantes
+    // Método que contiene la lógica completa para enviar correos de invitación a todos los estudiantes
     public void enviarCorreosEstudiantes() throws MessagingException {
 
         List<Estudiante> estudiantes = estudianteDAO.findByCorreoInstitucionalIsNotNull();
 
-        String asunto = "Informacion sobre Alumni UCB ";
-        String mensaje = "Estimado estudiante, usted esta apunto de salir y porlo tanto puede accedere a el custionario para ser parte de Alumni UCB por favor revisa el siguiente enlace importante: ";
+        String asunto = "Información sobre Alumni UCB";
+        String mensaje = "Estimado estudiante, usted está a punto de salir y por lo tanto puede acceder al cuestionario para ser parte de Alumni UCB. Por favor, revise el siguiente enlace importante: ";
         String link = "<a href='http://localhost:5173/'>Acceder al enlace</a>";
 
         for (Estudiante estudiante : estudiantes) {
             String correo = estudiante.getCorreoInstitucional();
-            if (!correo.endsWith("@ucb.edu.bo")) {
-                System.out.println("Correo inválido: " + correo);
-                continue;
-            }
             if ("completo".equalsIgnoreCase(estudiante.getEstadoInvitacion())) {
                 System.out.println("Correo no enviado, estado de invitación completo para: " + estudiante.getNombre());
                 continue; // No enviar correo si el estado es "completo"
@@ -110,6 +106,7 @@ public class EstudianteBL implements EstudianteService{
             estudianteDAO.save(estudiante); // Guardar los cambios en la base de datos
         }
     }
+
 
     // Método que contiene la lógica completa para enviar correos de invitacion a todos los estudiantes
     public void enviarCodigoVerificacion(String correo) throws MessagingException {
