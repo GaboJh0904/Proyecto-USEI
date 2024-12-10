@@ -42,7 +42,7 @@ public class PreguntaAPI {
         return ResponseEntity.ok(preguntaService.findAll());
     }
 
-    // // Leer todas las preguntas con soporte para paginación, filtrado y ordenación
+     // Leer todas las preguntas con soporte para paginación, filtrado y ordenación
     // @GetMapping
     // public ResponseEntity<?> readAll(
     //         @RequestParam(value = "page", defaultValue = "0") int page,
