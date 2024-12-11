@@ -131,7 +131,7 @@ public class NoticiasAPI {
     public ResponseEntity<Page<Noticias>> readAll(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "titulo") String sortBy,
+            @RequestParam(defaultValue = "titulo") String[] sortBy, // Permite múltiples criterios separados por coma
             @RequestParam(defaultValue = "asc") String sortDirection,
             @RequestParam(required = false) String filter,
             @RequestParam(required = false) String estado
@@ -139,9 +139,14 @@ public class NoticiasAPI {
         int pageIndex = page - 1;
         if (pageIndex < 0) pageIndex = 0;
 
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
-                ? Sort.by(sortBy).ascending()
-                : Sort.by(sortBy).descending();
+        // Construcción dinámica de criterios de ordenación
+        Sort sort = Sort.unsorted();
+        for (String field : sortBy) {
+            Sort currentSort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                    ? Sort.by(field).ascending()
+                    : Sort.by(field).descending();
+            sort = sort.and(currentSort);
+        }
 
         Pageable paging = PageRequest.of(pageIndex, size, sort);
 
