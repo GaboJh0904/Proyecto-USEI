@@ -1,6 +1,8 @@
 package com.usei.usei.controllers;
 
 import java.util.Optional;
+import org.springframework.data.domain.Sort;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -45,9 +47,18 @@ public class CertificadoBL implements CertificadoService{
 
     @Override
     @Transactional(readOnly = true)
-    public Iterable<Certificado> findAll(){
-        return certificadoDAO.findAll();
+    public Iterable<Certificado> findAll() {
+        return certificadoDAO.findAll(); 
     }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public Iterable<Certificado> findAll(Sort sort) {
+        return certificadoDAO.findAll(sort); 
+    }
+    
+    
+
 
     @Override
     @Transactional(readOnly = true)

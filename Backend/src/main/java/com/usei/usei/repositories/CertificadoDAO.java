@@ -15,4 +15,6 @@ public interface CertificadoDAO extends JpaRepository <Certificado, Long> {
 
      // Método para buscar un certificado que esté "En uso"
      Optional<Certificado> findByEstado(String estado);
+
+     
 }
