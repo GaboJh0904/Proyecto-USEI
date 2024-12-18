@@ -1,5 +1,7 @@
 package com.usei.usei.controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,12 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import com.usei.usei.models.Certificado;
 import com.usei.usei.models.EstadoCertificado;
@@ -98,47 +106,6 @@ public class CertificadoBL implements CertificadoService{
             throw new RuntimeException("Almacen no encontrado con el id: " + id);
         }
     }
-
-    // // Función para enviar el certificado solo si se cumplen las condiciones
-    // public void enviarCertificadoConCondiciones(Long idEstudiante) throws MessagingException {
-
-    //     // Verificar el estado de la encuesta
-    //     EstadoEncuesta estadoEncuesta = estadoEncuestaDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante)
-    //         .orElseThrow(() -> new RuntimeException("Estado de encuesta no encontrado para el estudiante con ID: " + idEstudiante));
-        
-    //     if (!"completado".equalsIgnoreCase(estadoEncuesta.getEstado())) {
-    //         System.out.println("No se puede enviar el certificado. El estado de la encuesta no está completado.");
-    //         return;
-    //     }
-
-    //     // Verificar el estado del certificado
-    //     EstadoCertificado estadoCertificado = estadoCertificadoDAO.findByEstudianteIdEstudiante_IdEstudiante(idEstudiante)
-    //         .orElseThrow(() -> new RuntimeException("Estado de certificado no encontrado para el estudiante con ID: " + idEstudiante));
-        
-    //     if (!"pendiente".equalsIgnoreCase(estadoCertificado.getEstado())) {
-    //         System.out.println("No se puede enviar el certificado. Ya ha sido enviado anteriormente.");
-    //         return;
-    //     }
-
-    //     // Obtener el correo del estudiante
-    //     Estudiante estudiante = estudianteDAO.findById(idEstudiante)
-    //         .orElseThrow(() -> new RuntimeException("Estudiante no encontrado con el ID: " + idEstudiante));
-
-    //     String correo = estudiante.getCorreoInstitucional();  
-    //     String asunto = "Certificado Académico";
-    //     String mensaje = "Estimado " + estudiante.getNombre() + ", adjunto encontrarás tu certificado académico.";
-    //     String attachmentPath = "C:\\Users\\paola qv\\Desktop\\usei\\Proyecto-USEI\\Backend\\src\\main\\resources\\static\\documents\\formatos\\Prueba1.pdf";
-
-    //     // Enviar el correo con el certificado adjunto
-    //     sendCertificadoEmail(correo, asunto, mensaje, attachmentPath);
-
-    //     // Actualizar el estado del certificado a "enviado"
-    //     estadoCertificado.setEstado("enviado");
-    //     estadoCertificadoDAO.save(estadoCertificado);  // Guardar los cambios en la base de datos
-
-    //     System.out.println("Certificado enviado a: " + correo);
-    // }
-     // Función para enviar el certificado solo si se cumplen las condiciones
      
      // Función para enviar el certificado que está en uso
      public void enviarCertificadoConCondiciones(Long idEstudiante) throws MessagingException {
@@ -180,18 +147,16 @@ public class CertificadoBL implements CertificadoService{
 
          Certificado certificado = certificadoEnUso.get();
          String basePath = "src/main/resources/static/documents/formatos/";
-         String attachmentPath = basePath + certificado.getFormato();
+         String inputPath  = basePath + certificado.getFormato();
+         String outputPath = basePath + "certificado_" + estudiante.getNombre() + ".pdf";
 
-         java.nio.file.Path path = java.nio.file.Paths.get(attachmentPath);
-         if (!path.toFile().exists()) {
-             System.err.println("Error: El archivo de certificado no existe en la ruta: " + attachmentPath);
-             throw new RuntimeException("El archivo de certificado no existe en la ruta especificada.");
-         }
+         // Agregar el nombre del estudiante al PDF
+        agregarNombreEnPDF(inputPath, outputPath, estudiante.getNombre(), estudiante.getApellido());
 
-         String fileName = path.getFileName().toString();
+         String fileName = "certificado_" + estudiante.getNombre() + ".pdf";
 
          // Enviar el correo con el certificado adjunto
-         sendCertificadoEmail(nuevoCorreo, asunto, mensaje, attachmentPath, fileName);
+         sendCertificadoEmail(nuevoCorreo, asunto, mensaje, outputPath, fileName);
 
          // Actualizar el estado del certificado a "enviado"
          estadoCertificado.setEstado("Enviado");
@@ -225,30 +190,41 @@ public class CertificadoBL implements CertificadoService{
         mailSender.send(message);
     }
 
+    // Nueva función para agregar el nombre del estudiante en el PDF
+    public String agregarNombreEnPDF(String inputPath, String outputPath, String nombreEstudiante, String apellidoEstudiante) {
+        try {
+            // Cargar el documento PDF
+            PDDocument document = PDDocument.load(new File(inputPath));
+            PDPage page = document.getPage(0); // Primera página del documento
 
-    //  @Override
-    // public void sendCertificadoEmail(String to, String subject, String body, String attachmentPath) throws MessagingException {
-    //     MimeMessage message = mailSender.createMimeMessage();
-    //     MimeMessageHelper helper = new MimeMessageHelper(message, true);
-    //     helper.setTo(to);
-    //     helper.setSubject(subject);
-    //     helper.setText(body);
+            // Obtener el tamaño de la página para calcular el centro
+            PDRectangle pageSize = page.getMediaBox();
+            float centerX = pageSize.getWidth() / 2 - 95; // Ajustar para centrar el texto
+            float centerY = pageSize.getHeight() / 2 - 45;
 
-    //     if (attachmentPath != null) {
-    //         java.nio.file.Path path = java.nio.file.FileSystems.getDefault().getPath(attachmentPath);
-    //         helper.addAttachment("Certificado.pdf", path.toFile());
-    //     }
+            // Escribir el nombre en la posición especificada
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true, true)) {
+                contentStream.beginText();
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 20);
+                contentStream.newLineAtOffset(centerX, centerY);
+                contentStream.showText(nombreEstudiante.toUpperCase()+ " " + apellidoEstudiante.toUpperCase());
+                contentStream.endText();
+            }
 
-    //     mailSender.send(message);
-    // }
+            // Guardar el nuevo PDF con el nombre agregado
+            document.save(outputPath);
+            document.close();
 
+            return outputPath;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al agregar el nombre en el PDF: " + e.getMessage());
+        }
+    }
 
     @Override
     public int obtenerUltimaVersion() {
         return certificadoDAO.obtenerUltimaVersion().orElse(0);  // Retorna 0 si no hay registros
     }
-
-   
-
 
 }
