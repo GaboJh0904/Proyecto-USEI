@@ -29,9 +29,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.usei.usei.controllers.EstudianteBL;
 import com.usei.usei.controllers.EstadoCertificadoService;
 import com.usei.usei.controllers.EstadoEncuestaService;
+import com.usei.usei.controllers.EstudianteBL;
 import com.usei.usei.controllers.EstudianteService;
 import com.usei.usei.dto.SuccessfulResponse;
 import com.usei.usei.dto.UnsuccessfulResponse;
@@ -145,7 +145,21 @@ private EstadoEncuestaService estadoEncuestaService;
         return ResponseEntity.ok("Contraseña actualizada exitosamente.");
     }
 
-
+    //Verificacion de Estudiante existente
+    @PostMapping("/existing-student")
+    public ResponseEntity<?> existingStudent(@RequestBody HashMap<String, Integer> ci) {
+        Optional<Estudiante> oEstudiante = estudianteService.existingStudent(ci.get("ci"));
+        if (oEstudiante.isPresent()) {
+            UnsuccessfulResponse response = new UnsuccessfulResponse(
+                    "409 Conflict",
+                    "Estudiante ya registrado",
+                    "/estudiante/existing-student"
+            );
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+        } else {
+            return ResponseEntity.ok("Estudiante no registrado");
+        }
+    }
 
     // Inicio de sesión de estudiante
     @PostMapping("/login")
@@ -213,18 +227,24 @@ private EstadoEncuestaService estadoEncuestaService;
 
             // Iterar sobre los registros del CSV
             for (CSVRecord csvRecord : csvParser) {
-                Estudiante estudiante = new Estudiante();
-                estudiante.setNombre(csvRecord.get("NOMBRE"));
-                estudiante.setCi(Integer.parseInt(csvRecord.get("CI")));
-                estudiante.setCarrera(csvRecord.get("CARRERA"));
-                estudiante.setAsignatura(csvRecord.get("ASIGNATURA"));
-                estudiante.setTelefono((int) Double.parseDouble(csvRecord.get("TELEFONO")));
-                estudiante.setCorreoInstitucional(csvRecord.get("CORREOINSTITUCIONAL"));
-                estudiante.setApellido("N/A"); // Valor predeterminado para apellido
-                estudiante.setContrasena("123456"); // Valor predeterminado para la contraseña
-                estudiante.setEstadoInvitacion("No Completado"); // Valor predeterminado para el estado de la invitación
+                Optional<Estudiante> oEstudiante = estudianteService.existingStudent(Integer.parseInt(csvRecord.get("ci")));
+                if (oEstudiante.isEmpty()) {
+                    Estudiante estudiante = new Estudiante();
+                    estudiante.setCi(Integer.parseInt(csvRecord.get("ci")));
+                    estudiante.setNombre(csvRecord.get("nombre"));
+                    estudiante.setApellido(csvRecord.get("apellido"));
+                    estudiante.setCorreoInstitucional(csvRecord.get("correo_institucional"));
+                    estudiante.setCorreoPersonal(csvRecord.get("correo_personal"));
+                    estudiante.setCarrera(csvRecord.get("carrera"));
+                    estudiante.setAsignatura(csvRecord.get("asignatura"));
+                    estudiante.setTelefono((int) Double.parseDouble(csvRecord.get("telefono")));
+                    estudiante.setAnio(Integer.parseInt(csvRecord.get("anio")));
+                    estudiante.setSemestre(Integer.parseInt(csvRecord.get("semestre")));
+                    estudiante.setContrasena("123456"); // Valor predeterminado para la contraseña
+                    estudiante.setEstadoInvitacion("No Completado"); // Valor predeterminado para el estado de la invitación
 
-                estudiantes.add(estudiante);
+                    estudiantes.add(estudiante);
+                }
             }
 
             // Guardar todos los estudiantes en la base de datos

@@ -57,45 +57,46 @@ public class UsuarioBL implements UsuarioService {
     @Override
     @Transactional
     public Usuario update(Usuario usuario, Long id) {
-    Optional<Usuario> existingUsuario = usuarioDAO.findById(id);
-    if (existingUsuario.isPresent()) {
-        Usuario usuarioToUpdate = existingUsuario.get();
-        usuarioToUpdate.setNombre(usuario.getNombre());
-        usuarioToUpdate.setTelefono(usuario.getTelefono());
-        usuarioToUpdate.setCorreo(usuario.getCorreo());
-        usuarioToUpdate.setCarrera(usuario.getCarrera());
-        usuarioToUpdate.setRol(usuario.getRol());
-        usuarioToUpdate.setUsuario(usuario.getUsuario());
-        usuarioToUpdate.setContrasenia(usuario.getContrasenia());
+        Optional<Usuario> existingUsuario = usuarioDAO.findById(id);
+        if (existingUsuario.isPresent()) {
+            Usuario usuarioToUpdate = existingUsuario.get();
+            usuarioToUpdate.setNombre(usuario.getNombre());
+            usuarioToUpdate.setTelefono(usuario.getTelefono());
+            usuarioToUpdate.setCorreo(usuario.getCorreo());
+            usuarioToUpdate.setCarrera(usuario.getCarrera());
+            usuarioToUpdate.setRol(usuario.getRol());
+            usuarioToUpdate.setUsuario(usuario.getUsuario());
+            usuarioToUpdate.setContrasenia(usuario.getContrasenia());
 
-        return usuarioDAO.save(usuarioToUpdate);
-    } else {
-        throw new RuntimeException("Persona no encontrada con el id: " + id);
+            return usuarioDAO.save(usuarioToUpdate);
+        } else {
+            throw new RuntimeException("Persona no encontrada con el id: " + id);
+        }
     }
-}
 
-@Override
-@Transactional(readOnly = true)
-public Optional<Usuario> login(String correo, String contrasenia) {
-    return usuarioDAO.findByCorreoAndContrasenia(correo, contrasenia);
-}
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Usuario> login(String correo, String contrasenia) {
+        return usuarioDAO.findByCorreoAndContrasenia(correo, contrasenia);
+    }
 
-public void enviarCodigoVerificacion(String correo) throws MessagingException {
+    @Override
+    public void enviarCodigoVerificacion(String correo) throws MessagingException {
 
         Usuario usuario = usuarioDAO.findByCorreo(correo);
 
         String asunto = "Codigo de Seguridad para cambio de contraseña";
         String mensaje = "Estimado Director, usted a solicitado un cambio de contraseña, por favor ingrese el siguiente codigo de seguridad: ";
 
-        if (!correo.endsWith("@ucb.edu.bo")) {
-            System.out.println("Correo inválido: " + correo);
-        }else {
+        // if (!correo.endsWith("@ucb.edu.bo")) {
+        //     System.out.println("Correo inválido: " + correo);
+        // }else {
             // Generar el código y guardarlo en la variable de instancia
             codigoVerificacion = generarCodigoVerificacion();
             String cuerpoCorreo = mensaje + codigoVerificacion;
             enviarCorreo(correo, asunto, cuerpoCorreo);
             System.out.println("Correo enviado a: " + usuario.getNombre());
-        }
+        // }
     }
 
     private String generarCodigoVerificacion() {
@@ -125,6 +126,17 @@ public void enviarCodigoVerificacion(String correo) throws MessagingException {
         helper.setText(body, true);
 
         mailSender.send(message);  // Enviar el correo
+    }
+
+    @Override
+    public Long findByMail(String correo){
+        Usuario usuario = usuarioDAO.findByCorreo(correo);
+        if(usuario == null){
+            return 0L;
+        }else{
+            return usuario.getIdUsuario();
+        }
+
     }
 
 }

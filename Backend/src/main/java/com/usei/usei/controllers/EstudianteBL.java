@@ -21,8 +21,8 @@ import jakarta.mail.internet.MimeMessage;
 @Service
 public class EstudianteBL implements EstudianteService{
 
-    private EstudianteDAO estudianteDAO;
-    private JavaMailSender mailSender;
+    final private EstudianteDAO estudianteDAO;
+    final private JavaMailSender mailSender;
 
     private String codigoVerificacion;
 
@@ -39,16 +39,19 @@ public class EstudianteBL implements EstudianteService{
         this.mailSender = mailSender;  // Inyección de mailSender
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Iterable<Estudiante> findAll() {
         return estudianteDAO.findAll();
     }
 
+    @Override
     @Transactional(readOnly = true)
     public Optional<Estudiante> findById(Long id) {
         return estudianteDAO.findById(id);
     }
 
+    @Override
     @Transactional
     public Estudiante save(Estudiante estudiante) {
         return estudianteDAO.save(estudiante);
@@ -60,6 +63,7 @@ public class EstudianteBL implements EstudianteService{
         estudianteDAO.deleteById(id);
     }
 
+    @Override
     @Transactional
     public Estudiante update(Estudiante estudiante, Long id) {
         Optional<Estudiante> existingEstudiante = estudianteDAO.findById(id);
@@ -82,8 +86,14 @@ public class EstudianteBL implements EstudianteService{
         return estudianteDAO.findByCiAndContrasena(ci, contrasena);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Estudiante> existingStudent(int ci) {
+        return estudianteDAO.findByCi(ci);
+    }
 
-    // Método que contiene la lógica completa para enviar correos de invitación a todos los estudiantes
+    @Override
+    // Método que contiene la lógica completa para enviar correos de invitacion a todos los estudiantes
     public void enviarCorreosEstudiantes() throws MessagingException {
 
         List<Estudiante> estudiantes = estudianteDAO.findByCorreoInstitucionalIsNotNull();
@@ -106,8 +116,8 @@ public class EstudianteBL implements EstudianteService{
             estudianteDAO.save(estudiante); // Guardar los cambios en la base de datos
         }
     }
-
-
+    
+    @Override
     // Método que contiene la lógica completa para enviar correos de invitacion a todos los estudiantes
     public void enviarCodigoVerificacion(String correo) throws MessagingException {
 
@@ -151,11 +161,13 @@ public class EstudianteBL implements EstudianteService{
         return codigo.toString();
     }
 
+    @Override
     // Método para usar el código de verificación guardado en otra función
     public String obtenerCodigoVerificacion() {
         return codigoVerificacion;
     }
 
+    @Override
     public Long findByCorreoInst(String correo){
         Estudiante estudiante = estudianteDAO.findByCorreoInstitucional(correo);
         if(estudiante == null){

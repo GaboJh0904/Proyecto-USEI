@@ -17,4 +17,6 @@ public interface TipoNotificacionService {
 
     public void deleteById(Long id);
 
+    public TipoNotificacion findByTipoNotificacion(String tipo);
+
 }
