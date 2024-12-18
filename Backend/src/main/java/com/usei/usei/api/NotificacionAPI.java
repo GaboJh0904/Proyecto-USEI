@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.usei.usei.controllers.NotificacionService;
+import com.usei.usei.controllers.TipoNotificacionService;
 import com.usei.usei.models.Estudiante;
 import com.usei.usei.models.MessageResponse;
 import com.usei.usei.models.Notificacion;
@@ -28,6 +29,8 @@ public class NotificacionAPI {
 
     @Autowired
     private NotificacionService notificacionService;
+    @Autowired
+    private TipoNotificacionService tipoNotificacionService;
 
     @PostMapping
     public ResponseEntity<Object> create(@RequestBody Notificacion notificacion) {
@@ -37,11 +40,17 @@ public class NotificacionAPI {
             newNotificacion.setContenido(notificacion.getContenido());
             newNotificacion.setFecha(notificacion.getFecha());
             newNotificacion.setEstadoNotificacion(notificacion.getEstadoNotificacion());
-            
-            // Vincular a una tipo de notificacion
-            TipoNotificacion tipoNotificacion = new TipoNotificacion();
-            tipoNotificacion.setIdNotificacion(notificacion.getTipoNotificacionIdNotificacion().getIdNotificacion());
-            newNotificacion.setTipoNotificacionIdNotificacion(tipoNotificacion);
+
+
+            if(notificacion.getTipoNotificacionIdNotificacion().getIdNotificacion() == 0){
+                TipoNotificacion newTipoNotificacion = tipoNotificacionService.findByTipoNotificacion("Encuesta completa");
+                newNotificacion.setTipoNotificacionIdNotificacion(newTipoNotificacion);
+            }else{
+                // Vincular a una tipo de notificacion
+                TipoNotificacion tipoNotificacion = new TipoNotificacion();
+                tipoNotificacion.setIdNotificacion(notificacion.getTipoNotificacionIdNotificacion().getIdNotificacion());
+                newNotificacion.setTipoNotificacionIdNotificacion(tipoNotificacion);
+            }
             // Vincular a un estudiante
             Estudiante estudiante = new Estudiante();
             estudiante.setIdEstudiante(notificacion.getEstudianteIdEstudiante().getIdEstudiante());

@@ -44,6 +44,8 @@ public interface EstudianteService {
 
     Page<Estudiante> findAll(Pageable pageable); // Obtener todos los estudiantes con paginación
 
+    Optional<Estudiante> existingStudent(int ci);
+
     //List<Estudiante> findEstudiantesNoCompletaronEncuesta();
 
     List<Integer> findDistinctAnios();
