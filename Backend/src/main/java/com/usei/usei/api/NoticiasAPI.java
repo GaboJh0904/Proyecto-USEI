@@ -129,38 +129,53 @@ public class NoticiasAPI {
     // Endpoint para noticias existentes con paginación, ordenación y filtrado por título, descripción y estado
     @GetMapping
     public ResponseEntity<Page<Noticias>> readAll(
-            @RequestParam(defaultValue = "1") int page, // Ahora base 1
+            @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "titulo") String sortBy,
+            @RequestParam(defaultValue = "titulo") String[] sortBy, // Permite múltiples criterios separados por coma
             @RequestParam(defaultValue = "asc") String sortDirection,
             @RequestParam(required = false) String filter,
             @RequestParam(required = false) String estado
     ) {
-        // Convertir índice base 1 a base 0
         int pageIndex = page - 1;
-        if (pageIndex < 0) pageIndex = 0; // Asegurarse de no tener valores negativos
+        if (pageIndex < 0) pageIndex = 0;
 
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
-                ? Sort.by(sortBy).ascending()
-                : Sort.by(sortBy).descending();
+        // Construcción dinámica de criterios de ordenación
+        Sort sort = Sort.unsorted();
+        for (String field : sortBy) {
+            Sort currentSort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())
+                    ? Sort.by(field).ascending()
+                    : Sort.by(field).descending();
+            sort = sort.and(currentSort);
+        }
 
         Pageable paging = PageRequest.of(pageIndex, size, sort);
-        Page<Noticias> pagedNoticias;
 
-        if (filter != null && !filter.isEmpty() && estado != null && !estado.isEmpty()) {
-            pagedNoticias = noticiasService.findByEstadoAndFilter(estado, filter, paging);
-        } else if (filter != null && !filter.isEmpty()) {
+        // Normalizar valores de estado y filtro
+        if (estado != null) {
+            estado = estado.trim().toLowerCase();
+        }
+        if (filter != null) {
+            filter = filter.trim().toLowerCase();
+        }
+
+        Page<Noticias> pagedNoticias;
+        if ((estado == null || estado.isEmpty()) && (filter == null || filter.isEmpty())) {
+            // Sin filtros, devuelve todo
+            pagedNoticias = noticiasService.findAll(paging);
+        } else if (estado == null || estado.isEmpty()) {
+            // Filtro solo por búsqueda (sin filtrar por estado)
             pagedNoticias = noticiasService.findByFilter(filter, paging);
-        } else if (estado != null && !estado.isEmpty()) {
+        } else if (filter == null || filter.isEmpty()) {
+            // Filtro solo por estado
             pagedNoticias = noticiasService.findByEstadoWithPagination(estado, paging);
         } else {
-            pagedNoticias = noticiasService.findAll(paging);
+            // Filtro por estado y búsqueda
+            pagedNoticias = noticiasService.findByEstadoAndFilter(estado, filter, paging);
         }
+
 
         return new ResponseEntity<>(pagedNoticias, HttpStatus.OK);
     }
-
-
 
 
 

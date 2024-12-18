@@ -1,6 +1,7 @@
 package com.usei.usei.controllers;
-
 import java.util.Optional;
+
+import org.springframework.data.domain.Sort;
 
 import com.usei.usei.models.Certificado;
 
@@ -8,7 +9,9 @@ import jakarta.mail.MessagingException;
 
 public interface CertificadoService {
 
-    public Iterable<Certificado> findAll();
+    public Iterable<Certificado> findAll(); 
+    public Iterable<Certificado> findAll(Sort sort); 
+
 
     public Optional<Certificado> findById(Long id);
 

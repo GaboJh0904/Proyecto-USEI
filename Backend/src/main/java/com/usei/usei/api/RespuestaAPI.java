@@ -5,6 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -147,21 +150,21 @@ public class RespuestaAPI {
         @RequestParam(required = false, defaultValue = "0") int page,
         @RequestParam(required = false, defaultValue = "10") int pageSize) {
 
-        try {
-            if (page < 0) {
-                page = 0;
-            }
+             // Validar que el índice de página sea siempre >= 0
+             int pageIndex = Math.max(page - 1, 0); 
+             Pageable pageable = PageRequest.of(pageIndex, pageSize, Sort.by(Sort.Direction.fromString(sortType), sortBy));
 
+        try {
             Page<Respuesta> respuestas;
 
-            // Si se especifica una consulta de búsqueda, buscar por pregunta o respuesta
-            if (searchQuery != null && !searchQuery.isEmpty()) {
-                respuestas = respuestaService.findRespuestasByEstudianteIdAndSearchQuery(idEstudiante, searchQuery, sortBy, sortType, page, pageSize);
-            } else if (tipoPregunta != null && !tipoPregunta.isEmpty()) {
-                respuestas = respuestaService.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, sortBy, sortType, page, pageSize);
-            } else {
-                respuestas = respuestaService.findRespuestasByEstudianteId(idEstudiante, sortBy, sortType, page, pageSize);
-            }
+           // Manejar filtros de búsqueda
+        if (searchQuery != null && !searchQuery.isEmpty()) {
+            respuestas = respuestaService.findRespuestasByEstudianteIdAndSearchQuery(idEstudiante, searchQuery, sortBy, sortType, pageIndex, pageSize);
+        } else if (tipoPregunta != null && !tipoPregunta.isEmpty()) {
+            respuestas = respuestaService.findRespuestasByEstudianteIdAndTipoPregunta(idEstudiante, tipoPregunta, sortBy, sortType, pageIndex, pageSize);
+        } else {
+            respuestas = respuestaService.findRespuestasByEstudianteId(idEstudiante, sortBy, sortType, pageIndex, pageSize);
+        }
 
             if (respuestas.isEmpty()) {
                 return new ResponseEntity<>(new MessageResponse("No se encontraron respuestas para este estudiante"), HttpStatus.NOT_FOUND);
